@@ -6,6 +6,7 @@ class AppColors {
 
   /// Light Blue
   static const Color lightBlue = Color(0xffF1F4FF);
+  static const Color darkBlue = Color(0xff13206C);
 
   /// grey = #B7B7B7
   static const Color grey = Color(0xffB7B7B7);
@@ -32,5 +33,5 @@ class AppColors {
   static const Color disabled = Color(0xffC8D1E1);
 
   /// subtitle = #7890CD
-  static const Color subtitle = Color(0xff7890CD);
+  static const Color greyShadow = Color.fromARGB(255, 232, 232, 232);
 }

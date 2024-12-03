@@ -10,60 +10,64 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-        toolbarHeight: 80,
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Column(
-              children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 26.0, // Adjust the size of the avatar here
-                      backgroundImage: AssetImage('assets/images/avatar.jpg'),
-                    ),
-                    SizedBox(width: 14.0),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Tonald Drump',
-                          style: TextStyle(
-                              fontSize: 16.0, fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          'Selamat datang kembali!',
-                          style: TextStyle(fontSize: 14.0),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              ],
-            ),
-            CircleAvatar(
-              radius: 25, // Size of the avatar
-              backgroundColor:
-                  AppColors.lightBlue, // Background color of the avatar
-              child: GestureDetector(
-                onTap: () {
-                  // Your action when the icon is pressed
-                  print('SVG Icon pressed!');
-                },
-                child: SvgPicture.asset(
-                  'assets/icons/chat.svg', // Path to your SVG asset
-                  // colorFilter: AppColors.primary,
-                  width: 24, // Adjust icon size to fit
-                  height: 24, // Adjust icon size to fit
+    return Container(
+      decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(
+            color: AppColors.greyShadow, blurRadius: 6.0, offset: Offset(0, 1))
+      ]),
+      child: AppBar(
+          toolbarHeight: 80,
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
+          title: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Column(
+                children: [
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 26.0, // Adjust the size of the avatar here
+                        backgroundImage: AssetImage('assets/images/avatar.jpg'),
+                      ),
+                      SizedBox(width: 14.0),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Selamat datang kembali!',
+                            style: TextStyle(
+                                fontSize: 14.0, color: AppColors.primary),
+                          ),
+                          Text(
+                            'Tonald Drump',
+                            style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.darkBlue),
+                          ),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              ),
+              CircleAvatar(
+                radius: 25,
+                backgroundColor: AppColors.lightBlue,
+                child: GestureDetector(
+                  onTap: () {},
+                  child: SvgPicture.asset(
+                    'assets/icons/chat.svg',
+                    width: 24,
+                    height: 24,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ));
+            ],
+          )),
+    );
   }
 
   // Define preferedSizeWidget
