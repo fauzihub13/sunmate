@@ -19,18 +19,19 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Column(
         children: [
-          MainAppBar(), // Tetap di tempat
+          const MainAppBar(), // Tetap di tempat
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  HomeBanner(),
+                  const HomeBanner(),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           'Vendor Panel Surya',
                           textAlign: TextAlign.left,
                           style: TextStyle(
@@ -52,8 +53,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 4.0),
-                  ListVendor(
+                  const ListVendor(
                     itemCount: 3,
                   ),
                 ],
