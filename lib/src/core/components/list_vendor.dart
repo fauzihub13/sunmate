@@ -8,25 +8,21 @@ class ListVendor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true, // Menyesuaikan tinggi dengan jumlah item
-      separatorBuilder: (BuildContext context, int index) {
-        return const SizedBox(
-          height: 10.0,
-        );
-      },
-      physics:
-          const NeverScrollableScrollPhysics(), // Nonaktifkan scroll internal
-      itemCount: itemCount != null
-          ? itemCount!
-          : vendorList.length, // Tambahkan jumlah item
-      itemBuilder: (context, index) {
-        final Vendor vendor = vendorList[index];
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: VendorCard(data: vendor),
-        );
-      },
+    final int count = itemCount ?? vendorList.length;
+
+    return Column(
+      children: List.generate(
+        count,
+        (index) {
+          final Vendor vendor = vendorList[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 5.0), // Tambahkan vertical spacing di sini
+            child: VendorCard(data: vendor),
+          );
+        },
+      ),
     );
   }
 }

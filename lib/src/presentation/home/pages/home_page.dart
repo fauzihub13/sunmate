@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Column(
         children: [
           MainAppBar(), // Tetap di tempat
@@ -24,10 +24,9 @@ class _HomePageState extends State<HomePage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  HomeBanner(), // Banner dapat di-scroll
-                  SizedBox(height: 8.0),
+                  HomeBanner(),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -39,17 +38,21 @@ class _HomePageState extends State<HomePage> {
                               color: AppColors.darkBlue,
                               fontWeight: FontWeight.w600),
                         ),
-                        Text(
-                          'Selengkapnya',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              color: AppColors.darkBlue,
-                              fontWeight: FontWeight.w300),
+                        TextButton(
+                          child: const Text(
+                            'Selengkapnya',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 14.0,
+                                color: AppColors.darkBlue,
+                                fontWeight: FontWeight.w300),
+                          ),
+                          onPressed: () {},
                         ),
                       ],
                     ),
                   ),
+                  SizedBox(height: 4.0),
                   ListVendor(
                     itemCount: 3,
                   ),

@@ -9,7 +9,12 @@ class HomeBanner extends StatelessWidget {
     return Container(
       height: 150,
       padding: const EdgeInsets.all(18.0),
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      margin: const EdgeInsets.only(
+        left: 16.0,
+        right: 16.0,
+        top: 24.0,
+        bottom: 24.0,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: AppColors.primary,
