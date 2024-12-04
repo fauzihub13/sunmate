@@ -8,7 +8,7 @@ class HomeBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 150,
-      padding: EdgeInsets.all(18.0),
+      padding: const EdgeInsets.all(18.0),
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -24,9 +24,8 @@ class HomeBanner extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Kolom kiri dengan 2 elemen
           const Expanded(
-            flex: 2, // Menentukan proporsi 2 untuk kolom kiri
+            flex: 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -55,10 +54,8 @@ class HomeBanner extends StatelessWidget {
               ],
             ),
           ),
-
-          // Kolom kanan dengan 1 elemen
           Expanded(
-            flex: 1, // Menentukan proporsi 1 untuk kolom kanan
+            flex: 1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [

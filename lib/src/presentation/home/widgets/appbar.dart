@@ -36,16 +36,16 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Selamat datang kembali!',
-                            style: TextStyle(
-                                fontSize: 14.0, color: AppColors.primary),
-                          ),
-                          Text(
                             'Tonald Drump',
                             style: TextStyle(
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.darkBlue),
+                          ),
+                          Text(
+                            'Selamat datang kembali!',
+                            style: TextStyle(
+                                fontSize: 14.0, color: AppColors.primary),
                           ),
                         ],
                       ),

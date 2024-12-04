@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
+import 'package:flutter_sunmate/src/presentation/home/widgets/vendor_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,7 +18,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         // Pass dynamic title
         body: Column(
-      children: [MainAppBar(), HomeBanner()],
+      children: [
+        MainAppBar(),
+        HomeBanner(),
+        Container(
+          child: Column(
+            children: [VendorCard()],
+          ),
+        )
+      ],
     ));
   }
 }

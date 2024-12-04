@@ -6,7 +6,10 @@ class AppColors {
 
   /// Light Blue
   static const Color lightBlue = Color(0xffF1F4FF);
+
   static const Color darkBlue = Color(0xff13206C);
+
+  static const Color yellow = Color(0xffFEC62E);
 
   /// grey = #B7B7B7
   static const Color grey = Color(0xffB7B7B7);
