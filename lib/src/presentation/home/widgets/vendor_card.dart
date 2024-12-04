@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/data/models/vendor.dart';
+import 'package:flutter_svg/svg.dart';
 
 class VendorCard extends StatelessWidget {
-  const VendorCard({Key? key}) : super(key: key);
+  final Vendor data;
+
+  const VendorCard({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        // height: 300,
+        // color: AppColors.lightBlue,
         padding: const EdgeInsets.all(12.0),
-        margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+        // margin: const EdgeInsets.symmetric(vertical: 6.0),
         decoration: ShapeDecoration(
             shape: RoundedRectangleBorder(
                 side: const BorderSide(
@@ -27,7 +31,7 @@ class VendorCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(16),
                     child: Image.asset(
-                      'assets/images/avatar.jpg',
+                      data.imageUrls[0],
                       width: 84,
                       height: 84,
                       fit: BoxFit.cover,
@@ -36,32 +40,33 @@ class VendorCard extends StatelessWidget {
                 ],
               ),
             ),
-            const Expanded(
+            Expanded(
               flex: 2,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Amartha Power Connect',
-                    style: TextStyle(
+                    data.name,
+                    style: const TextStyle(
                       color: AppColors.darkBlue,
                       fontSize: 16.0,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(
-                    height: 4.0,
+                  const SizedBox(
+                    height: 6.0,
                   ),
                   Row(
                     children: [
-                      Icon(
-                        Icons.fmd_good,
-                        color: AppColors.grey,
+                      SvgPicture.asset(
+                        'assets/icons/location.svg',
+                        width: 20,
+                        height: 20,
                       ),
-                      SizedBox(width: 4.0),
+                      const SizedBox(width: 4.0),
                       Text(
-                        'Bandung, Jawa Barat',
-                        style: TextStyle(
+                        data.location,
+                        style: const TextStyle(
                           color: AppColors.grey,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -69,16 +74,20 @@ class VendorCard extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 4.0,
+                  ),
                   Row(
                     children: [
-                      Icon(
-                        Icons.grade,
-                        color: AppColors.yellow,
+                      SvgPicture.asset(
+                        'assets/icons/star.svg',
+                        width: 20,
+                        height: 20,
                       ),
-                      SizedBox(width: 4.0),
+                      const SizedBox(width: 4.0),
                       Text(
-                        '4.9',
-                        style: TextStyle(
+                        data.location,
+                        style: const TextStyle(
                           color: AppColors.grey,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
