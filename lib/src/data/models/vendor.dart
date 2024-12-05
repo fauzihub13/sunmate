@@ -25,7 +25,6 @@ var vendorList = [
           'Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit.',
       rating: 4.9,
       imageUrls: [
-        'assets/images/avatar.jpg',
         'assets/images/vendor/vendor-1.jpg',
         'assets/images/vendor/vendor-2.jpg',
         'assets/images/vendor/vendor-3.jpg',
@@ -44,13 +43,13 @@ var vendorList = [
   Vendor(
       id: 1,
       name: 'PT Surya Pelita',
-      location: 'Bandung, Jawa Barat',
+      location: 'Surabaya, Jawa Timur',
       description:
           'Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit.',
       rating: 4.9,
       imageUrls: [
-        'assets/images/vendor/vendor-1.jpg',
         'assets/images/vendor/vendor-2.jpg',
+        'assets/images/vendor/vendor-1.jpg',
         'assets/images/vendor/vendor-3.jpg',
         'assets/images/vendor/vendor-4.jpg',
       ],
@@ -67,14 +66,14 @@ var vendorList = [
   Vendor(
       id: 1,
       name: 'CV Solaris Cahaya Terang',
-      location: 'Bandung, Jawa Barat',
+      location: 'Bogor, Jawa Barat',
       description:
           'Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit.',
       rating: 4.9,
       imageUrls: [
-        'assets/images/vendor/vendor-1.jpg',
-        'assets/images/vendor/vendor-2.jpg',
         'assets/images/vendor/vendor-3.jpg',
+        'assets/images/vendor/vendor-2.jpg',
+        'assets/images/vendor/vendor-1.jpg',
         'assets/images/vendor/vendor-4.jpg',
       ],
       services: [
@@ -90,15 +89,15 @@ var vendorList = [
   Vendor(
       id: 1,
       name: 'PT Sun Power',
-      location: 'Bandung, Jawa Barat',
+      location: 'Jakarta, DKI Jakarta',
       description:
           'Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit.',
       rating: 4.9,
       imageUrls: [
+        'assets/images/vendor/vendor-4.jpg',
         'assets/images/vendor/vendor-1.jpg',
         'assets/images/vendor/vendor-2.jpg',
         'assets/images/vendor/vendor-3.jpg',
-        'assets/images/vendor/vendor-4.jpg',
       ],
       services: [
         'Instalasi panel surya',
@@ -113,15 +112,15 @@ var vendorList = [
   Vendor(
       id: 1,
       name: 'Amantha Power Connect',
-      location: 'Bandung, Jawa Barat',
+      location: 'Malang, Jawa Timur',
       description:
           'Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit.',
       rating: 4.9,
       imageUrls: [
         'assets/images/vendor/vendor-1.jpg',
-        'assets/images/vendor/vendor-2.jpg',
-        'assets/images/vendor/vendor-3.jpg',
         'assets/images/vendor/vendor-4.jpg',
+        'assets/images/vendor/vendor-3.jpg',
+        'assets/images/vendor/vendor-2.jpg',
       ],
       services: [
         'Instalasi panel surya',

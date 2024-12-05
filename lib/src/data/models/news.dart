@@ -15,7 +15,7 @@ var newsList = [
   News(
       id: 1,
       date: 'Rabu, 12 Oktober 2024',
-      imageAsset: 'assets/images/vendor/vendor-1.jpg',
+      imageAsset: 'assets/images/news/news-1.jpeg',
       title:
           'Suntech Perkuat Industri Panel Surya Indonesia melalui Investasi Strategis',
       description:
@@ -33,7 +33,7 @@ Deputi Bidang Koordinasi Infrastruktur dan Transportasi Kemenkomarves RI, Rachma
   News(
       id: 2,
       date: 'Rabu, 12 Oktober 2024',
-      imageAsset: 'assets/images/vendor/vendor-1.jpg',
+      imageAsset: 'assets/images/news/news-2.jpeg',
       title:
           'PLN IP Luncurkan Pabrik Solar Panel Terbesar di RI, Kapasitas 1 GWp',
       description: '''
@@ -52,7 +52,7 @@ Menurutnya, dengan produk yang dihasilkan lebih efisien dan memiliki keandalan t
   News(
       id: 3,
       date: 'Rabu, 12 Oktober 2024',
-      imageAsset: 'assets/images/vendor/vendor-1.jpg',
+      imageAsset: 'assets/images/news/news-3.jpg',
       title:
           'Panel Surya Energi Terbarukan di Kampung Wisata Oase Ondomohen Surabaya',
       description:
@@ -73,7 +73,7 @@ Instalasi itu dilengkapi dengan solar inverter untuk mengubah arus listrik dari 
   News(
       id: 3,
       date: 'Kamis, 19 Oktober 2024',
-      imageAsset: 'assets/images/vendor/vendor-1.jpg',
+      imageAsset: 'assets/images/news/news-4.jpeg',
       title:
           'Misi Bertahap Pemprov Jabar Terapkan PLTS Atap di Tiap Sekolah Negeri',
       description:
@@ -86,15 +86,11 @@ Ia juga telah menandatangani prasasti peresmian PLTS atap SMAN dan SMKN di Jabar
 
 Ia menargetkan pada tahun 2025 akan ada 7 sekolah lagi yang akan dibangun PLTS atap. Adapun total investasi yang dikeluarkan Pemprov Jabar menggunakan dana APBD tersebut, sekitar Rp5-6 miliar untuk ketujuh sekolah.
 
-Baca artikel detikjabar, "Misi Bertahap Pemprov Jabar Terapkan PLTS Atap di Tiap Sekolah Negeri" selengkapnya https://www.detik.com/jabar/berita/d-7649624/misi-bertahap-pemprov-jabar-terapkan-plts-atap-di-tiap-sekolah-negeri.
-
-Download Apps Detikcom Sekarang https://apps.detik.com/detik/
-
 '''),
   News(
       id: 3,
       date: 'Jumat, 20 Oktober 2024',
-      imageAsset: 'assets/images/vendor/vendor-1.jpg',
+      imageAsset: 'assets/images/news/news-5.jpeg',
       title:
           'Rencana RI Ekspor Listrik ke Singapura Bisa Datangkan Investasi Rp 780 T',
       description:
