@@ -30,7 +30,9 @@ class _HomePageState extends State<HomePage> {
                     child:
                         TitleSection(title: 'Berita Terkini', onPressed: () {}),
                   ),
-                  const SliderNews(),
+                  const SliderNews(
+                    itemCount: 3,
+                  ),
                   const SizedBox(height: 22.0),
                   Padding(
                     padding:

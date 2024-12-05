@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/data/models/news.dart';
 
 class NewsCard extends StatelessWidget {
-  const NewsCard({Key? key});
+  final News data;
+  const NewsCard({Key? key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class NewsCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
-                'assets/images/vendor/vendor-1.jpg',
+                data.imageAsset,
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,
@@ -50,7 +52,7 @@ class NewsCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                  "vendor name vendor name vendor name ",
+                  data.title,
                   maxLines: 2,
                   style: const TextStyle(
                       fontSize: 16.0,
