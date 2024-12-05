@@ -11,35 +11,31 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-        // BoxShadow(
-        //     color: AppColors.greyShadow, blurRadius: 6.0, offset: Offset(0, 1))
-      ]),
+      decoration: const BoxDecoration(color: Colors.white, boxShadow: []),
       child: AppBar(
         toolbarHeight: 60,
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Row(
-            mainAxisAlignment:
-                MainAxisAlignment.spaceBetween, // Posisi elemen seimbang
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: 40, // Lebar kotak
-                height: 40, // Tinggi kotak
+                width: 40,
+                height: 40,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: const Color.fromARGB(
-                        255, 226, 226, 226), // Warna border abu-abu
-                    width: 0.7, // Ketebalan border
+                    color: const Color.fromARGB(255, 226, 226, 226),
+                    width: 0.7,
                   ),
-                  borderRadius: BorderRadius.circular(12), // Sudut membulat
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: IconButton(
                   icon: SvgPicture.asset(
-                    'assets/icons/back.svg', // Path file SVG
-                    color: AppColors.darkBlue, // Warna ikon
+                    'assets/icons/back.svg',
+                    colorFilter: const ColorFilter.mode(
+                        AppColors.darkBlue, BlendMode.srcIn),
                     width: 30,
                     height: 30,
                   ),
@@ -59,8 +55,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                  width: 48), // Placeholder untuk mengimbangi ikon back
+              const SizedBox(width: 48),
             ],
           ),
         ),
