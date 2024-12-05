@@ -4,6 +4,7 @@ import 'package:flutter_sunmate/src/core/components/slider_news.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/title_section.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_list_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,8 +28,14 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-                    child:
-                        TitleSection(title: 'Berita Terkini', onPressed: () {}),
+                    child: TitleSection(
+                        title: 'Berita Terkini',
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return VendorListPage();
+                          }));
+                        }),
                   ),
                   const SliderNews(
                     itemCount: 3,
