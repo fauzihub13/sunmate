@@ -20,9 +20,7 @@ class VendorCard extends StatelessWidget {
         }));
       },
       child: Container(
-        // color: AppColors.lightBlue,
         padding: const EdgeInsets.all(12.0),
-        // margin: const EdgeInsets.symmetric(vertical: 6.0),
         decoration: ShapeDecoration(
             shape: RoundedRectangleBorder(
                 side: const BorderSide(
@@ -52,6 +50,7 @@ class VendorCard extends StatelessWidget {
               children: [
                 Text(
                   data.name,
+                  maxLines: 2,
                   style: const TextStyle(
                     color: AppColors.darkBlue,
                     fontSize: 16.0,

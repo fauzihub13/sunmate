@@ -40,6 +40,15 @@ class _HomePageState extends State<HomePage> {
                               fontWeight: FontWeight.w600),
                         ),
                         TextButton(
+                          style: ButtonStyle(
+                            padding: WidgetStateProperty.all<EdgeInsets>(
+                                EdgeInsets.zero), // Removes padding
+                            minimumSize: WidgetStateProperty.all<Size>(
+                                Size.zero), // Removes minimum size constraints
+                            tapTargetSize: MaterialTapTargetSize
+                                .shrinkWrap, // Reduces the button size to fit the text
+                          ),
+                          onPressed: () {},
                           child: const Text(
                             'Selengkapnya',
                             textAlign: TextAlign.left,
@@ -48,7 +57,6 @@ class _HomePageState extends State<HomePage> {
                                 color: AppColors.darkBlue,
                                 fontWeight: FontWeight.w300),
                           ),
-                          onPressed: () {},
                         ),
                       ],
                     ),
