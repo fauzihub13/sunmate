@@ -31,7 +31,7 @@ class MobileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppbar(title: 'Detail Vendor', canBack: true),
+      appBar: const CustomAppbar(title: 'Detail Berita', canBack: true),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(

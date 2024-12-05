@@ -5,6 +5,7 @@ import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/title_section.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_list_page.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_list_pages.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return VendorListPage();
+                            return const NewsListPages();
                           }));
                         }),
                   ),
@@ -45,7 +46,13 @@ class _HomePageState extends State<HomePage> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
                     child: TitleSection(
-                        title: 'Vendor Panel Surya', onPressed: () {}),
+                        title: 'Vendor Panel Surya',
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const VendorListPage();
+                          }));
+                        }),
                   ),
                   const ListVendor(
                     itemCount: 3,

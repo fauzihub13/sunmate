@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/news.dart';
-import 'package:flutter_sunmate/src/presentation/sunnews/pages/detail_news.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_detail_pages.dart';
 
 class NewsCard extends StatelessWidget {
   final News data;
-  const NewsCard({Key? key, required this.data});
+  const NewsCard({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class NewsCard extends StatelessWidget {
         }));
       },
       child: SizedBox(
-        height: 100,
+        height: 140,
         width: 300,
         child: Padding(
           padding: const EdgeInsets.only(right: 8.0),
