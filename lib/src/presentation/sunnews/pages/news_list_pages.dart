@@ -35,7 +35,7 @@ class _MobileViewState extends State<MobileView> {
   @override
   void initState() {
     super.initState();
-    searchResults = news; // Tampilkan semua vendor secara default
+    searchResults = news; 
   }
 
   void _onSearchChanged(String value) {
@@ -51,7 +51,7 @@ class _MobileViewState extends State<MobileView> {
     return Scaffold(
       appBar: const CustomAppbar(title: 'SunNews', canBack: true),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
         child: Column(
           children: [
             CustomSearchBar(
