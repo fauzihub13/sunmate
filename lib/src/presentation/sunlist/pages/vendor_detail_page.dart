@@ -3,6 +3,7 @@ import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/vendor.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_page.dart';
 import 'package:flutter_svg/svg.dart';
 
 class DetailVendor extends StatelessWidget {
@@ -219,7 +220,15 @@ class MobileView extends StatelessWidget {
       )),
       bottomNavigationBar: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-          child: Button.filled(onPressed: () {}, label: 'Buat Jadwal')),
+          child: Button.filled(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return VendorBookingPage(
+                    vendor: vendor,
+                  );
+                }));
+              },
+              label: 'Buat Jadwal')),
     );
   }
 }
