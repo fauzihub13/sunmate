@@ -43,7 +43,7 @@ var vendorList = [
       ]),
   Vendor(
       id: 1,
-      name: 'Amantha Power Connect',
+      name: 'PT Surya Pelita',
       location: 'Bandung, Jawa Barat',
       description:
           'Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit.',
@@ -66,7 +66,7 @@ var vendorList = [
       ]),
   Vendor(
       id: 1,
-      name: 'Amantha Power Connect',
+      name: 'CV Solaris Cahaya Terang',
       location: 'Bandung, Jawa Barat',
       description:
           'Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit.',
@@ -89,7 +89,7 @@ var vendorList = [
       ]),
   Vendor(
       id: 1,
-      name: 'Amantha Power Connect',
+      name: 'PT Sun Power',
       location: 'Bandung, Jawa Barat',
       description:
           'Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit, modern residence in a very strategic location from the city center. Blue Nature is a 5 star complemented with 80 well bedroom and suit.',

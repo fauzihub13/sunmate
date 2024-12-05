@@ -19,7 +19,7 @@ class CustomSearchBar extends StatelessWidget {
           child: SearchInput(
             controller: controller,
             onChanged: onChanged,
-            hintText: 'Cari menu...',
+            hintText: 'Cari disini...',
           ),
         ),
       ],
