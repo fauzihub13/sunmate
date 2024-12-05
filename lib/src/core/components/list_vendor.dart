@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/data/models/vendor.dart';
-import 'package:flutter_sunmate/src/presentation/home/widgets/vendor_card.dart';
+import 'package:flutter_sunmate/src/core/components/vendor_card.dart';
 
 class ListVendor extends StatelessWidget {
   final int? itemCount;
@@ -18,7 +18,7 @@ class ListVendor extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
-                vertical: 5.0), // Tambahkan vertical spacing di sini
+                vertical: 5.0), 
             child: VendorCard(data: vendor),
           );
         },
