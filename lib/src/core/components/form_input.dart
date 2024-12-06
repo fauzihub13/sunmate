@@ -14,7 +14,9 @@ class FormInput extends StatelessWidget {
     this.suffixIcon,
     this.enabled = true,
     this.borderRadius = 16.0,
-    this.height = 50.0,
+    this.maxLines = 1,
+    this.textInputType = TextInputType.text,
+    this.validator,
   });
 
   final TextEditingController controller;
@@ -25,47 +27,51 @@ class FormInput extends StatelessWidget {
   final Widget? suffixIcon;
   final bool enabled;
   final double borderRadius;
-  final double height;
+  final int maxLines;
+  final TextInputType textInputType;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      child: TextField(
-        controller: controller,
-        enabled: enabled,
-        decoration: InputDecoration(
-          labelText: labelText,
-          hintText: hintText,
-          prefixIcon: prefixIcon,
-          suffixIcon: suffixIcon,
-          filled: style == FormStyle.filled,
-          fillColor: style == FormStyle.filled ? AppColors.lightBlue : null,
-          enabledBorder: style == FormStyle.outlined
-              ? OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(borderRadius),
-                )
-              : UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(borderRadius),
-                  borderSide: BorderSide.none,
-                ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: const BorderSide(color: AppColors.primary),
-          ),
-          disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: const BorderSide(color: AppColors.disabled),
-          ),
-          border: style == FormStyle.outlined
-              ? OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(borderRadius),
-                )
-              : UnderlineInputBorder(
-                  borderRadius: BorderRadius.circular(borderRadius),
-                  borderSide: BorderSide.none,
-                ),
+    return TextFormField(
+      keyboardType: textInputType,
+      controller: controller,
+      enabled: enabled,
+      maxLines: maxLines,
+      validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      decoration: InputDecoration(
+        labelText: labelText,
+        floatingLabelStyle: const TextStyle(color: AppColors.darkBlue),
+        hintText: hintText,
+        prefixIcon: prefixIcon,
+        suffixIcon: suffixIcon,
+        filled: style == FormStyle.filled,
+        fillColor: style == FormStyle.filled ? AppColors.lightBlue : null,
+        enabledBorder: style == FormStyle.outlined
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.circular(borderRadius),
+              )
+            : UnderlineInputBorder(
+                borderRadius: BorderRadius.circular(borderRadius),
+                borderSide: BorderSide.none,
+              ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+          borderSide: const BorderSide(color: AppColors.primary),
         ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(borderRadius),
+          borderSide: const BorderSide(color: AppColors.disabled),
+        ),
+        border: style == FormStyle.outlined
+            ? OutlineInputBorder(
+                borderRadius: BorderRadius.circular(borderRadius),
+              )
+            : UnderlineInputBorder(
+                borderRadius: BorderRadius.circular(borderRadius),
+                borderSide: BorderSide.none,
+              ),
       ),
     );
   }

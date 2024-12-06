@@ -6,20 +6,22 @@ import 'package:flutter_sunmate/src/core/components/vendor_card.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/vendor.dart';
 
-class VendorBookingPage extends StatelessWidget {
+class VendorBookingPage extends StatefulWidget {
   final Vendor vendor;
   const VendorBookingPage({super.key, required this.vendor});
 
+  @override
+  State<VendorBookingPage> createState() => _VendorBookingPageState();
+}
+
+class _VendorBookingPageState extends State<VendorBookingPage> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController phoneController = TextEditingController();
     final TextEditingController dateController = TextEditingController();
-    final TextEditingController provinceController = TextEditingController();
-    final TextEditingController cityController = TextEditingController();
-    final TextEditingController districtController = TextEditingController();
-    final TextEditingController subdistrictController = TextEditingController();
     final TextEditingController addressDetailController =
         TextEditingController();
     final TextEditingController notesController = TextEditingController();
@@ -31,246 +33,119 @@ class VendorBookingPage extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              VendorCard(data: vendor),
+              VendorCard(data: widget.vendor),
               const SizedBox(
                 height: 18.0,
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Nama Lengkap',
-                  style: TextStyle(
-                      color: AppColors.darkBlue,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              FormInput(
-                controller: nameController,
-                style: FormStyle.filled,
-              ),
-              const SizedBox(height: 16.0),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Email',
-                  style: TextStyle(
-                      color: AppColors.darkBlue,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              FormInput(
-                controller: emailController,
-                style: FormStyle.filled,
-              ),
-              const SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        children: [
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Nomor Hp',
-                              style: TextStyle(
-                                  color: AppColors.darkBlue,
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8.0,
-                          ),
-                          FormInput(
-                            controller: phoneController,
-                            style: FormStyle.filled,
-                          ),
-                        ],
-                      )),
-                  const SizedBox(
-                    width: 14.0,
-                  ),
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        children: [
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Tanggal',
-                              style: TextStyle(
-                                  color: AppColors.darkBlue,
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8.0,
-                          ),
-                          FormInput(
-                            controller: dateController,
-                            style: FormStyle.filled,
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              const SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        children: [
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Provinsi',
-                              style: TextStyle(
-                                  color: AppColors.darkBlue,
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8.0,
-                          ),
-                          FormInput(
-                            controller: provinceController,
-                            style: FormStyle.filled,
-                          ),
-                        ],
-                      )),
-                  const SizedBox(
-                    width: 14.0,
-                  ),
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        children: [
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Kota',
-                              style: TextStyle(
-                                  color: AppColors.darkBlue,
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8.0,
-                          ),
-                          FormInput(
-                            controller: cityController,
-                            style: FormStyle.filled,
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              const SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        children: [
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Kecamatan',
-                              style: TextStyle(
-                                  color: AppColors.darkBlue,
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8.0,
-                          ),
-                          FormInput(
-                            controller: districtController,
-                            style: FormStyle.filled,
-                          ),
-                        ],
-                      )),
-                  const SizedBox(
-                    width: 14.0,
-                  ),
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        children: [
-                          const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Kelurahan',
-                              style: TextStyle(
-                                  color: AppColors.darkBlue,
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8.0,
-                          ),
-                          FormInput(
-                            controller: subdistrictController,
-                            style: FormStyle.filled,
-                          ),
-                        ],
-                      )),
-                ],
-              ),
-              const SizedBox(height: 16.0),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Detail Alamat',
-                  style: TextStyle(
-                      color: AppColors.darkBlue,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              FormInput(
-                controller: addressDetailController,
-                style: FormStyle.filled,
-              ),
-              const SizedBox(height: 16.0),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Catatan',
-                  style: TextStyle(
-                      color: AppColors.darkBlue,
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w500),
-                ),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              FormInput(
-                controller: notesController,
-                style: FormStyle.filled,
-              ),
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      FormInput(
+                        textInputType: TextInputType.name,
+                        prefixIcon: const Icon(
+                          Icons.person,
+                        ),
+                        labelText: 'Nama lengkap',
+                        controller: nameController,
+                        style: FormStyle.filled,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Nama tidak boleh kosong';
+                          } else if (!RegExp(r'^[a-zA-Z\s]+$')
+                              .hasMatch(value)) {
+                            return 'Nama hanya boleh mengandung huruf dan spasi';
+                          } else if (value.length < 4) {
+                            return 'Nama harus lebih dari 3 karakter';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
+                      FormInput(
+                        textInputType: TextInputType.emailAddress,
+                        prefixIcon: const Icon(
+                          Icons.email,
+                        ),
+                        labelText: 'Email',
+                        controller: emailController,
+                        style: FormStyle.filled,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Email tidak boleh kosong';
+                          }
+                          if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                            return 'Format email tidak valid';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
+                      FormInput(
+                        textInputType: TextInputType.phone,
+                        prefixIcon: const Icon(
+                          Icons.call,
+                        ),
+                        labelText: 'No Hp',
+                        controller: phoneController,
+                        style: FormStyle.filled,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Nomor HP tidak boleh kosong';
+                          } else if (!RegExp(r'^\d{10,15}$').hasMatch(value)) {
+                            return 'Nomor HP harus berupa angka 10-15 karakter';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
+                      FormInput(
+                        textInputType: TextInputType.datetime,
+                        prefixIcon: const Icon(
+                          Icons.calendar_month,
+                        ),
+                        labelText: 'Tanggal',
+                        controller: dateController,
+                        style: FormStyle.filled,
+                      ),
+                      const SizedBox(height: 16.0),
+                      FormInput(
+                        textInputType: TextInputType.multiline,
+                        prefixIcon: const Icon(
+                          Icons.home_filled,
+                        ),
+                        maxLines: 2,
+                        labelText: 'Alamat rumah',
+                        controller: addressDetailController,
+                        style: FormStyle.filled,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Alamat tidak boleh kosong';
+                          } else if (value.length < 10) {
+                            return 'Alamat harus lebih dari 10 karakter';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 16.0),
+                      FormInput(
+                        textInputType: TextInputType.multiline,
+                        prefixIcon: const Icon(
+                          Icons.description,
+                        ),
+                        labelText: 'Catatan',
+                        maxLines: 3,
+                        controller: notesController,
+                        style: FormStyle.filled,
+                        validator: (value) {
+                          if (value != null && value.length > 200) {
+                            return 'Catatan tidak boleh lebih dari 200 karakter';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  )),
             ],
           ),
         ),
@@ -279,13 +154,15 @@ class VendorBookingPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
           child: Button.filled(
               onPressed: () {
-                print('hai');
-                // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                //   return VendorBookingPage(
-                //     vendor: vendor,
-                //   );
-                // }
-                // ));
+                if (_formKey.currentState!.validate()) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Memproses Data'),
+                      backgroundColor: AppColors.green,
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
+                }
               },
               label: 'Buat Jadwal')),
     );
