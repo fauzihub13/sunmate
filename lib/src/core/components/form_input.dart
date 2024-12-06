@@ -13,10 +13,12 @@ class FormInput extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.enabled = true,
+    this.readOnly = false,
     this.borderRadius = 16.0,
     this.maxLines = 1,
     this.textInputType = TextInputType.text,
     this.validator,
+    this.onTap,
   });
 
   final TextEditingController controller;
@@ -26,10 +28,12 @@ class FormInput extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool enabled;
+  final bool readOnly;
   final double borderRadius;
   final int maxLines;
   final TextInputType textInputType;
   final String? Function(String?)? validator;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +41,11 @@ class FormInput extends StatelessWidget {
       keyboardType: textInputType,
       controller: controller,
       enabled: enabled,
+      readOnly: readOnly,
       maxLines: maxLines,
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
+      onTap: onTap,
       decoration: InputDecoration(
         labelText: labelText,
         floatingLabelStyle: const TextStyle(color: AppColors.darkBlue),
@@ -76,3 +82,5 @@ class FormInput extends StatelessWidget {
     );
   }
 }
+
+

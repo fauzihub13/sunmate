@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/date_picker.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/components/vendor_card.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
@@ -107,6 +108,17 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                         labelText: 'Tanggal',
                         controller: dateController,
                         style: FormStyle.filled,
+                        readOnly: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Tanggal harus diisi';
+                          }
+                          return null;
+                        },
+                        onTap: () async {
+                          await DatePickerHandler.showDatePickerDialog(
+                              context, dateController);
+                        },
                       ),
                       const SizedBox(height: 16.0),
                       FormInput(
