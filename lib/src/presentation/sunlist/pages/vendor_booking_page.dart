@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/date_picker.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/components/vendor_card.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/vendor.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/bloc/bloc/vendor_detail_bloc.dart';
 
 class VendorBookingPage extends StatefulWidget {
   final Vendor vendor;
@@ -32,133 +34,145 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              VendorCard(data: widget.vendor),
-              const SizedBox(
-                height: 18.0,
-              ),
-              Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      FormInput(
-                        textInputType: TextInputType.name,
-                        prefixIcon: const Icon(
-                          Icons.person,
+          child: BlocBuilder<VendorDetailBloc, VendorDetailState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                  orElse: () =>
+                      const Center(child: Text('Vendor tidak ditemukan')),
+                  loaded: (dataVendor) {
+                    return Column(
+                      children: [
+                        VendorCard(data: dataVendor),
+                        const SizedBox(
+                          height: 18.0,
                         ),
-                        labelText: 'Nama lengkap',
-                        controller: nameController,
-                        style: FormStyle.filled,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Nama tidak boleh kosong';
-                          } else if (!RegExp(r'^[a-zA-Z\s]+$')
-                              .hasMatch(value)) {
-                            return 'Nama hanya boleh mengandung huruf dan spasi';
-                          } else if (value.length < 4) {
-                            return 'Nama harus lebih dari 3 karakter';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16.0),
-                      FormInput(
-                        textInputType: TextInputType.emailAddress,
-                        prefixIcon: const Icon(
-                          Icons.email,
-                        ),
-                        labelText: 'Email',
-                        controller: emailController,
-                        style: FormStyle.filled,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Email tidak boleh kosong';
-                          }
-                          if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                            return 'Format email tidak valid';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16.0),
-                      FormInput(
-                        textInputType: TextInputType.phone,
-                        prefixIcon: const Icon(
-                          Icons.call,
-                        ),
-                        labelText: 'No Hp',
-                        controller: phoneController,
-                        style: FormStyle.filled,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Nomor HP tidak boleh kosong';
-                          } else if (!RegExp(r'^\d{10,15}$').hasMatch(value)) {
-                            return 'Nomor HP harus berupa angka 10-15 karakter';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16.0),
-                      FormInput(
-                        textInputType: TextInputType.datetime,
-                        prefixIcon: const Icon(
-                          Icons.calendar_month,
-                        ),
-                        labelText: 'Tanggal',
-                        controller: dateController,
-                        style: FormStyle.filled,
-                        readOnly: true,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Tanggal harus diisi';
-                          }
-                          return null;
-                        },
-                        onTap: () async {
-                          await DatePickerHandler.showDatePickerDialog(
-                              context, dateController);
-                        },
-                      ),
-                      const SizedBox(height: 16.0),
-                      FormInput(
-                        textInputType: TextInputType.multiline,
-                        prefixIcon: const Icon(
-                          Icons.home_filled,
-                        ),
-                        maxLines: 2,
-                        labelText: 'Alamat rumah',
-                        controller: addressDetailController,
-                        style: FormStyle.filled,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Alamat tidak boleh kosong';
-                          } else if (value.length < 10) {
-                            return 'Alamat harus lebih dari 10 karakter';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16.0),
-                      FormInput(
-                        textInputType: TextInputType.multiline,
-                        prefixIcon: const Icon(
-                          Icons.description,
-                        ),
-                        labelText: 'Catatan',
-                        maxLines: 3,
-                        controller: notesController,
-                        style: FormStyle.filled,
-                        validator: (value) {
-                          if (value != null && value.length > 200) {
-                            return 'Catatan tidak boleh lebih dari 200 karakter';
-                          }
-                          return null;
-                        },
-                      ),
-                    ],
-                  )),
-            ],
+                        Form(
+                            key: _formKey,
+                            child: Column(
+                              children: [
+                                FormInput(
+                                  textInputType: TextInputType.name,
+                                  prefixIcon: const Icon(
+                                    Icons.person,
+                                  ),
+                                  labelText: 'Nama lengkap',
+                                  controller: nameController,
+                                  style: FormStyle.filled,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Nama tidak boleh kosong';
+                                    } else if (!RegExp(r'^[a-zA-Z\s]+$')
+                                        .hasMatch(value)) {
+                                      return 'Nama hanya boleh mengandung huruf dan spasi';
+                                    } else if (value.length < 4) {
+                                      return 'Nama harus lebih dari 3 karakter';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16.0),
+                                FormInput(
+                                  textInputType: TextInputType.emailAddress,
+                                  prefixIcon: const Icon(
+                                    Icons.email,
+                                  ),
+                                  labelText: 'Email',
+                                  controller: emailController,
+                                  style: FormStyle.filled,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Email tidak boleh kosong';
+                                    }
+                                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                                        .hasMatch(value)) {
+                                      return 'Format email tidak valid';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16.0),
+                                FormInput(
+                                  textInputType: TextInputType.phone,
+                                  prefixIcon: const Icon(
+                                    Icons.call,
+                                  ),
+                                  labelText: 'No Hp',
+                                  controller: phoneController,
+                                  style: FormStyle.filled,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Nomor HP tidak boleh kosong';
+                                    } else if (!RegExp(r'^\d{10,15}$')
+                                        .hasMatch(value)) {
+                                      return 'Nomor HP harus berupa angka 10-15 karakter';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16.0),
+                                FormInput(
+                                  textInputType: TextInputType.datetime,
+                                  prefixIcon: const Icon(
+                                    Icons.calendar_month,
+                                  ),
+                                  labelText: 'Tanggal',
+                                  controller: dateController,
+                                  style: FormStyle.filled,
+                                  readOnly: true,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Tanggal harus diisi';
+                                    }
+                                    return null;
+                                  },
+                                  onTap: () async {
+                                    await DatePickerHandler
+                                        .showDatePickerDialog(
+                                            context, dateController);
+                                  },
+                                ),
+                                const SizedBox(height: 16.0),
+                                FormInput(
+                                  textInputType: TextInputType.multiline,
+                                  prefixIcon: const Icon(
+                                    Icons.home_filled,
+                                  ),
+                                  maxLines: 2,
+                                  labelText: 'Alamat rumah',
+                                  controller: addressDetailController,
+                                  style: FormStyle.filled,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Alamat tidak boleh kosong';
+                                    } else if (value.length < 10) {
+                                      return 'Alamat harus lebih dari 10 karakter';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16.0),
+                                FormInput(
+                                  textInputType: TextInputType.multiline,
+                                  prefixIcon: const Icon(
+                                    Icons.description,
+                                  ),
+                                  labelText: 'Catatan',
+                                  maxLines: 3,
+                                  controller: notesController,
+                                  style: FormStyle.filled,
+                                  validator: (value) {
+                                    if (value != null && value.length > 200) {
+                                      return 'Catatan tidak boleh lebih dari 200 karakter';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            )),
+                      ],
+                    );
+                  });
+            },
           ),
         ),
       ),

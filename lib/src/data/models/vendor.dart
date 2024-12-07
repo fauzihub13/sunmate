@@ -16,6 +16,8 @@ class Vendor {
   });
 }
 
+
+
 var vendorList = [
   Vendor(
       id: 1,
@@ -41,7 +43,7 @@ var vendorList = [
         'Produk C',
       ]),
   Vendor(
-      id: 1,
+      id: 2,
       name: 'PT Surya Pelita',
       location: 'Surabaya, Jawa Timur',
       description:
@@ -64,7 +66,7 @@ var vendorList = [
         'Produk C',
       ]),
   Vendor(
-      id: 1,
+      id: 3,
       name: 'CV Solaris Cahaya Terang',
       location: 'Bogor, Jawa Barat',
       description:
@@ -87,7 +89,7 @@ var vendorList = [
         'Produk C',
       ]),
   Vendor(
-      id: 1,
+      id: 4,
       name: 'PT Sun Power',
       location: 'Jakarta, DKI Jakarta',
       description:
@@ -110,7 +112,7 @@ var vendorList = [
         'Produk C',
       ]),
   Vendor(
-      id: 1,
+      id: 5,
       name: 'CV Sanjaya Cahaya Bumi',
       location: 'Malang, Jawa Timur',
       description:
@@ -133,7 +135,7 @@ var vendorList = [
         'Produk C',
       ]),
   Vendor(
-      id: 1,
+      id: 6,
       name: 'SunPower Corporation',
       location: 'Bandung, Jawa Barat',
       description:
@@ -156,7 +158,7 @@ var vendorList = [
         'Produk C',
       ]),
   Vendor(
-      id: 1,
+      id: 7,
       name: 'Canadian Solar',
       location: 'Surabaya, Jawa Timur',
       description:
@@ -179,7 +181,7 @@ var vendorList = [
         'Produk C',
       ]),
   Vendor(
-      id: 1,
+      id: 8,
       name: 'Jinko Solar',
       location: 'Bogor, Jawa Barat',
       description:
@@ -202,7 +204,7 @@ var vendorList = [
         'Produk C',
       ]),
   Vendor(
-      id: 1,
+      id: 9,
       name: 'First Solar',
       location: 'Jakarta, DKI Jakarta',
       description:
@@ -225,7 +227,7 @@ var vendorList = [
         'Produk C',
       ]),
   Vendor(
-      id: 1,
+      id: 10,
       name: 'Trina Solar',
       location: 'Malang, Jawa Timur',
       description:

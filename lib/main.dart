@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/bloc/bloc/vendor_detail_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,18 +13,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'SunMate',
-      theme: ThemeData(
-        fontFamily: 'Poppins',
-        scaffoldBackgroundColor:
-            Colors.white, // Set default background to white
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.white, // You can set your primary color here
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => VendorDetailBloc(),
         ),
-        useMaterial3: true,
+      ],
+      child: MaterialApp(
+        title: 'SunMate',
+        theme: ThemeData(
+          fontFamily: 'Poppins',
+          scaffoldBackgroundColor:
+              Colors.white, 
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.white, 
+          ),
+          useMaterial3: true,
+        ),
+        home: const HomePage(),
       ),
-      home: HomePage(),
     );
   }
 }
