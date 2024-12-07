@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/data/models/vendor.dart';
-import 'package:flutter_sunmate/src/core/components/vendor_card.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 
 class ListVendor extends StatelessWidget {
   final int? itemCount;

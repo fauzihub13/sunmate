@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sunmate/src/core/components/list_vendor.dart';
-import 'package:flutter_sunmate/src/core/components/slider_news.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/widgets/list_vendor.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/widgets/slider_news.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/title_section.dart';

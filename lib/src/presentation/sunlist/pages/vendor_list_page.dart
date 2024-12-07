@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/search_bar.dart';
-import 'package:flutter_sunmate/src/core/components/vendor_card.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 import 'package:flutter_sunmate/src/data/models/vendor.dart';
 
 class VendorListPage extends StatelessWidget {

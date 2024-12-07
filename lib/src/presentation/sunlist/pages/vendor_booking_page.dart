@@ -4,7 +4,7 @@ import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/date_picker.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
-import 'package:flutter_sunmate/src/core/components/vendor_card.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/vendor.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
@@ -39,6 +39,11 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
               return state.maybeWhen(
                   orElse: () =>
                       const Center(child: Text('Vendor tidak ditemukan')),
+                  loading: () {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
                   loaded: (dataVendor) {
                     return Column(
                       children: [
