@@ -7,7 +7,7 @@ import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/components/vendor_card.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/vendor.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/bloc/bloc/vendor_detail_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 
 class VendorBookingPage extends StatefulWidget {
   final Vendor vendor;

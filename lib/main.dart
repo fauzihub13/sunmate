@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/bloc/bloc/vendor_detail_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 
 void main() {
   runApp(const MyApp());
