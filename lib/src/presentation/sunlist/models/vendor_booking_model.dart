@@ -1,17 +1,8 @@
 import 'dart:math';
 
 class VendorBookingModel {
-  // code_booking VARCHAR(20) NOT NULL,
-  //   id_vendor INTEGER NOT NULL,
-  //   vendor_name TEXT NOT NULL,
-  //   vendor_image TEXT NOT NULL,
-  //   user_name TEXT NOT NULL,
-  //   user_email TEXT NOT NULL,
-  //   user_phone_number VARCHAR(15) NOT NULL,
-  //   user_address TEXT NOT NULL,
-  //   booking_date DATE NOT NULL,
-  //   status VARCHAR(20) DEFAULT 'pending',
-  //   notes TEXT,
+
+
 
   final String codeBooking;
   final int idVendor;

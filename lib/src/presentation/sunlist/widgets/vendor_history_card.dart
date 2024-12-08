@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_model.dart';
+import 'package:intl/intl.dart';
 
 class VendorHistoryCard extends StatelessWidget {
-  const VendorHistoryCard({super.key});
+  final VendorBookingModel vendorBookingModel;
+  const VendorHistoryCard({super.key, required this.vendorBookingModel});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +25,8 @@ class VendorHistoryCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 10.0),
                   child: Text(
-                    '#SMT-1232131',
-                    style: TextStyle(
+                    vendorBookingModel.codeBooking,
+                    style: const TextStyle(
                         color: AppColors.lightBlue,
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600),
@@ -44,7 +47,7 @@ class VendorHistoryCard extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(16),
                           child: Image.asset(
-                            'assets/images/vendor/vendor-1.jpg',
+                            vendorBookingModel.vendorImage,
                             width: 84,
                             height: 84,
                             fit: BoxFit.cover,
@@ -59,7 +62,7 @@ class VendorHistoryCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "PT Cahaya Dunia",
+                          vendorBookingModel.vendorName,
                           maxLines: 2,
                           style: const TextStyle(
                             color: AppColors.darkBlue,
@@ -79,7 +82,8 @@ class VendorHistoryCard extends StatelessWidget {
                             ),
                             const SizedBox(width: 6.0),
                             Text(
-                              "12 Januari 2024",
+                              DateFormat('dd MMMM yyyy')
+                                  .format(vendorBookingModel.bookingDate),
                               style: const TextStyle(
                                 color: AppColors.grey,
                                 fontSize: 14,
@@ -99,8 +103,10 @@ class VendorHistoryCard extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 4),
                           child: Text(
-                            'Menunggu konfirmasi',
-                            style: TextStyle(
+                            vendorBookingModel.status == 'pending'
+                                ? 'Menunggu konfirmasi'
+                                : '',
+                            style: const TextStyle(
                               color: AppColors.darkYellow,
                               fontSize: 12,
                               fontWeight: FontWeight.w400,

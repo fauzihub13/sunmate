@@ -36,14 +36,17 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Tonald Drump',
+                            'SunMate',
                             style: TextStyle(
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.darkBlue),
                           ),
+                          SizedBox(
+                            height: 2.0,
+                          ),
                           Text(
-                            'Selamat datang kembali!',
+                            'Sahabat panel suryamu!',
                             style: TextStyle(
                                 fontSize: 14.0, color: AppColors.primary),
                           ),
@@ -64,7 +67,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                     }));
                   },
                   child: SvgPicture.asset(
-                    'assets/icons/chat.svg',
+                    'assets/icons/history.svg',
                     width: 24,
                     height: 24,
                   ),

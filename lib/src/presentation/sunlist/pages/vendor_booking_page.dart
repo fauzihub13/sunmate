@@ -8,7 +8,7 @@ import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/ven
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_model.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_status_dialog.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/dialogs/vendor_booking_status_dialog.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 
 class VendorBookingPage extends StatefulWidget {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_history/vendor_booking_history_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_history_card.dart';
 
 class VendorBookingHistory extends StatelessWidget {
@@ -26,10 +28,13 @@ class MobileView extends StatefulWidget {
 }
 
 class _MobileViewState extends State<MobileView> {
-  // final TextEditingController searchController = TextEditingController();
-
-  // List<VendorBookingModel> searchResults = [];
-  // final List<VendorBookingModel> vendors = vendorList;
+  @override
+  void initState() {
+    super.initState();
+    context
+        .read<VendorBookingHistoryBloc>()
+        .add(VendorBookingHistoryEvent.getAllBookingHistory());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +48,37 @@ class _MobileViewState extends State<MobileView> {
             //   controller: searchController,
             //   onChanged: _onSearchChanged,
             // ),
-            const SizedBox(height: 16.0),
-            VendorHistoryCard(),
-            const SizedBox(
-              height: 14.0,
-            ),
-            VendorHistoryCard()
+            Expanded(
+              child: BlocBuilder<VendorBookingHistoryBloc,
+                  VendorBookingHistoryState>(builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () => const Center(
+                    child: Text('Terjadi kesalahan  '),
+                  ),
+                  loading: () {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                  loaded: (vendors) {
+                    if (vendors.isEmpty) {
+                      return const Center(
+                        child: Text('Tidak ada riwayat'),
+                      );
+                    }
+                    return ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => VendorHistoryCard(
+                        vendorBookingModel: vendors[index],
+                      ),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 14.0),
+                      itemCount: vendors.length,
+                    );
+                  },
+                );
+              }),
+            )
           ],
         ),
       ),
