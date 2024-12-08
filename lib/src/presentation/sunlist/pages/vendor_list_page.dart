@@ -29,6 +29,7 @@ class MobileView extends StatefulWidget {
 
 class _MobileViewState extends State<MobileView> {
   final TextEditingController searchController = TextEditingController();
+  
   List<Vendor> searchResults = [];
   final List<Vendor> vendors = vendorList;
 

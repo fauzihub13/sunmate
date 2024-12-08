@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   // final String title;
 
-  const MainAppBar({super.key}); // Receive title as a parameter
+  const MainAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,12 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                 radius: 25,
                 backgroundColor: AppColors.lightBlue,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const VendorBookingHistory();
+                    }));
+                  },
                   child: SvgPicture.asset(
                     'assets/icons/chat.svg',
                     width: 24,

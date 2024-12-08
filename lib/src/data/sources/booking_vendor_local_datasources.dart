@@ -53,4 +53,13 @@ class BookingVendorLocalDatasources {
     await db.insert(tableVendorBookings, vendorBooking.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
+
+  // Get all data
+  Future<List<VendorBookingModel>> getAllBookingData() async {
+    final db = await instance.database;
+    final List<Map<String, dynamic>> maps = await db.query(tableVendorBookings);
+    return List.generate(maps.length, (i) {
+      return VendorBookingModel.fromMap(maps[i]);
+    });
+  }
 }
