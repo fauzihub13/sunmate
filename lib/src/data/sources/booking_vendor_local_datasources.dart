@@ -57,7 +57,8 @@ class BookingVendorLocalDatasources {
   // Get all data
   Future<List<VendorBookingModel>> getAllBookingData() async {
     final db = await instance.database;
-    final List<Map<String, dynamic>> maps = await db.query(tableVendorBookings);
+    final List<Map<String, dynamic>> maps =
+        await db.query(tableVendorBookings, orderBy: 'created_at DESC');
 
     return List.generate(maps.length, (i) {
       return VendorBookingModel.fromMap(maps[i]);
