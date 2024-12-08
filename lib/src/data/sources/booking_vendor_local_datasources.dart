@@ -27,7 +27,7 @@ class BookingVendorLocalDatasources {
     status VARCHAR(20) DEFAULT 'pending',
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
     );
     ''');
   }
@@ -53,6 +53,4 @@ class BookingVendorLocalDatasources {
     await db.insert(tableVendorBookings, vendorBooking.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
-
-  
 }

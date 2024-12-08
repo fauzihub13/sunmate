@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class VendorBookingModel {
   // code_booking VARCHAR(20) NOT NULL,
   //   id_vendor INTEGER NOT NULL,
@@ -36,6 +38,14 @@ class VendorBookingModel {
     this.status = 'pending',
     this.notes,
   });
+
+  // Generate random booking code
+  static String generateCodeBooking() {
+    const prefix = 'SMT';
+    final random = Random();
+    final numbers = List.generate(5, (_) => random.nextInt(10)).join();
+    return '$prefix-$numbers';
+  }
 
   // Factory method to create an instance from a Map (for database)
   factory VendorBookingModel.fromMap(Map<String, dynamic> map) {

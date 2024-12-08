@@ -5,8 +5,11 @@ import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/date_picker.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/bloc/bloc/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_model.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_status_dialog.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 
 class VendorBookingPage extends StatefulWidget {
@@ -189,6 +192,30 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                               behavior: SnackBarBehavior.floating,
                             ),
                           );
+
+                          final VendorBookingModel vendorBooking =
+                              VendorBookingModel(
+                                  codeBooking:
+                                      VendorBookingModel.generateCodeBooking(),
+                                  idVendor: dataVendor.id,
+                                  vendorName: dataVendor.name,
+                                  vendorImage: dataVendor.imageUrls[0],
+                                  userName: nameController.text,
+                                  userEmail: emailController.text,
+                                  userPhoneNumber: phoneController.text,
+                                  userAddress: addressDetailController.text,
+                                  bookingDate:
+                                      DateTime.parse(dateController.text));
+
+                          context.read<VendorBookingBloc>().add(
+                              VendorBookingEvent.createBooking(vendorBooking));
+
+                          await showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (context) {
+                                return const VendorBookingStatusDialog();
+                              });
                         }
                       },
                       label: 'Buat Jadwal')),
