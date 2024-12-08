@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/widgets/list_vendor.dart';
-import 'package:flutter_sunmate/src/presentation/sunnews/widgets/slider_news.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/title_section.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_list_page.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/widgets/list_vendor.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_list_pages.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/widgets/slider_news.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

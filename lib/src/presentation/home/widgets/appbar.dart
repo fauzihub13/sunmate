@@ -4,12 +4,12 @@ import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_hi
 import 'package:flutter_svg/svg.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  // final String title;
-
   const MainAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final bool isWeb = identical(0, 0.0);
+
     return Container(
       decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
@@ -56,23 +56,24 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                   )
                 ],
               ),
-              CircleAvatar(
-                radius: 25,
-                backgroundColor: AppColors.lightBlue,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const VendorBookingHistory();
-                    }));
-                  },
-                  child: SvgPicture.asset(
-                    'assets/icons/history.svg',
-                    width: 24,
-                    height: 24,
+              if (!isWeb)
+                CircleAvatar(
+                  radius: 25,
+                  backgroundColor: AppColors.lightBlue,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const VendorBookingHistory();
+                      }));
+                    },
+                    child: SvgPicture.asset(
+                      'assets/icons/history.svg',
+                      width: 24,
+                      height: 24,
+                    ),
                   ),
                 ),
-              ),
             ],
           )),
     );
