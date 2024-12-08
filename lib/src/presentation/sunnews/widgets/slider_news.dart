@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/widgets/news_card.dart';
-import 'package:flutter_sunmate/src/data/models/news.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/models/news.dart';
 
 class SliderNews extends StatelessWidget {
   final int? itemCount;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/data/models/news.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/models/news.dart';
 
 class DetailNews extends StatelessWidget {
   final News news;

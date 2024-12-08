@@ -4,10 +4,10 @@ import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/date_picker.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/data/models/vendor.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 
 class VendorBookingPage extends StatefulWidget {
   final Vendor vendor;
@@ -29,23 +29,22 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
         TextEditingController();
     final TextEditingController notesController = TextEditingController();
 
-    return Scaffold(
-      appBar: const CustomAppbar(title: 'Buat Jadwal', canBack: true),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: BlocBuilder<VendorDetailBloc, VendorDetailState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                  orElse: () =>
-                      const Center(child: Text('Vendor tidak ditemukan')),
-                  loading: () {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
-                  loaded: (dataVendor) {
-                    return Column(
+    return BlocBuilder<VendorDetailBloc, VendorDetailState>(
+      builder: (context, state) {
+        return state.maybeWhen(
+          orElse: () => const Center(child: Text('Vendor tidak ditemukan')),
+          loading: () {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+          loaded: (dataVendor) {
+            return Scaffold(
+              appBar: const CustomAppbar(title: 'Buat Jadwal', canBack: true),
+              body: SingleChildScrollView(
+                child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
                       children: [
                         VendorCard(data: dataVendor),
                         const SizedBox(
@@ -175,27 +174,28 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                               ],
                             )),
                       ],
-                    );
-                  });
-            },
-          ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-          child: Button.filled(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Memproses Data'),
-                      backgroundColor: AppColors.green,
-                      behavior: SnackBarBehavior.floating,
-                    ),
-                  );
-                }
-              },
-              label: 'Buat Jadwal')),
+                    )),
+              ),
+              bottomNavigationBar: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 16.0),
+                  child: Button.filled(
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Memproses Data'),
+                              backgroundColor: AppColors.green,
+                              behavior: SnackBarBehavior.floating,
+                            ),
+                          );
+                        }
+                      },
+                      label: 'Buat Jadwal')),
+            );
+          },
+        );
+      },
     );
   }
 }

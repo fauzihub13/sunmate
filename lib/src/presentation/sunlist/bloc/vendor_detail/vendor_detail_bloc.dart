@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_sunmate/src/data/models/vendor.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'vendor_detail_event.dart';

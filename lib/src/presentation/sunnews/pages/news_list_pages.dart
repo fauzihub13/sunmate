@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/widgets/news_card.dart';
 import 'package:flutter_sunmate/src/core/components/search_bar.dart';
-import 'package:flutter_sunmate/src/data/models/news.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/models/news.dart';
 
 class NewsListPages extends StatelessWidget {
   const NewsListPages({super.key});
