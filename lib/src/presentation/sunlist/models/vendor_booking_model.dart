@@ -43,7 +43,7 @@ class VendorBookingModel {
   static String generateCodeBooking() {
     const prefix = 'SMT';
     final random = Random();
-    final numbers = List.generate(5, (_) => random.nextInt(10)).join();
+    final numbers = List.generate(8, (_) => random.nextInt(10)).join();
     return '$prefix-$numbers';
   }
 

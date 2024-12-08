@@ -11,10 +11,14 @@ class VendorBookingBloc extends Bloc<VendorBookingEvent, VendorBookingState> {
   VendorBookingBloc() : super(const VendorBookingState.initial()) {
     on<_createBooking>((event, emit) async {
       emit(const _Loading());
-      await BookingVendorLocalDatasources.instance
-          .createBooking(event.vendorBooking);
+      try {
+        await BookingVendorLocalDatasources.instance
+            .createBooking(event.vendorBooking);
+        emit(_Success(event.vendorBooking));
+      } catch (error) {
+        emit(_Error("Gagal membuat jadwal: ${error.toString()}"));
+      }
 
-      // Cetak data yang baru saja di-insert
       // print('-----------------');
       // print('Data yang di-insert:');
       // print('ID Vendor: ${event.vendorBooking.idVendor}');

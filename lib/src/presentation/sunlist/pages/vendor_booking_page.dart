@@ -4,7 +4,6 @@ import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/date_picker.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
-import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/bloc/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
@@ -22,6 +21,38 @@ class VendorBookingPage extends StatefulWidget {
 
 class _VendorBookingPageState extends State<VendorBookingPage> {
   final _formKey = GlobalKey<FormState>();
+
+  late final TextEditingController nameController;
+  late final TextEditingController emailController;
+  late final TextEditingController phoneController;
+  late final TextEditingController dateController;
+  late final TextEditingController addressDetailController;
+  late final TextEditingController notesController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    phoneController = TextEditingController();
+    dateController = TextEditingController();
+    addressDetailController = TextEditingController();
+    notesController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    dateController.dispose();
+    addressDetailController.dispose();
+    notesController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
@@ -185,13 +216,13 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                   child: Button.filled(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Memproses Data'),
-                              backgroundColor: AppColors.green,
-                              behavior: SnackBarBehavior.floating,
-                            ),
-                          );
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //   const SnackBar(
+                          //     content: Text('Memproses Data'),
+                          //     backgroundColor: AppColors.green,
+                          //     behavior: SnackBarBehavior.floating,
+                          //   ),
+                          // );
 
                           final VendorBookingModel vendorBooking =
                               VendorBookingModel(

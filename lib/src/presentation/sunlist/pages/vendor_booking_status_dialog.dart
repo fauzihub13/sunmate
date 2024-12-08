@@ -20,7 +20,7 @@ class _VendorBookingStatusState extends State<VendorBookingStatusDialog> {
     return AlertDialog(
       content: Wrap(spacing: 0, runSpacing: 0, children: [
         Padding(
-          padding: const EdgeInsets.only(left: 8, right: 8, top: 14, bottom: 7),
+          padding: const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
           child: Column(
             children: [
               Center(
