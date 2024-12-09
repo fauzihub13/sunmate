@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -28,7 +27,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                   Row(
                     children: [
                       CircleAvatar(
-                        radius: 26.0, 
+                        radius: 26.0,
                         backgroundImage: AssetImage('assets/images/avatar.jpg'),
                       ),
                       SizedBox(width: 14.0),
@@ -62,13 +61,13 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                   backgroundColor: AppColors.lightBlue,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const VendorBookingHistory();
-                      }));
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (context) {
+                      //   return const VendorBookingHistory();
+                      // }));
                     },
                     child: SvgPicture.asset(
-                      'assets/icons/history.svg',
+                      'assets/icons/chat.svg',
                       width: 24,
                       height: 24,
                     ),
