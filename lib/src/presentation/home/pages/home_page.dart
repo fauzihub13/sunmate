@@ -3,6 +3,7 @@ import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/menu_card.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/title_section.dart';
+import 'package:flutter_sunmate/src/presentation/suncost/pages/suncost_main_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_list_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/list_vendor.dart';
@@ -56,10 +57,10 @@ class _HomePageState extends State<HomePage> {
                             iconUrl: 'assets/icons/history-menu.svg'),
                         MenuCard(
                             onTap: () {
-                              // Navigator.push(context,
-                              //     MaterialPageRoute(builder: (context) {
-                              //   return const NewsListPages();
-                              // }));
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const SuncostMainPage();
+                              }));
                             },
                             title: 'SunCost',
                             iconSize: 36,
