@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/dropdown_menu.dart'
+    as customDropdownMenu;
+import 'package:flutter_sunmate/src/core/components/form_input.dart';
+import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/presentation/suncost/dialogs/suncost_result_dialog.dart';
 
 class SuncostMainPage extends StatefulWidget {
   const SuncostMainPage({super.key});
@@ -10,6 +15,41 @@ class SuncostMainPage extends StatefulWidget {
 }
 
 class _SunCostMainPageState extends State<SuncostMainPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController roofTypeController = TextEditingController();
+  final TextEditingController monthlyBillController = TextEditingController();
+  final TextEditingController powerCapacityController = TextEditingController();
+  final List<DropdownMenuItem<int>> powerLevelItems = [
+    DropdownMenuItem(value: 1300, child: Text('1300 W')),
+    DropdownMenuItem(value: 2200, child: Text('2200 W')),
+    DropdownMenuItem(value: 3500, child: Text('3500 W')),
+    DropdownMenuItem(value: 4400, child: Text('4400 W')),
+    DropdownMenuItem(value: 5500, child: Text('5500 W')),
+    DropdownMenuItem(value: 6600, child: Text('6600 W')),
+    DropdownMenuItem(value: 7700, child: Text('7700 W')),
+    DropdownMenuItem(value: 10600, child: Text('10.600 W')),
+    DropdownMenuItem(value: 11000, child: Text('11.000 W')),
+    DropdownMenuItem(value: 13200, child: Text('13.200 W')),
+    DropdownMenuItem(value: 13900, child: Text('13.900 W')),
+    DropdownMenuItem(value: 16500, child: Text('16.500 W')),
+    DropdownMenuItem(value: 17000, child: Text('17.000 W')),
+    DropdownMenuItem(value: 22000, child: Text('22.000 W')),
+    DropdownMenuItem(value: 23000, child: Text('23.000 W')),
+    DropdownMenuItem(value: 33000, child: Text('33.000 W')),
+    DropdownMenuItem(value: 41500, child: Text('41.500 W')),
+  ];
+
+  String selectedOption = 'rumah_tinggal';
+
+  @override
+  void dispose() {
+    roofTypeController.dispose();
+    monthlyBillController.dispose();
+    powerCapacityController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,14 +57,151 @@ class _SunCostMainPageState extends State<SuncostMainPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
-          children: [],
+          children: [
+            Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: Column(
+                    children: [
+                      const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Penggunaan properti',
+                            style: TextStyle(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w500),
+                          )),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                            child: _buildCustomButton(
+                              label: 'Rumah tinggal',
+                              isSelected: selectedOption == 'rumah_tinggal',
+                              onTap: () {
+                                setState(() {
+                                  selectedOption = 'rumah_tinggal';
+                                });
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: _buildCustomButton(
+                              label: 'Tempat usaha',
+                              isSelected: selectedOption == 'tempat_usaha',
+                              onTap: () {
+                                setState(() {
+                                  selectedOption = 'tempat_usaha';
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 18.0),
+                      // const Align(
+                      //     alignment: Alignment.centerLeft,
+                      //     child: Text(
+                      //       'Tagihan listrik bulanan',
+                      //       style: TextStyle(
+                      //           color: AppColors.primary,
+                      //           fontWeight: FontWeight.w500),
+                      //     )),
+                      // const SizedBox(
+                      //   height: 8,
+                      // ),
+                      FormInput(
+                        textInputType: TextInputType.number,
+                        prefixIcon: const Icon(
+                          Icons.payments,
+                        ),
+                        labelText: 'Tagihan listrik bulanan',
+                        controller: monthlyBillController,
+                        style: FormStyle.filled,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Tagihan tidak boleh kosong';
+                          } else if (!RegExp(r'^\d+$').hasMatch(value)) {
+                            return 'Harus hanya mengandung angka';
+                          } else if (int.parse(value) < 100000) {
+                            return 'Tagihan harus lebih dari Rp100.000';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 18.0),
+                      // const Align(
+                      //     alignment: Alignment.centerLeft,
+                      //     child: Text(
+                      //       'Kapasitas daya dalam VA',
+                      //       style: TextStyle(
+                      //           color: AppColors.primary,
+                      //           fontWeight: FontWeight.w500),
+                      //     )),
+                      // const SizedBox(
+                      //   height: 8,
+                      // ),
+                      customDropdownMenu.DropdownFormInput<int>(
+                        value: null,
+                        items: powerLevelItems,
+                        labelText: 'Power Level',
+                        hintText: 'Select power level',
+                        onChanged: (value) {
+                          print('Selected Power Level: $value');
+                        },
+                      ),
+                    ],
+                  ),
+                ))
+          ],
         ),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16),
         child: Button.filled(
           label: 'Hitung',
-          onPressed: () {},
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              print('MASUK');
+              showDialog(
+                  context: context,
+                  barrierDismissible: true,
+                  builder: (context) {
+                    return const SunCostResultDialog();
+                  });
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCustomButton({
+    required String label,
+    required bool isSelected,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.primary : AppColors.lightBlue,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Text(
+          label,
+          style: TextStyle(
+            fontSize: 16.0,
+            color: isSelected ? Colors.white : AppColors.primary,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );

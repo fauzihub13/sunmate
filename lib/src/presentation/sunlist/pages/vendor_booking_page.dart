@@ -216,14 +216,6 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                   child: Button.filled(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          // ScaffoldMessenger.of(context).showSnackBar(
-                          //   const SnackBar(
-                          //     content: Text('Memproses Data'),
-                          //     backgroundColor: AppColors.green,
-                          //     behavior: SnackBarBehavior.floating,
-                          //   ),
-                          // );
-
                           final VendorBookingModel vendorBooking =
                               VendorBookingModel(
                                   codeBooking:
