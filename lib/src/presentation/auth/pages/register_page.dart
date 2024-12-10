@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/presentation/auth/pages/register_page.dart';
+import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/circular_overlay.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/rectangle_circular.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   @override
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'Masuk',
+                  'Daftar',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       color: AppColors.primary,
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                       fontSize: 30),
                 ),
                 const Text(
-                  'Hai, selamat datang kembali!',
+                  'Hai, silahkan buat akun baru!!',
                   style: TextStyle(
                       color: AppColors.primary,
                       fontWeight: FontWeight.w400,
@@ -83,6 +83,26 @@ class _LoginPageState extends State<LoginPage> {
                 Form(
                     child: Column(
                   children: [
+                    FormInput(
+                      controller: emailController,
+                      prefixIcon: const Icon(Icons.mail_outline),
+                      hintText: 'Nama lengkap',
+                      labelText: 'Nama lengkap',
+                      style: FormStyle.outlined,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    FormInput(
+                      controller: emailController,
+                      prefixIcon: const Icon(Icons.mail_outline),
+                      hintText: 'No Hp',
+                      labelText: 'No Hp',
+                      style: FormStyle.outlined,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
                     FormInput(
                       controller: emailController,
                       prefixIcon: const Icon(Icons.mail_outline),
@@ -100,6 +120,16 @@ class _LoginPageState extends State<LoginPage> {
                       labelText: 'Kata sandi',
                       style: FormStyle.outlined,
                     ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    FormInput(
+                      controller: passwordController,
+                      prefixIcon: const Icon(Icons.lock_outline),
+                      hintText: 'Ulangi kata sandi',
+                      labelText: 'Ulangi kata sandi',
+                      style: FormStyle.outlined,
+                    ),
                   ],
                 )),
                 const SizedBox(
@@ -107,19 +137,19 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Button.filled(
                   label: 'Masuk',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const LoginPage();
+                    }));
+                  },
                 ),
                 const SizedBox(
                   height: 12,
                 ),
                 Button.outlined(
                   label: 'Daftar',
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const RegisterPage();
-                    }));
-                  },
+                  onPressed: () {},
                 ),
               ],
             ),

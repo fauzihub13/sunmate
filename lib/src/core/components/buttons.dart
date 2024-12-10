@@ -81,7 +81,7 @@ class Button extends StatelessWidget {
               onPressed: disabled ? null : onPressed,
               style: OutlinedButton.styleFrom(
                 backgroundColor: color,
-                side: const BorderSide(color: Colors.grey),
+                side: const BorderSide(color: AppColors.primary),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(borderRadius),
                 ),
@@ -103,5 +103,5 @@ class Button extends StatelessWidget {
               ),
             ),
     );
-  } 
+  }
 }

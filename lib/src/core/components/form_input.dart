@@ -57,6 +57,7 @@ class FormInput extends StatelessWidget {
         enabledBorder: style == FormStyle.outlined
             ? OutlineInputBorder(
                 borderRadius: BorderRadius.circular(borderRadius),
+                borderSide: const BorderSide(color: AppColors.primary),
               )
             : UnderlineInputBorder(
                 borderRadius: BorderRadius.circular(borderRadius),
@@ -68,7 +69,7 @@ class FormInput extends StatelessWidget {
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: const BorderSide(color: AppColors.disabled),
+          borderSide: const BorderSide(color: AppColors.primary),
         ),
         border: style == FormStyle.outlined
             ? OutlineInputBorder(
@@ -82,5 +83,3 @@ class FormInput extends StatelessWidget {
     );
   }
 }
-
-

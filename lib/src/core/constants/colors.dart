@@ -5,9 +5,12 @@ class AppColors {
   static const Color primary = Color(0xff1F41BB);
 
   /// Light Blue
+  static const Color darkBlue = Color(0xff13206C);
+
   static const Color lightBlue = Color(0xffF1F4FF);
 
-  static const Color darkBlue = Color(0xff13206C);
+  static const Color overlayBlue = Color(0xffF8F9FF);
+
 
   static const Color yellow = Color(0xffFEC62E);
 
