@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/data/sources/booking_vendor_local_datasources.dart';
-import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
+import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_history/vendor_booking_history_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: const HomePage(),
+        home: const LoginPage(),
         builder: (context, child) {
           return Center(
             child: ConstrainedBox(
