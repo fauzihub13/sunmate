@@ -89,6 +89,16 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: 'Nama lengkap',
                       labelText: 'Nama lengkap',
                       style: FormStyle.outlined,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Nama tidak boleh kosong';
+                        } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(value)) {
+                          return 'Nama hanya boleh mengandung huruf dan spasi';
+                        } else if (value.length < 4) {
+                          return 'Nama harus lebih dari 3 karakter';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(
                       height: 16,
@@ -99,6 +109,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: 'No Hp',
                       labelText: 'No Hp',
                       style: FormStyle.outlined,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Nomor HP tidak boleh kosong';
+                        } else if (!RegExp(r'^\d{10,15}$').hasMatch(value)) {
+                          return 'Nomor HP harus berupa angka 10-15 karakter';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(
                       height: 16,
@@ -109,6 +127,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: 'Email',
                       labelText: 'Email',
                       style: FormStyle.outlined,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Email tidak boleh kosong';
+                        }
+                        if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                          return 'Format email tidak valid';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(
                       height: 16,
@@ -119,6 +146,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: 'Kata sandi',
                       labelText: 'Kata sandi',
                       style: FormStyle.outlined,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Kata sandi tidak boleh kosong';
+                        } else if (value.length < 9) {
+                          return 'Nama harus lebih dari 8 karakter';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(
                       height: 16,
@@ -129,6 +164,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       hintText: 'Ulangi kata sandi',
                       labelText: 'Ulangi kata sandi',
                       style: FormStyle.outlined,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Konfirmasi kata sandi tidak boleh kosong';
+                        } else if (value != passwordController.text) {
+                          return 'Konfirmasi kata sandi tidak cocok';
+                        }
+                        return null;
+                      },
                     ),
                   ],
                 )),
@@ -136,7 +179,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 70,
                 ),
                 Button.filled(
-                  label: 'Masuk',
+                  label: 'Daftar',
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
@@ -148,8 +191,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 12,
                 ),
                 Button.outlined(
-                  label: 'Daftar',
-                  onPressed: () {},
+                  label: 'Masuk',
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const LoginPage();
+                    }));
+                  },
                 ),
               ],
             ),

@@ -30,12 +30,14 @@ environment:
 dependencies:
   build_runner: ^2.4.13
   cupertino_icons: ^1.0.8
+  dartz: ^0.10.1
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_svg: ^2.0.16
   freezed: ^2.5.7
   freezed_annotation: ^2.4.4
+  http: ^1.2.2
   intl: ^0.20.1
   sqflite: ^2.4.1
 

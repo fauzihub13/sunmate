@@ -19,6 +19,7 @@ class FormInput extends StatelessWidget {
     this.textInputType = TextInputType.text,
     this.validator,
     this.onTap,
+    this.obscureText =false,
   });
 
   final TextEditingController controller;
@@ -34,6 +35,7 @@ class FormInput extends StatelessWidget {
   final TextInputType textInputType;
   final String? Function(String?)? validator;
   final VoidCallback? onTap;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,7 @@ class FormInput extends StatelessWidget {
       validator: validator,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onTap: onTap,
+      obscureText: obscureText,
       decoration: InputDecoration(
         labelText: labelText,
         floatingLabelStyle: const TextStyle(color: AppColors.darkBlue),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/booking_vendor_local_datasources.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/bloc/login_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_history/vendor_booking_history_bloc.dart';
@@ -26,6 +28,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               VendorBookingHistoryBloc(BookingVendorLocalDatasources.instance),
+        ),
+        BlocProvider(
+          create: (context) =>
+              LoginBloc(AuthRemoteDatasources()),
         ),
       ],
       child: MaterialApp(
