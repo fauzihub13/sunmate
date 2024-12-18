@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
@@ -20,6 +22,36 @@ class AuthRemoteDatasources {
       return Right(AuthResponseModel.fromJson(response.body));
     } else {
       return const Left('Failed to login');
+    }
+  }
+
+  Future<Either<String, bool>> register(String name, String phoneNumber,
+      String email, String password, String passwordConfirmation) async {
+    final url = Uri.parse('${Variables.apiUrl}/register');
+    final response = await http.post(
+      url,
+      body: {
+        'name': name,
+        'email': email,
+        'phone_number': phoneNumber,
+        'password': password,
+        'password_confirmation': passwordConfirmation,
+      },
+    );
+
+    print('$name, $email, $phoneNumber, $password');
+
+    if (response.statusCode == 200) {
+      return const Right(true);
+    } else if (response.statusCode == 422) {
+      final jsonResponse = jsonDecode(response.body);
+      print(jsonResponse['errors'].toString());
+      final errors = jsonResponse['errors'] as Map<String, dynamic>;
+      final errorMessages =
+          errors.entries.map((entry) => '${entry.value.join(", ")}').join("\n");
+      return Left(errorMessages);
+    } else {
+      return const Left('Failed to register');
     }
   }
 
