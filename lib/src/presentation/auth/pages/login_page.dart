@@ -4,7 +4,7 @@ import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
-import 'package:flutter_sunmate/src/presentation/auth/bloc/bloc/login_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/register_page.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/circular_overlay.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/rectangle_circular.dart';

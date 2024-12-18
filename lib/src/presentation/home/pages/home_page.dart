@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sunmate/src/core/components/buttons.dart';
+import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/menu_card.dart';
@@ -128,6 +133,63 @@ class _HomePageState extends State<HomePage> {
                   const ListVendor(
                     itemCount: 3,
                   ),
+                  BlocListener<LogoutBloc, LogoutState>(
+                    listener: (context, state) {
+                      state.maybeWhen(
+                          orElse: () {},
+                          success: () {
+                            AuthLocalDatasources().removeAuthData();
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: const Text(
+                                  'Berhasil logout',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                backgroundColor: AppColors.green,
+                                behavior: SnackBarBehavior.floating,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                duration: const Duration(seconds: 3),
+                              ),
+                            );
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
+                              (route) => false,
+                            );
+                          },
+                          error: (message) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  message,
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                                backgroundColor: AppColors.red,
+                                behavior: SnackBarBehavior.floating,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                duration: const Duration(seconds: 3),
+                              ),
+                            );
+                          });
+                    },
+                    child: Button.outlined(
+                      label: 'Logout',
+                      onPressed: () {
+                        context
+                            .read<LogoutBloc>()
+                            .add(const LogoutEvent.logout());
+                      },
+                    ),
+                  )
                 ],
               ),
             ),

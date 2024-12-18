@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/booking_vendor_local_datasources.dart';
-import 'package:flutter_sunmate/src/presentation/auth/bloc/bloc/login_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
+import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_history/vendor_booking_history_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
@@ -30,8 +33,10 @@ class MyApp extends StatelessWidget {
               VendorBookingHistoryBloc(BookingVendorLocalDatasources.instance),
         ),
         BlocProvider(
-          create: (context) =>
-              LoginBloc(AuthRemoteDatasources()),
+          create: (context) => LoginBloc(AuthRemoteDatasources()),
+        ),
+        BlocProvider(
+          create: (context) => LogoutBloc(AuthRemoteDatasources()),
         ),
       ],
       child: MaterialApp(
@@ -44,7 +49,28 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: const LoginPage(),
+        home: FutureBuilder<bool>(
+            future: AuthLocalDatasources().isAuthDataExist(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Scaffold(
+                    body: Center(
+                  child: CircularProgressIndicator(),
+                ));
+              }
+              if (snapshot.hasData) {
+                if (snapshot.data!) {
+                  return const HomePage();
+                } else {
+                  return const LoginPage();
+                }
+              }
+              return const Scaffold(
+                body: Center(
+                  child: Text("Error"),
+                ),
+              );
+            }),
         builder: (context, child) {
           return Center(
             child: ConstrainedBox(
