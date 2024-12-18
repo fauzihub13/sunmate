@@ -4,12 +4,13 @@ import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/date_picker.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
+import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/dialogs/vendor_booking_status_dialog.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 
 class VendorBookingPage extends StatefulWidget {
@@ -22,21 +23,21 @@ class VendorBookingPage extends StatefulWidget {
 
 class _VendorBookingPageState extends State<VendorBookingPage> {
   final _formKey = GlobalKey<FormState>();
+  User? user;
 
-  late final TextEditingController nameController;
-  late final TextEditingController emailController;
-  late final TextEditingController phoneController;
   late final TextEditingController dateController;
   late final TextEditingController addressDetailController;
   late final TextEditingController notesController;
 
   @override
   void initState() {
+    AuthLocalDatasources().getAuthData().then((value) {
+      setState(() {
+        user = value.user;
+      });
+    });
     super.initState();
 
-    nameController = TextEditingController();
-    emailController = TextEditingController();
-    phoneController = TextEditingController();
     dateController = TextEditingController();
     addressDetailController = TextEditingController();
     notesController = TextEditingController();
@@ -44,9 +45,6 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
 
   @override
   void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    phoneController.dispose();
     dateController.dispose();
     addressDetailController.dispose();
     notesController.dispose();
@@ -56,9 +54,6 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController phoneController = TextEditingController();
     final TextEditingController dateController = TextEditingController();
     final TextEditingController addressDetailController =
         TextEditingController();
@@ -89,66 +84,6 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                             key: _formKey,
                             child: Column(
                               children: [
-                                FormInput(
-                                  textInputType: TextInputType.name,
-                                  prefixIcon: const Icon(
-                                    Icons.person,
-                                  ),
-                                  labelText: 'Nama lengkap',
-                                  controller: nameController,
-                                  style: FormStyle.filled,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Nama tidak boleh kosong';
-                                    } else if (!RegExp(r'^[a-zA-Z\s]+$')
-                                        .hasMatch(value)) {
-                                      return 'Nama hanya boleh mengandung huruf dan spasi';
-                                    } else if (value.length < 4) {
-                                      return 'Nama harus lebih dari 3 karakter';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                const SizedBox(height: 16.0),
-                                FormInput(
-                                  textInputType: TextInputType.emailAddress,
-                                  prefixIcon: const Icon(
-                                    Icons.email,
-                                  ),
-                                  labelText: 'Email',
-                                  controller: emailController,
-                                  style: FormStyle.filled,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Email tidak boleh kosong';
-                                    }
-                                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
-                                        .hasMatch(value)) {
-                                      return 'Format email tidak valid';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                const SizedBox(height: 16.0),
-                                FormInput(
-                                  textInputType: TextInputType.phone,
-                                  prefixIcon: const Icon(
-                                    Icons.call,
-                                  ),
-                                  labelText: 'No Hp',
-                                  controller: phoneController,
-                                  style: FormStyle.filled,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Nomor HP tidak boleh kosong';
-                                    } else if (!RegExp(r'^\d{10,15}$')
-                                        .hasMatch(value)) {
-                                      return 'Nomor HP harus berupa angka 10-15 karakter';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                const SizedBox(height: 16.0),
                                 FormInput(
                                   textInputType: TextInputType.datetime,
                                   prefixIcon: const Icon(
@@ -221,12 +156,13 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                               VendorBookingModel(
                                   codeBooking:
                                       VendorBookingModel.generateCodeBooking(),
-                                  idVendor: dataVendor.id!,
+                                  idVendor: dataVendor.id!.toString(),
                                   vendorName: dataVendor.name!,
-                                  vendorImage: dataVendor.vendorImages![0].path!,
-                                  userName: nameController.text,
-                                  userEmail: emailController.text,
-                                  userPhoneNumber: phoneController.text,
+                                  vendorImage:
+                                      dataVendor.vendorImages![0].path!,
+                                  userName: user!.name!,
+                                  userEmail: user!.email!,
+                                  userPhoneNumber: user!.phoneNumber!,
                                   userAddress: addressDetailController.text,
                                   bookingDate:
                                       DateTime.parse(dateController.text));

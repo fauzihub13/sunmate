@@ -1,9 +1,6 @@
 import 'dart:math';
 
 class VendorBookingModel {
-
-
-
   final String codeBooking;
   final String idVendor;
   final String vendorName;
@@ -42,7 +39,9 @@ class VendorBookingModel {
   factory VendorBookingModel.fromMap(Map<String, dynamic> map) {
     return VendorBookingModel(
       codeBooking: map['code_booking'],
-      idVendor: map['id_vendor'],
+      idVendor: map['id_vendor'] is int
+          ? map['id_vendor'].toString() 
+          : map['id_vendor'],
       vendorName: map['vendor_name'],
       vendorImage: map['vendor_image'],
       userName: map['user_name'],
