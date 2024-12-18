@@ -39,62 +39,21 @@ class _ListVendorState extends State<ListVendor> {
           },
           loaded: (vendors) {
             return Column(
-              children: [
-                // Limit the number of vendors to 'itemCount' or the length of the list
-                for (var i = 0;
-                    i < (vendors.length > count ? count : vendors.length);
-                    i++)
-                  Padding(
+              children: List.generate(
+                vendors.length > count ? count : vendors.length,
+                (index) {
+                  final vendor = vendors[index];
+                  return Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 5.0),
-                    child: VendorCard(data: vendors[i]),
-                  ),
-              ],
+                    child: VendorCard(data: vendor),
+                  );
+                },
+              ),
             );
-            // return Column(
-            //   children: List.generate(
-            //     count,
-            //     (index) {
-            //       final SingleVendor vendor = vendors[index];
-            //       return Padding(
-            //         padding: const EdgeInsets.symmetric(
-            //             horizontal: 16.0, vertical: 5.0),
-            //         child: VendorCard(data: vendor),
-            //       );
-            //     },
-            //   ),
-            // );
-            // return Column(children: [
-            //   ListView.builder(
-            //     itemCount: vendors.length,
-            //     itemBuilder: (context, index) {
-            //       final vendor = vendors[index];
-            //       return Padding(
-            //         padding: const EdgeInsets.symmetric(
-            //             horizontal: 16.0, vertical: 5.0),
-            //         child: VendorCard(data: vendor),
-            //       );
-            //     },
-            //   ),
-            // ]);
           },
         );
       },
     );
-
-    // return Column(
-    //     children: List.generate(
-    //       count,
-    //       (index) {
-    //         final SingleVendor vendor = vendorList[index];
-    //         return Padding(
-    //           padding: const EdgeInsets.symmetric(
-    //               horizontal: 16.0,
-    //               vertical: 5.0),
-    //           child: VendorCard(data: vendor),
-    //         );
-    //       },
-    //     ),
-    //     );
   }
 }
