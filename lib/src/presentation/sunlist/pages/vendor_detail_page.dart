@@ -3,13 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
+import 'package:flutter_sunmate/src/core/constants/variables.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_page.dart';
 import 'package:flutter_svg/svg.dart';
 
 class DetailVendor extends StatelessWidget {
-  final Vendor vendor;
+  final SingleVendor vendor;
   const DetailVendor({super.key, required this.vendor});
 
   @override
@@ -30,7 +31,7 @@ class DetailVendor extends StatelessWidget {
 }
 
 class MobileView extends StatelessWidget {
-  final Vendor vendor;
+  final SingleVendor vendor;
   const MobileView({super.key, required this.vendor});
 
   @override
@@ -53,13 +54,14 @@ class MobileView extends StatelessWidget {
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     controller: _scrollController,
-                    children: vendor.imageUrls.map((url) {
+                    children: vendor.vendorImages!.map((image) {
                       return Padding(
                         padding: const EdgeInsets.only(
                             top: 4.0, bottom: 4.0, right: 4.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(url),
+                          child: Image.network(
+                              '${Variables.baseUrl}/storage/${image.path!}'),
                         ),
                       );
                     }).toList(),
@@ -69,7 +71,7 @@ class MobileView extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  vendor.name,
+                  vendor.name!,
                   style: const TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w500,
@@ -94,7 +96,7 @@ class MobileView extends StatelessWidget {
                           ),
                           const SizedBox(width: 4.0),
                           Text(
-                            vendor.location,
+                            vendor.address!,
                             style: const TextStyle(
                               color: AppColors.grey,
                               fontSize: 14,
@@ -143,7 +145,7 @@ class MobileView extends StatelessWidget {
                 height: 8.0,
               ),
               Text(
-                vendor.description,
+                vendor.description!,
                 textAlign: TextAlign.justify,
                 style: const TextStyle(
                     fontSize: 16.0,
@@ -153,69 +155,69 @@ class MobileView extends StatelessWidget {
               const SizedBox(
                 height: 20.0,
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Produk',
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.darkBlue),
-                ),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: vendor.products.map((product) {
-                  return Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      '- $product',
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.grey,
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Layanan',
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.darkBlue),
-                ),
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: vendor.services.map((service) {
-                  return Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      '- $service',
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.grey,
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
+              // const Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: Text(
+              //     'Produk',
+              //     style: TextStyle(
+              //         fontSize: 18.0,
+              //         fontWeight: FontWeight.w500,
+              //         color: AppColors.darkBlue),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 8.0,
+              // ),
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: vendor.products.map((product) {
+              //     return Align(
+              //       alignment: Alignment.centerLeft,
+              //       child: Text(
+              //         '- $product',
+              //         textAlign: TextAlign.start,
+              //         style: const TextStyle(
+              //           fontSize: 16.0,
+              //           fontWeight: FontWeight.w400,
+              //           color: AppColors.grey,
+              //         ),
+              //       ),
+              //     );
+              //   }).toList(),
+              // ),
+              // const SizedBox(
+              //   height: 20.0,
+              // ),
+              // const Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: Text(
+              //     'Layanan',
+              //     style: TextStyle(
+              //         fontSize: 18.0,
+              //         fontWeight: FontWeight.w500,
+              //         color: AppColors.darkBlue),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 8.0,
+              // ),
+              // Column(
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: vendor.services.map((service) {
+              //     return Align(
+              //       alignment: Alignment.centerLeft,
+              //       child: Text(
+              //         '- $service',
+              //         textAlign: TextAlign.start,
+              //         style: const TextStyle(
+              //           fontSize: 16.0,
+              //           fontWeight: FontWeight.w400,
+              //           color: AppColors.grey,
+              //         ),
+              //       ),
+              //     );
+              //   }).toList(),
+              // ),
             ],
           ),
         ),

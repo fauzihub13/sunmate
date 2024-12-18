@@ -46,7 +46,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                             height: 2.0,
                           ),
                           const Text(
-                            'Sahabat panel suryamu!',
+                            'Selamat datang di Sunify!',
                             style: TextStyle(
                                 fontSize: 14.0, color: AppColors.primary),
                           ),

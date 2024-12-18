@@ -5,7 +5,7 @@ class VendorBookingModel {
 
 
   final String codeBooking;
-  final int idVendor;
+  final String idVendor;
   final String vendorName;
   final String vendorImage;
   final String userName;

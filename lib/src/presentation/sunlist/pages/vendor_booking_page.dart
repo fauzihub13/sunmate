@@ -4,6 +4,7 @@ import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/date_picker.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
@@ -12,7 +13,7 @@ import 'package:flutter_sunmate/src/presentation/sunlist/dialogs/vendor_booking_
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 
 class VendorBookingPage extends StatefulWidget {
-  final Vendor vendor;
+  final SingleVendor vendor;
   const VendorBookingPage({super.key, required this.vendor});
 
   @override
@@ -220,9 +221,9 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                               VendorBookingModel(
                                   codeBooking:
                                       VendorBookingModel.generateCodeBooking(),
-                                  idVendor: dataVendor.id,
-                                  vendorName: dataVendor.name,
-                                  vendorImage: dataVendor.imageUrls[0],
+                                  idVendor: dataVendor.id!,
+                                  vendorName: dataVendor.name!,
+                                  vendorImage: dataVendor.vendorImages![0].path!,
                                   userName: nameController.text,
                                   userEmail: emailController.text,
                                   userPhoneNumber: phoneController.text,

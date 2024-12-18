@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/search_bar.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
 
 class VendorListPage extends StatelessWidget {
   const VendorListPage({super.key});
@@ -29,20 +31,21 @@ class MobileView extends StatefulWidget {
 
 class _MobileViewState extends State<MobileView> {
   final TextEditingController searchController = TextEditingController();
-  
-  List<Vendor> searchResults = [];
-  final List<Vendor> vendors = vendorList;
+
+  List<SingleVendor> searchResults = [];
+  // final List<Vendor> vendors = vendorList;
 
   @override
   void initState() {
     super.initState();
-    searchResults = vendors;
+    context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
+    // searchResults = vendors;
   }
 
   void _onSearchChanged(String value) {
     setState(() {
-      searchResults = vendors
-          .where((e) => e.name.toLowerCase().contains(value.toLowerCase()))
+      searchResults = searchResults
+          .where((e) => e.name!.toLowerCase().contains(value.toLowerCase()))
           .toList();
     });
   }
@@ -60,20 +63,41 @@ class _MobileViewState extends State<MobileView> {
               onChanged: _onSearchChanged,
             ),
             const SizedBox(height: 16.0),
-            Expanded(
-              child: searchResults.isEmpty
-                  ? const Center(child: Text('Tidak ada hasil ditemukan.'))
-                  : ListView.builder(
-                      itemCount: searchResults.length,
-                      itemBuilder: (context, index) {
-                        final Vendor vendor = searchResults[index];
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5.0),
-                          child: VendorCard(data: vendor),
+            Expanded(child: BlocBuilder<VendorListBloc, VendorListState>(
+                builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () {
+                  return const Center(child: Text('Fetching vendors...'));
+                },
+                loading: () {
+                  return const Center(child: CircularProgressIndicator());
+                },
+                loaded: (vendors) {
+                  searchResults = vendors;
+                  final filteredVendors = searchController.text.isEmpty
+                      ? searchResults
+                      : searchResults
+                          .where((vendor) => vendor.name!
+                              .toLowerCase()
+                              .contains(searchController.text.toLowerCase()))
+                          .toList();
+                  return filteredVendors.isEmpty
+                      ? const Center(child: Text('No results found.'))
+                      : ListView.builder(
+                          itemCount: filteredVendors.length,
+                          itemBuilder: (context, index) {
+                            final vendor = filteredVendors[index];
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 5.0),
+                              child: VendorCard(data: vendor),
+                            );
+                          },
                         );
-                      },
-                    ),
-            ),
+                },
+                error: (message) => Center(child: Text('Error: $message')),
+              );
+            })),
           ],
         ),
       ),

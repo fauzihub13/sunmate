@@ -53,7 +53,7 @@ class _MobileViewState extends State<MobileView> {
                   VendorBookingHistoryState>(builder: (context, state) {
                 return state.maybeWhen(
                   orElse: () => const Center(
-                    child: Text('Terjadi kesalahan  '),
+                    child: Text('Terjadi kesalahan'),
                   ),
                   loading: () {
                     return const Center(

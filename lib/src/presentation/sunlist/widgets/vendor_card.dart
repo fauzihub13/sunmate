@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
+import 'package:flutter_sunmate/src/core/constants/variables.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_detail_page.dart';
 import 'package:flutter_svg/svg.dart';
 
 class VendorCard extends StatelessWidget {
-  final Vendor data;
+  final SingleVendor data;
 
   const VendorCard({super.key, required this.data});
 
@@ -33,8 +34,8 @@ class VendorCard extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  child: Image.asset(
-                    data.imageUrls[0],
+                  child: Image.network(
+                    '${Variables.baseUrl}/storage/${data.vendorImages![0].path!}',
                     width: 84,
                     height: 84,
                     fit: BoxFit.cover,
@@ -49,7 +50,7 @@ class VendorCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  data.name,
+                  data.name!,
                   maxLines: 2,
                   style: const TextStyle(
                     color: AppColors.darkBlue,
@@ -69,7 +70,7 @@ class VendorCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 4.0),
                     Text(
-                      data.location,
+                      data.address!,
                       style: const TextStyle(
                         color: AppColors.grey,
                         fontSize: 14,

@@ -39,13 +39,10 @@ class AuthRemoteDatasources {
       },
     );
 
-    print('$name, $email, $phoneNumber, $password');
-
     if (response.statusCode == 200) {
       return const Right(true);
     } else if (response.statusCode == 422) {
       final jsonResponse = jsonDecode(response.body);
-      print(jsonResponse['errors'].toString());
       final errors = jsonResponse['errors'] as Map<String, dynamic>;
       final errorMessages =
           errors.entries.map((entry) => '${entry.value.join(", ")}').join("\n");
