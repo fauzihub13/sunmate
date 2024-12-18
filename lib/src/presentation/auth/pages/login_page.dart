@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/bloc/login_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/register_page.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/circular_overlay.dart';
@@ -149,6 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                     state.maybeWhen(
                         orElse: () {},
                         success: (authReponseModel) {
+                          AuthLocalDatasources().saveAuthData(authReponseModel);
                           Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (context) {
                             return const HomePage();

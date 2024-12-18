@@ -3,11 +3,12 @@ import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MainAppBar({super.key});
+  final String userName;
+  const MainAppBar({super.key, required this.userName});
 
   @override
   Widget build(BuildContext context) {
-    final bool isWeb = identical(0, 0.0);
+    const bool isWeb = identical(0, 0.0);
 
     return Container(
       decoration: const BoxDecoration(color: Colors.white, boxShadow: [
@@ -22,29 +23,29 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Column(
+              Column(
                 children: [
                   Row(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 26.0,
                         backgroundImage: AssetImage('assets/images/avatar.jpg'),
                       ),
-                      SizedBox(width: 14.0),
+                      const SizedBox(width: 14.0),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'SunMate',
-                            style: TextStyle(
+                            userName,
+                            style: const TextStyle(
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.darkBlue),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 2.0,
                           ),
-                          Text(
+                          const Text(
                             'Sahabat panel suryamu!',
                             style: TextStyle(
                                 fontSize: 14.0, color: AppColors.primary),

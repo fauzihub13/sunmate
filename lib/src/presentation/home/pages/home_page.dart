@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/menu_card.dart';
@@ -18,12 +20,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  User? user;
+
+  @override
+  void initState() {
+    AuthLocalDatasources().getAuthData().then((value) {
+      setState(() {
+        user = value.user;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          const MainAppBar(),
+          MainAppBar(
+            userName: user?.name ?? '',
+          ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(

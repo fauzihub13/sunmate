@@ -39,6 +39,7 @@ dependencies:
   freezed_annotation: ^2.4.4
   http: ^1.2.2
   intl: ^0.20.1
+  shared_preferences: ^2.3.3
   sqflite: ^2.4.1
 
 dev_dependencies:
