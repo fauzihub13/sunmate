@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/core/constants/variables.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor_booking_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_model.dart';
 import 'package:intl/intl.dart';
 
 class VendorHistoryCard extends StatelessWidget {
-  final VendorBookingModel vendorBookingModel;
-  const VendorHistoryCard({super.key, required this.vendorBookingModel});
+  final BookingDataResponse bookingDataResponse;
+  const VendorHistoryCard({super.key, required this.bookingDataResponse});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class VendorHistoryCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 10.0),
                   child: Text(
-                    vendorBookingModel.codeBooking,
+                    bookingDataResponse.code!,
                     style: const TextStyle(
                         color: AppColors.lightBlue,
                         fontSize: 16.0,
@@ -46,8 +48,8 @@ class VendorHistoryCard extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(16),
-                          child: Image.asset(
-                            vendorBookingModel.vendorImage,
+                          child: Image.network(
+                            '${Variables.baseUrl}/storage/${bookingDataResponse.vendorImage}',
                             width: 84,
                             height: 84,
                             fit: BoxFit.cover,
@@ -62,7 +64,7 @@ class VendorHistoryCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          vendorBookingModel.vendorName,
+                          bookingDataResponse.vendorName!,
                           maxLines: 2,
                           style: const TextStyle(
                             color: AppColors.darkBlue,
@@ -83,7 +85,7 @@ class VendorHistoryCard extends StatelessWidget {
                             const SizedBox(width: 6.0),
                             Text(
                               DateFormat('dd MMMM yyyy')
-                                  .format(vendorBookingModel.bookingDate),
+                                  .format(bookingDataResponse.date!),
                               style: const TextStyle(
                                 color: AppColors.grey,
                                 fontSize: 14,
@@ -103,7 +105,7 @@ class VendorHistoryCard extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 4),
                           child: Text(
-                            vendorBookingModel.status == 'pending'
+                            bookingDataResponse.status == 'pending'
                                 ? 'Menunggu konfirmasi'
                                 : '',
                             style: const TextStyle(

@@ -330,7 +330,7 @@ mixin _$VendorBookingState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(VendorBookingModel vendorBooking) success,
+    required TResult Function(BookingDataResponse bookingDataResponse) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -338,7 +338,7 @@ mixin _$VendorBookingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(VendorBookingModel vendorBooking)? success,
+    TResult? Function(BookingDataResponse bookingDataResponse)? success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -346,7 +346,7 @@ mixin _$VendorBookingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(VendorBookingModel vendorBooking)? success,
+    TResult Function(BookingDataResponse bookingDataResponse)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -442,7 +442,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(VendorBookingModel vendorBooking) success,
+    required TResult Function(BookingDataResponse bookingDataResponse) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -453,7 +453,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(VendorBookingModel vendorBooking)? success,
+    TResult? Function(BookingDataResponse bookingDataResponse)? success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -464,7 +464,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(VendorBookingModel vendorBooking)? success,
+    TResult Function(BookingDataResponse bookingDataResponse)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -559,7 +559,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(VendorBookingModel vendorBooking) success,
+    required TResult Function(BookingDataResponse bookingDataResponse) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -570,7 +570,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(VendorBookingModel vendorBooking)? success,
+    TResult? Function(BookingDataResponse bookingDataResponse)? success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -581,7 +581,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(VendorBookingModel vendorBooking)? success,
+    TResult Function(BookingDataResponse bookingDataResponse)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -639,7 +639,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({VendorBookingModel vendorBooking});
+  $Res call({BookingDataResponse bookingDataResponse});
 }
 
 /// @nodoc
@@ -655,13 +655,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? vendorBooking = null,
+    Object? bookingDataResponse = null,
   }) {
     return _then(_$SuccessImpl(
-      null == vendorBooking
-          ? _value.vendorBooking
-          : vendorBooking // ignore: cast_nullable_to_non_nullable
-              as VendorBookingModel,
+      null == bookingDataResponse
+          ? _value.bookingDataResponse
+          : bookingDataResponse // ignore: cast_nullable_to_non_nullable
+              as BookingDataResponse,
     ));
   }
 }
@@ -669,14 +669,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.vendorBooking);
+  const _$SuccessImpl(this.bookingDataResponse);
 
   @override
-  final VendorBookingModel vendorBooking;
+  final BookingDataResponse bookingDataResponse;
 
   @override
   String toString() {
-    return 'VendorBookingState.success(vendorBooking: $vendorBooking)';
+    return 'VendorBookingState.success(bookingDataResponse: $bookingDataResponse)';
   }
 
   @override
@@ -684,12 +684,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.vendorBooking, vendorBooking) ||
-                other.vendorBooking == vendorBooking));
+            (identical(other.bookingDataResponse, bookingDataResponse) ||
+                other.bookingDataResponse == bookingDataResponse));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, vendorBooking);
+  int get hashCode => Object.hash(runtimeType, bookingDataResponse);
 
   /// Create a copy of VendorBookingState
   /// with the given fields replaced by the non-null parameter values.
@@ -704,10 +704,10 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(VendorBookingModel vendorBooking) success,
+    required TResult Function(BookingDataResponse bookingDataResponse) success,
     required TResult Function(String message) error,
   }) {
-    return success(vendorBooking);
+    return success(bookingDataResponse);
   }
 
   @override
@@ -715,10 +715,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(VendorBookingModel vendorBooking)? success,
+    TResult? Function(BookingDataResponse bookingDataResponse)? success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(vendorBooking);
+    return success?.call(bookingDataResponse);
   }
 
   @override
@@ -726,12 +726,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(VendorBookingModel vendorBooking)? success,
+    TResult Function(BookingDataResponse bookingDataResponse)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(vendorBooking);
+      return success(bookingDataResponse);
     }
     return orElse();
   }
@@ -775,10 +775,10 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements VendorBookingState {
-  const factory _Success(final VendorBookingModel vendorBooking) =
+  const factory _Success(final BookingDataResponse bookingDataResponse) =
       _$SuccessImpl;
 
-  VendorBookingModel get vendorBooking;
+  BookingDataResponse get bookingDataResponse;
 
   /// Create a copy of VendorBookingState
   /// with the given fields replaced by the non-null parameter values.
@@ -857,7 +857,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(VendorBookingModel vendorBooking) success,
+    required TResult Function(BookingDataResponse bookingDataResponse) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -868,7 +868,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(VendorBookingModel vendorBooking)? success,
+    TResult? Function(BookingDataResponse bookingDataResponse)? success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -879,7 +879,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(VendorBookingModel vendorBooking)? success,
+    TResult Function(BookingDataResponse bookingDataResponse)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

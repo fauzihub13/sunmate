@@ -4,6 +4,7 @@ import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/date_picker.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
+import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
@@ -146,39 +147,91 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                       ],
                     )),
               ),
+              // bottomNavigationBar: Padding(
+              //   padding: const EdgeInsets.symmetric(
+              //       horizontal: 16.0, vertical: 16.0),
+              //   child: Align(
+              //     alignment: Alignment.bottomCenter,
+              //     child: const CircularProgressIndicator(),
+              //   ),
+              // ),
+              // BATASS
               bottomNavigationBar: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 16.0),
-                  child: Button.filled(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          final VendorBookingModel vendorBooking =
-                              VendorBookingModel(
-                                  codeBooking:
-                                      VendorBookingModel.generateCodeBooking(),
-                                  idVendor: dataVendor.id!.toString(),
-                                  vendorName: dataVendor.name!,
-                                  vendorImage:
-                                      dataVendor.vendorImages![0].path!,
-                                  userName: user!.name!,
-                                  userEmail: user!.email!,
-                                  userPhoneNumber: user!.phoneNumber!,
-                                  userAddress: addressDetailController.text,
-                                  bookingDate:
-                                      DateTime.parse(dateController.text));
-
-                          context.read<VendorBookingBloc>().add(
-                              VendorBookingEvent.createBooking(vendorBooking));
-
-                          await showDialog(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (context) {
-                                return const VendorBookingStatusDialog();
-                              });
-                        }
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 16.0, vertical: 16.0),
+                child: BlocListener<VendorBookingBloc, VendorBookingState>(
+                  listener: (context, state) {
+                    state.maybeWhen(
+                      orElse: () {},
+                      success: (bookingDataResponse) {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (context) {
+                              return const VendorBookingStatusDialog();
+                            });
                       },
-                      label: 'Buat Jadwal')),
+                      error: (message) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              message,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            backgroundColor: AppColors.red,
+                            behavior: SnackBarBehavior.floating,
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 10),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            duration: const Duration(seconds: 3),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: BlocBuilder<VendorBookingBloc, VendorBookingState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        orElse: () {
+                          // Show the button if not loading
+                          return Button.filled(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                final VendorBookingModel vendorBooking =
+                                    VendorBookingModel(
+                                  userId: user!.id!,
+                                  vendorId: dataVendor.id!.toString(),
+                                  address: addressDetailController.text,
+                                  date: DateTime.parse(dateController.text),
+                                  notes: addressDetailController.text,
+                                );
+                                context.read<VendorBookingBloc>().add(
+                                    VendorBookingEvent.createBooking(
+                                        vendorBooking));
+                              }
+                            },
+                            label: 'Buat Jadwal',
+                          );
+                        },
+                        loading: () {
+                          return Button.filled(
+                            onPressed: () {},
+                            label: 'Memproses...',
+                          );
+                        },
+                        success: (bookingDataResponse) {
+                          return Button.outlined(
+                            onPressed: () {},
+                            label: 'Berhasil Buat Jadwal',
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
             );
           },
         );

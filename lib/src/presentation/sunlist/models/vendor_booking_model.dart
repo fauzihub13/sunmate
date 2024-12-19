@@ -1,29 +1,17 @@
 import 'dart:math';
 
 class VendorBookingModel {
-  final String codeBooking;
-  final String idVendor;
-  final String vendorName;
-  final String vendorImage;
-  final String userName;
-  final String userEmail;
-  final String userPhoneNumber;
-  final String userAddress;
-  final DateTime bookingDate;
-  final String status;
+  final String vendorId;
+  final int userId;
+  final String address;
+  final DateTime date;
   final String? notes;
 
   VendorBookingModel({
-    required this.codeBooking,
-    required this.idVendor,
-    required this.vendorName,
-    required this.vendorImage,
-    required this.userName,
-    required this.userEmail,
-    required this.userPhoneNumber,
-    required this.userAddress,
-    required this.bookingDate,
-    this.status = 'pending',
+    required this.vendorId,
+    required this.userId,
+    required this.address,
+    required this.date,
     this.notes,
   });
 
@@ -38,18 +26,14 @@ class VendorBookingModel {
   // Factory method to create an instance from a Map (for database)
   factory VendorBookingModel.fromMap(Map<String, dynamic> map) {
     return VendorBookingModel(
-      codeBooking: map['code_booking'],
-      idVendor: map['id_vendor'] is int
-          ? map['id_vendor'].toString() 
-          : map['id_vendor'],
-      vendorName: map['vendor_name'],
-      vendorImage: map['vendor_image'],
-      userName: map['user_name'],
-      userEmail: map['user_email'],
-      userPhoneNumber: map['user_phone_number'],
-      userAddress: map['user_address'],
-      bookingDate: DateTime.parse(map['booking_date']),
-      status: map['status'] ?? 'pending',
+      userId: map['user_id'] is String
+          ? int.parse(map['user_id']) 
+          : map['user_id'], 
+      vendorId: map['vendor_id'] is int
+          ? map['vendor_id'].toString()
+          : map['vendor_id'],
+      address: map['address'],
+      date: DateTime.parse(map['date']),
       notes: map['notes'],
     );
   }
@@ -57,16 +41,10 @@ class VendorBookingModel {
   // Method to convert an instance to a Map (for database)
   Map<String, dynamic> toMap() {
     return {
-      'code_booking': codeBooking,
-      'id_vendor': idVendor,
-      'vendor_name': vendorName,
-      'vendor_image': vendorImage,
-      'user_name': userName,
-      'user_email': userEmail,
-      'user_phone_number': userPhoneNumber,
-      'user_address': userAddress,
-      'booking_date': bookingDate.toIso8601String(),
-      'status': status,
+      'user_id': userId.toInt(),
+      'vendor_id': vendorId,
+      'address': address,
+      'date': date.toIso8601String(),
       'notes': notes,
     };
   }

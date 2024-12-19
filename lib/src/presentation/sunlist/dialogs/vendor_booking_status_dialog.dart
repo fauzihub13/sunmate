@@ -52,11 +52,11 @@ class _VendorBookingStatusState extends State<VendorBookingStatusDialog> {
                 builder: (context, state) {
                   final bookingCode = state.maybeWhen(
                       orElse: () => '-',
-                      success: (vendor) => vendor.codeBooking);
+                      success: (vendor) => vendor.code);
                   return Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      bookingCode,
+                      bookingCode!,
                       style: const TextStyle(fontWeight: FontWeight.w500),
                     ),
                   );
@@ -86,7 +86,7 @@ class _VendorBookingStatusState extends State<VendorBookingStatusDialog> {
                   return Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      vendorName,
+                      vendorName!,
                       style: const TextStyle(fontWeight: FontWeight.w500),
                     ),
                   );
@@ -114,7 +114,7 @@ class _VendorBookingStatusState extends State<VendorBookingStatusDialog> {
                     orElse: () => '-',
                     success: (vendor) {
                       return DateFormat('dd MMMM yyyy')
-                          .format(vendor.bookingDate);
+                          .format(vendor.date!);
                     },
                   );
                   return Align(
