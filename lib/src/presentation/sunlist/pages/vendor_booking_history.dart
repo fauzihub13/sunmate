@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_history/vendor_booking_history_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_history_card.dart';
 
 class VendorBookingHistory extends StatelessWidget {
   const VendorBookingHistory({super.key});
@@ -32,7 +33,7 @@ class _MobileViewState extends State<MobileView> {
     super.initState();
     context
         .read<VendorBookingHistoryBloc>()
-        .add(VendorBookingHistoryEvent.getAllBookingHistory());
+        .add(const VendorBookingHistoryEvent.getAllBookingHistory());
   }
 
   @override
@@ -65,16 +66,16 @@ class _MobileViewState extends State<MobileView> {
                         child: Text('Tidak ada riwayat'),
                       );
                     }
-                    return Container();
-                    // return ListView.separated(
-                    //   shrinkWrap: true,
-                    //   itemBuilder: (context, index) => VendorHistoryCard(
-                    //     vendorBookingModel: vendors[index],
-                    //   ),
-                    //   separatorBuilder: (context, index) =>
-                    //       const SizedBox(height: 14.0),
-                    //   itemCount: vendors.length,
-                    // );
+                    // return Container();
+                    return ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => VendorHistoryCard(
+                        bookingHistoryDataResponse: vendors[index],
+                      ),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 14.0),
+                      itemCount: vendors.length,
+                    );
                   },
                 );
               }),

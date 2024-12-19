@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
-import 'package:flutter_sunmate/src/data/sources/booking_vendor_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/booking_vendor_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/vendor_remote_datasources.dart';
-import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
@@ -30,11 +29,12 @@ class MyApp extends StatelessWidget {
           create: (context) => VendorDetailBloc(),
         ),
         BlocProvider(
-          create: (context) => VendorBookingBloc(BookingVendorRemoteDatasources()),
+          create: (context) =>
+              VendorBookingBloc(BookingVendorRemoteDatasources()),
         ),
         BlocProvider(
           create: (context) =>
-              VendorBookingHistoryBloc(BookingVendorLocalDatasources.instance),
+              VendorBookingHistoryBloc(BookingVendorRemoteDatasources()),
         ),
         BlocProvider(
           create: (context) => LoginBloc(AuthRemoteDatasources()),

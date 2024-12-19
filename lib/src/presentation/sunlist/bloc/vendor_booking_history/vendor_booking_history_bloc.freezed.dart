@@ -296,7 +296,8 @@ mixin _$VendorBookingHistoryState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<VendorBookingModel> vendorBookingModel)
+    required TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)
         loaded,
     required TResult Function(String? message) error,
   }) =>
@@ -305,7 +306,9 @@ mixin _$VendorBookingHistoryState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<VendorBookingModel> vendorBookingModel)? loaded,
+    TResult? Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
     TResult? Function(String? message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -313,7 +316,9 @@ mixin _$VendorBookingHistoryState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<VendorBookingModel> vendorBookingModel)? loaded,
+    TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) =>
@@ -410,7 +415,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<VendorBookingModel> vendorBookingModel)
+    required TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)
         loaded,
     required TResult Function(String? message) error,
   }) {
@@ -422,7 +428,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<VendorBookingModel> vendorBookingModel)? loaded,
+    TResult? Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
     return initial?.call();
@@ -433,7 +441,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<VendorBookingModel> vendorBookingModel)? loaded,
+    TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -528,7 +538,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<VendorBookingModel> vendorBookingModel)
+    required TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)
         loaded,
     required TResult Function(String? message) error,
   }) {
@@ -540,7 +551,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<VendorBookingModel> vendorBookingModel)? loaded,
+    TResult? Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
     return loading?.call();
@@ -551,7 +564,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<VendorBookingModel> vendorBookingModel)? loaded,
+    TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -609,7 +624,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<VendorBookingModel> vendorBookingModel});
+  $Res call({List<BookingHistoryDataResponse> bookingHistoryDataResponse});
 }
 
 /// @nodoc
@@ -625,13 +640,13 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? vendorBookingModel = null,
+    Object? bookingHistoryDataResponse = null,
   }) {
     return _then(_$LoadedImpl(
-      null == vendorBookingModel
-          ? _value._vendorBookingModel
-          : vendorBookingModel // ignore: cast_nullable_to_non_nullable
-              as List<VendorBookingModel>,
+      null == bookingHistoryDataResponse
+          ? _value._bookingHistoryDataResponse
+          : bookingHistoryDataResponse // ignore: cast_nullable_to_non_nullable
+              as List<BookingHistoryDataResponse>,
     ));
   }
 }
@@ -639,21 +654,22 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<VendorBookingModel> vendorBookingModel)
-      : _vendorBookingModel = vendorBookingModel;
+  const _$LoadedImpl(
+      final List<BookingHistoryDataResponse> bookingHistoryDataResponse)
+      : _bookingHistoryDataResponse = bookingHistoryDataResponse;
 
-  final List<VendorBookingModel> _vendorBookingModel;
+  final List<BookingHistoryDataResponse> _bookingHistoryDataResponse;
   @override
-  List<VendorBookingModel> get vendorBookingModel {
-    if (_vendorBookingModel is EqualUnmodifiableListView)
-      return _vendorBookingModel;
+  List<BookingHistoryDataResponse> get bookingHistoryDataResponse {
+    if (_bookingHistoryDataResponse is EqualUnmodifiableListView)
+      return _bookingHistoryDataResponse;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_vendorBookingModel);
+    return EqualUnmodifiableListView(_bookingHistoryDataResponse);
   }
 
   @override
   String toString() {
-    return 'VendorBookingHistoryState.loaded(vendorBookingModel: $vendorBookingModel)';
+    return 'VendorBookingHistoryState.loaded(bookingHistoryDataResponse: $bookingHistoryDataResponse)';
   }
 
   @override
@@ -661,13 +677,14 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality()
-                .equals(other._vendorBookingModel, _vendorBookingModel));
+            const DeepCollectionEquality().equals(
+                other._bookingHistoryDataResponse,
+                _bookingHistoryDataResponse));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_vendorBookingModel));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_bookingHistoryDataResponse));
 
   /// Create a copy of VendorBookingHistoryState
   /// with the given fields replaced by the non-null parameter values.
@@ -682,11 +699,12 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<VendorBookingModel> vendorBookingModel)
+    required TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)
         loaded,
     required TResult Function(String? message) error,
   }) {
-    return loaded(vendorBookingModel);
+    return loaded(bookingHistoryDataResponse);
   }
 
   @override
@@ -694,10 +712,12 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<VendorBookingModel> vendorBookingModel)? loaded,
+    TResult? Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
-    return loaded?.call(vendorBookingModel);
+    return loaded?.call(bookingHistoryDataResponse);
   }
 
   @override
@@ -705,12 +725,14 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<VendorBookingModel> vendorBookingModel)? loaded,
+    TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(vendorBookingModel);
+      return loaded(bookingHistoryDataResponse);
     }
     return orElse();
   }
@@ -754,10 +776,11 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements VendorBookingHistoryState {
-  const factory _Loaded(final List<VendorBookingModel> vendorBookingModel) =
+  const factory _Loaded(
+          final List<BookingHistoryDataResponse> bookingHistoryDataResponse) =
       _$LoadedImpl;
 
-  List<VendorBookingModel> get vendorBookingModel;
+  List<BookingHistoryDataResponse> get bookingHistoryDataResponse;
 
   /// Create a copy of VendorBookingHistoryState
   /// with the given fields replaced by the non-null parameter values.
@@ -836,7 +859,8 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<VendorBookingModel> vendorBookingModel)
+    required TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)
         loaded,
     required TResult Function(String? message) error,
   }) {
@@ -848,7 +872,9 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<VendorBookingModel> vendorBookingModel)? loaded,
+    TResult? Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
     TResult? Function(String? message)? error,
   }) {
     return error?.call(message);
@@ -859,7 +885,9 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<VendorBookingModel> vendorBookingModel)? loaded,
+    TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
-import 'package:flutter_sunmate/src/data/models/response/vendor_booking_response_model.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor_booking_history_model.dart';
 import 'package:intl/intl.dart';
 
 class VendorHistoryCard extends StatelessWidget {
-  final BookingDataResponse bookingDataResponse;
-  const VendorHistoryCard({super.key, required this.bookingDataResponse});
+  final BookingHistoryDataResponse bookingHistoryDataResponse;
+  const VendorHistoryCard(
+      {super.key, required this.bookingHistoryDataResponse});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class VendorHistoryCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 16.0, vertical: 10.0),
                   child: Text(
-                    bookingDataResponse.code!,
+                    bookingHistoryDataResponse.code!,
                     style: const TextStyle(
                         color: AppColors.lightBlue,
                         fontSize: 16.0,
@@ -49,7 +49,7 @@ class VendorHistoryCard extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(16),
                           child: Image.network(
-                            '${Variables.baseUrl}/storage/${bookingDataResponse.vendorImage}',
+                            '${Variables.baseUrl}/storage/${bookingHistoryDataResponse.vendorImage}',
                             width: 84,
                             height: 84,
                             fit: BoxFit.cover,
@@ -64,7 +64,7 @@ class VendorHistoryCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          bookingDataResponse.vendorName!,
+                          bookingHistoryDataResponse.vendorName!,
                           maxLines: 2,
                           style: const TextStyle(
                             color: AppColors.darkBlue,
@@ -85,7 +85,7 @@ class VendorHistoryCard extends StatelessWidget {
                             const SizedBox(width: 6.0),
                             Text(
                               DateFormat('dd MMMM yyyy')
-                                  .format(bookingDataResponse.date!),
+                                  .format(bookingHistoryDataResponse.date!),
                               style: const TextStyle(
                                 color: AppColors.grey,
                                 fontSize: 14,
@@ -99,17 +99,64 @@ class VendorHistoryCard extends StatelessWidget {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                            color: AppColors.lightYellow,
+                            color: bookingHistoryDataResponse.status ==
+                                    'pending'
+                                ? AppColors.lightYellow
+                                : bookingHistoryDataResponse.status ==
+                                        'confirmed'
+                                    ? AppColors.lightBlue
+                                    : bookingHistoryDataResponse.status ==
+                                            'in_progress'
+                                        ? AppColors.lightBlue
+                                        : bookingHistoryDataResponse.status ==
+                                                'canceled'
+                                            ? AppColors.lightRed
+                                            : bookingHistoryDataResponse
+                                                        .status ==
+                                                    'completed'
+                                                ? AppColors.lightGreen
+                                                : AppColors
+                                                    .grey, // Default background color
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 4),
                           child: Text(
-                            bookingDataResponse.status == 'pending'
+                            bookingHistoryDataResponse.status == 'pending'
                                 ? 'Menunggu konfirmasi'
-                                : '',
-                            style: const TextStyle(
-                              color: AppColors.darkYellow,
+                                : bookingHistoryDataResponse.status ==
+                                        'confirmed'
+                                    ? 'Dikonfirmasi'
+                                    : bookingHistoryDataResponse.status ==
+                                            'in_progress'
+                                        ? 'Sedang diproses'
+                                        : bookingHistoryDataResponse.status ==
+                                                'canceled'
+                                            ? 'Dibatalkan'
+                                            : bookingHistoryDataResponse
+                                                        .status ==
+                                                    'completed'
+                                                ? 'Selesai'
+                                                : '',
+                            style: TextStyle(
+                              color: bookingHistoryDataResponse.status ==
+                                      'pending'
+                                  ? AppColors.darkYellow
+                                  : bookingHistoryDataResponse.status ==
+                                          'confirmed'
+                                      ? AppColors.darkBlue
+                                      : bookingHistoryDataResponse.status ==
+                                              'in_progress'
+                                          ? AppColors.darkBlue
+                                          : bookingHistoryDataResponse.status ==
+                                                  'canceled'
+                                              ? AppColors.darkRed
+                                              : bookingHistoryDataResponse
+                                                          .status ==
+                                                      'completed'
+                                                  ? AppColors.darkGreen
+                                                  : AppColors
+                                                      .black, // Default text color
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
                             ),

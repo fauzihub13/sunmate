@@ -5,18 +5,25 @@ class AppColors {
   static const Color primary = Color(0xff1F41BB);
 
   /// Light Blue
-  static const Color darkBlue = Color(0xff13206C);
 
   static const Color lightBlue = Color(0xffF1F4FF);
 
   static const Color overlayBlue = Color(0xffF8F9FF);
 
-
   static const Color yellow = Color(0xffFEC62E);
 
+  // Booking History Badge
+  static const Color lightYellow = Color(0xffFFF5D9);
   static const Color darkYellow = Color(0xffCC9603);
 
-  static const Color lightYellow = Color(0xffFFF5D9);
+  static const Color lightGreen = Color.fromARGB(255, 210, 247, 211);
+  static const Color darkGreen = Color(0xff387F39);
+
+  static const Color lightRed = Color.fromARGB(255, 255, 156, 150);
+  static const Color darkRed = Color.fromARGB(255, 255, 28, 16);
+
+  static const Color lightBlue2 = Color.fromARGB(255, 83, 109, 253);
+  static const Color darkBlue = Color(0xff13206C);
 
   /// grey = #B7B7B7
   static const Color grey = Color(0xffB7B7B7);
