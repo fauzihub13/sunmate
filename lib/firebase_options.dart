@@ -64,6 +64,8 @@ class DefaultFirebaseOptions {
     appId: '1:514086238242:android:dd1f8c80b2d4e766c5327b',
     messagingSenderId: '514086238242',
     projectId: 'sunify-4286b',
+    databaseURL: 'https://sunify-4286b-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'sunify-4286b.firebasestorage.app',
   );
+
 }
