@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "514086238242",
+    "project_id": "sunify-4286b",
+    "storage_bucket": "sunify-4286b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514086238242:android:dd1f8c80b2d4e766c5327b",
+        "android_client_info": {
+          "package_name": "com.example.flutter_sunmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC12zNLP0hReNsJlx1kFgnjzQ2c-pQqlqY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
