@@ -22,6 +22,7 @@ class SuntalkPage extends StatefulWidget {
 class _SunTalkPageState extends State<SuntalkPage> {
   final DatabaseReference databaseReference =
       FirebaseDatabase.instance.ref('chats');
+  final ScrollController _scrollController = ScrollController();
 
   late final TextEditingController chatController;
   User? user;
@@ -158,6 +159,15 @@ class _SunTalkPageState extends State<SuntalkPage> {
     });
     chatController = TextEditingController();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _scrollToBottom();
+    });
+  }
+
+  void _scrollToBottom() {
+    if (_scrollController.hasClients) {
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    }
   }
 
   @override
@@ -174,6 +184,7 @@ class _SunTalkPageState extends State<SuntalkPage> {
         children: [
           Expanded(
               child: FirebaseAnimatedList(
+                  controller: _scrollController,
                   query: databaseReference,
                   itemBuilder: (context, snapshot, animation, index) {
                     String message = snapshot.child('message').value.toString();
@@ -215,11 +226,16 @@ class _SunTalkPageState extends State<SuntalkPage> {
                           await ChatRemoteDatasources().uploadImage(bytes);
 
                       if (imageUrl != null && imageUrl.isNotEmpty) {
-                        await remoteDatasource.sendMessage(
-                            imageUrl, 
-                            userId: user!.id!,
-                            isImage: true); 
-                        chatController.clear();
+                        await remoteDatasource.sendMessage(imageUrl,
+                            userId: user!.id!, isImage: true);
+                        _scrollToBottom();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Gambar terkirim'),
+                            backgroundColor: AppColors.primary,
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
                       } else {
                         debugPrint('URL gambar tidak tersedia');
                       }
@@ -255,6 +271,7 @@ class _SunTalkPageState extends State<SuntalkPage> {
                   await remoteDatasource.sendMessage(message,
                       userId: user!.id!);
                   chatController.clear();
+                  _scrollToBottom();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Pesan terkirim'),

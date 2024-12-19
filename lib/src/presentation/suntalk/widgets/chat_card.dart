@@ -61,8 +61,7 @@ class ChatCard extends StatelessWidget {
                         const SizedBox(height: 5),
                         // Isi pesan
                         if (isImage)
-                          Image.network(
-                              'https://sunify.my.id/storage/images/vendors/RYafAqiZKOpqaiudbdeFQVmuX1DCs2hi5Qeek7oQ.jpg')
+                          Image.network(message)
                         else
                           Text(message,
                               style: TextStyle(
