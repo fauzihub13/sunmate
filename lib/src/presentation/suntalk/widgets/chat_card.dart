@@ -6,8 +6,7 @@ class ChatCard extends StatelessWidget {
   final bool isImage;
   final int userId;
   final int timestamp;
-  final bool
-      isSender; // True jika pesan dari pengguna (kirim), false jika pesan diterima
+  final bool isSender;
 
   const ChatCard({
     super.key,
@@ -15,7 +14,7 @@ class ChatCard extends StatelessWidget {
     required this.isImage,
     required this.userId,
     required this.timestamp,
-    required this.isSender, // Menambahkan parameter isSender
+    required this.isSender,
   });
 
   @override
@@ -24,12 +23,9 @@ class ChatCard extends StatelessWidget {
         DateTime.fromMillisecondsSinceEpoch(timestamp * 1000).toLocal();
 
     return Align(
-      alignment: isSender
-          ? Alignment.centerRight
-          : Alignment.centerLeft, // Mengatur posisi pesan (kiri atau kanan)
+      alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: 16.0), // Jarak dari sisi layar
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: FractionallySizedBox(
           alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
           widthFactor: 0.8,
@@ -65,8 +61,8 @@ class ChatCard extends StatelessWidget {
                         const SizedBox(height: 5),
                         // Isi pesan
                         if (isImage)
-                          const Text('Gambar diterima',
-                              style: TextStyle(fontStyle: FontStyle.italic))
+                          Image.network(
+                              'https://sunify.my.id/storage/images/vendors/RYafAqiZKOpqaiudbdeFQVmuX1DCs2hi5Qeek7oQ.jpg')
                         else
                           Text(message,
                               style: TextStyle(
