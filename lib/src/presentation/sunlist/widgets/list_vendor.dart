@@ -27,7 +27,7 @@ class _ListVendorState extends State<ListVendor> {
       builder: (context, state) {
         return state.maybeWhen(
           orElse: () {
-            return const Center(child: Text('Failed fetch vendor'));
+            return const Center(child: Text('Fetching vendor'));
           },
           error: (message) {
             return Text(message);

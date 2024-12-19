@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
-import 'package:flutter_sunmate/src/presentation/sunnews/widgets/news_card.dart';
 import 'package:flutter_sunmate/src/core/components/search_bar.dart';
-import 'package:flutter_sunmate/src/presentation/sunnews/models/news.dart';
+import 'package:flutter_sunmate/src/data/models/response/news_response_model.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/widgets/news_card.dart';
 
 class NewsListPages extends StatelessWidget {
   const NewsListPages({super.key});
@@ -29,19 +31,19 @@ class MobileView extends StatefulWidget {
 
 class _MobileViewState extends State<MobileView> {
   final TextEditingController searchController = TextEditingController();
-  List<News> searchResults = [];
-  final List<News> news = newsList;
+  List<SingleNews> searchResults = [];
 
   @override
   void initState() {
     super.initState();
-    searchResults = news; 
+    context.read<NewsListBloc>().add(const NewsListEvent.getNews());
+    // searchResults = news;
   }
 
   void _onSearchChanged(String value) {
     setState(() {
-      searchResults = news
-          .where((e) => e.title.toLowerCase().contains(value.toLowerCase()))
+      searchResults = searchResults
+          .where((e) => e.title!.toLowerCase().contains(value.toLowerCase()))
           .toList();
     });
   }
@@ -59,20 +61,38 @@ class _MobileViewState extends State<MobileView> {
               onChanged: _onSearchChanged,
             ),
             const SizedBox(height: 16.0),
-            Expanded(
-              child: searchResults.isEmpty
-                  ? const Center(child: Text('Tidak ada hasil ditemukan.'))
-                  : ListView.builder(
-                      itemCount: searchResults.length,
-                      itemBuilder: (context, index) {
-                        final News newsData = searchResults[index];
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5.0),
-                          child: NewsCard(data: newsData),
-                        );
-                      },
-                    ),
-            ),
+            Expanded(child: BlocBuilder<NewsListBloc, NewsListState>(
+                builder: (context, state) {
+              return state.maybeWhen(orElse: () {
+                return const Center(child: Text('Fecthing news data..'));
+              }, loading: () {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }, loaded: (news) {
+                searchResults = news;
+                final filteredNews = searchController.text.isEmpty
+                    ? searchResults
+                    : searchResults
+                        .where((news) => news.title!
+                            .toLowerCase()
+                            .contains(searchController.text.toLowerCase()))
+                        .toList();
+                return filteredNews.isEmpty
+                    ? const Center(
+                        child: Text('No news found.'),
+                      )
+                    : ListView.builder(
+                        itemCount: filteredNews.length,
+                        itemBuilder: (context, index) {
+                          final news = filteredNews[index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5.0),
+                            child: NewsCard(data: news),
+                          );
+                        });
+              });
+            })),
           ],
         ),
       ),

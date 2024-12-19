@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/booking_vendor_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/news_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/vendor_remote_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/ven
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_history/vendor_booking_history_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -47,6 +49,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => VendorListBloc(VendorRemoteDatasources()),
+        ),
+        BlocProvider(
+          create: (context) => NewsListBloc(NewsRemoteDatasources()),
         ),
       ],
       child: MaterialApp(

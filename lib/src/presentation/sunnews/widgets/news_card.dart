@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/presentation/sunnews/models/news.dart';
+import 'package:flutter_sunmate/src/core/constants/variables.dart';
+import 'package:flutter_sunmate/src/data/models/response/news_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_detail_pages.dart';
 
 class NewsCard extends StatelessWidget {
-  final News data;
+  final SingleNews data;
   const NewsCard({super.key, required this.data});
 
   @override
@@ -24,8 +25,8 @@ class NewsCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  data.imageAsset,
+                child: Image.network(
+                  '${Variables.baseUrl}/storage/${data.image!}',
                   width: double.infinity,
                   height: double.infinity,
                   fit: BoxFit.cover,
@@ -59,7 +60,7 @@ class NewsCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
-                    data.title,
+                    data.title!,
                     maxLines: 2,
                     style: const TextStyle(
                         fontSize: 14.0,

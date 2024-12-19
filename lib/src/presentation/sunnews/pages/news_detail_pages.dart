@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/presentation/sunnews/models/news.dart';
+import 'package:flutter_sunmate/src/core/constants/variables.dart';
+import 'package:flutter_sunmate/src/data/models/response/news_response_model.dart';
+import 'package:intl/intl.dart';
 
 class DetailNews extends StatelessWidget {
-  final News news;
+  final SingleNews news;
   const DetailNews({super.key, required this.news});
 
   @override
@@ -25,7 +27,7 @@ class DetailNews extends StatelessWidget {
 }
 
 class MobileView extends StatelessWidget {
-  final News news;
+  final SingleNews news;
   const MobileView({super.key, required this.news});
 
   @override
@@ -43,8 +45,8 @@ class MobileView extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 16),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    news.imageAsset,
+                  child: Image.network(
+                    '${Variables.baseUrl}/storage/${news.image!}',
                     width: double.infinity,
                     height: double.infinity,
                     fit: BoxFit.cover,
@@ -54,7 +56,7 @@ class MobileView extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  news.date,
+                  DateFormat('dd MMMM yyyy').format(news.createdAt!),
                   style: const TextStyle(
                     color: AppColors.grey,
                     fontSize: 14,
@@ -68,7 +70,7 @@ class MobileView extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  news.title,
+                  news.title!,
                   textAlign: TextAlign.justify,
                   style: const TextStyle(
                       fontSize: 18.0,
@@ -80,7 +82,7 @@ class MobileView extends StatelessWidget {
                 height: 20.0,
               ),
               Text(
-                news.description,
+                news.description!,
                 textAlign: TextAlign.justify,
                 style: const TextStyle(
                     fontSize: 16.0,

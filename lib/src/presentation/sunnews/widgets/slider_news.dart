@@ -1,30 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sunmate/src/presentation/sunnews/widgets/news_card.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/models/news.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/widgets/news_card.dart';
 
-class SliderNews extends StatelessWidget {
+class SliderNews extends StatefulWidget {
   final int? itemCount;
 
   const SliderNews({super.key, this.itemCount});
 
   @override
+  State<SliderNews> createState() => _SliderNewsState();
+}
+
+class _SliderNewsState extends State<SliderNews> {
+  @override
+  void initState() {
+    context.read<NewsListBloc>().add(const NewsListEvent.getNews());
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final _scrollController = ScrollController();
-    final int count = itemCount ?? newsList.length;
+    final int count = widget.itemCount ?? newsList.length;
 
-    return Scrollbar(
-      controller: _scrollController,
-      child: Container(
-          height: 150,
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          margin: const EdgeInsets.only(top: 5.0),
-          child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: count,
-              itemBuilder: (context, index) {
-                final News news = newsList[index];
-                return NewsCard(data: news);
-              })),
+    return BlocBuilder<NewsListBloc, NewsListState>(
+      builder: (context, state) {
+        return state.maybeWhen(orElse: () {
+          return const Center(
+            child: Text('Fetching news data.'),
+          );
+        }, loading: () {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }, loaded: (news) {
+          // return Text('asdaaaaa');
+          return Scrollbar(
+            controller: _scrollController,
+            child: Container(
+                height: 150,
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                margin: const EdgeInsets.only(top: 5.0),
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: news.length > count ? count : news.length,
+                    itemBuilder: (context, index) {
+                      final singleNews = news[index];
+                      return NewsCard(data: singleNews);
+                    })),
+          );
+        });
+      },
     );
   }
 }
