@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/presentation/suntalk/pages/suntalk_page.dart';
 import 'package:flutter_svg/svg.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -62,10 +63,10 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                   backgroundColor: AppColors.lightBlue,
                   child: GestureDetector(
                     onTap: () {
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (context) {
-                      //   return const VendorBookingHistory();
-                      // }));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const SuntalkPage();
+                      }));
                     },
                     child: SvgPicture.asset(
                       'assets/icons/chat.svg',
