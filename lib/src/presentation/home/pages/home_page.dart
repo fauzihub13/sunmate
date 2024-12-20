@@ -53,33 +53,33 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   BlocBuilder<UserLocationBloc, UserLocationState>(
                       builder: (context, state) {
-                    return state.maybeWhen(orElse: () {
-                      print('orelse confition');
-                      return const Text('Still loading');
-                    }, loading: () {
-                      print('Loading get location..');
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }, weatherLoaded: (weather) {
-                      if (weather.weather != null &&
-                          weather.weather!.isNotEmpty) {
-                        print(
-                            'Success get temp: ${weather.main!.temp!}, weather: ${weather.weather![0].main}, description: ${weather.weather![0].description}');
-                      } else {
-                        print('Weather data is unavailable.');
-                      }
-                      return Text('sucess');
-                    }, error: (error) {
-                      print('Error get location');
-                      return Text('error');
-                      
-                    });
+                    return state.maybeWhen(
+                      orElse: () {
+                        return const HomeBanner(
+                            temperature: 0, location: '-', weather: '-');
+                      },
+                      loading: () {
+                        return const HomeBanner(
+                            temperature: 0, location: '-', weather: '-');
+                      },
+                      weatherLoaded: (weather) {
+                        if (weather.weather != null &&
+                            weather.weather!.isNotEmpty) {
+                          return HomeBanner(
+                              temperature: weather.main!.temp! - 273,
+                              location: weather.name!,
+                              weather: weather.weather![0].main!);
+                        } else {
+                          return const HomeBanner(
+                              temperature: 0, location: '-', weather: '-');
+                        }
+                      },
+                      error: (error) {
+                        return const HomeBanner(
+                            temperature: 0, location: '-', weather: '-');
+                      },
+                    );
                   }),
-                  const HomeBanner(
-                      temperature: 22.0,
-                      location: 'Jakarta, Indonesia',
-                      weather: 'Cerah berawan'),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Row(
