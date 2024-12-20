@@ -6,6 +6,7 @@ import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dar
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
+import 'package:flutter_sunmate/src/presentation/home/bloc/bloc/user_location_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/menu_card.dart';
@@ -29,6 +30,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    context.read<UserLocationBloc>().add(const UserLocationEvent.getWeather());
     AuthLocalDatasources().getAuthData().then((value) {
       setState(() {
         user = value.user;
@@ -49,7 +51,35 @@ class _HomePageState extends State<HomePage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const HomeBanner(),
+                  BlocBuilder<UserLocationBloc, UserLocationState>(
+                      builder: (context, state) {
+                    return state.maybeWhen(orElse: () {
+                      print('orelse confition');
+                      return const Text('Still loading');
+                    }, loading: () {
+                      print('Loading get location..');
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }, weatherLoaded: (weather) {
+                      if (weather.weather != null &&
+                          weather.weather!.isNotEmpty) {
+                        print(
+                            'Success get temp: ${weather.main!.temp!}, weather: ${weather.weather![0].main}, description: ${weather.weather![0].description}');
+                      } else {
+                        print('Weather data is unavailable.');
+                      }
+                      return Text('sucess');
+                    }, error: (error) {
+                      print('Error get location');
+                      return Text('error');
+                      
+                    });
+                  }),
+                  const HomeBanner(
+                      temperature: 22.0,
+                      location: 'Jakarta, Indonesia',
+                      weather: 'Cerah berawan'),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Row(

@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 
 class HomeBanner extends StatelessWidget {
-  const HomeBanner({super.key});
+  final double temperature;
+  final String location;
+  final String weather;
+
+  const HomeBanner({
+    super.key,
+    required this.temperature,
+    required this.location,
+    required this.weather,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,32 +38,32 @@ class HomeBanner extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Expanded(
+          Expanded(
             flex: 2,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '25',
-                  style: TextStyle(
-                    fontSize: 36.0,
+                  '${temperature.toStringAsFixed(1)}°C', // Format suhu
+                  style: const TextStyle(
+                    fontSize: 34.0,
                     color: AppColors.white,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
-                  'Cerah berawan',
-                  style: TextStyle(
+                  weather,
+                  style: const TextStyle(
                     color: AppColors.white,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
                 Text(
-                  'Jakarta, Indonesia',
-                  style: TextStyle(color: AppColors.white, fontSize: 18),
+                  location,
+                  style: const TextStyle(color: AppColors.white, fontSize: 18),
                 ),
               ],
             ),
@@ -65,10 +74,10 @@ class HomeBanner extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Image.asset(
-                  'assets/images/rainy.png',
+                  'assets/images/rainy.png', // Gambar sesuai cuaca
                   width: 110,
                   height: 110,
-                )
+                ),
               ],
             ),
           ),
