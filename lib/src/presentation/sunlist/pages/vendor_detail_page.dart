@@ -36,7 +36,7 @@ class MobileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _scrollController = ScrollController();
+    final scrollController = ScrollController();
 
     return Scaffold(
       appBar: const CustomAppbar(title: 'Detail Vendor', canBack: true),
@@ -47,13 +47,13 @@ class MobileView extends StatelessWidget {
           child: Column(
             children: [
               Scrollbar(
-                controller: _scrollController,
+                controller: scrollController,
                 child: Container(
                   height: 250,
                   padding: const EdgeInsets.only(bottom: 16),
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    controller: _scrollController,
+                    controller: scrollController,
                     children: vendor.vendorImages!.map((image) {
                       return Padding(
                         padding: const EdgeInsets.only(

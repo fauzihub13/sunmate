@@ -22,7 +22,7 @@ class _SliderNewsState extends State<SliderNews> {
 
   @override
   Widget build(BuildContext context) {
-    final _scrollController = ScrollController();
+    final scrollController = ScrollController();
     final int count = widget.itemCount ?? newsList.length;
 
     return BlocBuilder<NewsListBloc, NewsListState>(
@@ -43,7 +43,7 @@ class _SliderNewsState extends State<SliderNews> {
               ));
         }, loaded: (news) {
           return Scrollbar(
-            controller: _scrollController,
+            controller: scrollController,
             child: Container(
                 height: 150,
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),

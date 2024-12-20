@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/dropdown_menu.dart'
-    as customDropdownMenu;
+    as custom_dropdown_menu;
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/presentation/suncost/dialogs/suncost_result_dialog.dart';
@@ -21,23 +21,23 @@ class _SunCostMainPageState extends State<SuncostMainPage> {
   final TextEditingController monthlyBillController = TextEditingController();
   final TextEditingController powerCapacityController = TextEditingController();
   final List<DropdownMenuItem<int>> powerLevelItems = [
-    DropdownMenuItem(value: 1300, child: Text('1300 W')),
-    DropdownMenuItem(value: 2200, child: Text('2200 W')),
-    DropdownMenuItem(value: 3500, child: Text('3500 W')),
-    DropdownMenuItem(value: 4400, child: Text('4400 W')),
-    DropdownMenuItem(value: 5500, child: Text('5500 W')),
-    DropdownMenuItem(value: 6600, child: Text('6600 W')),
-    DropdownMenuItem(value: 7700, child: Text('7700 W')),
-    DropdownMenuItem(value: 10600, child: Text('10.600 W')),
-    DropdownMenuItem(value: 11000, child: Text('11.000 W')),
-    DropdownMenuItem(value: 13200, child: Text('13.200 W')),
-    DropdownMenuItem(value: 13900, child: Text('13.900 W')),
-    DropdownMenuItem(value: 16500, child: Text('16.500 W')),
-    DropdownMenuItem(value: 17000, child: Text('17.000 W')),
-    DropdownMenuItem(value: 22000, child: Text('22.000 W')),
-    DropdownMenuItem(value: 23000, child: Text('23.000 W')),
-    DropdownMenuItem(value: 33000, child: Text('33.000 W')),
-    DropdownMenuItem(value: 41500, child: Text('41.500 W')),
+    const DropdownMenuItem(value: 1300, child: Text('1300 W')),
+    const DropdownMenuItem(value: 2200, child: Text('2200 W')),
+    const DropdownMenuItem(value: 3500, child: Text('3500 W')),
+    const DropdownMenuItem(value: 4400, child: Text('4400 W')),
+    const DropdownMenuItem(value: 5500, child: Text('5500 W')),
+    const DropdownMenuItem(value: 6600, child: Text('6600 W')),
+    const DropdownMenuItem(value: 7700, child: Text('7700 W')),
+    const DropdownMenuItem(value: 10600, child: Text('10.600 W')),
+    const DropdownMenuItem(value: 11000, child: Text('11.000 W')),
+    const DropdownMenuItem(value: 13200, child: Text('13.200 W')),
+    const DropdownMenuItem(value: 13900, child: Text('13.900 W')),
+    const DropdownMenuItem(value: 16500, child: Text('16.500 W')),
+    const DropdownMenuItem(value: 17000, child: Text('17.000 W')),
+    const DropdownMenuItem(value: 22000, child: Text('22.000 W')),
+    const DropdownMenuItem(value: 23000, child: Text('23.000 W')),
+    const DropdownMenuItem(value: 33000, child: Text('33.000 W')),
+    const DropdownMenuItem(value: 41500, child: Text('41.500 W')),
   ];
 
   String selectedOption = 'rumah_tinggal';
@@ -135,24 +135,13 @@ class _SunCostMainPageState extends State<SuncostMainPage> {
                         },
                       ),
                       const SizedBox(height: 18.0),
-                      // const Align(
-                      //     alignment: Alignment.centerLeft,
-                      //     child: Text(
-                      //       'Kapasitas daya dalam VA',
-                      //       style: TextStyle(
-                      //           color: AppColors.primary,
-                      //           fontWeight: FontWeight.w500),
-                      //     )),
-                      // const SizedBox(
-                      //   height: 8,
-                      // ),
-                      customDropdownMenu.DropdownFormInput<int>(
+                      custom_dropdown_menu.DropdownFormInput<int>(
                         value: null,
                         items: powerLevelItems,
                         labelText: 'Power Level',
                         hintText: 'Select power level',
                         onChanged: (value) {
-                          print('Selected Power Level: $value');
+                          
                         },
                       ),
                     ],
@@ -167,7 +156,6 @@ class _SunCostMainPageState extends State<SuncostMainPage> {
           label: 'Hitung',
           onPressed: () {
             if (_formKey.currentState!.validate()) {
-              print('MASUK');
               showDialog(
                   context: context,
                   barrierDismissible: true,

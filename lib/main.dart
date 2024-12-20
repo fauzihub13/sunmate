@@ -102,7 +102,7 @@ class MyApp extends StatelessWidget {
               constraints: const BoxConstraints(
                 maxWidth: 976,
               ),
-              child: child ?? SizedBox.shrink(),
+              child: child ?? const SizedBox.shrink(),
             ),
           );
         },

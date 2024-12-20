@@ -27,126 +27,6 @@ class _SunTalkPageState extends State<SuntalkPage> {
   late final TextEditingController chatController;
   User? user;
 
-  List<Map<String, dynamic>> dummyMessages = [
-    {
-      'message': 'Pesan pertama',
-      'isImage': false,
-      'userId': 11,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 1))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan kedua dengan gambar',
-      'isImage': true,
-      'userId': 11,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 2))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan ketiga',
-      'isImage': false,
-      'userId': 3,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 3))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan kedua dengan gambar',
-      'isImage': true,
-      'userId': 11,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 2))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan ketiga',
-      'isImage': false,
-      'userId': 3,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 3))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan kedua dengan gambar',
-      'isImage': true,
-      'userId': 11,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 2))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan ketiga',
-      'isImage': false,
-      'userId': 3,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 3))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan kedua dengan gambar',
-      'isImage': true,
-      'userId': 11,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 2))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan ketiga',
-      'isImage': false,
-      'userId': 3,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 3))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan kedua dengan gambar',
-      'isImage': true,
-      'userId': 11,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 2))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan ketiga',
-      'isImage': false,
-      'userId': 3,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 3))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan kedua dengan gambar',
-      'isImage': true,
-      'userId': 11,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 2))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-    {
-      'message': 'Pesan ketiga',
-      'isImage': false,
-      'userId': 3,
-      'timestamp': DateTime.now()
-              .subtract(Duration(minutes: 3))
-              .millisecondsSinceEpoch ~/
-          1000,
-    },
-  ];
-
   // Instance Remote Datasource
   final ChatRemoteDatasources remoteDatasource = ChatRemoteDatasources();
 
@@ -229,13 +109,15 @@ class _SunTalkPageState extends State<SuntalkPage> {
                         await remoteDatasource.sendMessage(imageUrl,
                             userId: user!.id!, isImage: true);
                         _scrollToBottom();
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Gambar terkirim'),
-                            backgroundColor: AppColors.primary,
-                            duration: Duration(seconds: 2),
-                          ),
-                        );
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Gambar terkirim'),
+                              backgroundColor: Color.fromARGB(160, 31, 65, 187),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        }
                       } else {
                         debugPrint('URL gambar tidak tersedia');
                       }
@@ -272,13 +154,15 @@ class _SunTalkPageState extends State<SuntalkPage> {
                       userId: user!.id!);
                   chatController.clear();
                   _scrollToBottom();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Pesan terkirim'),
-                      backgroundColor: AppColors.primary,
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Pesan terkirim'),
+                        backgroundColor: Color.fromARGB(160, 31, 65, 187),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  }
                 }
               },
               child: const Icon(
