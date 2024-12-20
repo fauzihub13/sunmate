@@ -104,17 +104,6 @@ class _SunCostMainPageState extends State<SuncostMainPage> {
                         ],
                       ),
                       const SizedBox(height: 18.0),
-                      // const Align(
-                      //     alignment: Alignment.centerLeft,
-                      //     child: Text(
-                      //       'Tagihan listrik bulanan',
-                      //       style: TextStyle(
-                      //           color: AppColors.primary,
-                      //           fontWeight: FontWeight.w500),
-                      //     )),
-                      // const SizedBox(
-                      //   height: 8,
-                      // ),
                       FormInput(
                         textInputType: TextInputType.number,
                         prefixIcon: const Icon(
@@ -138,8 +127,14 @@ class _SunCostMainPageState extends State<SuncostMainPage> {
                       custom_dropdown_menu.DropdownFormInput<int>(
                         value: null,
                         items: powerLevelItems,
-                        labelText: 'Power Level',
-                        hintText: 'Select power level',
+                        labelText: 'Besar daya listrik',
+                        hintText: 'Pilih besar daya listrik',
+                        validator: (value) {
+                          if (value == null || value <= 0) {
+                            return 'Besar daya tidak boleh kosong';
+                          }
+                          return null;
+                        },
                         onChanged: (value) {
                           
                         },

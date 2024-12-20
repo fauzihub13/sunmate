@@ -929,10 +929,10 @@ class __$$WeatherLoadedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? weatherResponseModel = freezed,
+    Object? weatherResponseModel = null,
   }) {
     return _then(_$WeatherLoadedImpl(
-      freezed == weatherResponseModel
+      null == weatherResponseModel
           ? _value.weatherResponseModel
           : weatherResponseModel // ignore: cast_nullable_to_non_nullable
               as WeatherResponseModel,
@@ -958,13 +958,12 @@ class _$WeatherLoadedImpl implements _WeatherLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WeatherLoadedImpl &&
-            const DeepCollectionEquality()
-                .equals(other.weatherResponseModel, weatherResponseModel));
+            (identical(other.weatherResponseModel, weatherResponseModel) ||
+                other.weatherResponseModel == weatherResponseModel));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(weatherResponseModel));
+  int get hashCode => Object.hash(runtimeType, weatherResponseModel);
 
   /// Create a copy of UserLocationState
   /// with the given fields replaced by the non-null parameter values.
