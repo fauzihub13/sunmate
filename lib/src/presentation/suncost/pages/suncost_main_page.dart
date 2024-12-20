@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/dropdown_menu.dart'
     as custom_dropdown_menu;
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/presentation/suncost/bloc/bloc/suncost_calculate_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/suncost/dialogs/suncost_result_dialog.dart';
 
 class SuncostMainPage extends StatefulWidget {
@@ -41,6 +43,7 @@ class _SunCostMainPageState extends State<SuncostMainPage> {
   ];
 
   String selectedOption = 'rumah_tinggal';
+  int powerLevelOption = 0;
 
   @override
   void dispose() {
@@ -136,7 +139,9 @@ class _SunCostMainPageState extends State<SuncostMainPage> {
                           return null;
                         },
                         onChanged: (value) {
-                          
+                          setState(() {
+                            powerLevelOption = value!;
+                          });
                         },
                       ),
                     ],
@@ -147,18 +152,57 @@ class _SunCostMainPageState extends State<SuncostMainPage> {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16),
-        child: Button.filled(
-          label: 'Hitung',
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              showDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (context) {
-                    return const SunCostResultDialog();
-                  });
-            }
+        child: BlocListener<SuncostCalculateBloc, SuncostCalculateState>(
+          listener: (context, state) {
+            state.maybeWhen(
+                orElse: () {},
+                loaded: (calculateModel) {
+                  showDialog(
+                      context: context,
+                      barrierDismissible: true,
+                      builder: (context) {
+                        return SunCostResultDialog(
+                          calculateModel: calculateModel,
+                        );
+                      });
+                },
+                error: (message) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        message,
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      backgroundColor: AppColors.red,
+                      behavior: SnackBarBehavior.floating,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 10),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      duration: const Duration(seconds: 3),
+                    ),
+                  );
+                });
           },
+          child: BlocBuilder<SuncostCalculateBloc, SuncostCalculateState>(
+            builder: (context, state) {
+              return state.maybeWhen(orElse: () {
+                return Button.filled(
+                  label: 'Hitung',
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      context.read<SuncostCalculateBloc>().add(
+                          SuncostCalculateEvent.calculate(
+                              selectedOption,
+                              int.parse(monthlyBillController.text),
+                              powerLevelOption));
+                    }
+                  },
+                );
+              });
+            },
+          ),
         ),
       ),
     );

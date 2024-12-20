@@ -5,6 +5,7 @@ import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/booking_vendor_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/news_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/suncost_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/user_location_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/vendor_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/weather_remote_datasources.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_blo
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/home/bloc/user_location/user_location_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
+import 'package:flutter_sunmate/src/presentation/suncost/bloc/bloc/suncost_calculate_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_history/vendor_booking_history_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
@@ -62,6 +64,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => UserLocationBloc(
               UserLocationDatasource(), WeatherRemoteDatasources()),
+        ),
+        BlocProvider(
+          create: (context) => SuncostCalculateBloc(SuncostLocalDatasources()),
         ),
       ],
       child: MaterialApp(

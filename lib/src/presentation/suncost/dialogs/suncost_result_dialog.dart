@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/presentation/suncost/models/calculate_model.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SunCostResultDialog extends StatefulWidget {
-  const SunCostResultDialog({super.key});
+  final CalculateModel calculateModel;
+  const SunCostResultDialog({super.key, required this.calculateModel});
 
   @override
   State<SunCostResultDialog> createState() => _SunCostResultDialogState();
@@ -33,12 +35,83 @@ class _SunCostResultDialogState extends State<SunCostResultDialog> {
                 ),
               ),
               const SizedBox(
-                height: 30.0,
+                height: 24.0,
               ),
-              const Text(
-                'Total estimasi biaya Anda adalah Rp12.000.000',
+              const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Peruntukan Lokasi',
+                    style: TextStyle(color: AppColors.grey),
+                  )),
+              const SizedBox(
+                height: 4,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  widget.calculateModel.placePurpose == 'rumah_tinggal'
+                      ? 'Rumah Tinggal'
+                      : 'Tempat Usaha',
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ),
+              const SizedBox(
+                height: 4.0,
+              ),
+              const Divider(),
+              const SizedBox(
+                height: 8.0,
+              ),
+              const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Tagihan listrik bulanan',
+                    style: TextStyle(color: AppColors.grey),
+                  )),
+              const SizedBox(
+                height: 4,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Rp. ${widget.calculateModel.monthlyBill.toString()}',
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ),
+              const SizedBox(
+                height: 4.0,
+              ),
+              const Divider(),
+              const SizedBox(
+                height: 8.0,
+              ),
+              const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Besar daya listrik',
+                    style: TextStyle(color: AppColors.grey),
+                  )),
+              const SizedBox(
+                height: 4,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '${widget.calculateModel.powerLevel.toString()} W',
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ),
+              const SizedBox(
+                height: 4.0,
+              ),
+              const Divider(),
+              const SizedBox(
+                height: 8.0,
+              ),
+              Text(
+                'Estimasi biaya untuk memasang panel surya adalah\nRp. ${widget.calculateModel.costEstimate}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: AppColors.darkBlue),
+                style: const TextStyle(fontSize: 16, color: AppColors.darkBlue),
               ),
               const SizedBox(
                 height: 36.0,
