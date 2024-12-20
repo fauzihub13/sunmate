@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:http/http.dart' as http;
 
 class ChatRemoteDatasources {
@@ -30,7 +31,7 @@ class ChatRemoteDatasources {
   }
 
   Future<String?> uploadImage(Uint8List bytes) async {
-    final url = Uri.parse('https://api.escuelajs.co/api/v1/files/upload');
+    final url = Uri.parse(Variables.apiUploadPhoto);
 
     var request = http.MultipartRequest('POST', url);
 
@@ -71,5 +72,4 @@ class ChatRemoteDatasources {
 
     return null; // Kembalikan null jika gagal
   }
-
 }

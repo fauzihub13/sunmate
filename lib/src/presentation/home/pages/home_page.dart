@@ -6,7 +6,7 @@ import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dar
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
-import 'package:flutter_sunmate/src/presentation/home/bloc/bloc/user_location_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/home/bloc/user_location/user_location_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/menu_card.dart';

@@ -12,7 +12,7 @@ import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart
 import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
-import 'package:flutter_sunmate/src/presentation/home/bloc/bloc/user_location_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/home/bloc/user_location/user_location_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_history/vendor_booking_history_bloc.dart';
