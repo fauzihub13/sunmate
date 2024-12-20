@@ -6,7 +6,7 @@ import 'package:flutter_sunmate/src/core/components/dropdown_menu.dart'
     as custom_dropdown_menu;
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/presentation/suncost/bloc/bloc/suncost_calculate_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/suncost/bloc/suncost_calculate/suncost_calculate_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/suncost/dialogs/suncost_result_dialog.dart';
 
 class SuncostMainPage extends StatefulWidget {

@@ -15,7 +15,7 @@ import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_blo
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/home/bloc/user_location/user_location_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
-import 'package:flutter_sunmate/src/presentation/suncost/bloc/bloc/suncost_calculate_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/suncost/bloc/suncost_calculate/suncost_calculate_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_history/vendor_booking_history_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
