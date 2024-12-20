@@ -28,15 +28,20 @@ class _SliderNewsState extends State<SliderNews> {
     return BlocBuilder<NewsListBloc, NewsListState>(
       builder: (context, state) {
         return state.maybeWhen(orElse: () {
-          return const Center(
-            child: Text('Fetching news data.'),
-          );
+          return Container(
+              height: 150,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              margin: const EdgeInsets.only(top: 5.0),
+              child: const Text('Please try again.'));
         }, loading: () {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return Container(
+              height: 150,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              margin: const EdgeInsets.only(top: 5.0),
+              child: const Center(
+                child: CircularProgressIndicator(),
+              ));
         }, loaded: (news) {
-          // return Text('asdaaaaa');
           return Scrollbar(
             controller: _scrollController,
             child: Container(
@@ -51,6 +56,12 @@ class _SliderNewsState extends State<SliderNews> {
                       return NewsCard(data: singleNews);
                     })),
           );
+        }, error: (error) {
+          return Container(
+              height: 150,
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              margin: const EdgeInsets.only(top: 5.0),
+              child: const Text('Please try again.'));
         });
       },
     );

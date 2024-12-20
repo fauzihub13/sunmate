@@ -27,15 +27,31 @@ class _ListVendorState extends State<ListVendor> {
       builder: (context, state) {
         return state.maybeWhen(
           orElse: () {
-            return const Center(child: Text('Fetching vendor'));
+            return Container(
+                height: 260,
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                margin: const EdgeInsets.only(top: 5.0),
+                child: const Center(
+                  child: Text('Please try again.'),
+                ));
           },
           error: (message) {
-            return Text(message);
+            return Container(
+                height: 260,
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                margin: const EdgeInsets.only(top: 5.0),
+                child: const Center(
+                  child: Text('Please try again.'),
+                ));
           },
           loading: () {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return Container(
+                height: 260,
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                margin: const EdgeInsets.only(top: 5.0),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ));
           },
           loaded: (vendors) {
             return Column(
