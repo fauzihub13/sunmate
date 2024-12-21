@@ -61,7 +61,13 @@ class ChatCard extends StatelessWidget {
                         const SizedBox(height: 5),
                         // Isi pesan
                         if (isImage)
-                          Image.network(message)
+                          Image.network(message, errorBuilder: (context, error, stackTrace) {
+                              return Image.asset(
+                                'assets/images/avatar.jpg', 
+                                fit: BoxFit.cover,
+                              );
+                            },
+                          )
                         else
                           Text(message,
                               style: TextStyle(
