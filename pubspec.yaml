@@ -38,6 +38,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_map: ^7.0.2
   flutter_svg: ^2.0.16
   freezed: ^2.5.7
   freezed_annotation: ^2.4.4
@@ -45,6 +46,7 @@ dependencies:
   http: ^1.2.2
   image_picker: ^1.1.2
   intl: ^0.20.1
+  latlong2: ^0.9.1
   shared_preferences: ^2.3.3
   sqflite: ^2.4.1
 
