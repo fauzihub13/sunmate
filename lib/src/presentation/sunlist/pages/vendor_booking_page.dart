@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/dialogs/vendor_booking_status_dialog.dart';
@@ -172,22 +174,38 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                             });
                       },
                       error: (message) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              message,
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                            backgroundColor: AppColors.red,
-                            behavior: SnackBarBehavior.floating,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 10),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            duration: const Duration(seconds: 3),
-                          ),
-                        );
+                        if (message == 'logged_out') {
+                          // print('sesi nya expired');
+                          AuthLocalDatasources().removeAuthData();
+
+                          // Schedule SnackBar display after current frame
+                          SchedulerBinding.instance.addPostFrameCallback((_) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: const Text(
+                                  'Silahkan login kembali.',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                backgroundColor: AppColors.red,
+                                behavior: SnackBarBehavior.floating,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                duration: const Duration(seconds: 3),
+                              ),
+                            );
+
+                            // Navigate to LoginPage after the SnackBar
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
+                              (route) => false,
+                            );
+                          });
+                        }
                       },
                     );
                   },

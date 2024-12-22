@@ -16,6 +16,9 @@ class VendorRemoteDatasources {
     if (response.statusCode == 200) {
       // print(response.body);
       return Right(VendorResponseModel.fromJson(response.body));
+    } else if (response.statusCode == 401) {
+      // await AuthLocalDatasources().removeAuthData();
+      return const Left('logged_out');
     } else {
       return const Left('Failed to get vendors');
     }

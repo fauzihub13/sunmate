@@ -46,6 +46,9 @@ class BookingVendorRemoteDatasources {
       final errorMessages =
           errors.entries.map((entry) => '${entry.value.join(", ")}').join("\n");
       return Left(errorMessages);
+    } else if (response.statusCode == 401) {
+      await AuthLocalDatasources().removeAuthData();
+      return const Left('logged_out');
     } else {
       return const Left('Failed to booking vendor.');
     }
@@ -63,6 +66,9 @@ class BookingVendorRemoteDatasources {
     if (response.statusCode == 200) {
       // print(response.body);
       return Right(VendorBookingHistoryResponseModel.fromJson(response.body));
+    } else if (response.statusCode == 401) {
+      // await AuthLocalDatasources().removeAuthData();
+      return const Left('logged_out');
     } else {
       return const Left('Failed to get booking history.');
     }
