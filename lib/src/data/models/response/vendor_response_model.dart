@@ -22,7 +22,8 @@ class VendorResponseModel {
         message: json["message"],
         data: json["data"] == null
             ? []
-            : List<SingleVendor>.from(json["data"]!.map((x) => SingleVendor.fromMap(x))),
+            : List<SingleVendor>.from(
+                json["data"]!.map((x) => SingleVendor.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
@@ -43,6 +44,8 @@ class SingleVendor {
   final dynamic deletedAt;
   final DateTime? createdAt;
   final DateTime? updatedAt;
+  final String? latitude;
+  final String? longitude;
   final List<VendorImage>? vendorImages;
 
   SingleVendor({
@@ -55,10 +58,13 @@ class SingleVendor {
     this.deletedAt,
     this.createdAt,
     this.updatedAt,
+    this.latitude,
+    this.longitude,
     this.vendorImages,
   });
 
-  factory SingleVendor.fromJson(String str) => SingleVendor.fromMap(json.decode(str));
+  factory SingleVendor.fromJson(String str) =>
+      SingleVendor.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
@@ -76,6 +82,8 @@ class SingleVendor {
         updatedAt: json["updated_at"] == null
             ? null
             : DateTime.parse(json["updated_at"]),
+        latitude: json["latitude"],
+        longitude: json["longitude"],
         vendorImages: json["vendor_images"] == null
             ? []
             : List<VendorImage>.from(
@@ -92,6 +100,8 @@ class SingleVendor {
         "deleted_at": deletedAt,
         "created_at": createdAt?.toIso8601String(),
         "updated_at": updatedAt?.toIso8601String(),
+        "latitude": latitude,
+        "longitude": longitude,
         "vendor_images": vendorImages == null
             ? []
             : List<dynamic>.from(vendorImages!.map((x) => x.toMap())),

@@ -228,8 +228,12 @@ class MobileView extends StatelessWidget {
           child: Row(children: [
             GestureDetector(
               onTap: () {
+                print('${vendor.latitude} - ${vendor.longitude}');
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const SunlocPage();
+                  return SunlocPage(
+                    latitude: double.parse(vendor.latitude!),
+                    longitude: double.parse(vendor.longitude!),
+                  );
                 }));
               },
               child: const SizedBox(

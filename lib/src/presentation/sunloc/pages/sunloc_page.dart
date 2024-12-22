@@ -5,7 +5,9 @@ import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:latlong2/latlong.dart';
 
 class SunlocPage extends StatefulWidget {
-  const SunlocPage({super.key});
+  final double latitude, longitude;
+  const SunlocPage(
+      {super.key, required this.latitude, required this.longitude});
 
   @override
   State<SunlocPage> createState() => _SunlocPageState();
@@ -17,10 +19,10 @@ class _SunlocPageState extends State<SunlocPage> {
     return Scaffold(
       appBar: const CustomAppbar(title: 'Lokasi Vendor', canBack: true),
       body: FlutterMap(
-        options: const MapOptions(
-            initialCenter: LatLng(-6.200000, 106.816666),
+        options: MapOptions(
+            initialCenter: LatLng(widget.latitude, widget.longitude),
             initialZoom: 14,
-            interactionOptions: InteractionOptions(
+            interactionOptions: const InteractionOptions(
               flags: InteractiveFlag.doubleTapZoom |
                   InteractiveFlag.drag |
                   InteractiveFlag.pinchZoom,
@@ -32,7 +34,7 @@ class _SunlocPageState extends State<SunlocPage> {
           ),
           MarkerLayer(markers: [
             Marker(
-                point: LatLng(-6.200000, 106.816666),
+                point: LatLng(widget.latitude, widget.longitude),
                 width: 50,
                 height: 50,
                 alignment: Alignment.center,
@@ -45,6 +47,13 @@ class _SunlocPageState extends State<SunlocPage> {
                 )),
           ])
         ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SizedBox(
+          height: 50,
+          width: 200,
+        ),
       ),
     );
   }
