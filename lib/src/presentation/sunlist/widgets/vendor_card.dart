@@ -23,6 +23,7 @@ class VendorCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(12.0),
         decoration: ShapeDecoration(
+            color: Colors.white,
             shape: RoundedRectangleBorder(
                 side: const BorderSide(
                     width: 1, color: Color.fromARGB(255, 238, 238, 238)),

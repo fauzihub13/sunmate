@@ -44,8 +44,8 @@ class SingleVendor {
   final dynamic deletedAt;
   final DateTime? createdAt;
   final DateTime? updatedAt;
-  final String? latitude;
-  final String? longitude;
+  final double? latitude;
+  final double? longitude;
   final List<VendorImage>? vendorImages;
 
   SingleVendor({
@@ -82,8 +82,11 @@ class SingleVendor {
         updatedAt: json["updated_at"] == null
             ? null
             : DateTime.parse(json["updated_at"]),
-        latitude: json["latitude"],
-        longitude: json["longitude"],
+        latitude:
+            json["latitude"] != null ? double.tryParse(json["latitude"]) : null,
+        longitude: json["longitude"] != null
+            ? double.tryParse(json["longitude"])
+            : null,
         vendorImages: json["vendor_images"] == null
             ? []
             : List<VendorImage>.from(
