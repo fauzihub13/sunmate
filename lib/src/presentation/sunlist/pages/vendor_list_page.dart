@@ -74,7 +74,6 @@ class _MobileViewState extends State<MobileView> {
                     orElse: () {},
                     error: (message) {
                       if (message == 'logged_out') {
-                        // print('sesi nya expired');
                         AuthLocalDatasources().removeAuthData();
 
                         // Schedule SnackBar display after current frame
