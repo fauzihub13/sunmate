@@ -19,19 +19,19 @@ mixin _$LogoutEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() logout,
+    required TResult Function(String token) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? logout,
+    TResult? Function(String token)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? logout,
+    TResult Function(String token)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,7 +119,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() logout,
+    required TResult Function(String token) logout,
   }) {
     return started();
   }
@@ -128,7 +128,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? logout,
+    TResult? Function(String token)? logout,
   }) {
     return started?.call();
   }
@@ -137,7 +137,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? logout,
+    TResult Function(String token)? logout,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -187,6 +187,8 @@ abstract class _$$LogoutImplCopyWith<$Res> {
   factory _$$LogoutImplCopyWith(
           _$LogoutImpl value, $Res Function(_$LogoutImpl) then) =
       __$$LogoutImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String token});
 }
 
 /// @nodoc
@@ -199,54 +201,79 @@ class __$$LogoutImplCopyWithImpl<$Res>
 
   /// Create a copy of LogoutEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_$LogoutImpl(
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LogoutImpl implements _Logout {
-  const _$LogoutImpl();
+  const _$LogoutImpl({required this.token});
+
+  @override
+  final String token;
 
   @override
   String toString() {
-    return 'LogoutEvent.logout()';
+    return 'LogoutEvent.logout(token: $token)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LogoutImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LogoutImpl &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, token);
+
+  /// Create a copy of LogoutEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LogoutImplCopyWith<_$LogoutImpl> get copyWith =>
+      __$$LogoutImplCopyWithImpl<_$LogoutImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function() logout,
+    required TResult Function(String token) logout,
   }) {
-    return logout();
+    return logout(token);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function()? logout,
+    TResult? Function(String token)? logout,
   }) {
-    return logout?.call();
+    return logout?.call(token);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function()? logout,
+    TResult Function(String token)? logout,
     required TResult orElse(),
   }) {
     if (logout != null) {
-      return logout();
+      return logout(token);
     }
     return orElse();
   }
@@ -284,7 +311,15 @@ class _$LogoutImpl implements _Logout {
 }
 
 abstract class _Logout implements LogoutEvent {
-  const factory _Logout() = _$LogoutImpl;
+  const factory _Logout({required final String token}) = _$LogoutImpl;
+
+  String get token;
+
+  /// Create a copy of LogoutEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LogoutImplCopyWith<_$LogoutImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

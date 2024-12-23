@@ -21,6 +21,7 @@ import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_his
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
+import 'package:http/http.dart' as http;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,13 +48,19 @@ class MyApp extends StatelessWidget {
               VendorBookingHistoryBloc(BookingVendorRemoteDatasources()),
         ),
         BlocProvider(
-          create: (context) => LoginBloc(AuthRemoteDatasources()),
+          create: (context) => LoginBloc(AuthRemoteDatasources(
+              authLocalDatasources: AuthLocalDatasources(),
+              client: http.Client())),
         ),
         BlocProvider(
-          create: (context) => LogoutBloc(AuthRemoteDatasources()),
+          create: (context) => LogoutBloc(AuthRemoteDatasources(
+              authLocalDatasources: AuthLocalDatasources(),
+              client: http.Client())),
         ),
         BlocProvider(
-          create: (context) => RegisterBloc(AuthRemoteDatasources()),
+          create: (context) => RegisterBloc(AuthRemoteDatasources(
+              authLocalDatasources: AuthLocalDatasources(),
+              client: http.Client())),
         ),
         BlocProvider(
           create: (context) => VendorListBloc(VendorRemoteDatasources()),

@@ -11,7 +11,7 @@ class LogoutBloc extends Bloc<LogoutEvent, LogoutState> {
   LogoutBloc(this.authRemoteDatasources) : super(const _Initial()) {
     on<_Logout>((event, emit) async {
       emit(const _Loading());
-      final result = await authRemoteDatasources.logout();
+      final result = await authRemoteDatasources.logout(event.token);
       result.fold(
           (error) => emit(_Error(error)), (success) => emit(const _Success()));
     });

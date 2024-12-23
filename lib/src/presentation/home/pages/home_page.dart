@@ -213,10 +213,14 @@ class _HomePageState extends State<HomePage> {
                     },
                     child: Button.outlined(
                       label: 'Logout',
-                      onPressed: () {
-                        context
-                            .read<LogoutBloc>()
-                            .add(const LogoutEvent.logout());
+                      onPressed: () async {
+                        final authData =
+                            await AuthLocalDatasources().getAuthData();
+                        if (context.mounted) {
+                          context
+                              .read<LogoutBloc>()
+                              .add(LogoutEvent.logout(token: authData.token!));
+                        }
                       },
                     ),
                   )

@@ -7,6 +7,12 @@ import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:http/http.dart' as http;
 
 class AuthRemoteDatasources {
+  final http.Client client;
+  final AuthLocalDatasources authLocalDatasources; // Optional if needed
+
+  AuthRemoteDatasources(
+      {http.Client? client, required this.authLocalDatasources})
+      : client = client ?? http.Client();
   Future<Either<String, AuthResponseModel>> login(
       String email, String password) async {
     final url = Uri.parse('${Variables.apiUrl}/login');
@@ -52,12 +58,10 @@ class AuthRemoteDatasources {
     }
   }
 
-  Future<Either<String, bool>> logout() async {
-    final authData = await AuthLocalDatasources().getAuthData();
-
+  Future<Either<String, bool>> logout(String token) async {
     final url = Uri.parse('${Variables.apiUrl}/logout');
     final response = await http.post(url, headers: {
-      'Authorization': 'Bearer ${authData.token}',
+      'Authorization': 'Bearer $token',
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
@@ -65,7 +69,7 @@ class AuthRemoteDatasources {
     if (response.statusCode == 200) {
       return const Right(true);
     } else {
-      return const Left('Failed to login');
+      return const Left('Failed to logout');
     }
   }
 }
