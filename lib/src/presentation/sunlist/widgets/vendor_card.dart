@@ -30,78 +30,78 @@ class VendorCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20))),
         child: Row(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.network(
-                    '${Variables.baseUrl}/storage/${data.vendorImages![0].path!}',
-                    width: 84,
-                    height: 84,
-                    fit: BoxFit.cover,
-                  ),
-                )
-              ],
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                '${Variables.baseUrl}/storage/${data.vendorImages![0].path!}',
+                width: 84,
+                height: 84,
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(
               width: 14,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  data.name!,
-                  maxLines: 2,
-                  style: const TextStyle(
-                    color: AppColors.darkBlue,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    data.name!,
+                    maxLines: 1,
+                    style: const TextStyle(
+                      color: AppColors.darkBlue,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 6.0,
-                ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/location.svg',
-                      width: 20,
-                      height: 20,
-                    ),
-                    const SizedBox(width: 4.0),
-                    Text(
-                      data.address!,
-                      style: const TextStyle(
-                        color: AppColors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
+                  const SizedBox(
+                    height: 6.0,
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/location.svg',
+                        width: 20,
+                        height: 20,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 4.0,
-                ),
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/star.svg',
-                      width: 20,
-                      height: 20,
-                    ),
-                    const SizedBox(width: 4.0),
-                    Text(
-                      data.rating.toString(),
-                      style: const TextStyle(
-                        color: AppColors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
+                      const SizedBox(width: 4.0),
+                      Expanded(
+                        child: Text(
+                          data.address!,
+                          maxLines: 1,
+                          style: const TextStyle(
+                            color: AppColors.grey,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 4.0,
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/star.svg',
+                        width: 20,
+                        height: 20,
+                      ),
+                      const SizedBox(width: 4.0),
+                      Text(
+                        data.rating.toString(),
+                        style: const TextStyle(
+                          color: AppColors.grey,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
