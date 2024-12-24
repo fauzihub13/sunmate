@@ -83,10 +83,12 @@ class MobileView extends StatelessWidget {
                 height: 8.0,
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                       flex: 3,
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SvgPicture.asset(
                             'assets/icons/location.svg',
@@ -96,12 +98,14 @@ class MobileView extends StatelessWidget {
                             height: 20,
                           ),
                           const SizedBox(width: 4.0),
-                          Text(
-                            vendor.address!,
-                            style: const TextStyle(
-                              color: AppColors.grey,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
+                          Expanded(
+                            child: Text(
+                              vendor.address!,
+                              style: const TextStyle(
+                                color: AppColors.grey,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
                         ],
