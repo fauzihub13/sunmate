@@ -31,6 +31,8 @@ class _SunTalkPageState extends State<SuntalkPage> {
   // Instance Remote Datasource
   final ChatRemoteDatasources remoteDatasource = ChatRemoteDatasources();
 
+  bool hasScrolledToBottomInitially = false;
+
   @override
   void initState() {
     AuthLocalDatasources().getAuthData().then((value) {
@@ -79,9 +81,13 @@ class _SunTalkPageState extends State<SuntalkPage> {
 
                     bool isSender = userId == user!.id!;
 
-                    WidgetsBinding.instance.addPostFrameCallback((_) {
-                      _scrollToBottom();
-                    });
+                    // Scroll to bottom only once when the page is initially loaded
+                    if (!hasScrolledToBottomInitially) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        _scrollToBottom();
+                        hasScrolledToBottomInitially = true;
+                      });
+                    }
 
                     return ChatCard(
                       message: message,
