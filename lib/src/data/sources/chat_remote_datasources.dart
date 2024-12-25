@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
+import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:http/http.dart' as http;
 
 class ChatRemoteDatasources {
@@ -31,13 +32,19 @@ class ChatRemoteDatasources {
   }
 
   Future<String?> uploadImage(Uint8List bytes) async {
-    final url = Uri.parse(Variables.apiUploadPhoto);
+    final url = Uri.parse('${Variables.apiUrl}/chats/image');
+    final authData = await AuthLocalDatasources().getAuthData();
 
     var request = http.MultipartRequest('POST', url);
 
+    request.headers.addAll({
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    });
+
     // Menambahkan file ke request body
     var myFile = http.MultipartFile.fromBytes(
-      'file',
+      'image',
       bytes,
       filename: 'image.png',
     );
@@ -57,7 +64,7 @@ class ChatRemoteDatasources {
           var decodedResponse = json.decode(responseBody);
           String? location = decodedResponse['location'];
           debugPrint('File uploaded to: $location');
-          return location; // Mengembalikan URL gambar
+          return '${Variables.baseUrl}/$location'; // Mengembalikan URL gambar
         } catch (e) {
           debugPrint('Error parsing response JSON: $e');
         }
