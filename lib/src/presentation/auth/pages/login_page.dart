@@ -70,148 +70,152 @@ class _LoginPageState extends State<LoginPage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Masuk',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30),
-                    ),
-                    const Text(
-                      'Hai, selamat datang kembali!',
-                      style: TextStyle(
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 18),
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    Form(
-                        key: _formKey,
-                        child: Column(
-                          children: [
-                            FormInput(
-                              controller: emailController,
-                              prefixIcon: const Icon(Icons.mail_outline),
-                              hintText: 'Email',
-                              labelText: 'Email',
-                              style: FormStyle.outlined,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Email tidak boleh kosong';
-                                }
-                                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
-                                    .hasMatch(value)) {
-                                  return 'Format email tidak valid';
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            FormInput(
-                              controller: passwordController,
-                              prefixIcon: const Icon(Icons.lock_outline),
-                              hintText: 'Kata sandi',
-                              labelText: 'Kata sandi',
-                              style: FormStyle.outlined,
-                              obscureText:
-                                  !_isPasswordVisible, // Password akan disembunyikan
-                              suffixIcon: IconButton(
-                                icon: Icon(
-                                  _isPasswordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    _isPasswordVisible = !_isPasswordVisible;
-                                  });
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Masuk',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                      const Text(
+                        'Hai, selamat datang kembali!',
+                        style: TextStyle(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 18),
+                      ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              FormInput(
+                                controller: emailController,
+                                prefixIcon: const Icon(Icons.mail_outline),
+                                hintText: 'Email',
+                                labelText: 'Email',
+                                style: FormStyle.outlined,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Email tidak boleh kosong';
+                                  }
+                                  if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                                      .hasMatch(value)) {
+                                    return 'Format email tidak valid';
+                                  }
+                                  return null;
                                 },
                               ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Password tidak boleh kosong';
-                                }
-                                return null;
-                              },
-                            ),
-                          ],
-                        )),
-                    const SizedBox(
-                      height: 70,
-                    ),
-                    BlocListener<LoginBloc, LoginState>(
-                      listener: (context, state) {
-                        state.maybeWhen(
-                            orElse: () {},
-                            success: (authReponseModel) {
-                              AuthLocalDatasources()
-                                  .saveAuthData(authReponseModel);
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return const HomePage();
-                              }));
-                            },
-                            error: (message) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    message,
-                                    style: const TextStyle(color: Colors.white),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              FormInput(
+                                controller: passwordController,
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                hintText: 'Kata sandi',
+                                labelText: 'Kata sandi',
+                                style: FormStyle.outlined,
+                                obscureText:
+                                    !_isPasswordVisible, // Password akan disembunyikan
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _isPasswordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
                                   ),
-                                  backgroundColor: AppColors.red,
-                                  behavior: SnackBarBehavior.floating,
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 10),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  duration: const Duration(seconds: 3),
+                                  onPressed: () {
+                                    setState(() {
+                                      _isPasswordVisible = !_isPasswordVisible;
+                                    });
+                                  },
                                 ),
-                              );
-                            });
-                      },
-                      child: BlocBuilder<LoginBloc, LoginState>(
-                          builder: (context, state) {
-                        return state.maybeWhen(orElse: () {
-                          return Button.filled(
-                            label: 'Masuk',
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                context.read<LoginBloc>().add(LoginEvent.login(
-                                    email: emailController.text,
-                                    password: passwordController.text));
-                              }
-                            },
-                          );
-                        }, loading: () {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        });
-                      }),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Button.outlined(
-                      label: 'Daftar',
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const RegisterPage();
-                        }));
-                      },
-                    ),
-                  ],
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Password tidak boleh kosong';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ],
+                          )),
+                      const SizedBox(
+                        height: 70,
+                      ),
+                      BlocListener<LoginBloc, LoginState>(
+                        listener: (context, state) {
+                          state.maybeWhen(
+                              orElse: () {},
+                              success: (authReponseModel) {
+                                AuthLocalDatasources()
+                                    .saveAuthData(authReponseModel);
+                                Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return const HomePage();
+                                }));
+                              },
+                              error: (message) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      message,
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: AppColors.red,
+                                    behavior: SnackBarBehavior.floating,
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 10),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    duration: const Duration(seconds: 3),
+                                  ),
+                                );
+                              });
+                        },
+                        child: BlocBuilder<LoginBloc, LoginState>(
+                            builder: (context, state) {
+                          return state.maybeWhen(orElse: () {
+                            return Button.filled(
+                              label: 'Masuk',
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<LoginBloc>().add(
+                                      LoginEvent.login(
+                                          email: emailController.text,
+                                          password: passwordController.text));
+                                }
+                              },
+                            );
+                          }, loading: () {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          });
+                        }),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Button.outlined(
+                        label: 'Daftar',
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const RegisterPage();
+                          }));
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
