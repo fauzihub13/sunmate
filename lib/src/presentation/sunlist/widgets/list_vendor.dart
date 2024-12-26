@@ -32,7 +32,7 @@ class _ListVendorState extends State<ListVendor> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 margin: const EdgeInsets.only(top: 5.0),
                 child: const Center(
-                  child: Text('Please try again.'),
+                  child: Text('Fetching data.'),
                 ));
           },
           error: (message) {

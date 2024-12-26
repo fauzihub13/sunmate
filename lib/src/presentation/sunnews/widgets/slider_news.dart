@@ -32,7 +32,7 @@ class _SliderNewsState extends State<SliderNews> {
               height: 150,
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               margin: const EdgeInsets.only(top: 5.0),
-              child: const Text('Please try again.'));
+              child: const Center(child: Text('Fetching data.')));
         }, loading: () {
           return Container(
               height: 150,
@@ -61,7 +61,7 @@ class _SliderNewsState extends State<SliderNews> {
               height: 150,
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               margin: const EdgeInsets.only(top: 5.0),
-              child: const Text('Please try again.'));
+              child: const Center(child: Text('Please try again.')));
         });
       },
     );
