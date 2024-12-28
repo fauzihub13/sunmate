@@ -10,6 +10,10 @@ class AccountProfilePage extends StatefulWidget {
 }
 
 class _AccountProfilePageState extends State<AccountProfilePage> {
+  Future<void> _refresh() async {
+    await Future.delayed(const Duration(seconds: 2)); // Contoh delay
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,8 +24,8 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
         backgroundColor: AppColors.primary,
         textColor: AppColors.white,
       ),
-      body: Container(
-        constraints: const BoxConstraints.expand(),
+      body: RefreshIndicator(
+        onRefresh: _refresh,
         child: Stack(
           children: [
             Positioned(
@@ -36,6 +40,146 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                 child: Container(
                   height: MediaQuery.of(context).size.height,
                   color: AppColors.white,
+                  child: SingleChildScrollView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 120),
+                          const Text(
+                            'AKUN PENGGUNA',
+                            style: TextStyle(
+                                color: AppColors.darkBlue,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(height: 8),
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: AppColors.lightBlue,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.person_2_outlined,
+                                          color: AppColors.darkBlue,
+                                        ),
+                                        SizedBox(width: 8),
+                                        Text(
+                                          'Data Akun',
+                                          style: TextStyle(
+                                            color: AppColors.darkBlue,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.lock_outline,
+                                          color: AppColors.darkBlue,
+                                        ),
+                                        SizedBox(width: 8),
+                                        Text(
+                                          'Ubah Kata Sandi',
+                                          style: TextStyle(
+                                            color: AppColors.darkBlue,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.history,
+                                          color: AppColors.darkBlue,
+                                        ),
+                                        SizedBox(width: 8),
+                                        Text(
+                                          'Riwayar Booking Vendor',
+                                          style: TextStyle(
+                                            color: AppColors.darkBlue,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          const Text(
+                            'PENGATURAN',
+                            style: TextStyle(
+                                color: AppColors.darkBlue,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(height: 8),
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: AppColors.lightBlue,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Row(
+                                      children: [
+                                        Transform(
+                                          alignment: Alignment.center,
+                                          transform: Matrix4.rotationY(3.1416),
+                                          child: const Icon(
+                                            Icons.logout_outlined,
+                                            color: AppColors.darkBlue,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        const Text(
+                                          'Keluar',
+                                          style: TextStyle(
+                                            color: AppColors.darkBlue,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 100),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -64,154 +208,6 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                       color: AppColors.darkBlue,
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 200,
-              left: 16,
-              right: 16,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'AKUN PENGGUNA',
-                    style: TextStyle(
-                        color: AppColors.darkBlue,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    decoration: const BoxDecoration(
-                        color: AppColors.lightBlue,
-                        borderRadius: BorderRadius.all(Radius.circular(16))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: const Row(
-                              children: [
-                                Icon(
-                                  Icons.person_2_outlined,
-                                  color: AppColors.darkBlue,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  'Data Akun',
-                                  style: TextStyle(
-                                    color: AppColors.darkBlue,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: const Row(
-                              children: [
-                                Icon(
-                                  Icons.lock_outline,
-                                  color: AppColors.darkBlue,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  'Ubah Kata Sandi',
-                                  style: TextStyle(
-                                    color: AppColors.darkBlue,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: const Row(
-                              children: [
-                                Icon(
-                                  Icons.history,
-                                  color: AppColors.darkBlue,
-                                ),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  'Riwayar Booking Vendor',
-                                  style: TextStyle(
-                                    color: AppColors.darkBlue,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    'PENGATURAN',
-                    style: TextStyle(
-                        color: AppColors.darkBlue,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    decoration: const BoxDecoration(
-                        color: AppColors.lightBlue,
-                        borderRadius: BorderRadius.all(Radius.circular(16))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Row(
-                              children: [
-                                Transform(
-                                  alignment: Alignment.center,
-                                  transform: Matrix4.rotationY(
-                                      3.1416), // 3.1416 adalah π (untuk flip horizontal)
-                                  child: const Icon(
-                                    Icons.logout_outlined,
-                                    color: AppColors.darkBlue,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                const Text(
-                                  'Keluar',
-                                  style: TextStyle(
-                                    color: AppColors.darkBlue,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
                   ),
                 ],
