@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
+import 'package:flutter_sunmate/src/presentation/profile/pages/account_profile_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history.dart';
-import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_list_pages.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class LandingPage extends StatefulWidget {
@@ -47,14 +47,14 @@ class _LandingPageState extends State<LandingPage> {
   final List<Widget> _pages = [
     const HomePage(),
     const VendorBookingHistory(),
-    const NewsListPages(),
+    const AccountProfilePage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        color: const Color.fromARGB(255, 248, 248, 248),
+        color: const Color.fromARGB(255, 252, 252, 252),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: GNav(

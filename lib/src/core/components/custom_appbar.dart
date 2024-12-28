@@ -5,8 +5,15 @@ import 'package:flutter_svg/svg.dart';
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool canBack;
+  final Color? backgroundColor;
+  final Color? textColor;
 
-  const CustomAppbar({super.key, required this.title, required this.canBack});
+  const CustomAppbar(
+      {super.key,
+      required this.title,
+      required this.canBack,
+      this.backgroundColor,
+      this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -14,42 +21,44 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       decoration: const BoxDecoration(color: Colors.white, boxShadow: []),
       child: AppBar(
         toolbarHeight: 60,
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundColor ?? AppColors.white,
         automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromARGB(255, 226, 226, 226),
-                    width: 0.7,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: IconButton(
-                  icon: SvgPicture.asset(
-                    'assets/icons/back.svg',
-                    colorFilter: const ColorFilter.mode(
-                        AppColors.darkBlue, BlendMode.srcIn),
-                    width: 30,
-                    height: 30,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
+              canBack
+                  ? Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: const Color.fromARGB(255, 226, 226, 226),
+                          width: 0.7,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: IconButton(
+                        icon: SvgPicture.asset(
+                          'assets/icons/back.svg',
+                          colorFilter: const ColorFilter.mode(
+                              AppColors.darkBlue, BlendMode.srcIn),
+                          width: 30,
+                          height: 30,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    )
+                  : const SizedBox(width: 40),
               Expanded(
                 child: Text(
                   title,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: AppColors.darkBlue,
+                  style: TextStyle(
+                    color: textColor ?? AppColors.darkBlue,
                     fontWeight: FontWeight.w500,
                     fontSize: 18.0,
                   ),
