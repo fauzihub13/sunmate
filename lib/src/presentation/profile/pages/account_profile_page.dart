@@ -25,6 +25,8 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
         textColor: AppColors.white,
       ),
       body: RefreshIndicator(
+        color: AppColors.primary,
+        backgroundColor: AppColors.lightBlue,
         onRefresh: _refresh,
         child: Stack(
           children: [
