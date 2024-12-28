@@ -16,7 +16,7 @@ class _ListVendorState extends State<ListVendor> {
   @override
   void initState() {
     super.initState();
-    context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
+    // context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
   }
 
   @override

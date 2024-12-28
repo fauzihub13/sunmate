@@ -12,9 +12,11 @@ import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/menu_card.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/title_section.dart';
 import 'package:flutter_sunmate/src/presentation/suncost/pages/suncost_main_page.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_list_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/list_vendor.dart';
+import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_list_pages.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/widgets/slider_news.dart';
 
@@ -31,6 +33,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     context.read<UserLocationBloc>().add(const UserLocationEvent.getWeather());
+    context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
+    context.read<NewsListBloc>().add(const NewsListEvent.getNews());
+
     AuthLocalDatasources().getAuthData().then((value) {
       setState(() {
         user = value.user;
@@ -41,6 +46,9 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _refreshPage() async {
     context.read<UserLocationBloc>().add(const UserLocationEvent.getWeather());
+    context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
+    context.read<NewsListBloc>().add(const NewsListEvent.getNews());
+
     AuthLocalDatasources().getAuthData().then((value) {
       setState(() {
         user = value.user;

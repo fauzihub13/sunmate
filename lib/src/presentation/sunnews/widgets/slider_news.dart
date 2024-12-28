@@ -16,7 +16,7 @@ class SliderNews extends StatefulWidget {
 class _SliderNewsState extends State<SliderNews> {
   @override
   void initState() {
-    context.read<NewsListBloc>().add(const NewsListEvent.getNews());
+    // context.read<NewsListBloc>().add(const NewsListEvent.getNews());
     super.initState();
   }
 
