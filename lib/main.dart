@@ -14,7 +14,7 @@ import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.da
 import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/home/bloc/user_location/user_location_bloc.dart';
-import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
+import 'package:flutter_sunmate/src/presentation/home/pages/landing_page.dart';
 import 'package:flutter_sunmate/src/presentation/suncost/bloc/suncost_calculate/suncost_calculate_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_history/vendor_booking_history_bloc.dart';
@@ -77,6 +77,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'SunMate',
         theme: ThemeData(
           fontFamily: 'Poppins',
@@ -97,7 +98,7 @@ class MyApp extends StatelessWidget {
               }
               if (snapshot.hasData) {
                 if (snapshot.data!) {
-                  return const HomePage();
+                  return const LandingPage();
                 } else {
                   return const LoginPage();
                 }

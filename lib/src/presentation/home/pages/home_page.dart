@@ -13,12 +13,12 @@ import 'package:flutter_sunmate/src/presentation/home/widgets/menu_card.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/title_section.dart';
 import 'package:flutter_sunmate/src/presentation/suncost/pages/suncost_main_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_list_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/list_vendor.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_list_pages.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/widgets/slider_news.dart';
+import 'package:flutter_sunmate/src/presentation/suntalk/pages/suntalk_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -144,12 +144,22 @@ class _HomePageState extends State<HomePage> {
                               onTap: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return const VendorBookingHistory();
+                                  return const SuntalkPage();
                                 }));
                               },
-                              title: 'Riwayat',
+                              title: 'SunTalk',
                               iconSize: 34,
-                              iconUrl: 'assets/icons/history-clock-menu.svg'),
+                              iconUrl: 'assets/icons/chat.svg'),
+                          // MenuCard(
+                          //     onTap: () {
+                          //       Navigator.push(context,
+                          //           MaterialPageRoute(builder: (context) {
+                          //         return const VendorBookingHistory();
+                          //       }));
+                          //     },
+                          //     title: 'Riwayat',
+                          //     iconSize: 34,
+                          //     iconUrl: 'assets/icons/history-clock-menu.svg'),
                         ],
                       ),
                     ),
@@ -235,16 +245,19 @@ class _HomePageState extends State<HomePage> {
                               );
                             });
                       },
-                      child: Button.outlined(
-                        label: 'Logout',
-                        onPressed: () async {
-                          final authData =
-                              await AuthLocalDatasources().getAuthData();
-                          if (context.mounted) {
-                            context.read<LogoutBloc>().add(
-                                LogoutEvent.logout(token: authData.token!));
-                          }
-                        },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Button.outlined(
+                          label: 'Logout',
+                          onPressed: () async {
+                            final authData =
+                                await AuthLocalDatasources().getAuthData();
+                            if (context.mounted) {
+                              context.read<LogoutBloc>().add(
+                                  LogoutEvent.logout(token: authData.token!));
+                            }
+                          },
+                        ),
                       ),
                     )
                   ],
