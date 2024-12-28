@@ -54,97 +54,107 @@ class _MobileViewState extends State<MobileView> {
     });
   }
 
+  Future<void> _refreshPage() async {
+    context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppbar(title: 'SunList', canBack: true),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
-        child: Column(
-          children: [
-            CustomSearchBar(
-              controller: searchController,
-              onChanged: _onSearchChanged,
-            ),
-            const SizedBox(height: 16.0),
-            Expanded(
-                child: BlocListener<VendorListBloc, VendorListState>(
-              listener: (context, state) {
-                state.maybeWhen(
-                    orElse: () {},
+      body: RefreshIndicator(
+        color: AppColors.primary,
+        backgroundColor: AppColors.lightBlue,
+        onRefresh: _refreshPage,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+          child: Column(
+            children: [
+              CustomSearchBar(
+                controller: searchController,
+                onChanged: _onSearchChanged,
+              ),
+              const SizedBox(height: 16.0),
+              Expanded(
+                  child: BlocListener<VendorListBloc, VendorListState>(
+                listener: (context, state) {
+                  state.maybeWhen(
+                      orElse: () {},
+                      error: (message) {
+                        if (message == 'logged_out') {
+                          AuthLocalDatasources().removeAuthData();
+
+                          // Schedule SnackBar display after current frame
+                          SchedulerBinding.instance.addPostFrameCallback((_) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: const Text(
+                                  'Silahkan login kembali.',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                backgroundColor: AppColors.red,
+                                behavior: SnackBarBehavior.floating,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                duration: const Duration(seconds: 3),
+                              ),
+                            );
+
+                            // Navigate to LoginPage after the SnackBar
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
+                              (route) => false,
+                            );
+                          });
+                        }
+                      });
+                },
+                child: BlocBuilder<VendorListBloc, VendorListState>(
+                    builder: (context, state) {
+                  return state.maybeWhen(
+                    orElse: () {
+                      return const Center(child: Text('Fetching vendors...'));
+                    },
+                    loading: () {
+                      return const Center(child: CircularProgressIndicator());
+                    },
+                    loaded: (vendors) {
+                      searchResults = vendors;
+                      final filteredVendors = searchController.text.isEmpty
+                          ? searchResults
+                          : searchResults
+                              .where((vendor) => vendor.name!
+                                  .toLowerCase()
+                                  .contains(
+                                      searchController.text.toLowerCase()))
+                              .toList();
+                      return filteredVendors.isEmpty
+                          ? const Center(child: Text('No results found.'))
+                          : ListView.builder(
+                              itemCount: filteredVendors.length,
+                              itemBuilder: (context, index) {
+                                final vendor = filteredVendors[index];
+                                return Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5.0),
+                                  child: VendorCard(data: vendor),
+                                );
+                              },
+                            );
+                    },
                     error: (message) {
-                      if (message == 'logged_out') {
-                        AuthLocalDatasources().removeAuthData();
-
-                        // Schedule SnackBar display after current frame
-                        SchedulerBinding.instance.addPostFrameCallback((_) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: const Text(
-                                'Silahkan login kembali.',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: AppColors.red,
-                              behavior: SnackBarBehavior.floating,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 10),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              duration: const Duration(seconds: 3),
-                            ),
-                          );
-
-                          // Navigate to LoginPage after the SnackBar
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginPage()),
-                            (route) => false,
-                          );
-                        });
-                      }
-                    });
-              },
-              child: BlocBuilder<VendorListBloc, VendorListState>(
-                  builder: (context, state) {
-                return state.maybeWhen(
-                  orElse: () {
-                    return const Center(child: Text('Fetching vendors...'));
-                  },
-                  loading: () {
-                    return const Center(child: CircularProgressIndicator());
-                  },
-                  loaded: (vendors) {
-                    searchResults = vendors;
-                    final filteredVendors = searchController.text.isEmpty
-                        ? searchResults
-                        : searchResults
-                            .where((vendor) => vendor.name!
-                                .toLowerCase()
-                                .contains(searchController.text.toLowerCase()))
-                            .toList();
-                    return filteredVendors.isEmpty
-                        ? const Center(child: Text('No results found.'))
-                        : ListView.builder(
-                            itemCount: filteredVendors.length,
-                            itemBuilder: (context, index) {
-                              final vendor = filteredVendors[index];
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 5.0),
-                                child: VendorCard(data: vendor),
-                              );
-                            },
-                          );
-                  },
-                  error: (message) {
-                    return Center(child: Text('Error: $message'));
-                  },
-                );
-              }),
-            )),
-          ],
+                      return Center(child: Text('Error: $message'));
+                    },
+                  );
+                }),
+              )),
+            ],
+          ),
         ),
       ),
     );
