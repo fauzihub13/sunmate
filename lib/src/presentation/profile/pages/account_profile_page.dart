@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/user_data/user_data_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/profile/pages/change_password_page.dart';
 import 'package:flutter_sunmate/src/presentation/profile/pages/edit_profile_page.dart';
 
@@ -12,8 +16,28 @@ class AccountProfilePage extends StatefulWidget {
 }
 
 class _AccountProfilePageState extends State<AccountProfilePage> {
+  User? user;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeData();
+  }
+
+  Future<void> _initializeData() async {
+    context.read<UserDataBloc>().add(const UserDataEvent.getUserData());
+    await _loadAuthData();
+  }
+
   Future<void> _refresh() async {
-    await Future.delayed(const Duration(seconds: 2)); // Contoh delay
+    await _initializeData();
+  }
+
+  Future<void> _loadAuthData() async {
+    final authData = await AuthLocalDatasources().getAuthData();
+    setState(() {
+      user = authData.user;
+    });
   }
 
   @override
@@ -216,13 +240,32 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                    'Tonald Drump',
-                    style: TextStyle(
-                      color: AppColors.darkBlue,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ),
+                  BlocBuilder<UserDataBloc, UserDataState>(
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        orElse: () {
+                          return Text(
+                            user?.name ?? 'Loading...',
+                            style: const TextStyle(
+                              color: AppColors.darkBlue,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
+                          );
+                        },
+                        loaded: (userData) {
+                          AuthLocalDatasources().updateUserData(userData);
+                          return Text(
+                            userData.name!,
+                            style: const TextStyle(
+                              color: AppColors.darkBlue,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
                 ],
               ),
