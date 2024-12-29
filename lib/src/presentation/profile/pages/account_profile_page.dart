@@ -57,7 +57,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
         child: Stack(
           children: [
             Positioned(
-              top: 80,
+              top: 100,
               left: 0,
               right: 0,
               child: ClipRRect(
@@ -244,23 +244,33 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                     builder: (context, state) {
                       return state.maybeWhen(
                         orElse: () {
-                          return Text(
-                            user?.name ?? 'Loading...',
-                            style: const TextStyle(
-                              color: AppColors.darkBlue,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              user?.name ?? 'Loading...',
+                              style: const TextStyle(
+                                color: AppColors.darkBlue,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                              ),
                             ),
                           );
                         },
                         loaded: (userData) {
                           AuthLocalDatasources().updateUserData(userData);
-                          return Text(
-                            userData.name!,
-                            style: const TextStyle(
-                              color: AppColors.darkBlue,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              userData.name!,
+                              style: const TextStyle(
+                                color: AppColors.darkBlue,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                              ),
                             ),
                           );
                         },

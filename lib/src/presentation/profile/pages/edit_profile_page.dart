@@ -26,7 +26,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Scaffold(
       appBar: const CustomAppbar(title: 'Data Akun', canBack: true),
       body: Padding(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 32),
+        padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
         child: Form(
             key: _formKey,
             child: Column(
