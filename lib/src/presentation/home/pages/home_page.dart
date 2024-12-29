@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/user_data/user_data_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/home/bloc/user_location/user_location_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/appbar.dart';
 import 'package:flutter_sunmate/src/presentation/home/widgets/banner.dart';
@@ -63,19 +65,61 @@ class _HomePageState extends State<HomePage> {
         onRefresh: _refreshPage,
         child: Column(
           children: [
-            BlocBuilder<UserDataBloc, UserDataState>(
-              builder: (context, state) {
-                return state.maybeWhen(orElse: () {
-                  return MainAppBar(
-                    userName: user?.name ?? 'Loading...',
-                  );
-                }, successGetUserData: (userData) {
-                  AuthLocalDatasources().updateUserData(userData);
-                  return MainAppBar(
-                    userName: userData.name!,
-                  );
-                });
+            BlocListener<UserDataBloc, UserDataState>(
+              listener: (context, state) {
+                state.maybeWhen(
+                    orElse: () {},
+                    error: (message) {
+                      if (message == 'logged_out') {
+                        AuthLocalDatasources().removeAuthData();
+
+                        // Schedule SnackBar display after current frame
+                        SchedulerBinding.instance.addPostFrameCallback((_) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: const Text(
+                                'Silahkan login kembali.',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              backgroundColor: AppColors.red,
+                              behavior: SnackBarBehavior.floating,
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 10),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              duration: const Duration(seconds: 3),
+                            ),
+                          );
+
+                          // Navigate to LoginPage after the SnackBar
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()),
+                            (route) => false,
+                          );
+                        });
+                      }
+                    });
               },
+              child: BlocBuilder<UserDataBloc, UserDataState>(
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    orElse: () {
+                      return MainAppBar(
+                        userName: user?.name ?? 'Loading...',
+                      );
+                    },
+                    successGetUserData: (userData) {
+                      AuthLocalDatasources().updateUserData(userData);
+                      return MainAppBar(
+                        userName: userData.name!,
+                      );
+                    },
+                  );
+                },
+              ),
             ),
             Expanded(
               child: SingleChildScrollView(

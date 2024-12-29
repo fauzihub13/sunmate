@@ -8,7 +8,7 @@ import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart
 import 'package:flutter_sunmate/src/presentation/auth/pages/register_page.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/circular_overlay.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/rectangle_circular.dart';
-import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
+import 'package:flutter_sunmate/src/presentation/home/pages/landing_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                                     .saveAuthData(authReponseModel);
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) {
-                                  return const HomePage();
+                                  return const LandingPage();
                                 }));
                               },
                               error: (message) {
