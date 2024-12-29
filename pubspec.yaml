@@ -50,6 +50,7 @@ dependencies:
   latlong2: ^0.9.1
   mockito: ^5.4.4
   shared_preferences: ^2.3.3
+  smooth_page_indicator: ^1.2.0+3
   sqflite: ^2.4.1
 
 dev_dependencies:
@@ -82,6 +83,7 @@ flutter:
     - assets/images/
     - assets/images/vendor/
     - assets/images/news/
+    - assets/images/onboarding/
     - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
