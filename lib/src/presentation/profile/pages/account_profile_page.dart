@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/presentation/profile/pages/edit_profile_page.dart';
 
 class AccountProfilePage extends StatefulWidget {
   const AccountProfilePage({super.key});
@@ -69,7 +70,12 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                               child: Column(
                                 children: [
                                   GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return const EditProfilePage();
+                                      }));
+                                    },
                                     child: const Row(
                                       children: [
                                         Icon(
