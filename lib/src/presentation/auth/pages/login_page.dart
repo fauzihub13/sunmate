@@ -26,8 +26,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         body: Container(
           constraints: const BoxConstraints.expand(),
           child: Stack(children: [
@@ -221,7 +220,6 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ]),
         ),
-      ),
-    );
+      );
   }
 }

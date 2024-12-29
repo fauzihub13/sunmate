@@ -30,300 +30,296 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          constraints: const BoxConstraints.expand(),
-          child: Stack(children: [
-            const Positioned(
-                top: -170,
-                right: -170,
-                child: CircularOverlay(
-                  size: 500,
-                  backgroundColor: Colors.transparent,
-                  borderColor: AppColors.overlayBlue,
-                )),
-            const Positioned(
-                top: -250,
-                right: -300,
-                child: CircularOverlay(
-                  size: 500,
-                  backgroundColor: AppColors.lightBlue,
-                  borderColor: AppColors.lightBlue,
-                )),
-            const Positioned(
-                bottom: -140,
-                left: -150,
-                child: RectangleCircular(
+    return Scaffold(
+      body: Container(
+        constraints: const BoxConstraints.expand(),
+        child: Stack(children: [
+          const Positioned(
+              top: -170,
+              right: -170,
+              child: CircularOverlay(
+                size: 500,
+                backgroundColor: Colors.transparent,
+                borderColor: AppColors.overlayBlue,
+              )),
+          const Positioned(
+              top: -250,
+              right: -300,
+              child: CircularOverlay(
+                size: 500,
+                backgroundColor: AppColors.lightBlue,
+                borderColor: AppColors.lightBlue,
+              )),
+          const Positioned(
+              bottom: -140,
+              left: -150,
+              child: RectangleCircular(
+                size: 300,
+                backgroundColor: Colors.transparent,
+                borderColor: AppColors.overlayBlue,
+              )),
+          Positioned(
+              bottom: -175,
+              left: -130,
+              child: Transform.rotate(
+                angle: 0.50,
+                child: const RectangleCircular(
                   size: 300,
                   backgroundColor: Colors.transparent,
                   borderColor: AppColors.overlayBlue,
-                )),
-            Positioned(
-                bottom: -175,
-                left: -130,
-                child: Transform.rotate(
-                  angle: 0.50,
-                  child: const RectangleCircular(
-                    size: 300,
-                    backgroundColor: Colors.transparent,
-                    borderColor: AppColors.overlayBlue,
-                  ),
-                )),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0, vertical: 16.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Daftar',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                      ),
-                      const Text(
-                        'Hai, silahkan buat akun baru!!',
-                        style: TextStyle(
-                            color: AppColors.primary,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18),
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      Form(
-                          key: _formKey,
-                          child: Column(
-                            children: [
-                              FormInput(
-                                controller: nameController,
-                                prefixIcon: const Icon(Icons.person_2_outlined),
-                                hintText: 'Nama lengkap',
-                                labelText: 'Nama lengkap',
-                                style: FormStyle.outlined,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Nama tidak boleh kosong';
-                                  } else if (!RegExp(r'^[a-zA-Z\s]+$')
-                                      .hasMatch(value)) {
-                                    return 'Nama hanya boleh mengandung huruf dan spasi';
-                                  } else if (value.length < 4) {
-                                    return 'Nama harus lebih dari 3 karakter';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              FormInput(
-                                controller: phoneNumberController,
-                                prefixIcon: const Icon(Icons.call_outlined),
-                                hintText: 'No Hp',
-                                labelText: 'No Hp',
-                                style: FormStyle.outlined,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Nomor HP tidak boleh kosong';
-                                  } else if (!RegExp(r'^\d{10,15}$')
-                                      .hasMatch(value)) {
-                                    return 'Nomor HP harus berupa angka 10-15 karakter';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              FormInput(
-                                controller: emailController,
-                                prefixIcon: const Icon(Icons.mail_outline),
-                                hintText: 'Email',
-                                labelText: 'Email',
-                                style: FormStyle.outlined,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Email tidak boleh kosong';
-                                  }
-                                  if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
-                                      .hasMatch(value)) {
-                                    return 'Format email tidak valid';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              FormInput(
-                                controller: passwordController,
-                                prefixIcon: const Icon(Icons.lock_outline),
-                                hintText: 'Kata sandi',
-                                labelText: 'Kata sandi',
-                                style: FormStyle.outlined,
-                                obscureText:
-                                    !_isPasswordVisible, // Password akan disembunyikan
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _isPasswordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _isPasswordVisible = !_isPasswordVisible;
-                                    });
-                                  },
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Kata sandi tidak boleh kosong';
-                                  } else if (value.length < 9) {
-                                    return 'Nama harus lebih dari 8 karakter';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              FormInput(
-                                controller: confirmPasswordController,
-                                prefixIcon: const Icon(Icons.lock_outline),
-                                hintText: 'Ulangi kata sandi',
-                                labelText: 'Ulangi kata sandi',
-                                style: FormStyle.outlined,
-                                obscureText:
-                                    !_isConfirmPasswordVisible, // Password akan disembunyikan
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _isConfirmPasswordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _isConfirmPasswordVisible =
-                                          !_isConfirmPasswordVisible;
-                                    });
-                                  },
-                                ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Konfirmasi kata sandi tidak boleh kosong';
-                                  } else if (value != passwordController.text) {
-                                    return 'Konfirmasi kata sandi tidak cocok';
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          )),
-                      const SizedBox(
-                        height: 70,
-                      ),
-                      BlocListener<RegisterBloc, RegisterState>(
-                        listener: (context, state) {
-                          state.maybeWhen(
-                              orElse: () {},
-                              success: () {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Text(
-                                      'Success, user registered',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    backgroundColor: AppColors.green,
-                                    behavior: SnackBarBehavior.floating,
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 10),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    duration: const Duration(seconds: 3),
-                                  ),
-                                );
-                                Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const LoginPage()),
-                                  (route) => false,
-                                );
+                ),
+              )),
+          Center(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Daftar',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30),
+                    ),
+                    const Text(
+                      'Hai, silahkan buat akun baru!!',
+                      style: TextStyle(
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 18),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            FormInput(
+                              controller: nameController,
+                              prefixIcon: const Icon(Icons.person_2_outlined),
+                              hintText: 'Nama lengkap',
+                              labelText: 'Nama lengkap',
+                              style: FormStyle.outlined,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Nama tidak boleh kosong';
+                                } else if (!RegExp(r'^[a-zA-Z\s]+$')
+                                    .hasMatch(value)) {
+                                  return 'Nama hanya boleh mengandung huruf dan spasi';
+                                } else if (value.length < 4) {
+                                  return 'Nama harus lebih dari 3 karakter';
+                                }
+                                return null;
                               },
-                              error: (message) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      message,
-                                      style:
-                                          const TextStyle(color: Colors.white),
-                                    ),
-                                    backgroundColor: AppColors.red,
-                                    behavior: SnackBarBehavior.floating,
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 10),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    duration: const Duration(seconds: 3),
-                                  ),
-                                );
-                              });
-                        },
-                        child: BlocBuilder<RegisterBloc, RegisterState>(
-                          builder: (context, state) {
-                            return state.maybeWhen(orElse: () {
-                              return Button.filled(
-                                label: 'Daftar',
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            FormInput(
+                              controller: phoneNumberController,
+                              prefixIcon: const Icon(Icons.call_outlined),
+                              hintText: 'No Hp',
+                              labelText: 'No Hp',
+                              style: FormStyle.outlined,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Nomor HP tidak boleh kosong';
+                                } else if (!RegExp(r'^\d{10,15}$')
+                                    .hasMatch(value)) {
+                                  return 'Nomor HP harus berupa angka 10-15 karakter';
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            FormInput(
+                              controller: emailController,
+                              prefixIcon: const Icon(Icons.mail_outline),
+                              hintText: 'Email',
+                              labelText: 'Email',
+                              style: FormStyle.outlined,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Email tidak boleh kosong';
+                                }
+                                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                                    .hasMatch(value)) {
+                                  return 'Format email tidak valid';
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            FormInput(
+                              controller: passwordController,
+                              prefixIcon: const Icon(Icons.lock_outline),
+                              hintText: 'Kata sandi',
+                              labelText: 'Kata sandi',
+                              style: FormStyle.outlined,
+                              obscureText:
+                                  !_isPasswordVisible, // Password akan disembunyikan
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
                                 onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    context
-                                        .read<RegisterBloc>()
-                                        .add(RegisterEvent.register(
-                                          name: nameController.text,
-                                          phoneNumber:
-                                              phoneNumberController.text,
-                                          email: emailController.text,
-                                          password: passwordController.text,
-                                          passwordConfirmation:
-                                              confirmPasswordController.text,
-                                        ));
-                                  }
+                                  setState(() {
+                                    _isPasswordVisible = !_isPasswordVisible;
+                                  });
                                 },
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Kata sandi tidak boleh kosong';
+                                } else if (value.length < 9) {
+                                  return 'Nama harus lebih dari 8 karakter';
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            FormInput(
+                              controller: confirmPasswordController,
+                              prefixIcon: const Icon(Icons.lock_outline),
+                              hintText: 'Ulangi kata sandi',
+                              labelText: 'Ulangi kata sandi',
+                              style: FormStyle.outlined,
+                              obscureText:
+                                  !_isConfirmPasswordVisible, // Password akan disembunyikan
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  _isConfirmPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _isConfirmPasswordVisible =
+                                        !_isConfirmPasswordVisible;
+                                  });
+                                },
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Konfirmasi kata sandi tidak boleh kosong';
+                                } else if (value != passwordController.text) {
+                                  return 'Konfirmasi kata sandi tidak cocok';
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
+                        )),
+                    const SizedBox(
+                      height: 70,
+                    ),
+                    BlocListener<RegisterBloc, RegisterState>(
+                      listener: (context, state) {
+                        state.maybeWhen(
+                            orElse: () {},
+                            success: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                    'Success, user registered',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor: AppColors.green,
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 10),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  duration: const Duration(seconds: 3),
+                                ),
                               );
-                            }, loading: () {
-                              return const Center(
-                                child: CircularProgressIndicator(),
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginPage()),
+                                (route) => false,
+                              );
+                            },
+                            error: (message) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    message,
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor: AppColors.red,
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 10),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  duration: const Duration(seconds: 3),
+                                ),
                               );
                             });
-                          },
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Button.outlined(
-                        label: 'Masuk',
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return const LoginPage();
-                          }));
+                      },
+                      child: BlocBuilder<RegisterBloc, RegisterState>(
+                        builder: (context, state) {
+                          return state.maybeWhen(orElse: () {
+                            return Button.filled(
+                              label: 'Daftar',
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  context
+                                      .read<RegisterBloc>()
+                                      .add(RegisterEvent.register(
+                                        name: nameController.text,
+                                        phoneNumber: phoneNumberController.text,
+                                        email: emailController.text,
+                                        password: passwordController.text,
+                                        passwordConfirmation:
+                                            confirmPasswordController.text,
+                                      ));
+                                }
+                              },
+                            );
+                          }, loading: () {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          });
                         },
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Button.outlined(
+                      label: 'Masuk',
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const LoginPage();
+                        }));
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),
-          ]),
-        ),
+          ),
+        ]),
       ),
     );
   }
