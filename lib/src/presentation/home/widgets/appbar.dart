@@ -60,7 +60,7 @@ class _MainAppBarState extends State<MainAppBar> {
                     onTap: () {},
                     child: const Icon(
                       Icons.notifications,
-                      color: AppColors.darkBlue,
+                      color: AppColors.primary,
                     )),
               ),
             ],
