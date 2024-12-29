@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/presentation/profile/pages/change_password_page.dart';
 import 'package:flutter_sunmate/src/presentation/profile/pages/edit_profile_page.dart';
 
 class AccountProfilePage extends StatefulWidget {
@@ -95,7 +96,12 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                   ),
                                   const SizedBox(height: 10),
                                   GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return const ChangePasswordPage();
+                                      }));
+                                    },
                                     child: const Row(
                                       children: [
                                         Icon(
@@ -124,7 +130,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                         ),
                                         SizedBox(width: 8),
                                         Text(
-                                          'Riwayar Booking Vendor',
+                                          'Riwayat Booking Vendor',
                                           style: TextStyle(
                                             color: AppColors.darkBlue,
                                             fontSize: 14,
