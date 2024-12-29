@@ -12,8 +12,6 @@ class MainAppBar extends StatefulWidget {
 class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
-    // const bool isWeb = identical(0, 0.0);
-
     return Container(
       decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
@@ -27,45 +25,40 @@ class _MainAppBarState extends State<MainAppBar> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      const CircleAvatar(
-                        radius: 26.0,
-                        backgroundImage: AssetImage('assets/images/avatar.jpg'),
-                      ),
-                      const SizedBox(width: 14.0),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.userName,
-                            style: const TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.darkBlue),
-                          ),
-                          const SizedBox(
-                            height: 2.0,
-                          ),
-                          const Text(
-                            'Selamat datang di Sunify',
-                            style: TextStyle(
-                                fontSize: 14.0, color: AppColors.primary),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
-                ],
+              const CircleAvatar(
+                radius: 26.0,
+                backgroundImage: AssetImage('assets/images/avatar.jpg'),
               ),
+              const SizedBox(width: 12.0),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.userName,
+                      style: const TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.darkBlue),
+                    ),
+                    const SizedBox(
+                      height: 2.0,
+                    ),
+                    const Text(
+                      'Selamat datang di Sunify',
+                      style:
+                          TextStyle(fontSize: 14.0, color: AppColors.primary),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 12.0),
               CircleAvatar(
                 radius: 25,
                 backgroundColor: AppColors.lightBlue,
                 child: GestureDetector(
                     onTap: () {},
-                    child: const Icon(  
+                    child: const Icon(
                       Icons.notifications,
                       color: AppColors.darkBlue,
                     )),
