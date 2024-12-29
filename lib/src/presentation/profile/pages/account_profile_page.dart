@@ -4,9 +4,12 @@ import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/user_data/user_data_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/profile/pages/change_password_page.dart';
 import 'package:flutter_sunmate/src/presentation/profile/pages/edit_profile_page.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history.dart';
 
 class AccountProfilePage extends StatefulWidget {
   const AccountProfilePage({super.key});
@@ -145,7 +148,12 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                   ),
                                   const SizedBox(height: 10),
                                   GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return const VendorBookingHistory();
+                                      }));
+                                    },
                                     child: const Row(
                                       children: [
                                         Icon(
@@ -186,27 +194,103 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                               padding: const EdgeInsets.all(20.0),
                               child: Column(
                                 children: [
-                                  GestureDetector(
-                                    onTap: () {},
-                                    child: Row(
-                                      children: [
-                                        Transform(
-                                          alignment: Alignment.center,
-                                          transform: Matrix4.rotationY(3.1416),
-                                          child: const Icon(
-                                            Icons.logout_outlined,
-                                            color: AppColors.darkBlue,
+                                  BlocListener<LogoutBloc, LogoutState>(
+                                    listener: (context, state) {
+                                      state.maybeWhen(
+                                          orElse: () {},
+                                          success: () {
+                                            AuthLocalDatasources()
+                                                .removeAuthData();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: const Text(
+                                                  'Berhasil logout',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                backgroundColor:
+                                                    AppColors.green,
+                                                behavior:
+                                                    SnackBarBehavior.floating,
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 10),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                duration:
+                                                    const Duration(seconds: 3),
+                                              ),
+                                            );
+                                            Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const LoginPage()),
+                                              (route) => false,
+                                            );
+                                          },
+                                          error: (message) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  message,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                                backgroundColor: AppColors.red,
+                                                behavior:
+                                                    SnackBarBehavior.floating,
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 10),
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                duration:
+                                                    const Duration(seconds: 3),
+                                              ),
+                                            );
+                                          });
+                                    },
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        final authData =
+                                            await AuthLocalDatasources()
+                                                .getAuthData();
+                                        if (context.mounted) {
+                                          context.read<LogoutBloc>().add(
+                                              LogoutEvent.logout(
+                                                  token: authData.token!));
+                                        }
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Transform(
+                                            alignment: Alignment.center,
+                                            transform:
+                                                Matrix4.rotationY(3.1416),
+                                            child: const Icon(
+                                              Icons.logout_outlined,
+                                              color: AppColors.darkBlue,
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        const Text(
-                                          'Keluar',
-                                          style: TextStyle(
-                                            color: AppColors.darkBlue,
-                                            fontSize: 14,
+                                          const SizedBox(width: 8),
+                                          const Text(
+                                            'Keluar',
+                                            style: TextStyle(
+                                              color: AppColors.darkBlue,
+                                              fontSize: 14,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
