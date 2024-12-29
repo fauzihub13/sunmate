@@ -171,20 +171,81 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     const SizedBox(
                       height: 48,
                     ),
-                    Button.filled(
-                      label: 'Simpan',
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          // context.read<RegisterBloc>().add(RegisterEvent.register(
-                          //       name: nameController.text,
-                          //       phoneNumber: phoneNumberController.text,
-                          //       email: emailController.text,
-                          //       password: passwordController.text,
-                          //       passwordConfirmation:
-                          //           confirmPasswordController.text,
-                          //     ));
-                        }
+                    BlocListener<UserDataBloc, UserDataState>(
+                      listener: (context, state) {
+                        state.maybeWhen(
+                          orElse: () {},
+                          successUpdateUserData: (userData) {
+                            AuthLocalDatasources().updateUserData(userData);
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                    'Berhasil mengubah data.',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor: AppColors.green,
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 10),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  duration: const Duration(seconds: 3),
+                                ),
+                              );
+                            }
+                          },
+                          error: (message) {
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    message,
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor: AppColors.red,
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 10),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  duration: const Duration(seconds: 3),
+                                ),
+                              );
+                            }
+                          },
+                        );
                       },
+                      child: BlocBuilder<UserDataBloc, UserDataState>(
+                        builder: (context, state) {
+                          return state.maybeWhen(
+                            orElse: () {
+                              return Button.filled(
+                                label: 'Simpan',
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    context
+                                        .read<UserDataBloc>()
+                                        .add(UserDataEvent.updateUserData(
+                                          name: nameController.text,
+                                          phoneNumber:
+                                              phoneNumberController.text,
+                                          email: emailController.text,
+                                        ));
+                                  }
+                                },
+                              );
+                            },
+                            loading: () {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),

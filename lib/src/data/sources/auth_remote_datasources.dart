@@ -90,4 +90,60 @@ class AuthRemoteDatasources {
       return const Left('Failed to get user data.');
     }
   }
+
+  Future<Either<String, AuthResponseModel>> updateUserPassword(
+      String oldPassword, String password, String passwordConfirmation) async {
+    final url = Uri.parse('${Variables.apiUrl}/user/data/password');
+    final authData = await AuthLocalDatasources().getAuthData();
+    final response = await http.post(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    }, body: {
+      'old_password': oldPassword,
+      'password': password,
+      'password_confirmation': passwordConfirmation,
+    });
+
+    if (response.statusCode == 200) {
+      return Right(AuthResponseModel.fromJson(response.body));
+    } else if (response.statusCode == 401) {
+      return const Left('logged_out');
+    } else if (response.statusCode == 422) {
+      final jsonResponse = jsonDecode(response.body);
+      final errors = jsonResponse['errors'] as Map<String, dynamic>;
+      final errorMessages =
+          errors.entries.map((entry) => '${entry.value.join(", ")}').join("\n");
+      return Left(errorMessages);
+    } else {
+      return const Left('Failed to update user password.');
+    }
+  }
+
+  Future<Either<String, AuthResponseModel>> updateUserData(
+      String name, String phoneNumber, String email) async {
+    final url = Uri.parse('${Variables.apiUrl}/user/data');
+    final authData = await AuthLocalDatasources().getAuthData();
+    final response = await http.post(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    }, body: {
+      'name': name,
+      'phone_number': phoneNumber,
+      'email': email,
+    });
+
+    if (response.statusCode == 200) {
+      return Right(AuthResponseModel.fromJson(response.body));
+    } else if (response.statusCode == 401) {
+      return const Left('logged_out');
+    } else if (response.statusCode == 422) {
+      final jsonResponse = jsonDecode(response.body);
+      final errors = jsonResponse['errors'] as Map<String, dynamic>;
+      final errorMessages =
+          errors.entries.map((entry) => '${entry.value.join(", ")}').join("\n");
+      return Left(errorMessages);
+    } else {
+      return const Left('Failed to update user data.');
+    }
+  }
 }

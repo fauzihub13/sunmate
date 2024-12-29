@@ -317,6 +317,17 @@ class MockAuthLocalDatasources extends _i1.Mock
       ) as _i4.Future<void>);
 
   @override
+  _i4.Future<void> updateUserData(_i3.User? updatedUserData) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateUserData,
+          [updatedUserData],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
   _i4.Future<void> removeAuthData() => (super.noSuchMethod(
         Invocation.method(
           #removeAuthData,

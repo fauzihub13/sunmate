@@ -258,7 +258,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                             ),
                           );
                         },
-                        loaded: (userData) {
+                        successGetUserData: (userData) {
                           AuthLocalDatasources().updateUserData(userData);
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                   return MainAppBar(
                     userName: user?.name ?? 'Loading...',
                   );
-                }, loaded: (userData) {
+                }, successGetUserData: (userData) {
                   AuthLocalDatasources().updateUserData(userData);
                   return MainAppBar(
                     userName: userData.name!,
