@@ -14,7 +14,6 @@ class VendorBookingBloc extends Bloc<VendorBookingEvent, VendorBookingState> {
   VendorBookingBloc(this.bookingVendorRemoteDatasources)
       : super(const VendorBookingState.initial()) {
     on<_createBooking>((event, emit) async {
-      // print();
       emit(const _Loading());
       final result = await bookingVendorRemoteDatasources
           .createBooking(event.vendorBooking);

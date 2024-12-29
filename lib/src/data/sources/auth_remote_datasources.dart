@@ -8,11 +8,12 @@ import 'package:http/http.dart' as http;
 
 class AuthRemoteDatasources {
   final http.Client client;
-  final AuthLocalDatasources authLocalDatasources; // Optional if needed
+  final AuthLocalDatasources authLocalDatasources;
 
   AuthRemoteDatasources(
       {http.Client? client, required this.authLocalDatasources})
       : client = client ?? http.Client();
+
   Future<Either<String, AuthResponseModel>> login(
       String email, String password) async {
     final url = Uri.parse('${Variables.apiUrl}/login');
@@ -70,6 +71,23 @@ class AuthRemoteDatasources {
       return const Right(true);
     } else {
       return const Left('Failed to logout');
+    }
+  }
+
+  Future<Either<String, AuthResponseModel>> getUserData() async {
+    final url = Uri.parse('${Variables.apiUrl}/user/data');
+    final authData = await AuthLocalDatasources().getAuthData();
+    final response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    });
+
+    if (response.statusCode == 200) {
+      return Right(AuthResponseModel.fromJson(response.body));
+    } else if (response.statusCode == 401) {
+      return const Left('logged_out');
+    } else {
+      return const Left('Failed to get user data.');
     }
   }
 }

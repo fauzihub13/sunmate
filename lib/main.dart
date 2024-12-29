@@ -9,6 +9,7 @@ import 'package:flutter_sunmate/src/data/sources/suncost_local_datasources.dart'
 import 'package:flutter_sunmate/src/data/sources/user_location_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/vendor_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/weather_remote_datasources.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/bloc/user_data_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_bloc.dart';
@@ -74,6 +75,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SuncostCalculateBloc(SuncostLocalDatasources()),
+        ),
+        BlocProvider(
+          create: (context) => UserDataBloc(AuthRemoteDatasources(
+              authLocalDatasources: AuthLocalDatasources())),
         ),
       ],
       child: MaterialApp(

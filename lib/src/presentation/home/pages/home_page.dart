@@ -4,6 +4,7 @@ import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/bloc/user_data_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/home/bloc/user_location/user_location_bloc.dart';
@@ -32,27 +33,27 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    super.initState();
+    _initializeData();
+  }
+
+  Future<void> _initializeData() async {
     context.read<UserLocationBloc>().add(const UserLocationEvent.getWeather());
     context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
     context.read<NewsListBloc>().add(const NewsListEvent.getNews());
+    context.read<UserDataBloc>().add(const UserDataEvent.getUserData());
 
-    AuthLocalDatasources().getAuthData().then((value) {
-      setState(() {
-        user = value.user;
-      });
-    });
-    super.initState();
+    await _loadAuthData();
   }
 
   Future<void> _refreshPage() async {
-    context.read<UserLocationBloc>().add(const UserLocationEvent.getWeather());
-    context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
-    context.read<NewsListBloc>().add(const NewsListEvent.getNews());
+    await _initializeData();
+  }
 
-    AuthLocalDatasources().getAuthData().then((value) {
-      setState(() {
-        user = value.user;
-      });
+  Future<void> _loadAuthData() async {
+    final authData = await AuthLocalDatasources().getAuthData();
+    setState(() {
+      user = authData.user;
     });
   }
 
@@ -65,8 +66,19 @@ class _HomePageState extends State<HomePage> {
         onRefresh: _refreshPage,
         child: Column(
           children: [
-            MainAppBar(
-              userName: user?.name ?? '',
+            BlocBuilder<UserDataBloc, UserDataState>(
+              builder: (context, state) {
+                return state.maybeWhen(orElse: () {
+                  return MainAppBar(
+                    userName: user?.name ?? 'Loading...',
+                  );
+                }, loaded: (userData) {
+                  AuthLocalDatasources().updateUserData(userData);
+                  return MainAppBar(
+                    userName: userData.name!,
+                  );
+                });
+              },
             ),
             Expanded(
               child: SingleChildScrollView(

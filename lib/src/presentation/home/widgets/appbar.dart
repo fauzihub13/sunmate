@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 
-class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
+class MainAppBar extends StatefulWidget {
   final String userName;
   const MainAppBar({super.key, required this.userName});
 
+  @override
+  State<MainAppBar> createState() => _MainAppBarState();
+}
+
+class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
     // const bool isWeb = identical(0, 0.0);
@@ -35,7 +40,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            userName,
+                            widget.userName,
                             style: const TextStyle(
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500,
@@ -55,30 +60,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                   )
                 ],
               ),
-              // if (!isWeb)
-              //   CircleAvatar(
-              //     radius: 25,
-              //     backgroundColor: AppColors.lightBlue,
-              //     child: GestureDetector(
-              //       onTap: () {
-              //         Navigator.push(context,
-              //             MaterialPageRoute(builder: (context) {
-              //           return const SuntalkPage();
-              //         }));
-              //       },
-              //       child: SvgPicture.asset(
-              //         'assets/icons/chat.svg',
-              //         width: 24,
-              //         height: 24,
-              //       ),
-              //     ),
-              //   ),
             ],
           )),
     );
   }
-
-  // Define preferedSizeWidget
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

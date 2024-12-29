@@ -19,7 +19,7 @@ class FormInput extends StatelessWidget {
     this.textInputType = TextInputType.text,
     this.validator,
     this.onTap,
-    this.obscureText =false,
+    this.obscureText = false,
   });
 
   final TextEditingController controller;

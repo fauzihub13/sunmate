@@ -9,6 +9,7 @@ import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_m
 import 'package:http/http.dart' as http;
 
 class BookingVendorRemoteDatasources {
+
   Future<Either<String, BookingDataResponse>> createBooking(
       VendorBookingModel vendorBookingModel) async {
     final authData = await AuthLocalDatasources().getAuthData();
@@ -64,10 +65,8 @@ class BookingVendorRemoteDatasources {
     });
 
     if (response.statusCode == 200) {
-      // print(response.body);
       return Right(VendorBookingHistoryResponseModel.fromJson(response.body));
     } else if (response.statusCode == 401) {
-      // await AuthLocalDatasources().removeAuthData();
       return const Left('logged_out');
     } else {
       return const Left('Failed to get booking history.');
