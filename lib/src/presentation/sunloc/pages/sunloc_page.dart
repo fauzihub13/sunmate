@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/search_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
@@ -47,8 +48,7 @@ class _SunlocPageState extends State<SunlocPage> {
       body: Stack(children: [
         FlutterMap(
           options: const MapOptions(
-              // initialCenter:
-              //     LatLng(widget.vendor.latitude!, widget.vendor.longitude!),
+              initialCenter: LatLng(-6.56178900, 107.43203400),
               initialZoom: 14,
               interactionOptions: InteractionOptions(
                 flags: InteractiveFlag.doubleTapZoom |
@@ -60,22 +60,81 @@ class _SunlocPageState extends State<SunlocPage> {
               urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
               userAgentPackageName: 'dev.fleaflet.flutter_map.example',
             ),
-            MarkerLayer(markers: [
-              Marker(
-                  point: const LatLng(-6.222840, 106.847756),
-                  width: 50,
-                  height: 50,
-                  alignment: Alignment.center,
-                  child: GestureDetector(
-                    child: const Icon(
-                      Icons.location_on,
-                      size: 40,
-                      color: AppColors.primary,
-                    ),
-                  )),
-            ])
+            BlocConsumer<VendorListBloc, VendorListState>(
+              listener: (context, state) {},
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                  loaded: (vendors) {
+                    final markers = vendors.map((vendor) {
+                      return Marker(
+                        point: LatLng(vendor.latitude!, vendor.longitude!),
+                        width: 100,
+                        height: 100,
+                        alignment: Alignment.center,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: SizedBox(
+                            child: Column(
+                              children: [
+                                const Icon(
+                                  Icons.location_on,
+                                  size: 40,
+                                  color: AppColors.primary,
+                                ),
+                                Text(
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  vendor.name!,
+                                  style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.darkBlue),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList();
+                    return MarkerLayer(markers: markers);
+                  },
+                );
+              },
+            ),
+            // MarkerLayer(markers: [
+            //       Marker(
+            //           point: const LatLng(-6.222840, 106.847756),
+            //           width: 50,
+            //           height: 50,
+            //           alignment: Alignment.center,
+            //           child: GestureDetector(
+            //             child: const Icon(
+            //               Icons.location_on,
+            //               size: 40,
+            //               color: AppColors.primary,
+            //             ),
+            //           )),
+            //     ]),
           ],
         ),
+        Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              // width: 200,
+              // height: 50,
+              child: SearchInput(
+                controller: searchController,
+                borderRadius: BorderRadius.circular(42),
+              ),
+            )),
         // Positioned(
         //   bottom: 0,
         //   child: SizedBox(

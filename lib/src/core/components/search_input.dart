@@ -6,21 +6,22 @@ class SearchInput extends StatelessWidget {
   final Function(String value)? onChanged;
   final VoidCallback? onTap;
   final String hintText;
+  final BorderRadius? borderRadius;
 
-  const SearchInput({
-    super.key,
-    required this.controller,
-    this.onChanged,
-    this.onTap,
-    this.hintText = 'Cari di sini',
-  });
+  const SearchInput(
+      {super.key,
+      required this.controller,
+      this.onChanged,
+      this.onTap,
+      this.hintText = 'Cari di sini',
+      this.borderRadius});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: borderRadius ?? BorderRadius.circular(8.0),
       ),
       child: TextFormField(
         onTap: onTap,
@@ -35,11 +36,15 @@ class SearchInput extends StatelessWidget {
           ),
           contentPadding: const EdgeInsets.all(16.0),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: borderRadius ?? BorderRadius.circular(8.0),
             borderSide: const BorderSide(color: Colors.grey),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: borderRadius ?? BorderRadius.circular(8.0),
+            borderSide: const BorderSide(color: Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: borderRadius ?? BorderRadius.circular(8.0),
             borderSide: const BorderSide(color: Colors.grey),
           ),
         ),
