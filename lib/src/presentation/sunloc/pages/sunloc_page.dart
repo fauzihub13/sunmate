@@ -6,6 +6,7 @@ import 'package:flutter_sunmate/src/core/components/search_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 import 'package:latlong2/latlong.dart';
 
 class SunlocPage extends StatefulWidget {
@@ -20,6 +21,8 @@ class _SunlocPageState extends State<SunlocPage> {
   final TextEditingController searchController = TextEditingController();
 
   List<SingleVendor> searchResults = [];
+  bool isClicked = false;
+  SingleVendor? singleVendor;
   // final List<Vendor> vendors = vendorList;
 
   @override
@@ -37,9 +40,9 @@ class _SunlocPageState extends State<SunlocPage> {
     });
   }
 
-  Future<void> _refreshPage() async {
-    context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
-  }
+  // Future<void> _refreshPage() async {
+  //   context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +80,12 @@ class _SunlocPageState extends State<SunlocPage> {
                         height: 100,
                         alignment: Alignment.center,
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            setState(() {
+                              singleVendor = vendor;
+                              isClicked = true;
+                            });
+                          },
                           child: SizedBox(
                             child: Column(
                               children: [
@@ -106,20 +114,6 @@ class _SunlocPageState extends State<SunlocPage> {
                 );
               },
             ),
-            // MarkerLayer(markers: [
-            //       Marker(
-            //           point: const LatLng(-6.222840, 106.847756),
-            //           width: 50,
-            //           height: 50,
-            //           alignment: Alignment.center,
-            //           child: GestureDetector(
-            //             child: const Icon(
-            //               Icons.location_on,
-            //               size: 40,
-            //               color: AppColors.primary,
-            //             ),
-            //           )),
-            //     ]),
           ],
         ),
         Positioned(
@@ -128,13 +122,21 @@ class _SunlocPageState extends State<SunlocPage> {
             right: 0,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              // width: 200,
-              // height: 50,
               child: SearchInput(
                 controller: searchController,
                 borderRadius: BorderRadius.circular(42),
               ),
             )),
+        if (isClicked)
+          Positioned(
+            bottom: 0,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: VendorCard(data: singleVendor!)),
+            ),
+          )
         // Positioned(
         //   bottom: 0,
         //   child: SizedBox(
