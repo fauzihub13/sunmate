@@ -7,6 +7,8 @@ class SearchInput extends StatelessWidget {
   final VoidCallback? onTap;
   final String hintText;
   final BorderRadius? borderRadius;
+  final IconButton? suffixIcon;
+  final FocusNode? focusNode;
 
   const SearchInput(
       {super.key,
@@ -14,7 +16,9 @@ class SearchInput extends StatelessWidget {
       this.onChanged,
       this.onTap,
       this.hintText = 'Cari di sini',
-      this.borderRadius});
+      this.borderRadius,
+      this.suffixIcon,
+      this.focusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +28,7 @@ class SearchInput extends StatelessWidget {
         borderRadius: borderRadius ?? BorderRadius.circular(8.0),
       ),
       child: TextFormField(
+        focusNode: focusNode,
         onTap: onTap,
         readOnly: onTap != null,
         controller: controller,
@@ -34,6 +39,7 @@ class SearchInput extends StatelessWidget {
             Icons.search,
             color: AppColors.darkBlue,
           ),
+          suffixIcon: suffixIcon,
           contentPadding: const EdgeInsets.all(16.0),
           border: OutlineInputBorder(
             borderRadius: borderRadius ?? BorderRadius.circular(8.0),
