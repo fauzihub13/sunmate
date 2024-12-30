@@ -15,6 +15,7 @@ import 'package:flutter_sunmate/src/presentation/suncost/pages/suncost_main_page
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_list_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/list_vendor.dart';
+import 'package:flutter_sunmate/src/presentation/sunloc/pages/sunloc_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_list_pages.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/widgets/slider_news.dart';
@@ -203,6 +204,16 @@ class _HomePageState extends State<HomePage> {
                               title: 'SunTalk',
                               iconSize: 34,
                               iconUrl: 'assets/icons/chat.svg'),
+                          MenuCard(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return const SunlocPage();
+                                }));
+                              },
+                              title: 'SunLoc',
+                              iconSize: 34,
+                              iconUrl: 'assets/icons/location.svg'),
                         ],
                       ),
                     ),

@@ -30,6 +30,8 @@ class MenuCard extends StatelessWidget {
             child: Center(
               child: SvgPicture.asset(
                 iconUrl,
+                colorFilter:
+                    const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
                 width: iconSize,
                 height: iconSize,
               ),

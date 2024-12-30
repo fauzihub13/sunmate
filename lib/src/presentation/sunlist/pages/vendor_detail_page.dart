@@ -7,7 +7,7 @@ import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_page.dart';
-import 'package:flutter_sunmate/src/presentation/sunloc/pages/sunloc_page.dart';
+import 'package:flutter_sunmate/src/presentation/sunloc/pages/sunloc_page_single.dart';
 import 'package:flutter_svg/svg.dart';
 
 class DetailVendor extends StatelessWidget {
@@ -233,7 +233,7 @@ class MobileView extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SunlocPage(
+                  return SunlocPageSingle(
                     vendor: vendor,
                   );
                 }));
