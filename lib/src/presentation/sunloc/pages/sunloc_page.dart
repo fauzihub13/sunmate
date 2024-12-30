@@ -19,17 +19,22 @@ class SunlocPage extends StatefulWidget {
 
 class _SunlocPageState extends State<SunlocPage> {
   final TextEditingController searchController = TextEditingController();
+  final MapController mapController = MapController();
 
   List<SingleVendor> searchResults = [];
   bool isClicked = false;
   SingleVendor? singleVendor;
-  // final List<Vendor> vendors = vendorList;
+  LatLng? latLng;
 
   @override
   void initState() {
     super.initState();
     context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
     // searchResults = vendors;
+  }
+
+  void _moveCamera(LatLng position, {double zoom = 14}) {
+    mapController.move(position, zoom);
   }
 
   void _onSearchChanged(String value) {
@@ -40,20 +45,18 @@ class _SunlocPageState extends State<SunlocPage> {
     });
   }
 
-  // Future<void> _refreshPage() async {
-  //   context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppbar(title: 'SunLoc', canBack: true),
       body: Stack(children: [
         FlutterMap(
-          options: const MapOptions(
-              initialCenter: LatLng(-6.56178900, 107.43203400),
+          mapController: mapController,
+          options: MapOptions(
+              initialCenter: latLng ??
+                  const LatLng(-6.175221728517849, 106.82715279552818),
               initialZoom: 14,
-              interactionOptions: InteractionOptions(
+              interactionOptions: const InteractionOptions(
                 flags: InteractiveFlag.doubleTapZoom |
                     InteractiveFlag.drag |
                     InteractiveFlag.pinchZoom,
@@ -64,7 +67,20 @@ class _SunlocPageState extends State<SunlocPage> {
               userAgentPackageName: 'dev.fleaflet.flutter_map.example',
             ),
             BlocConsumer<VendorListBloc, VendorListState>(
-              listener: (context, state) {},
+              listener: (context, state) {
+                state.maybeWhen(
+                  orElse: () {},
+                  loaded: (vendors) {
+                    if (vendors.isNotEmpty && latLng == null) {
+                      setState(() {
+                        latLng =
+                            LatLng(vendors[0].latitude!, vendors[0].longitude!);
+                        _moveCamera(latLng!);
+                      });
+                    }
+                  },
+                );
+              },
               builder: (context, state) {
                 return state.maybeWhen(
                   orElse: () {
@@ -84,6 +100,9 @@ class _SunlocPageState extends State<SunlocPage> {
                             setState(() {
                               singleVendor = vendor;
                               isClicked = true;
+                              latLng =
+                                  LatLng(vendor.latitude!, vendor.longitude!);
+                              _moveCamera(latLng!);
                             });
                           },
                           child: SizedBox(
@@ -137,15 +156,6 @@ class _SunlocPageState extends State<SunlocPage> {
                   child: VendorCard(data: singleVendor!)),
             ),
           )
-        // Positioned(
-        //   bottom: 0,
-        //   child: SizedBox(
-        //     width: MediaQuery.of(context).size.width,
-        //     child: Padding(
-        //         padding: const EdgeInsets.all(16),
-        //         child: VendorCard(data: widget.vendor)),
-        //   ),
-        // )
       ]),
     );
   }
