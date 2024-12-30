@@ -13,6 +13,7 @@ import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart
 import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/user_data/user_data_bloc.dart';
+import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/home/bloc/user_location/user_location_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/landing_page.dart';
 import 'package:flutter_sunmate/src/presentation/onboarding/pages/onboarding_page.dart';
@@ -23,15 +24,21 @@ import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vend
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  final prefs = await SharedPreferences.getInstance();
+  final onboarding = prefs.getBool('onboarding') ?? false;
+  runApp(MyApp(
+    onboarding: onboarding,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool onboarding;
+  const MyApp({super.key, this.onboarding = false});
 
   @override
   Widget build(BuildContext context) {
@@ -92,29 +99,31 @@ class MyApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
-        home: FutureBuilder<bool>(
-            future: AuthLocalDatasources().isAuthDataExist(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Scaffold(
+        home: onboarding
+            ? FutureBuilder<bool>(
+                future: AuthLocalDatasources().isAuthDataExist(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Scaffold(
+                        body: Center(
+                      child: CircularProgressIndicator(),
+                    ));
+                  }
+                  if (snapshot.hasData) {
+                    if (snapshot.data!) {
+                      return const LandingPage();
+                    } else {
+                      // return const OnboardingPage();
+                      return const LoginPage();
+                    }
+                  }
+                  return const Scaffold(
                     body: Center(
-                  child: CircularProgressIndicator(),
-                ));
-              }
-              if (snapshot.hasData) {
-                if (snapshot.data!) {
-                  return const LandingPage();
-                } else {
-                  return const OnboardingPage();
-                  // return const LoginPage();
-                }
-              }
-              return const Scaffold(
-                body: Center(
-                  child: Text("Error"),
-                ),
-              );
-            }),
+                      child: Text("Error"),
+                    ),
+                  );
+                })
+            : const OnboardingPage(),
         builder: (context, child) {
           return Center(
             child: ConstrainedBox(

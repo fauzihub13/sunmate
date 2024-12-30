@@ -3,6 +3,7 @@ import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/onboarding/widgets/onboarding_items.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingPage extends StatefulWidget {
@@ -113,10 +114,16 @@ class _OnboardingPageState extends State<OnboardingPage> {
   Widget getStarted() {
     return Button.filled(
       label: 'Mulai',
-      onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const LoginPage();
-        }));
+      onPressed: () async {
+        final press = await SharedPreferences.getInstance();
+        press.setBool('onboarding', true);
+        final currentContext = context;
+        if (currentContext.mounted) {
+          // print('Status onboarding: ${press.getBool('onboarding')}');
+          Navigator.push(currentContext, MaterialPageRoute(builder: (context) {
+            return const LoginPage();
+          }));
+        }
       },
     );
   }
