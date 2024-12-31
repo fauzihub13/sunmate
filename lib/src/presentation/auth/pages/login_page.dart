@@ -201,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                       }),
                     ),
                     const SizedBox(
-                      height: 14,
+                      height: 10,
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -231,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     const SizedBox(
-                      height: 14,
+                      height: 10,
                     ),
                     Button.outlined(
                       icon: SizedBox(

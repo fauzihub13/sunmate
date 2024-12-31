@@ -304,7 +304,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     const SizedBox(
-                      height: 14,
+                      height: 10,
                     ),
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -334,7 +334,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     const SizedBox(
-                      height: 14,
+                      height: 10,
                     ),
                     Button.outlined(
                       icon: SizedBox(
