@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/booking_vendor_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/google_auth_service.dart';
 import 'package:flutter_sunmate/src/data/sources/news_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/suncost_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/user_location_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/vendor_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/weather_remote_datasources.dart';
+import 'package:flutter_sunmate/src/presentation/auth/bloc/google_auth/google_auth_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/logout/logout_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_bloc.dart';
@@ -86,6 +88,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => UserDataBloc(AuthRemoteDatasources(
               authLocalDatasources: AuthLocalDatasources())),
+        ),
+        BlocProvider(
+          create: (context) => GoogleAuthBloc(GoogleAuthService()),
         ),
       ],
       child: MaterialApp(
