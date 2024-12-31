@@ -7,6 +7,7 @@ import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_blo
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/circular_overlay.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/rectangle_circular.dart';
+import 'package:flutter_svg/svg.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -303,17 +304,80 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                     const SizedBox(
-                      height: 12,
+                      height: 14,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Divider(
+                              color: AppColors.grey,
+                              thickness: 0.5,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Text(
+                              'atau',
+                              style: TextStyle(color: AppColors.grey),
+                            ),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              color: AppColors.grey,
+                              thickness: 0.5,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 14,
                     ),
                     Button.outlined(
-                      label: 'Masuk',
+                      icon: SizedBox(
+                        child: SvgPicture.asset(
+                          'assets/icons/google.svg',
+                          width: 22,
+                          height: 22,
+                        ),
+                      ),
+                      label: 'Daftar dengan Google',
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return const LoginPage();
+                          return const RegisterPage();
                         }));
                       },
                     ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Sudah punya akun?',
+                          style: TextStyle(color: AppColors.grey),
+                        ),
+                        TextButton(
+                            style: TextButton.styleFrom(
+                              foregroundColor: AppColors.white,
+                            ),
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const LoginPage();
+                              }));
+                            },
+                            child: const Text(
+                              'Masuk',
+                              style: TextStyle(color: AppColors.darkBlue),
+                            ))
+                      ],
+                    )
                   ],
                 ),
               ),
