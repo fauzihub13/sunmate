@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                     successGetUserData: (userData) {
                       AuthLocalDatasources().updateUserData(userData);
                       return MainAppBar(
-                        avatar: userData.avatar!,
+                        avatar: userData.avatar,
                         userName: userData.name!,
                       );
                     },

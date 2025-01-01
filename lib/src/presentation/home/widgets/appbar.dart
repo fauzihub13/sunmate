@@ -27,7 +27,7 @@ class _MainAppBarState extends State<MainAppBar> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CircleAvatar(
-                backgroundColor: AppColors.primary,
+                backgroundColor: AppColors.lightBlue,
                 radius: 26.0,
                 backgroundImage: widget.avatar != null &&
                         widget.avatar!.isNotEmpty
