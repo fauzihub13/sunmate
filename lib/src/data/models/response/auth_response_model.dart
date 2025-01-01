@@ -36,7 +36,9 @@ class User {
   final String? email;
   final String? phoneNumber;
   final String? role;
-  final DateTime? emailVerifiedAt;
+  final dynamic googleId;
+  final dynamic avatar;
+  final dynamic emailVerifiedAt;
   final dynamic twoFactorSecret;
   final dynamic twoFactorRecoveryCodes;
   final dynamic twoFactorConfirmedAt;
@@ -49,6 +51,8 @@ class User {
     this.email,
     this.phoneNumber,
     this.role,
+    this.googleId,
+    this.avatar,
     this.emailVerifiedAt,
     this.twoFactorSecret,
     this.twoFactorRecoveryCodes,
@@ -67,9 +71,9 @@ class User {
         email: json["email"],
         phoneNumber: json["phone_number"],
         role: json["role"],
-        emailVerifiedAt: json["email_verified_at"] == null
-            ? null
-            : DateTime.parse(json["email_verified_at"]),
+        googleId: json["google_id"],
+        avatar: json["avatar"],
+        emailVerifiedAt: json["email_verified_at"],
         twoFactorSecret: json["two_factor_secret"],
         twoFactorRecoveryCodes: json["two_factor_recovery_codes"],
         twoFactorConfirmedAt: json["two_factor_confirmed_at"],
@@ -87,7 +91,9 @@ class User {
         "email": email,
         "phone_number": phoneNumber,
         "role": role,
-        "email_verified_at": emailVerifiedAt?.toIso8601String(),
+        "google_id": googleId,
+        "avatar": avatar,
+        "email_verified_at": emailVerifiedAt,
         "two_factor_secret": twoFactorSecret,
         "two_factor_recovery_codes": twoFactorRecoveryCodes,
         "two_factor_confirmed_at": twoFactorConfirmedAt,

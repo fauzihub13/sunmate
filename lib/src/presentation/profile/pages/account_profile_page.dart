@@ -122,31 +122,41 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                       ],
                                     ),
                                   ),
-                                  const SizedBox(height: 10),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return const ChangePasswordPage();
-                                      }));
-                                    },
-                                    child: const Row(
+                                  if (user?.googleId == null)
+                                    Column(
                                       children: [
-                                        Icon(
-                                          Icons.lock_outline,
-                                          color: AppColors.darkBlue,
-                                        ),
-                                        SizedBox(width: 8),
-                                        Text(
-                                          'Ubah Kata Sandi',
-                                          style: TextStyle(
-                                            color: AppColors.darkBlue,
-                                            fontSize: 14,
+                                        const SizedBox(
+                                            height: 10), // Elemen pertama
+
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return const ChangePasswordPage();
+                                            }));
+                                          },
+                                          child: const Row(
+                                            children: [
+                                              Icon(
+                                                Icons.lock_outline,
+                                                color: AppColors.darkBlue,
+                                              ),
+                                              SizedBox(width: 8),
+                                              Text(
+                                                'Ubah Kata Sandi',
+                                                style: TextStyle(
+                                                  color: AppColors.darkBlue,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
+                                        ), // Elemen kedua
+
+                                        // Elemen ketiga
                                       ],
                                     ),
-                                  ),
                                   const SizedBox(height: 10),
                                   GestureDetector(
                                     onTap: () {
