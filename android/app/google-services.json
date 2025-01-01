@@ -13,7 +13,20 @@
           "package_name": "com.example.flutter_sunmate"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "514086238242-cc5nobdhl1uqfq95chj16e78nea3rabb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_sunmate",
+            "certificate_hash": "c8b94311071e6a1c627bf77e99c1a4018b9b121d"
+          }
+        },
+        {
+          "client_id": "514086238242-ve8nku5hps1jsabafd8hfu0ugsb7afb7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC12zNLP0hReNsJlx1kFgnjzQ2c-pQqlqY"
@@ -21,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514086238242-ve8nku5hps1jsabafd8hfu0ugsb7afb7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

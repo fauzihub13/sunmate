@@ -1,47 +1,87 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
 
 class GoogleAuthService {
+  // Initialize GoogleSignIn with requestEmail and requestProfile
   final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: [
+    scopes: <String>[
       'email',
-      'https://www.googleapis.com/auth/userinfo.profile',
+      'profile',
     ],
   );
 
   Future<Either<String, AuthResponseModel>> loginWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleSignInAccount =
-          await _googleSignIn.signIn();
-      if (googleSignInAccount != null) {
-        final GoogleSignInAuthentication googleSignInAuthentication =
-            await googleSignInAccount.authentication;
-
-        if (googleSignInAuthentication.idToken != null) {
-          return Left(" BERHASIL ${googleSignInAuthentication.idToken!}");
-        } else {
-          // ID token is null, handle this case appropriately
-          return Left(" GAGAL ");
-        }
+      final googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        return const Left('Failed to sign in by Google, no user');
       }
-      return Left(" ADA ISI ");
-    } catch (error) {
-      return Left("$error}");
+
+      final googleAuth = await googleUser.authentication;
+      if (googleAuth.idToken == null) {
+        return const Left(
+            'Failed to retrieve ID token. Scopes might be missing.');
+      }
+
+      // *** SIMPAN USER KE FIREBASE AUTH DI SINI ***
+      try {
+        final credential = GoogleAuthProvider.credential(
+            idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+        await FirebaseAuth.instance.signInWithCredential(credential);
+      } on FirebaseAuthException catch (firebaseAuthError) {
+        print('Firebase Auth Error: ${firebaseAuthError.message}');
+        return Left(
+            'Firebase Authentication failed: ${firebaseAuthError.message}');
+      }
+      // *** SELESAI SIMPAN KE FIREBASE AUTH ***
+
+      // Mendapatkan ID Token *setelah* sign in ke Firebase Auth
+      final idToken = await FirebaseAuth.instance.currentUser?.getIdToken();
+      if (idToken == null) {
+        return const Left('Failed to retrieve ID token from Firebase Auth.');
+      }
+
+      print('TOKEN AUTH FIREBASE-> $idToken');
+      print('TOKEN GOOGLE-> ${googleAuth.idToken}');
+
+      final url = Uri.parse('${Variables.apiUrl}/auth/google');
+
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode({'id_token': idToken}),
+      );
+      // final url = Uri.parse('${Variables.apiUrl}/auth/google');
+
+      // final response = await http.post(
+      //   url,headers: {
+      //     'Accept': 'application/json',
+      //   },
+      //   body: {'id_token': googleAuth.idToken},
+      // );
+
+      if (response.statusCode == 200) {
+        print('SUKSESSS-> ${response.body}');
+
+        final authResponseModel = AuthResponseModel.fromJson(response.body);
+
+        return Right(authResponseModel);
+      } else {
+        print('ERRORRR-> ${response.statusCode}, ISINYA->  ${response.body}, ');
+        return const Left('Failed to sign in by Google.');
+      }
+    } catch (e) {
+      print('Error during Google Sign-In: $e');
+      return Left('An error occurred during Google Sign-In: $e');
     }
-    // final googleUser = await _googleSignIn.signIn();
-    // if (googleUser == null) {
-    //   return const Left('Failed to sign in by Google');
-    // }
-
-    // final googleAuth = await googleUser.authentication;
-    // print('Access Token: ${googleAuth.accessToken}');
-    // print('ID Token: ${googleAuth.idToken}');
-
-    // if (googleAuth.idToken == null) {
-    //   return const Left('Failed to retrieve ID token');
-    // }
-
-    // return Left(" BERHASIL ${googleAuth.idToken!}");
   }
 }
