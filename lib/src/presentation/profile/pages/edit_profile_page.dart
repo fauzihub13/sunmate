@@ -38,7 +38,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     context.read<UserDataBloc>().add(const UserDataEvent.getUserData());
     await _loadAuthData();
     nameController.text = user!.name!;
-    phoneNumberController.text = user!.phoneNumber!;
+    phoneNumberController.text = user!.phoneNumber?? '';
     emailController.text = user!.email!;
   }
 

@@ -13,8 +13,9 @@ class GoogleAuthBloc extends Bloc<GoogleAuthEvent, GoogleAuthState> {
     on<_SignIn>((event, emit) async {
       emit(const _Loading());
       final result = await googleAuthService.loginWithGoogle();
-      result.fold(
-          (error) => emit(_Error(error)), (success) => emit(_Success(success)));
+      result.fold((error) => emit(_Error(error)), (success) {
+        emit(_Success(success));
+      });
     });
   }
 }

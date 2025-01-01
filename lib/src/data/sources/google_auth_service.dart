@@ -1,14 +1,12 @@
 import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
 class GoogleAuthService {
-  // Initialize GoogleSignIn with requestEmail and requestProfile
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: <String>[
       'email',
@@ -24,31 +22,11 @@ class GoogleAuthService {
       }
 
       final googleAuth = await googleUser.authentication;
+
       if (googleAuth.idToken == null) {
         return const Left(
             'Failed to retrieve ID token. Scopes might be missing.');
       }
-
-      // *** SIMPAN USER KE FIREBASE AUTH DI SINI ***
-      try {
-        final credential = GoogleAuthProvider.credential(
-            idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
-        await FirebaseAuth.instance.signInWithCredential(credential);
-      } on FirebaseAuthException catch (firebaseAuthError) {
-        print('Firebase Auth Error: ${firebaseAuthError.message}');
-        return Left(
-            'Firebase Authentication failed: ${firebaseAuthError.message}');
-      }
-      // *** SELESAI SIMPAN KE FIREBASE AUTH ***
-
-      // Mendapatkan ID Token *setelah* sign in ke Firebase Auth
-      final idToken = await FirebaseAuth.instance.currentUser?.getIdToken();
-      if (idToken == null) {
-        return const Left('Failed to retrieve ID token from Firebase Auth.');
-      }
-
-      print('TOKEN AUTH FIREBASE-> $idToken');
-      print('TOKEN GOOGLE-> ${googleAuth.idToken}');
 
       final url = Uri.parse('${Variables.apiUrl}/auth/google');
 
@@ -58,29 +36,16 @@ class GoogleAuthService {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: jsonEncode({'id_token': idToken}),
+        body: jsonEncode({'id_token': googleAuth.idToken}),
       );
-      // final url = Uri.parse('${Variables.apiUrl}/auth/google');
-
-      // final response = await http.post(
-      //   url,headers: {
-      //     'Accept': 'application/json',
-      //   },
-      //   body: {'id_token': googleAuth.idToken},
-      // );
 
       if (response.statusCode == 200) {
-        print('SUKSESSS-> ${response.body}');
-
-        final authResponseModel = AuthResponseModel.fromJson(response.body);
-
-        return Right(authResponseModel);
+        return Right(AuthResponseModel.fromJson(response.body));
       } else {
-        print('ERRORRR-> ${response.statusCode}, ISINYA->  ${response.body}, ');
-        return const Left('Failed to sign in by Google.');
+        return Left(
+            'Failed to sign in by Google. Status Code: ${response.statusCode}');
       }
     } catch (e) {
-      print('Error during Google Sign-In: $e');
       return Left('An error occurred during Google Sign-In: $e');
     }
   }
