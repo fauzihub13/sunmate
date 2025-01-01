@@ -3,7 +3,8 @@ import 'package:flutter_sunmate/src/core/constants/colors.dart';
 
 class MainAppBar extends StatefulWidget {
   final String userName;
-  const MainAppBar({super.key, required this.userName});
+  final dynamic avatar;
+  const MainAppBar({super.key, required this.userName, required this.avatar});
 
   @override
   State<MainAppBar> createState() => _MainAppBarState();
@@ -25,11 +26,14 @@ class _MainAppBarState extends State<MainAppBar> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CircleAvatar(
+              CircleAvatar(
                 backgroundColor: AppColors.primary,
                 radius: 26.0,
-                backgroundImage:
-                    AssetImage('assets/images/avatar-place-holder.png'),
+                backgroundImage: widget.avatar != null &&
+                        widget.avatar!.isNotEmpty
+                    ? NetworkImage(widget.avatar!)
+                    : const AssetImage('assets/images/avatar-place-holder.png')
+                        as ImageProvider,
               ),
               const SizedBox(width: 12.0),
               Expanded(

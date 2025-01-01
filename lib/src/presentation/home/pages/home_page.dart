@@ -109,12 +109,14 @@ class _HomePageState extends State<HomePage> {
                   return state.maybeWhen(
                     orElse: () {
                       return MainAppBar(
+                        avatar: null,
                         userName: user?.name ?? 'Loading...',
                       );
                     },
                     successGetUserData: (userData) {
                       AuthLocalDatasources().updateUserData(userData);
                       return MainAppBar(
+                        avatar: userData.avatar!,
                         userName: userData.name!,
                       );
                     },
