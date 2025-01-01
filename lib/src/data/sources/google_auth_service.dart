@@ -42,7 +42,6 @@ class GoogleAuthService {
       if (response.statusCode == 200) {
         return Right(AuthResponseModel.fromJson(response.body));
       } else {
-        print('Failed to sign in by Google. Response body: ${response.body}');
         return Left(
             'Failed to sign in by Google. Status Code: ${response.statusCode}');
       }

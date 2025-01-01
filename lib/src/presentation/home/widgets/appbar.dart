@@ -26,8 +26,10 @@ class _MainAppBarState extends State<MainAppBar> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const CircleAvatar(
+                backgroundColor: AppColors.primary,
                 radius: 26.0,
-                backgroundImage: AssetImage('assets/images/avatar.jpg'),
+                backgroundImage:
+                    AssetImage('assets/images/avatar-place-holder.png'),
               ),
               const SizedBox(width: 12.0),
               Expanded(

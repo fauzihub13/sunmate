@@ -30,11 +30,17 @@ class _OnboardingPageState extends State<OnboardingPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return const LoginPage();
-                        }));
+                      onPressed: () async {
+                        final press = await SharedPreferences.getInstance();
+                        press.setBool('onboarding', true);
+                        final currentContext = context;
+                        if (currentContext.mounted) {
+                          // print('Status onboarding: ${press.getBool('onboarding')}');
+                          Navigator.push(currentContext,
+                              MaterialPageRoute(builder: (context) {
+                            return const LoginPage();
+                          }));
+                        }
                       },
                       child: const Text(
                         'Lewati',

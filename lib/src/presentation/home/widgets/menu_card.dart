@@ -21,8 +21,8 @@ class MenuCard extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: 70,
-            height: 70,
+            width: 60,
+            height: 60,
             decoration: BoxDecoration(
               color: AppColors.lightBlue,
               borderRadius: BorderRadius.circular(10),

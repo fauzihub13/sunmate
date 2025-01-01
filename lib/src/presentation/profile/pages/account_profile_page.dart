@@ -375,9 +375,12 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                     decoration: BoxDecoration(
                       border: Border.all(color: AppColors.white, width: 2),
                       borderRadius: BorderRadius.circular(16),
-                      image: const DecorationImage(
-                        image: AssetImage('assets/images/avatar.jpg'),
-                        fit: BoxFit.cover,
+                      image: DecorationImage(
+                        image: user?.avatar != null && user!.avatar!.isNotEmpty
+                            ? NetworkImage(user!.avatar!)
+                            : const AssetImage('assets/images/avatar-place-holder.png')
+                                as ImageProvider,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ),

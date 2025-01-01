@@ -38,7 +38,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     context.read<UserDataBloc>().add(const UserDataEvent.getUserData());
     await _loadAuthData();
     nameController.text = user!.name!;
-    phoneNumberController.text = user!.phoneNumber?? '';
+    phoneNumberController.text = user!.phoneNumber ?? '';
     emailController.text = user!.email!;
   }
 
@@ -77,9 +77,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       decoration: BoxDecoration(
                         border: Border.all(color: AppColors.white, width: 2),
                         borderRadius: BorderRadius.circular(16),
-                        image: const DecorationImage(
-                          image: AssetImage('assets/images/avatar.jpg'),
-                          fit: BoxFit.cover,
+                        image: DecorationImage(
+                          image:
+                              user?.avatar != null && user!.avatar!.isNotEmpty
+                                  ? NetworkImage(user!.avatar!)
+                                  : const AssetImage('assets/images/avatar-place-holder.png')
+                                      as ImageProvider,
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
