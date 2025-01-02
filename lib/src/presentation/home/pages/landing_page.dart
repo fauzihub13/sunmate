@@ -4,6 +4,7 @@ import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dar
 import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
 import 'package:flutter_sunmate/src/presentation/profile/pages/account_profile_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history.dart';
+import 'package:flutter_sunmate/src/presentation/sunloc/pages/sunloc_page.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class LandingPage extends StatefulWidget {
@@ -27,6 +28,14 @@ class _LandingPageState extends State<LandingPage> {
       backgroundColor: AppColors.lightBlue,
     ),
     const GButton(
+      icon: Icons.location_on,
+      iconColor: AppColors.disabled,
+      iconActiveColor: AppColors.primary,
+      text: 'SunLoc',
+      textColor: AppColors.primary,
+      backgroundColor: AppColors.lightBlue,
+    ),
+    const GButton(
       icon: Icons.history,
       iconColor: AppColors.disabled,
       iconActiveColor: AppColors.primary,
@@ -46,6 +55,7 @@ class _LandingPageState extends State<LandingPage> {
 
   final List<Widget> _pages = [
     const HomePage(),
+    const SunlocPage(),
     const VendorBookingHistory(),
     const AccountProfilePage(),
   ];

@@ -206,16 +206,7 @@ class _HomePageState extends State<HomePage> {
                               title: 'SunTalk',
                               iconSize: 34,
                               iconUrl: 'assets/icons/chat.svg'),
-                          MenuCard(
-                              onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return const SunlocPage();
-                                }));
-                              },
-                              title: 'SunLoc',
-                              iconSize: 34,
-                              iconUrl: 'assets/icons/location.svg'),
+                          
                         ],
                       ),
                     ),
