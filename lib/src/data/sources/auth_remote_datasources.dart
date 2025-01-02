@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
@@ -144,6 +145,44 @@ class AuthRemoteDatasources {
       return Left(errorMessages);
     } else {
       return const Left('Failed to update user data.');
+    }
+  }
+
+  Future<Either<String, AuthResponseModel>> updateUserProfilePhoto(
+      Uint8List bytes) async {
+    final url = Uri.parse('${Variables.apiUrl}/user/data/image');
+    final authData = await AuthLocalDatasources().getAuthData();
+
+    var request = http.MultipartRequest('POST', url);
+
+    request.headers.addAll({
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    });
+
+    var myFile = http.MultipartFile.fromBytes(
+      'image',
+      bytes,
+      filename: 'image.png',
+    );
+
+    request.files.add(myFile);
+
+    final rawResponse = await request.send();
+    var response = await http.Response.fromStream(rawResponse);
+
+    if (response.statusCode == 200) {
+      return Right(AuthResponseModel.fromJson(response.body));
+    } else if (response.statusCode == 401) {
+      return const Left('logged_out');
+    } else if (response.statusCode == 422) {
+      final jsonResponse = jsonDecode(response.body);
+      final errors = jsonResponse['errors'] as Map<String, dynamic>;
+      final errorMessages =
+          errors.entries.map((entry) => '${entry.value.join(", ")}').join("\n");
+      return Left(errorMessages);
+    } else {
+      return Left('Failed to update user data. ${response.body}');
     }
   }
 }

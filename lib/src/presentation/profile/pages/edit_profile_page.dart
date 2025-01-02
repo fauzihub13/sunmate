@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dar
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/user_data/user_data_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -53,6 +56,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
     });
   }
 
+  Future<void> pickAndUploadImage(BuildContext context) async {
+    final ImagePicker imagePicker = ImagePicker();
+    final XFile? image =
+        await imagePicker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      Uint8List bytes = await image.readAsBytes();
+
+      if (bytes.isNotEmpty) {
+        try {
+          debugPrint('Gambar ada yang dipilih');
+          if (context.mounted) {
+            context
+                .read<UserDataBloc>()
+                .add(UserDataEvent.updateUserProfilePhoto(bytes: bytes));
+          }
+        } catch (e) {
+          debugPrint('Gagal pilih gambar: ${e.toString()}');
+        }
+      }
+    } else {
+      debugPrint('Tidak ada gambar yang dipilih');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,34 +105,138 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         border: Border.all(color: AppColors.white, width: 2),
                         borderRadius: BorderRadius.circular(16),
                         image: DecorationImage(
-                          image:
-                              user?.avatar != null && user!.avatar!.isNotEmpty
-                                  ? NetworkImage(user!.avatar!)
-                                  : const AssetImage('assets/images/avatar-place-holder.png')
-                                      as ImageProvider,
+                          image: user?.avatar != null &&
+                                  user!.avatar!.isNotEmpty
+                              ? NetworkImage(user!.avatar)
+                              : const AssetImage(
+                                      'assets/images/avatar-place-holder.png')
+                                  as ImageProvider,
                           fit: BoxFit.fill,
                         ),
                       ),
                     ),
                     const SizedBox(height: 16),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 4, horizontal: 10),
-                        decoration: BoxDecoration(
-                            color: AppColors.white,
-                            border:
-                                Border.all(width: 1, color: AppColors.darkBlue),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: const Text(
-                          'Ubah Foto',
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.darkBlue,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
+                    BlocConsumer<UserDataBloc, UserDataState>(
+                      listener: (context, state) {
+                        state.maybeWhen(
+                          orElse: () {},
+                          successUpdateUserProfilePhoto: (userData) {
+                            AuthLocalDatasources().updateUserData(userData);
+                            _refreshPage();
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text(
+                                    'Berhasil mengubah photo profile.',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor: AppColors.green,
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 10),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  duration: const Duration(seconds: 3),
+                                ),
+                              );
+                            }
+                          },
+                          error: (message) {
+                            if (message == 'logged_out') {
+                              AuthLocalDatasources().removeAuthData();
+
+                              // Schedule SnackBar display after current frame
+                              SchedulerBinding.instance
+                                  .addPostFrameCallback((_) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Text(
+                                      'Silahkan login kembali.',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    backgroundColor: AppColors.red,
+                                    behavior: SnackBarBehavior.floating,
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 10),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    duration: const Duration(seconds: 3),
+                                  ),
+                                );
+
+                                // Navigate to LoginPage after the SnackBar
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const LoginPage()),
+                                  (route) => false,
+                                );
+                              });
+                            } else if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    message,
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                  backgroundColor: AppColors.red,
+                                  behavior: SnackBarBehavior.floating,
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 10),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  duration: const Duration(seconds: 3),
+                                ),
+                              );
+                            }
+                          },
+                        );
+                      },
+                      builder: (context, state) {
+                        return state.maybeWhen(orElse: () {
+                          return GestureDetector(
+                            onTap: () {
+                              pickAndUploadImage(context);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 4, horizontal: 10),
+                              decoration: BoxDecoration(
+                                  color: AppColors.white,
+                                  border: Border.all(
+                                      width: 1, color: AppColors.darkBlue),
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: const Text(
+                                'Ubah Foto',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color: AppColors.darkBlue,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                          );
+                        }, loading: () {
+                          return Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 10),
+                            decoration: BoxDecoration(
+                                color: AppColors.white,
+                                border: Border.all(
+                                    width: 1, color: AppColors.darkBlue),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: const Text(
+                              'Memproses..',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColors.darkBlue,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          );
+                        });
+                      },
                     ),
                     const SizedBox(height: 8),
                     const Align(

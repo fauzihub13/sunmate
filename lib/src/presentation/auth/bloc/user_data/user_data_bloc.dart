@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
@@ -32,6 +34,13 @@ class UserDataBloc extends Bloc<UserDataEvent, UserDataState> {
           event.name, event.phoneNumber, event.email);
       result.fold((error) => emit(_Error(error)),
           (value) => emit(_SuccessUpdateUserData(value.user!)));
+    });
+
+    on<_UpdateUserProfilePhoto>((event, emit) async {
+      emit(const _Loading());
+      final result = await authRemoteDatasources.updateUserProfilePhoto(event.bytes);
+      result.fold((error) => emit(_Error(error)),
+          (value) => emit(_SuccessUpdateUserProfilePhoto(value.user!)));
     });
   }
 }

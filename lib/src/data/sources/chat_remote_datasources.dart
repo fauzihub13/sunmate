@@ -31,8 +31,6 @@ class ChatRemoteDatasources {
     }
   }
 
-//  Future<Either>
-
   Future<String?> uploadImage(Uint8List bytes) async {
     final url = Uri.parse('${Variables.apiUrl}/chats/image');
     final authData = await AuthLocalDatasources().getAuthData();
@@ -44,38 +42,30 @@ class ChatRemoteDatasources {
       'Accept': 'application/json',
     });
 
-    // Menambahkan file ke request body
     var myFile = http.MultipartFile.fromBytes(
       'image',
       bytes,
       filename: 'image.png',
     );
 
-    // Menambahkan file ke request
     request.files.add(myFile);
 
     try {
-      // Menunggu respons dari server
       final response = await request.send();
+      final responseBody = await response.stream.bytesToString();
 
       if (response.statusCode == 201) {
-        // Menunggu stream response dan mengembalikan body-nya
-        final responseBody = await response.stream.bytesToString();
-
         var decodedResponse = json.decode(responseBody);
         String? location = decodedResponse['location'];
         debugPrint('File uploaded to: $location');
-        return '${Variables.baseUrl}/$location'; 
-
+        return '${Variables.baseUrl}/$location';
       } else {
-        // Jika status code bukan 201, tampilkan error
-        final responseBody = await response.stream.bytesToString();
         debugPrint('Error Body: $responseBody');
       }
     } catch (e) {
       debugPrint('Error sending request: $e');
     }
 
-    return null; // Kembalikan null jika gagal
+    return null;
   }
 }

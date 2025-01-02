@@ -25,6 +25,7 @@ mixin _$UserDataEvent {
     required TResult Function(
             String oldPassword, String password, String passwordConfirmation)
         updateUserPassword,
+    required TResult Function(Uint8List bytes) updateUserProfilePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -36,6 +37,7 @@ mixin _$UserDataEvent {
     TResult? Function(
             String oldPassword, String password, String passwordConfirmation)?
         updateUserPassword,
+    TResult? Function(Uint8List bytes)? updateUserProfilePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,6 +49,7 @@ mixin _$UserDataEvent {
     TResult Function(
             String oldPassword, String password, String passwordConfirmation)?
         updateUserPassword,
+    TResult Function(Uint8List bytes)? updateUserProfilePhoto,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +59,8 @@ mixin _$UserDataEvent {
     required TResult Function(_GetUserData value) getUserData,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
+    required TResult Function(_UpdateUserProfilePhoto value)
+        updateUserProfilePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +69,7 @@ mixin _$UserDataEvent {
     TResult? Function(_GetUserData value)? getUserData,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,6 +78,7 @@ mixin _$UserDataEvent {
     TResult Function(_GetUserData value)? getUserData,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,6 +153,7 @@ class _$StartedImpl implements _Started {
     required TResult Function(
             String oldPassword, String password, String passwordConfirmation)
         updateUserPassword,
+    required TResult Function(Uint8List bytes) updateUserProfilePhoto,
   }) {
     return started();
   }
@@ -160,6 +168,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(
             String oldPassword, String password, String passwordConfirmation)?
         updateUserPassword,
+    TResult? Function(Uint8List bytes)? updateUserProfilePhoto,
   }) {
     return started?.call();
   }
@@ -174,6 +183,7 @@ class _$StartedImpl implements _Started {
     TResult Function(
             String oldPassword, String password, String passwordConfirmation)?
         updateUserPassword,
+    TResult Function(Uint8List bytes)? updateUserProfilePhoto,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -189,6 +199,8 @@ class _$StartedImpl implements _Started {
     required TResult Function(_GetUserData value) getUserData,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
+    required TResult Function(_UpdateUserProfilePhoto value)
+        updateUserProfilePhoto,
   }) {
     return started(this);
   }
@@ -200,6 +212,7 @@ class _$StartedImpl implements _Started {
     TResult? Function(_GetUserData value)? getUserData,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
   }) {
     return started?.call(this);
   }
@@ -211,6 +224,7 @@ class _$StartedImpl implements _Started {
     TResult Function(_GetUserData value)? getUserData,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -272,6 +286,7 @@ class _$GetUserDataImpl implements _GetUserData {
     required TResult Function(
             String oldPassword, String password, String passwordConfirmation)
         updateUserPassword,
+    required TResult Function(Uint8List bytes) updateUserProfilePhoto,
   }) {
     return getUserData();
   }
@@ -286,6 +301,7 @@ class _$GetUserDataImpl implements _GetUserData {
     TResult? Function(
             String oldPassword, String password, String passwordConfirmation)?
         updateUserPassword,
+    TResult? Function(Uint8List bytes)? updateUserProfilePhoto,
   }) {
     return getUserData?.call();
   }
@@ -300,6 +316,7 @@ class _$GetUserDataImpl implements _GetUserData {
     TResult Function(
             String oldPassword, String password, String passwordConfirmation)?
         updateUserPassword,
+    TResult Function(Uint8List bytes)? updateUserProfilePhoto,
     required TResult orElse(),
   }) {
     if (getUserData != null) {
@@ -315,6 +332,8 @@ class _$GetUserDataImpl implements _GetUserData {
     required TResult Function(_GetUserData value) getUserData,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
+    required TResult Function(_UpdateUserProfilePhoto value)
+        updateUserProfilePhoto,
   }) {
     return getUserData(this);
   }
@@ -326,6 +345,7 @@ class _$GetUserDataImpl implements _GetUserData {
     TResult? Function(_GetUserData value)? getUserData,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
   }) {
     return getUserData?.call(this);
   }
@@ -337,6 +357,7 @@ class _$GetUserDataImpl implements _GetUserData {
     TResult Function(_GetUserData value)? getUserData,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
     required TResult orElse(),
   }) {
     if (getUserData != null) {
@@ -444,6 +465,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
     required TResult Function(
             String oldPassword, String password, String passwordConfirmation)
         updateUserPassword,
+    required TResult Function(Uint8List bytes) updateUserProfilePhoto,
   }) {
     return updateUserData(name, phoneNumber, email);
   }
@@ -458,6 +480,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
     TResult? Function(
             String oldPassword, String password, String passwordConfirmation)?
         updateUserPassword,
+    TResult? Function(Uint8List bytes)? updateUserProfilePhoto,
   }) {
     return updateUserData?.call(name, phoneNumber, email);
   }
@@ -472,6 +495,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
     TResult Function(
             String oldPassword, String password, String passwordConfirmation)?
         updateUserPassword,
+    TResult Function(Uint8List bytes)? updateUserProfilePhoto,
     required TResult orElse(),
   }) {
     if (updateUserData != null) {
@@ -487,6 +511,8 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
     required TResult Function(_GetUserData value) getUserData,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
+    required TResult Function(_UpdateUserProfilePhoto value)
+        updateUserProfilePhoto,
   }) {
     return updateUserData(this);
   }
@@ -498,6 +524,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
     TResult? Function(_GetUserData value)? getUserData,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
   }) {
     return updateUserData?.call(this);
   }
@@ -509,6 +536,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
     TResult Function(_GetUserData value)? getUserData,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
     required TResult orElse(),
   }) {
     if (updateUserData != null) {
@@ -634,6 +662,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
     required TResult Function(
             String oldPassword, String password, String passwordConfirmation)
         updateUserPassword,
+    required TResult Function(Uint8List bytes) updateUserProfilePhoto,
   }) {
     return updateUserPassword(oldPassword, password, passwordConfirmation);
   }
@@ -648,6 +677,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
     TResult? Function(
             String oldPassword, String password, String passwordConfirmation)?
         updateUserPassword,
+    TResult? Function(Uint8List bytes)? updateUserProfilePhoto,
   }) {
     return updateUserPassword?.call(
         oldPassword, password, passwordConfirmation);
@@ -663,6 +693,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
     TResult Function(
             String oldPassword, String password, String passwordConfirmation)?
         updateUserPassword,
+    TResult Function(Uint8List bytes)? updateUserProfilePhoto,
     required TResult orElse(),
   }) {
     if (updateUserPassword != null) {
@@ -678,6 +709,8 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
     required TResult Function(_GetUserData value) getUserData,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
+    required TResult Function(_UpdateUserProfilePhoto value)
+        updateUserProfilePhoto,
   }) {
     return updateUserPassword(this);
   }
@@ -689,6 +722,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
     TResult? Function(_GetUserData value)? getUserData,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
   }) {
     return updateUserPassword?.call(this);
   }
@@ -700,6 +734,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
     TResult Function(_GetUserData value)? getUserData,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
     required TResult orElse(),
   }) {
     if (updateUserPassword != null) {
@@ -727,6 +762,179 @@ abstract class _UpdateUserPassword implements UserDataEvent {
 }
 
 /// @nodoc
+abstract class _$$UpdateUserProfilePhotoImplCopyWith<$Res> {
+  factory _$$UpdateUserProfilePhotoImplCopyWith(
+          _$UpdateUserProfilePhotoImpl value,
+          $Res Function(_$UpdateUserProfilePhotoImpl) then) =
+      __$$UpdateUserProfilePhotoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Uint8List bytes});
+}
+
+/// @nodoc
+class __$$UpdateUserProfilePhotoImplCopyWithImpl<$Res>
+    extends _$UserDataEventCopyWithImpl<$Res, _$UpdateUserProfilePhotoImpl>
+    implements _$$UpdateUserProfilePhotoImplCopyWith<$Res> {
+  __$$UpdateUserProfilePhotoImplCopyWithImpl(
+      _$UpdateUserProfilePhotoImpl _value,
+      $Res Function(_$UpdateUserProfilePhotoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserDataEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bytes = null,
+  }) {
+    return _then(_$UpdateUserProfilePhotoImpl(
+      bytes: null == bytes
+          ? _value.bytes
+          : bytes // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateUserProfilePhotoImpl implements _UpdateUserProfilePhoto {
+  const _$UpdateUserProfilePhotoImpl({required this.bytes});
+
+  @override
+  final Uint8List bytes;
+
+  @override
+  String toString() {
+    return 'UserDataEvent.updateUserProfilePhoto(bytes: $bytes)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateUserProfilePhotoImpl &&
+            const DeepCollectionEquality().equals(other.bytes, bytes));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(bytes));
+
+  /// Create a copy of UserDataEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateUserProfilePhotoImplCopyWith<_$UpdateUserProfilePhotoImpl>
+      get copyWith => __$$UpdateUserProfilePhotoImplCopyWithImpl<
+          _$UpdateUserProfilePhotoImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getUserData,
+    required TResult Function(String name, String phoneNumber, String email)
+        updateUserData,
+    required TResult Function(
+            String oldPassword, String password, String passwordConfirmation)
+        updateUserPassword,
+    required TResult Function(Uint8List bytes) updateUserProfilePhoto,
+  }) {
+    return updateUserProfilePhoto(bytes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getUserData,
+    TResult? Function(String name, String phoneNumber, String email)?
+        updateUserData,
+    TResult? Function(
+            String oldPassword, String password, String passwordConfirmation)?
+        updateUserPassword,
+    TResult? Function(Uint8List bytes)? updateUserProfilePhoto,
+  }) {
+    return updateUserProfilePhoto?.call(bytes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getUserData,
+    TResult Function(String name, String phoneNumber, String email)?
+        updateUserData,
+    TResult Function(
+            String oldPassword, String password, String passwordConfirmation)?
+        updateUserPassword,
+    TResult Function(Uint8List bytes)? updateUserProfilePhoto,
+    required TResult orElse(),
+  }) {
+    if (updateUserProfilePhoto != null) {
+      return updateUserProfilePhoto(bytes);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_UpdateUserData value) updateUserData,
+    required TResult Function(_UpdateUserPassword value) updateUserPassword,
+    required TResult Function(_UpdateUserProfilePhoto value)
+        updateUserProfilePhoto,
+  }) {
+    return updateUserProfilePhoto(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_UpdateUserData value)? updateUserData,
+    TResult? Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
+  }) {
+    return updateUserProfilePhoto?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_UpdateUserData value)? updateUserData,
+    TResult Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
+    required TResult orElse(),
+  }) {
+    if (updateUserProfilePhoto != null) {
+      return updateUserProfilePhoto(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateUserProfilePhoto implements UserDataEvent {
+  const factory _UpdateUserProfilePhoto({required final Uint8List bytes}) =
+      _$UpdateUserProfilePhotoImpl;
+
+  Uint8List get bytes;
+
+  /// Create a copy of UserDataEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateUserProfilePhotoImplCopyWith<_$UpdateUserProfilePhotoImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$UserDataState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -735,6 +943,7 @@ mixin _$UserDataState {
     required TResult Function(User user) successGetUserData,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
+    required TResult Function(User user) successUpdateUserProfilePhoto,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -745,6 +954,7 @@ mixin _$UserDataState {
     TResult? Function(User user)? successGetUserData,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
+    TResult? Function(User user)? successUpdateUserProfilePhoto,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -755,6 +965,7 @@ mixin _$UserDataState {
     TResult Function(User user)? successGetUserData,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
+    TResult Function(User user)? successUpdateUserProfilePhoto,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -768,6 +979,8 @@ mixin _$UserDataState {
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
         successUpdateUserPassword,
+    required TResult Function(_SuccessUpdateUserProfilePhoto value)
+        successUpdateUserProfilePhoto,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -779,6 +992,8 @@ mixin _$UserDataState {
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult? Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -790,6 +1005,8 @@ mixin _$UserDataState {
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -863,6 +1080,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(User user) successGetUserData,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
+    required TResult Function(User user) successUpdateUserProfilePhoto,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -876,6 +1094,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(User user)? successGetUserData,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
+    TResult? Function(User user)? successUpdateUserProfilePhoto,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -889,6 +1108,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(User user)? successGetUserData,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
+    TResult Function(User user)? successUpdateUserProfilePhoto,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -908,6 +1128,8 @@ class _$InitialImpl implements _Initial {
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
         successUpdateUserPassword,
+    required TResult Function(_SuccessUpdateUserProfilePhoto value)
+        successUpdateUserProfilePhoto,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -922,6 +1144,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult? Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -936,6 +1160,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -996,6 +1222,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(User user) successGetUserData,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
+    required TResult Function(User user) successUpdateUserProfilePhoto,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -1009,6 +1236,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(User user)? successGetUserData,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
+    TResult? Function(User user)? successUpdateUserProfilePhoto,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -1022,6 +1250,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(User user)? successGetUserData,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
+    TResult Function(User user)? successUpdateUserProfilePhoto,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1041,6 +1270,8 @@ class _$LoadingImpl implements _Loading {
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
         successUpdateUserPassword,
+    required TResult Function(_SuccessUpdateUserProfilePhoto value)
+        successUpdateUserProfilePhoto,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -1055,6 +1286,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult? Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -1069,6 +1302,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1157,6 +1392,7 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     required TResult Function(User user) successGetUserData,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
+    required TResult Function(User user) successUpdateUserProfilePhoto,
     required TResult Function(String message) error,
   }) {
     return successGetUserData(user);
@@ -1170,6 +1406,7 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     TResult? Function(User user)? successGetUserData,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
+    TResult? Function(User user)? successUpdateUserProfilePhoto,
     TResult? Function(String message)? error,
   }) {
     return successGetUserData?.call(user);
@@ -1183,6 +1420,7 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     TResult Function(User user)? successGetUserData,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
+    TResult Function(User user)? successUpdateUserProfilePhoto,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1202,6 +1440,8 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
         successUpdateUserPassword,
+    required TResult Function(_SuccessUpdateUserProfilePhoto value)
+        successUpdateUserProfilePhoto,
     required TResult Function(_Error value) error,
   }) {
     return successGetUserData(this);
@@ -1216,6 +1456,8 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult? Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult? Function(_Error value)? error,
   }) {
     return successGetUserData?.call(this);
@@ -1230,6 +1472,8 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1327,6 +1571,7 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     required TResult Function(User user) successGetUserData,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
+    required TResult Function(User user) successUpdateUserProfilePhoto,
     required TResult Function(String message) error,
   }) {
     return successUpdateUserData(user);
@@ -1340,6 +1585,7 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     TResult? Function(User user)? successGetUserData,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
+    TResult? Function(User user)? successUpdateUserProfilePhoto,
     TResult? Function(String message)? error,
   }) {
     return successUpdateUserData?.call(user);
@@ -1353,6 +1599,7 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     TResult Function(User user)? successGetUserData,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
+    TResult Function(User user)? successUpdateUserProfilePhoto,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1372,6 +1619,8 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
         successUpdateUserPassword,
+    required TResult Function(_SuccessUpdateUserProfilePhoto value)
+        successUpdateUserProfilePhoto,
     required TResult Function(_Error value) error,
   }) {
     return successUpdateUserData(this);
@@ -1386,6 +1635,8 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult? Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult? Function(_Error value)? error,
   }) {
     return successUpdateUserData?.call(this);
@@ -1400,6 +1651,8 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1472,6 +1725,7 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     required TResult Function(User user) successGetUserData,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
+    required TResult Function(User user) successUpdateUserProfilePhoto,
     required TResult Function(String message) error,
   }) {
     return successUpdateUserPassword();
@@ -1485,6 +1739,7 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     TResult? Function(User user)? successGetUserData,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
+    TResult? Function(User user)? successUpdateUserProfilePhoto,
     TResult? Function(String message)? error,
   }) {
     return successUpdateUserPassword?.call();
@@ -1498,6 +1753,7 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     TResult Function(User user)? successGetUserData,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
+    TResult Function(User user)? successUpdateUserProfilePhoto,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1517,6 +1773,8 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
         successUpdateUserPassword,
+    required TResult Function(_SuccessUpdateUserProfilePhoto value)
+        successUpdateUserProfilePhoto,
     required TResult Function(_Error value) error,
   }) {
     return successUpdateUserPassword(this);
@@ -1531,6 +1789,8 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult? Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult? Function(_Error value)? error,
   }) {
     return successUpdateUserPassword?.call(this);
@@ -1545,6 +1805,8 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1557,6 +1819,191 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
 
 abstract class _SuccessUpdateUserPassword implements UserDataState {
   const factory _SuccessUpdateUserPassword() = _$SuccessUpdateUserPasswordImpl;
+}
+
+/// @nodoc
+abstract class _$$SuccessUpdateUserProfilePhotoImplCopyWith<$Res> {
+  factory _$$SuccessUpdateUserProfilePhotoImplCopyWith(
+          _$SuccessUpdateUserProfilePhotoImpl value,
+          $Res Function(_$SuccessUpdateUserProfilePhotoImpl) then) =
+      __$$SuccessUpdateUserProfilePhotoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({User user});
+}
+
+/// @nodoc
+class __$$SuccessUpdateUserProfilePhotoImplCopyWithImpl<$Res>
+    extends _$UserDataStateCopyWithImpl<$Res,
+        _$SuccessUpdateUserProfilePhotoImpl>
+    implements _$$SuccessUpdateUserProfilePhotoImplCopyWith<$Res> {
+  __$$SuccessUpdateUserProfilePhotoImplCopyWithImpl(
+      _$SuccessUpdateUserProfilePhotoImpl _value,
+      $Res Function(_$SuccessUpdateUserProfilePhotoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserDataState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$SuccessUpdateUserProfilePhotoImpl(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SuccessUpdateUserProfilePhotoImpl
+    implements _SuccessUpdateUserProfilePhoto {
+  const _$SuccessUpdateUserProfilePhotoImpl(this.user);
+
+  @override
+  final User user;
+
+  @override
+  String toString() {
+    return 'UserDataState.successUpdateUserProfilePhoto(user: $user)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessUpdateUserProfilePhotoImpl &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of UserDataState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessUpdateUserProfilePhotoImplCopyWith<
+          _$SuccessUpdateUserProfilePhotoImpl>
+      get copyWith => __$$SuccessUpdateUserProfilePhotoImplCopyWithImpl<
+          _$SuccessUpdateUserProfilePhotoImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(User user) successGetUserData,
+    required TResult Function(User user) successUpdateUserData,
+    required TResult Function() successUpdateUserPassword,
+    required TResult Function(User user) successUpdateUserProfilePhoto,
+    required TResult Function(String message) error,
+  }) {
+    return successUpdateUserProfilePhoto(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(User user)? successGetUserData,
+    TResult? Function(User user)? successUpdateUserData,
+    TResult? Function()? successUpdateUserPassword,
+    TResult? Function(User user)? successUpdateUserProfilePhoto,
+    TResult? Function(String message)? error,
+  }) {
+    return successUpdateUserProfilePhoto?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User user)? successGetUserData,
+    TResult Function(User user)? successUpdateUserData,
+    TResult Function()? successUpdateUserPassword,
+    TResult Function(User user)? successUpdateUserProfilePhoto,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (successUpdateUserProfilePhoto != null) {
+      return successUpdateUserProfilePhoto(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessGetUserData value) successGetUserData,
+    required TResult Function(_SuccessUpdateUserData value)
+        successUpdateUserData,
+    required TResult Function(_SuccessUpdateUserPassword value)
+        successUpdateUserPassword,
+    required TResult Function(_SuccessUpdateUserProfilePhoto value)
+        successUpdateUserProfilePhoto,
+    required TResult Function(_Error value) error,
+  }) {
+    return successUpdateUserProfilePhoto(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessGetUserData value)? successGetUserData,
+    TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
+    TResult? Function(_SuccessUpdateUserPassword value)?
+        successUpdateUserPassword,
+    TResult? Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
+    TResult? Function(_Error value)? error,
+  }) {
+    return successUpdateUserProfilePhoto?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessGetUserData value)? successGetUserData,
+    TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
+    TResult Function(_SuccessUpdateUserPassword value)?
+        successUpdateUserPassword,
+    TResult Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (successUpdateUserProfilePhoto != null) {
+      return successUpdateUserProfilePhoto(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessUpdateUserProfilePhoto implements UserDataState {
+  const factory _SuccessUpdateUserProfilePhoto(final User user) =
+      _$SuccessUpdateUserProfilePhotoImpl;
+
+  User get user;
+
+  /// Create a copy of UserDataState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SuccessUpdateUserProfilePhotoImplCopyWith<
+          _$SuccessUpdateUserProfilePhotoImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1632,6 +2079,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(User user) successGetUserData,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
+    required TResult Function(User user) successUpdateUserProfilePhoto,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -1645,6 +2093,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(User user)? successGetUserData,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
+    TResult? Function(User user)? successUpdateUserProfilePhoto,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -1658,6 +2107,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(User user)? successGetUserData,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
+    TResult Function(User user)? successUpdateUserProfilePhoto,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1677,6 +2127,8 @@ class _$ErrorImpl implements _Error {
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
         successUpdateUserPassword,
+    required TResult Function(_SuccessUpdateUserProfilePhoto value)
+        successUpdateUserProfilePhoto,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -1691,6 +2143,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult? Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -1705,6 +2159,8 @@ class _$ErrorImpl implements _Error {
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
+    TResult Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
