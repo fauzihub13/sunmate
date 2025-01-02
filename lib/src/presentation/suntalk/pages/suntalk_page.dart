@@ -53,6 +53,47 @@ class _SunTalkPageState extends State<SuntalkPage> {
     }
   }
 
+  Future<void> pickAndUploadImage(BuildContext context) async {
+    final ImagePicker imagePicker = ImagePicker();
+    final XFile? image =
+        await imagePicker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      Uint8List bytes = await image.readAsBytes();
+
+      if (bytes.isNotEmpty) {
+        try {
+          String? imageUrl = await ChatRemoteDatasources().uploadImage(bytes);
+
+          if (imageUrl != null && imageUrl.isNotEmpty) {
+            await remoteDatasource.sendMessage(imageUrl,
+                userId: user!.id!, isImage: true);
+            _scrollToBottom();
+            if (context.mounted) {
+              showSunTalkSnackBar(context, "Gambar terkirim");
+            }
+          } else {
+            if (context.mounted) {
+              showSunTalkSnackBar(context, "Gagal mengirim gambar",
+                  backgroundColor: AppColors.darkRed);
+            }
+          }
+        } catch (e) {
+          if (context.mounted) {
+            showSunTalkSnackBar(context, "Gagal mengirim gambar",
+                backgroundColor: AppColors.darkRed);
+          }
+        }
+      } else {
+        if (context.mounted) {
+          showSunTalkSnackBar(context, "Gambar yang dipilih tidak sesuai",
+              backgroundColor: AppColors.darkRed);
+        }
+      }
+    } else {
+      debugPrint('Tidak ada gambar yang dipilih');
+    }
+  }
+
   @override
   void dispose() {
     chatController.dispose();
@@ -104,48 +145,7 @@ class _SunTalkPageState extends State<SuntalkPage> {
               children: [
                 GestureDetector(
                   onTap: () async {
-                    final ImagePicker imagePicker = ImagePicker();
-                    final XFile? image = await imagePicker.pickImage(
-                        source: ImageSource.gallery);
-                    if (image != null) {
-                      Uint8List bytes = await image.readAsBytes();
-
-                      if (bytes.isNotEmpty) {
-                        try {
-                          String? imageUrl =
-                              await ChatRemoteDatasources().uploadImage(bytes);
-
-                          if (imageUrl != null && imageUrl.isNotEmpty) {
-                            await remoteDatasource.sendMessage(imageUrl,
-                                userId: user!.id!, isImage: true);
-                            _scrollToBottom();
-                            if (context.mounted) {
-                              showSunTalkSnackBar(context, "Gambar terkirim");
-                            }
-                          } else {
-                            if (context.mounted) {
-                              showSunTalkSnackBar(
-                                  context, "Gagal mengirim gambar",
-                                  backgroundColor: AppColors.darkRed);
-                            }
-                          }
-                        } catch (e) {
-                          if (context.mounted) {
-                            showSunTalkSnackBar(
-                                context, "Gagal mengirim gambar",
-                                backgroundColor: AppColors.darkRed);
-                          }
-                        }
-                      } else {
-                        if (context.mounted) {
-                          showSunTalkSnackBar(
-                              context, "Gambar yang dipilih tidak sesuai",
-                              backgroundColor: AppColors.darkRed);
-                        }
-                      }
-                    } else {
-                      debugPrint('Tidak ada gambar yang dipilih');
-                    }
+                    pickAndUploadImage(context);
                   },
                   child: const Icon(
                     Icons.file_upload,

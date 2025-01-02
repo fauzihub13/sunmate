@@ -31,6 +31,8 @@ class ChatRemoteDatasources {
     }
   }
 
+//  Future<Either>
+
   Future<String?> uploadImage(Uint8List bytes) async {
     final url = Uri.parse('${Variables.apiUrl}/chats/image');
     final authData = await AuthLocalDatasources().getAuthData();
@@ -60,14 +62,11 @@ class ChatRemoteDatasources {
         // Menunggu stream response dan mengembalikan body-nya
         final responseBody = await response.stream.bytesToString();
 
-        try {
-          var decodedResponse = json.decode(responseBody);
-          String? location = decodedResponse['location'];
-          debugPrint('File uploaded to: $location');
-          return '${Variables.baseUrl}/$location'; // Mengembalikan URL gambar
-        } catch (e) {
-          debugPrint('Error parsing response JSON: $e');
-        }
+        var decodedResponse = json.decode(responseBody);
+        String? location = decodedResponse['location'];
+        debugPrint('File uploaded to: $location');
+        return '${Variables.baseUrl}/$location'; 
+
       } else {
         // Jika status code bukan 201, tampilkan error
         final responseBody = await response.stream.bytesToString();
