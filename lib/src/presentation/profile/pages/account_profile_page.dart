@@ -125,9 +125,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                   if (user?.googleId == null)
                                     Column(
                                       children: [
-                                        const SizedBox(
-                                            height: 10), // Elemen pertama
-
+                                        const SizedBox(height: 10),
                                         GestureDetector(
                                           onTap: () {
                                             Navigator.push(context,
@@ -152,36 +150,71 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                               ),
                                             ],
                                           ),
-                                        ), // Elemen kedua
-
-                                        // Elemen ketiga
+                                        ),
                                       ],
                                     ),
-                                  const SizedBox(height: 10),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return const VendorBookingHistory();
-                                      }));
-                                    },
-                                    child: const Row(
+                                  if (user?.role == 'vendor')
+                                    Column(
                                       children: [
-                                        Icon(
-                                          Icons.history,
-                                          color: AppColors.darkBlue,
-                                        ),
-                                        SizedBox(width: 8),
-                                        Text(
-                                          'Riwayat Booking Vendor',
-                                          style: TextStyle(
-                                            color: AppColors.darkBlue,
-                                            fontSize: 14,
+                                        const SizedBox(height: 10),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return const VendorBookingHistory();
+                                            }));
+                                          },
+                                          child: const Row(
+                                            children: [
+                                              Icon(
+                                                Icons.history,
+                                                color: AppColors.darkBlue,
+                                              ),
+                                              SizedBox(width: 8),
+                                              Text(
+                                                'Data Booking',
+                                                style: TextStyle(
+                                                  color: AppColors.darkBlue,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
+                                  if (user?.role == 'user')
+                                    Column(
+                                      children: [
+                                        const SizedBox(height: 10),
+                                        GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return const VendorBookingHistory();
+                                            }));
+                                          },
+                                          child: const Row(
+                                            children: [
+                                              Icon(
+                                                Icons.history,
+                                                color: AppColors.darkBlue,
+                                              ),
+                                              SizedBox(width: 8),
+                                              Text(
+                                                'Riwayat Booking Vendor',
+                                                style: TextStyle(
+                                                  color: AppColors.darkBlue,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                 ],
                               ),
                             ),
@@ -378,7 +411,8 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                       image: DecorationImage(
                         image: user?.avatar != null && user!.avatar!.isNotEmpty
                             ? NetworkImage(user!.avatar!)
-                            : const AssetImage('assets/images/avatar-place-holder.png')
+                            : const AssetImage(
+                                    'assets/images/avatar-place-holder.png')
                                 as ImageProvider,
                         fit: BoxFit.fill,
                       ),

@@ -210,31 +210,6 @@ class _MobileViewState extends State<MobileView> {
                                       color: AppColors.darkBlue),
                                 ),
                               ),
-                              // const SizedBox(
-                              //   height: 8.0,
-                              // ),
-                              // Row(
-                              //   crossAxisAlignment: CrossAxisAlignment.center,
-                              //   children: [
-                              //     const Icon(
-                              //       Icons.calendar_month,
-                              //       color: AppColors.grey,
-                              //       size: 24.0,
-                              //     ),
-                              //     const SizedBox(width: 8.0),
-                              //     Expanded(
-                              //       child: Text(
-                              //         DateFormat('dd MMMM yyyy')
-                              //             .format(singleHistory!.date!),
-                              //         style: const TextStyle(
-                              //           color: AppColors.grey,
-                              //           fontSize: 16,
-                              //           fontWeight: FontWeight.w400,
-                              //         ),
-                              //       ),
-                              //     ),
-                              //   ],
-                              // ),
                               const SizedBox(
                                 height: 16.0,
                               ),
@@ -425,12 +400,6 @@ class _MobileViewState extends State<MobileView> {
                             ],
                           ),
                         ),
-
-                        // Container(
-                        //   width: 100,
-                        //   height: 100,
-                        //   color: AppColors.darkBlue,
-                        // ),
                       ])
                     ],
                   ),
