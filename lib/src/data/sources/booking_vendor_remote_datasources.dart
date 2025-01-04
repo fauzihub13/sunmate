@@ -91,4 +91,27 @@ class BookingVendorRemoteDatasources {
       return const Left('Failed to get booking history.');
     }
   }
+
+  Future<Either<String, bool>> updateBookingHistoryStatus(
+      String vendorId, String bookingStatus) async {
+    final url = Uri.parse('${Variables.apiUrl}/vendors/booking/history/status');
+    final authData = await AuthLocalDatasources().getAuthData();
+    final response = await http.post(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    }, body: {
+      'vendor_id': vendorId,
+      'status': bookingStatus
+    });
+
+    if (response.statusCode == 200) {
+      return const Right(true);
+    } else if (response.statusCode == 404) {
+      return const Left('Vendor booking history not found.');
+    } else if (response.statusCode == 401) {
+      return const Left('logged_out');
+    } else {
+      return const Left('Failed to update booking history.');
+    }
+  }
 }

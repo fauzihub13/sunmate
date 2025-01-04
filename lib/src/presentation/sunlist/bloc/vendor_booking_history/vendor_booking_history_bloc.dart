@@ -31,5 +31,15 @@ class VendorBookingHistoryBloc
         emit(_Loaded(value.data ?? []));
       });
     });
+
+    on<_UpdateBookingHistoryStatus>((event, emit) async {
+      emit(const _Loading());
+      final result = await bookingVendorRemoteDatasources
+          .updateBookingHistoryStatus(event.vendorId, event.bookingStatus);
+
+      result.fold((error) => emit(_Error(error)), (value) {
+        emit(const _SuccessUpdateBookingStatus());
+      });
+    });
   }
 }

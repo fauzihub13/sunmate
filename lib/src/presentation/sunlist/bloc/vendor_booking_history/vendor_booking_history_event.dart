@@ -7,4 +7,7 @@ class VendorBookingHistoryEvent with _$VendorBookingHistoryEvent {
       _GetAllBookingHistory;
   const factory VendorBookingHistoryEvent.getVendorBookingHistory() =
       _GetVendorBookingHistory;
+  const factory VendorBookingHistoryEvent.updateBookingHistoryStatus(
+      {required String vendorId,
+      required String bookingStatus}) = _UpdateBookingHistoryStatus;
 }

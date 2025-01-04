@@ -21,6 +21,8 @@ mixin _$VendorBookingHistoryEvent {
     required TResult Function() started,
     required TResult Function() getAllBookingHistory,
     required TResult Function() getVendorBookingHistory,
+    required TResult Function(String vendorId, String bookingStatus)
+        updateBookingHistoryStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,8 @@ mixin _$VendorBookingHistoryEvent {
     TResult? Function()? started,
     TResult? Function()? getAllBookingHistory,
     TResult? Function()? getVendorBookingHistory,
+    TResult? Function(String vendorId, String bookingStatus)?
+        updateBookingHistoryStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +39,8 @@ mixin _$VendorBookingHistoryEvent {
     TResult Function()? started,
     TResult Function()? getAllBookingHistory,
     TResult Function()? getVendorBookingHistory,
+    TResult Function(String vendorId, String bookingStatus)?
+        updateBookingHistoryStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -44,6 +50,8 @@ mixin _$VendorBookingHistoryEvent {
     required TResult Function(_GetAllBookingHistory value) getAllBookingHistory,
     required TResult Function(_GetVendorBookingHistory value)
         getVendorBookingHistory,
+    required TResult Function(_UpdateBookingHistoryStatus value)
+        updateBookingHistoryStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,6 +59,8 @@ mixin _$VendorBookingHistoryEvent {
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAllBookingHistory value)? getAllBookingHistory,
     TResult? Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    TResult? Function(_UpdateBookingHistoryStatus value)?
+        updateBookingHistoryStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,6 +68,8 @@ mixin _$VendorBookingHistoryEvent {
     TResult Function(_Started value)? started,
     TResult Function(_GetAllBookingHistory value)? getAllBookingHistory,
     TResult Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    TResult Function(_UpdateBookingHistoryStatus value)?
+        updateBookingHistoryStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -129,6 +141,8 @@ class _$StartedImpl implements _Started {
     required TResult Function() started,
     required TResult Function() getAllBookingHistory,
     required TResult Function() getVendorBookingHistory,
+    required TResult Function(String vendorId, String bookingStatus)
+        updateBookingHistoryStatus,
   }) {
     return started();
   }
@@ -139,6 +153,8 @@ class _$StartedImpl implements _Started {
     TResult? Function()? started,
     TResult? Function()? getAllBookingHistory,
     TResult? Function()? getVendorBookingHistory,
+    TResult? Function(String vendorId, String bookingStatus)?
+        updateBookingHistoryStatus,
   }) {
     return started?.call();
   }
@@ -149,6 +165,8 @@ class _$StartedImpl implements _Started {
     TResult Function()? started,
     TResult Function()? getAllBookingHistory,
     TResult Function()? getVendorBookingHistory,
+    TResult Function(String vendorId, String bookingStatus)?
+        updateBookingHistoryStatus,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -164,6 +182,8 @@ class _$StartedImpl implements _Started {
     required TResult Function(_GetAllBookingHistory value) getAllBookingHistory,
     required TResult Function(_GetVendorBookingHistory value)
         getVendorBookingHistory,
+    required TResult Function(_UpdateBookingHistoryStatus value)
+        updateBookingHistoryStatus,
   }) {
     return started(this);
   }
@@ -174,6 +194,8 @@ class _$StartedImpl implements _Started {
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAllBookingHistory value)? getAllBookingHistory,
     TResult? Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    TResult? Function(_UpdateBookingHistoryStatus value)?
+        updateBookingHistoryStatus,
   }) {
     return started?.call(this);
   }
@@ -184,6 +206,8 @@ class _$StartedImpl implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_GetAllBookingHistory value)? getAllBookingHistory,
     TResult Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    TResult Function(_UpdateBookingHistoryStatus value)?
+        updateBookingHistoryStatus,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -243,6 +267,8 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
     required TResult Function() started,
     required TResult Function() getAllBookingHistory,
     required TResult Function() getVendorBookingHistory,
+    required TResult Function(String vendorId, String bookingStatus)
+        updateBookingHistoryStatus,
   }) {
     return getAllBookingHistory();
   }
@@ -253,6 +279,8 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
     TResult? Function()? started,
     TResult? Function()? getAllBookingHistory,
     TResult? Function()? getVendorBookingHistory,
+    TResult? Function(String vendorId, String bookingStatus)?
+        updateBookingHistoryStatus,
   }) {
     return getAllBookingHistory?.call();
   }
@@ -263,6 +291,8 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
     TResult Function()? started,
     TResult Function()? getAllBookingHistory,
     TResult Function()? getVendorBookingHistory,
+    TResult Function(String vendorId, String bookingStatus)?
+        updateBookingHistoryStatus,
     required TResult orElse(),
   }) {
     if (getAllBookingHistory != null) {
@@ -278,6 +308,8 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
     required TResult Function(_GetAllBookingHistory value) getAllBookingHistory,
     required TResult Function(_GetVendorBookingHistory value)
         getVendorBookingHistory,
+    required TResult Function(_UpdateBookingHistoryStatus value)
+        updateBookingHistoryStatus,
   }) {
     return getAllBookingHistory(this);
   }
@@ -288,6 +320,8 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAllBookingHistory value)? getAllBookingHistory,
     TResult? Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    TResult? Function(_UpdateBookingHistoryStatus value)?
+        updateBookingHistoryStatus,
   }) {
     return getAllBookingHistory?.call(this);
   }
@@ -298,6 +332,8 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
     TResult Function(_Started value)? started,
     TResult Function(_GetAllBookingHistory value)? getAllBookingHistory,
     TResult Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    TResult Function(_UpdateBookingHistoryStatus value)?
+        updateBookingHistoryStatus,
     required TResult orElse(),
   }) {
     if (getAllBookingHistory != null) {
@@ -359,6 +395,8 @@ class _$GetVendorBookingHistoryImpl implements _GetVendorBookingHistory {
     required TResult Function() started,
     required TResult Function() getAllBookingHistory,
     required TResult Function() getVendorBookingHistory,
+    required TResult Function(String vendorId, String bookingStatus)
+        updateBookingHistoryStatus,
   }) {
     return getVendorBookingHistory();
   }
@@ -369,6 +407,8 @@ class _$GetVendorBookingHistoryImpl implements _GetVendorBookingHistory {
     TResult? Function()? started,
     TResult? Function()? getAllBookingHistory,
     TResult? Function()? getVendorBookingHistory,
+    TResult? Function(String vendorId, String bookingStatus)?
+        updateBookingHistoryStatus,
   }) {
     return getVendorBookingHistory?.call();
   }
@@ -379,6 +419,8 @@ class _$GetVendorBookingHistoryImpl implements _GetVendorBookingHistory {
     TResult Function()? started,
     TResult Function()? getAllBookingHistory,
     TResult Function()? getVendorBookingHistory,
+    TResult Function(String vendorId, String bookingStatus)?
+        updateBookingHistoryStatus,
     required TResult orElse(),
   }) {
     if (getVendorBookingHistory != null) {
@@ -394,6 +436,8 @@ class _$GetVendorBookingHistoryImpl implements _GetVendorBookingHistory {
     required TResult Function(_GetAllBookingHistory value) getAllBookingHistory,
     required TResult Function(_GetVendorBookingHistory value)
         getVendorBookingHistory,
+    required TResult Function(_UpdateBookingHistoryStatus value)
+        updateBookingHistoryStatus,
   }) {
     return getVendorBookingHistory(this);
   }
@@ -404,6 +448,8 @@ class _$GetVendorBookingHistoryImpl implements _GetVendorBookingHistory {
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAllBookingHistory value)? getAllBookingHistory,
     TResult? Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    TResult? Function(_UpdateBookingHistoryStatus value)?
+        updateBookingHistoryStatus,
   }) {
     return getVendorBookingHistory?.call(this);
   }
@@ -414,6 +460,8 @@ class _$GetVendorBookingHistoryImpl implements _GetVendorBookingHistory {
     TResult Function(_Started value)? started,
     TResult Function(_GetAllBookingHistory value)? getAllBookingHistory,
     TResult Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    TResult Function(_UpdateBookingHistoryStatus value)?
+        updateBookingHistoryStatus,
     required TResult orElse(),
   }) {
     if (getVendorBookingHistory != null) {
@@ -428,6 +476,184 @@ abstract class _GetVendorBookingHistory implements VendorBookingHistoryEvent {
 }
 
 /// @nodoc
+abstract class _$$UpdateBookingHistoryStatusImplCopyWith<$Res> {
+  factory _$$UpdateBookingHistoryStatusImplCopyWith(
+          _$UpdateBookingHistoryStatusImpl value,
+          $Res Function(_$UpdateBookingHistoryStatusImpl) then) =
+      __$$UpdateBookingHistoryStatusImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String vendorId, String bookingStatus});
+}
+
+/// @nodoc
+class __$$UpdateBookingHistoryStatusImplCopyWithImpl<$Res>
+    extends _$VendorBookingHistoryEventCopyWithImpl<$Res,
+        _$UpdateBookingHistoryStatusImpl>
+    implements _$$UpdateBookingHistoryStatusImplCopyWith<$Res> {
+  __$$UpdateBookingHistoryStatusImplCopyWithImpl(
+      _$UpdateBookingHistoryStatusImpl _value,
+      $Res Function(_$UpdateBookingHistoryStatusImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of VendorBookingHistoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? vendorId = null,
+    Object? bookingStatus = null,
+  }) {
+    return _then(_$UpdateBookingHistoryStatusImpl(
+      vendorId: null == vendorId
+          ? _value.vendorId
+          : vendorId // ignore: cast_nullable_to_non_nullable
+              as String,
+      bookingStatus: null == bookingStatus
+          ? _value.bookingStatus
+          : bookingStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateBookingHistoryStatusImpl implements _UpdateBookingHistoryStatus {
+  const _$UpdateBookingHistoryStatusImpl(
+      {required this.vendorId, required this.bookingStatus});
+
+  @override
+  final String vendorId;
+  @override
+  final String bookingStatus;
+
+  @override
+  String toString() {
+    return 'VendorBookingHistoryEvent.updateBookingHistoryStatus(vendorId: $vendorId, bookingStatus: $bookingStatus)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateBookingHistoryStatusImpl &&
+            (identical(other.vendorId, vendorId) ||
+                other.vendorId == vendorId) &&
+            (identical(other.bookingStatus, bookingStatus) ||
+                other.bookingStatus == bookingStatus));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, vendorId, bookingStatus);
+
+  /// Create a copy of VendorBookingHistoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateBookingHistoryStatusImplCopyWith<_$UpdateBookingHistoryStatusImpl>
+      get copyWith => __$$UpdateBookingHistoryStatusImplCopyWithImpl<
+          _$UpdateBookingHistoryStatusImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getAllBookingHistory,
+    required TResult Function() getVendorBookingHistory,
+    required TResult Function(String vendorId, String bookingStatus)
+        updateBookingHistoryStatus,
+  }) {
+    return updateBookingHistoryStatus(vendorId, bookingStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getAllBookingHistory,
+    TResult? Function()? getVendorBookingHistory,
+    TResult? Function(String vendorId, String bookingStatus)?
+        updateBookingHistoryStatus,
+  }) {
+    return updateBookingHistoryStatus?.call(vendorId, bookingStatus);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getAllBookingHistory,
+    TResult Function()? getVendorBookingHistory,
+    TResult Function(String vendorId, String bookingStatus)?
+        updateBookingHistoryStatus,
+    required TResult orElse(),
+  }) {
+    if (updateBookingHistoryStatus != null) {
+      return updateBookingHistoryStatus(vendorId, bookingStatus);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetAllBookingHistory value) getAllBookingHistory,
+    required TResult Function(_GetVendorBookingHistory value)
+        getVendorBookingHistory,
+    required TResult Function(_UpdateBookingHistoryStatus value)
+        updateBookingHistoryStatus,
+  }) {
+    return updateBookingHistoryStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetAllBookingHistory value)? getAllBookingHistory,
+    TResult? Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    TResult? Function(_UpdateBookingHistoryStatus value)?
+        updateBookingHistoryStatus,
+  }) {
+    return updateBookingHistoryStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetAllBookingHistory value)? getAllBookingHistory,
+    TResult Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    TResult Function(_UpdateBookingHistoryStatus value)?
+        updateBookingHistoryStatus,
+    required TResult orElse(),
+  }) {
+    if (updateBookingHistoryStatus != null) {
+      return updateBookingHistoryStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateBookingHistoryStatus
+    implements VendorBookingHistoryEvent {
+  const factory _UpdateBookingHistoryStatus(
+      {required final String vendorId,
+      required final String bookingStatus}) = _$UpdateBookingHistoryStatusImpl;
+
+  String get vendorId;
+  String get bookingStatus;
+
+  /// Create a copy of VendorBookingHistoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateBookingHistoryStatusImplCopyWith<_$UpdateBookingHistoryStatusImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$VendorBookingHistoryState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -436,6 +662,7 @@ mixin _$VendorBookingHistoryState {
     required TResult Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)
         loaded,
+    required TResult Function() successUpdateBookingStatus,
     required TResult Function(String? message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -446,6 +673,7 @@ mixin _$VendorBookingHistoryState {
     TResult? Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
         loaded,
+    TResult? Function()? successUpdateBookingStatus,
     TResult? Function(String? message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -456,6 +684,7 @@ mixin _$VendorBookingHistoryState {
     TResult Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
         loaded,
+    TResult Function()? successUpdateBookingStatus,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) =>
@@ -465,6 +694,8 @@ mixin _$VendorBookingHistoryState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessUpdateBookingStatus value)
+        successUpdateBookingStatus,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -473,6 +704,8 @@ mixin _$VendorBookingHistoryState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -481,6 +714,8 @@ mixin _$VendorBookingHistoryState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -555,6 +790,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)
         loaded,
+    required TResult Function() successUpdateBookingStatus,
     required TResult Function(String? message) error,
   }) {
     return initial();
@@ -568,6 +804,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
         loaded,
+    TResult? Function()? successUpdateBookingStatus,
     TResult? Function(String? message)? error,
   }) {
     return initial?.call();
@@ -581,6 +818,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
         loaded,
+    TResult Function()? successUpdateBookingStatus,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -596,6 +834,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessUpdateBookingStatus value)
+        successUpdateBookingStatus,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -607,6 +847,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -618,6 +860,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -678,6 +922,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)
         loaded,
+    required TResult Function() successUpdateBookingStatus,
     required TResult Function(String? message) error,
   }) {
     return loading();
@@ -691,6 +936,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
         loaded,
+    TResult? Function()? successUpdateBookingStatus,
     TResult? Function(String? message)? error,
   }) {
     return loading?.call();
@@ -704,6 +950,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
         loaded,
+    TResult Function()? successUpdateBookingStatus,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -719,6 +966,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessUpdateBookingStatus value)
+        successUpdateBookingStatus,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -730,6 +979,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -741,6 +992,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -839,6 +1092,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)
         loaded,
+    required TResult Function() successUpdateBookingStatus,
     required TResult Function(String? message) error,
   }) {
     return loaded(bookingHistoryDataResponse);
@@ -852,6 +1106,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
         loaded,
+    TResult? Function()? successUpdateBookingStatus,
     TResult? Function(String? message)? error,
   }) {
     return loaded?.call(bookingHistoryDataResponse);
@@ -865,6 +1120,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
         loaded,
+    TResult Function()? successUpdateBookingStatus,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -880,6 +1136,8 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessUpdateBookingStatus value)
+        successUpdateBookingStatus,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -891,6 +1149,8 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -902,6 +1162,8 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -924,6 +1186,144 @@ abstract class _Loaded implements VendorBookingHistoryState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SuccessUpdateBookingStatusImplCopyWith<$Res> {
+  factory _$$SuccessUpdateBookingStatusImplCopyWith(
+          _$SuccessUpdateBookingStatusImpl value,
+          $Res Function(_$SuccessUpdateBookingStatusImpl) then) =
+      __$$SuccessUpdateBookingStatusImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SuccessUpdateBookingStatusImplCopyWithImpl<$Res>
+    extends _$VendorBookingHistoryStateCopyWithImpl<$Res,
+        _$SuccessUpdateBookingStatusImpl>
+    implements _$$SuccessUpdateBookingStatusImplCopyWith<$Res> {
+  __$$SuccessUpdateBookingStatusImplCopyWithImpl(
+      _$SuccessUpdateBookingStatusImpl _value,
+      $Res Function(_$SuccessUpdateBookingStatusImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of VendorBookingHistoryState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$SuccessUpdateBookingStatusImpl implements _SuccessUpdateBookingStatus {
+  const _$SuccessUpdateBookingStatusImpl();
+
+  @override
+  String toString() {
+    return 'VendorBookingHistoryState.successUpdateBookingStatus()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessUpdateBookingStatusImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)
+        loaded,
+    required TResult Function() successUpdateBookingStatus,
+    required TResult Function(String? message) error,
+  }) {
+    return successUpdateBookingStatus();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
+    TResult? Function()? successUpdateBookingStatus,
+    TResult? Function(String? message)? error,
+  }) {
+    return successUpdateBookingStatus?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(
+            List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
+        loaded,
+    TResult Function()? successUpdateBookingStatus,
+    TResult Function(String? message)? error,
+    required TResult orElse(),
+  }) {
+    if (successUpdateBookingStatus != null) {
+      return successUpdateBookingStatus();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessUpdateBookingStatus value)
+        successUpdateBookingStatus,
+    required TResult Function(_Error value) error,
+  }) {
+    return successUpdateBookingStatus(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
+    TResult? Function(_Error value)? error,
+  }) {
+    return successUpdateBookingStatus?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (successUpdateBookingStatus != null) {
+      return successUpdateBookingStatus(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessUpdateBookingStatus
+    implements VendorBookingHistoryState {
+  const factory _SuccessUpdateBookingStatus() =
+      _$SuccessUpdateBookingStatusImpl;
 }
 
 /// @nodoc
@@ -999,6 +1399,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)
         loaded,
+    required TResult Function() successUpdateBookingStatus,
     required TResult Function(String? message) error,
   }) {
     return error(message);
@@ -1012,6 +1413,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
         loaded,
+    TResult? Function()? successUpdateBookingStatus,
     TResult? Function(String? message)? error,
   }) {
     return error?.call(message);
@@ -1025,6 +1427,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(
             List<BookingHistoryDataResponse> bookingHistoryDataResponse)?
         loaded,
+    TResult Function()? successUpdateBookingStatus,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
@@ -1040,6 +1443,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_SuccessUpdateBookingStatus value)
+        successUpdateBookingStatus,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -1051,6 +1456,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -1062,6 +1469,8 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_SuccessUpdateBookingStatus value)?
+        successUpdateBookingStatus,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
