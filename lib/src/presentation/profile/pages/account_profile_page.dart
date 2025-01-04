@@ -153,7 +153,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                         ),
                                       ],
                                     ),
-                                  if (user?.role == 'vendor')
+                                  if (user?.role == 'vendor' || user?.role == 'admin')
                                     Column(
                                       children: [
                                         const SizedBox(height: 10),
@@ -184,7 +184,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                         ),
                                       ],
                                     ),
-                                  if (user?.role == 'user')
+                                  if (user?.role == 'user' || user?.role == 'admin')
                                     Column(
                                       children: [
                                         const SizedBox(height: 10),

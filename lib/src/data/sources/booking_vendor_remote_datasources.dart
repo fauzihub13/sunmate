@@ -57,7 +57,7 @@ class BookingVendorRemoteDatasources {
 
   Future<Either<String, VendorBookingHistoryResponseModel>>
       getVendorBookingHistory() async {
-    final url = Uri.parse('${Variables.apiUrl}/vendors/booking/history');
+    final url = Uri.parse('${Variables.apiUrl}/vendors/booking/history/user');
     final authData = await AuthLocalDatasources().getAuthData();
     final response = await http.get(url, headers: {
       'Authorization': 'Bearer ${authData.token}',
