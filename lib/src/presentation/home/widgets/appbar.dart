@@ -59,16 +59,16 @@ class _MainAppBarState extends State<MainAppBar> {
                 ),
               ),
               const SizedBox(width: 12.0),
-              CircleAvatar(
-                radius: 25,
-                backgroundColor: AppColors.lightBlue,
-                child: GestureDetector(
-                    onTap: () {},
-                    child: const Icon(
-                      Icons.notifications,
-                      color: AppColors.primary,
-                    )),
-              ),
+              // CircleAvatar(
+              //   radius: 25,
+              //   backgroundColor: AppColors.lightBlue,
+              //   child: GestureDetector(
+              //       onTap: () {},
+              //       child: const Icon(
+              //         Icons.notifications,
+              //         color: AppColors.primary,
+              //       )),
+              // ),
             ],
           )),
     );
