@@ -15,6 +15,16 @@ class VendorBookingHistoryBloc
     on<_GetAllBookingHistory>((event, emit) async {
       emit(const _Loading());
       final result =
+          await bookingVendorRemoteDatasources.getUserBookingHistory();
+
+      result.fold((error) => emit(_Error(error)), (value) {
+        emit(_Loaded(value.data ?? []));
+      });
+    });
+
+    on<_GetVendorBookingHistory>((event, emit) async {
+      emit(const _Loading());
+      final result =
           await bookingVendorRemoteDatasources.getVendorBookingHistory();
 
       result.fold((error) => emit(_Error(error)), (value) {

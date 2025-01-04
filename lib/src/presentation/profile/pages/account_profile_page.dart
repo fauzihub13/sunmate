@@ -10,7 +10,8 @@ import 'package:flutter_sunmate/src/presentation/auth/bloc/user_data/user_data_b
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/profile/pages/change_password_page.dart';
 import 'package:flutter_sunmate/src/presentation/profile/pages/edit_profile_page.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history_page.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_list_history_page.dart';
 
 class AccountProfilePage extends StatefulWidget {
   const AccountProfilePage({super.key});
@@ -153,7 +154,8 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                         ),
                                       ],
                                     ),
-                                  if (user?.role == 'vendor' || user?.role == 'admin')
+                                  if (user?.role == 'vendor' ||
+                                      user?.role == 'admin')
                                     Column(
                                       children: [
                                         const SizedBox(height: 10),
@@ -162,7 +164,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                             Navigator.push(context,
                                                 MaterialPageRoute(
                                                     builder: (context) {
-                                              return const VendorBookingHistory();
+                                              return const VendorListHistoryPage();
                                             }));
                                           },
                                           child: const Row(
@@ -173,7 +175,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                               ),
                                               SizedBox(width: 8),
                                               Text(
-                                                'Data Booking',
+                                                'Data Booking (Vendor)',
                                                 style: TextStyle(
                                                   color: AppColors.darkBlue,
                                                   fontSize: 14,
@@ -184,7 +186,8 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                         ),
                                       ],
                                     ),
-                                  if (user?.role == 'user' || user?.role == 'admin')
+                                  if (user?.role == 'user' ||
+                                      user?.role == 'admin')
                                     Column(
                                       children: [
                                         const SizedBox(height: 10),
@@ -193,7 +196,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                             Navigator.push(context,
                                                 MaterialPageRoute(
                                                     builder: (context) {
-                                              return const VendorBookingHistory();
+                                              return const VendorBookingHistoryPage();
                                             }));
                                           },
                                           child: const Row(

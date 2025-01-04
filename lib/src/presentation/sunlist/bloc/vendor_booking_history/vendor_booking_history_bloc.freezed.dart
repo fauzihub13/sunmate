@@ -20,18 +20,21 @@ mixin _$VendorBookingHistoryEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getAllBookingHistory,
+    required TResult Function() getVendorBookingHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getAllBookingHistory,
+    TResult? Function()? getVendorBookingHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getAllBookingHistory,
+    TResult Function()? getVendorBookingHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,22 @@ mixin _$VendorBookingHistoryEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetAllBookingHistory value) getAllBookingHistory,
+    required TResult Function(_GetVendorBookingHistory value)
+        getVendorBookingHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAllBookingHistory value)? getAllBookingHistory,
+    TResult? Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetAllBookingHistory value)? getAllBookingHistory,
+    TResult Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,6 +128,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getAllBookingHistory,
+    required TResult Function() getVendorBookingHistory,
   }) {
     return started();
   }
@@ -130,6 +138,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getAllBookingHistory,
+    TResult? Function()? getVendorBookingHistory,
   }) {
     return started?.call();
   }
@@ -139,6 +148,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getAllBookingHistory,
+    TResult Function()? getVendorBookingHistory,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -152,6 +162,8 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetAllBookingHistory value) getAllBookingHistory,
+    required TResult Function(_GetVendorBookingHistory value)
+        getVendorBookingHistory,
   }) {
     return started(this);
   }
@@ -161,6 +173,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAllBookingHistory value)? getAllBookingHistory,
+    TResult? Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
   }) {
     return started?.call(this);
   }
@@ -170,6 +183,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetAllBookingHistory value)? getAllBookingHistory,
+    TResult Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -228,6 +242,7 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getAllBookingHistory,
+    required TResult Function() getVendorBookingHistory,
   }) {
     return getAllBookingHistory();
   }
@@ -237,6 +252,7 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getAllBookingHistory,
+    TResult? Function()? getVendorBookingHistory,
   }) {
     return getAllBookingHistory?.call();
   }
@@ -246,6 +262,7 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getAllBookingHistory,
+    TResult Function()? getVendorBookingHistory,
     required TResult orElse(),
   }) {
     if (getAllBookingHistory != null) {
@@ -259,6 +276,8 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetAllBookingHistory value) getAllBookingHistory,
+    required TResult Function(_GetVendorBookingHistory value)
+        getVendorBookingHistory,
   }) {
     return getAllBookingHistory(this);
   }
@@ -268,6 +287,7 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAllBookingHistory value)? getAllBookingHistory,
+    TResult? Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
   }) {
     return getAllBookingHistory?.call(this);
   }
@@ -277,6 +297,7 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetAllBookingHistory value)? getAllBookingHistory,
+    TResult Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
     required TResult orElse(),
   }) {
     if (getAllBookingHistory != null) {
@@ -288,6 +309,122 @@ class _$GetAllBookingHistoryImpl implements _GetAllBookingHistory {
 
 abstract class _GetAllBookingHistory implements VendorBookingHistoryEvent {
   const factory _GetAllBookingHistory() = _$GetAllBookingHistoryImpl;
+}
+
+/// @nodoc
+abstract class _$$GetVendorBookingHistoryImplCopyWith<$Res> {
+  factory _$$GetVendorBookingHistoryImplCopyWith(
+          _$GetVendorBookingHistoryImpl value,
+          $Res Function(_$GetVendorBookingHistoryImpl) then) =
+      __$$GetVendorBookingHistoryImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetVendorBookingHistoryImplCopyWithImpl<$Res>
+    extends _$VendorBookingHistoryEventCopyWithImpl<$Res,
+        _$GetVendorBookingHistoryImpl>
+    implements _$$GetVendorBookingHistoryImplCopyWith<$Res> {
+  __$$GetVendorBookingHistoryImplCopyWithImpl(
+      _$GetVendorBookingHistoryImpl _value,
+      $Res Function(_$GetVendorBookingHistoryImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of VendorBookingHistoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$GetVendorBookingHistoryImpl implements _GetVendorBookingHistory {
+  const _$GetVendorBookingHistoryImpl();
+
+  @override
+  String toString() {
+    return 'VendorBookingHistoryEvent.getVendorBookingHistory()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetVendorBookingHistoryImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getAllBookingHistory,
+    required TResult Function() getVendorBookingHistory,
+  }) {
+    return getVendorBookingHistory();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getAllBookingHistory,
+    TResult? Function()? getVendorBookingHistory,
+  }) {
+    return getVendorBookingHistory?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getAllBookingHistory,
+    TResult Function()? getVendorBookingHistory,
+    required TResult orElse(),
+  }) {
+    if (getVendorBookingHistory != null) {
+      return getVendorBookingHistory();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetAllBookingHistory value) getAllBookingHistory,
+    required TResult Function(_GetVendorBookingHistory value)
+        getVendorBookingHistory,
+  }) {
+    return getVendorBookingHistory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetAllBookingHistory value)? getAllBookingHistory,
+    TResult? Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+  }) {
+    return getVendorBookingHistory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetAllBookingHistory value)? getAllBookingHistory,
+    TResult Function(_GetVendorBookingHistory value)? getVendorBookingHistory,
+    required TResult orElse(),
+  }) {
+    if (getVendorBookingHistory != null) {
+      return getVendorBookingHistory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetVendorBookingHistory implements VendorBookingHistoryEvent {
+  const factory _GetVendorBookingHistory() = _$GetVendorBookingHistoryImpl;
 }
 
 /// @nodoc

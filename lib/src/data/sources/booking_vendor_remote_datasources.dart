@@ -9,7 +9,6 @@ import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_m
 import 'package:http/http.dart' as http;
 
 class BookingVendorRemoteDatasources {
-
   Future<Either<String, BookingDataResponse>> createBooking(
       VendorBookingModel vendorBookingModel) async {
     final authData = await AuthLocalDatasources().getAuthData();
@@ -56,7 +55,7 @@ class BookingVendorRemoteDatasources {
   }
 
   Future<Either<String, VendorBookingHistoryResponseModel>>
-      getVendorBookingHistory() async {
+      getUserBookingHistory() async {
     final url = Uri.parse('${Variables.apiUrl}/vendors/booking/history/user');
     final authData = await AuthLocalDatasources().getAuthData();
     final response = await http.get(url, headers: {
@@ -66,6 +65,26 @@ class BookingVendorRemoteDatasources {
 
     if (response.statusCode == 200) {
       return Right(VendorBookingHistoryResponseModel.fromJson(response.body));
+    } else if (response.statusCode == 401) {
+      return const Left('logged_out');
+    } else {
+      return const Left('Failed to get booking history.');
+    }
+  }
+
+  Future<Either<String, VendorBookingHistoryResponseModel>>
+      getVendorBookingHistory() async {
+    final url = Uri.parse('${Variables.apiUrl}/vendors/booking/history');
+    final authData = await AuthLocalDatasources().getAuthData();
+    final response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    });
+
+    if (response.statusCode == 200) {
+      return Right(VendorBookingHistoryResponseModel.fromJson(response.body));
+    } else if (response.statusCode == 404) {
+      return const Left('Vendor not found for this user.');
     } else if (response.statusCode == 401) {
       return const Left('logged_out');
     } else {

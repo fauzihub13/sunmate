@@ -3,7 +3,7 @@ import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
 import 'package:flutter_sunmate/src/presentation/profile/pages/account_profile_page.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history.dart';
+import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunloc/pages/sunloc_page.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -56,7 +56,7 @@ class _LandingPageState extends State<LandingPage> {
   final List<Widget> _pages = [
     const HomePage(),
     const SunlocPage(),
-    const VendorBookingHistory(),
+    const VendorBookingHistoryPage(),
     const AccountProfilePage(),
   ];
 

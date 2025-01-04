@@ -11,8 +11,8 @@ import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking_his
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_history_card.dart';
 import 'package:intl/intl.dart';
 
-class VendorBookingHistory extends StatelessWidget {
-  const VendorBookingHistory({super.key});
+class VendorListHistoryPage extends StatelessWidget {
+  const VendorListHistoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +47,13 @@ class _MobileViewState extends State<MobileView> {
     super.initState();
     context
         .read<VendorBookingHistoryBloc>()
-        .add(const VendorBookingHistoryEvent.getAllBookingHistory());
+        .add(const VendorBookingHistoryEvent.getVendorBookingHistory());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppbar(title: 'Riwayat Booking', canBack: false),
+      appBar: const CustomAppbar(title: 'Data Booking Vendor', canBack: true),
       body: Stack(children: [
         Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -137,7 +137,7 @@ class _MobileViewState extends State<MobileView> {
                         );
                       },
                       error: (message) {
-                        return Center(child: Text('Error: $message'));
+                        return Center(child: Text('$message'));
                       },
                     );
                   }),
