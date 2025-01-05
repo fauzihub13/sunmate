@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/presentation/notification/pages/notification_list_page.dart';
 
 class MainAppBar extends StatefulWidget {
   final String userName;
@@ -59,16 +60,21 @@ class _MainAppBarState extends State<MainAppBar> {
                 ),
               ),
               const SizedBox(width: 12.0),
-              // CircleAvatar(
-              //   radius: 25,
-              //   backgroundColor: AppColors.lightBlue,
-              //   child: GestureDetector(
-              //       onTap: () {},
-              //       child: const Icon(
-              //         Icons.notifications,
-              //         color: AppColors.primary,
-              //       )),
-              // ),
+              CircleAvatar(
+                radius: 25,
+                backgroundColor: AppColors.lightBlue,
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const NotificationListPage();
+                      }));
+                    },
+                    child: const Icon(
+                      Icons.notifications,
+                      color: AppColors.primary,
+                    )),
+              ),
             ],
           )),
     );
