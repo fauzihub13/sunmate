@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/dropdown_menu.dart'
     as custom_dropdown_menu;
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
@@ -94,22 +95,9 @@ class _MobileViewState extends State<MobileView> {
                               // Schedule SnackBar display after current frame
                               SchedulerBinding.instance
                                   .addPostFrameCallback((_) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Text(
-                                      'Silahkan login kembali.',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    backgroundColor: AppColors.red,
-                                    behavior: SnackBarBehavior.floating,
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 10),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    duration: const Duration(seconds: 3),
-                                  ),
-                                );
+                                CustomSnackbar.show(context,
+                                    message: 'Silahkan login kembali.',
+                                    status: 'fail');
 
                                 // Navigate to LoginPage after the SnackBar
                                 Navigator.pushAndRemoveUntil(
@@ -445,58 +433,20 @@ class _MobileViewState extends State<MobileView> {
                                     state.maybeWhen(
                                         orElse: () {},
                                         successUpdateBookingStatus: () {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: const Text(
-                                                'Success, status updated',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                              backgroundColor: AppColors.green,
-                                              behavior:
-                                                  SnackBarBehavior.floating,
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 16,
-                                                      vertical: 10),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                              duration:
-                                                  const Duration(seconds: 3),
-                                            ),
-                                          );
+                                          CustomSnackbar.show(context,
+                                              message:
+                                                  'Berhasil mengubah status.',
+                                              status: 'success');
+
                                           setState(() {
                                             isClicked = false;
                                           });
                                           _refreshPage();
                                         },
                                         error: (message) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                message!,
-                                                style: const TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                              backgroundColor: AppColors.red,
-                                              behavior:
-                                                  SnackBarBehavior.floating,
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 16,
-                                                      vertical: 10),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                              duration:
-                                                  const Duration(seconds: 3),
-                                            ),
-                                          );
+                                          CustomSnackbar.show(context,
+                                              message: message!,
+                                              status: 'fail');
                                         });
                                   },
                                   builder: (context, state) {

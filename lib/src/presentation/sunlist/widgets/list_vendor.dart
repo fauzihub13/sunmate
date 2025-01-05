@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 
 class ListVendor extends StatefulWidget {
@@ -16,12 +15,11 @@ class _ListVendorState extends State<ListVendor> {
   @override
   void initState() {
     super.initState();
-    // context.read<VendorListBloc>().add(const VendorListEvent.getAllVendor());
   }
 
   @override
   Widget build(BuildContext context) {
-    final int count = widget.itemCount ?? vendorList.length;
+    final int count = widget.itemCount ?? 3;
 
     return BlocBuilder<VendorListBloc, VendorListState>(
       builder: (context, state) {

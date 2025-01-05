@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
+import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
@@ -236,22 +237,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         state.maybeWhen(
                             orElse: () {},
                             success: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: const Text(
-                                    'Success, user registered',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  backgroundColor: AppColors.green,
-                                  behavior: SnackBarBehavior.floating,
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 10),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  duration: const Duration(seconds: 3),
-                                ),
-                              );
+                              CustomSnackbar.show(context,
+                                  message: 'Nerhasil mendaftarkan akun.',
+                                  status: 'success');
+
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
@@ -260,22 +249,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               );
                             },
                             error: (message) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    message,
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                  backgroundColor: AppColors.red,
-                                  behavior: SnackBarBehavior.floating,
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 10),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  duration: const Duration(seconds: 3),
-                                ),
-                              );
+                              CustomSnackbar.show(context,
+                                  message: message, status: 'fail');
                             });
                       },
                       child: BlocBuilder<RegisterBloc, RegisterState>(
@@ -352,22 +327,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               }));
                             },
                             error: (message) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    message,
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                  backgroundColor: AppColors.red,
-                                  behavior: SnackBarBehavior.floating,
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 10),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  duration: const Duration(seconds: 3),
-                                ),
-                              );
+                              CustomSnackbar.show(context,
+                                  message: message, status: 'fail');
+                              
                             });
                       },
                       builder: (context, state) {

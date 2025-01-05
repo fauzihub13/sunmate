@@ -29,7 +29,7 @@ class AuthRemoteDatasources {
     if (response.statusCode == 200) {
       return Right(AuthResponseModel.fromJson(response.body));
     } else {
-      return const Left('Failed to login');
+      return const Left('Email dan password tidak sesuai.');
     }
   }
 

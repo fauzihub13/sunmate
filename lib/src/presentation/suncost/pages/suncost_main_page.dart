@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/dropdown_menu.dart'
     as custom_dropdown_menu;
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
@@ -167,22 +168,8 @@ class _SunCostMainPageState extends State<SuncostMainPage> {
                       });
                 },
                 error: (message) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        message,
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      backgroundColor: AppColors.red,
-                      behavior: SnackBarBehavior.floating,
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      duration: const Duration(seconds: 3),
-                    ),
-                  );
+                  CustomSnackbar.show(context,
+                      message: message, status: 'fail');
                 });
           },
           child: BlocBuilder<SuncostCalculateBloc, SuncostCalculateState>(

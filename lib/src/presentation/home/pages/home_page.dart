@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
@@ -75,22 +76,9 @@ class _HomePageState extends State<HomePage> {
 
                         // Schedule SnackBar display after current frame
                         SchedulerBinding.instance.addPostFrameCallback((_) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: const Text(
-                                'Silahkan login kembali.',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: AppColors.red,
-                              behavior: SnackBarBehavior.floating,
-                              margin: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 10),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              duration: const Duration(seconds: 3),
-                            ),
-                          );
+                          CustomSnackbar.show(context,
+                              message: 'Silahkan login kembali.',
+                              status: 'fail');
 
                           // Navigate to LoginPage after the SnackBar
                           Navigator.pushAndRemoveUntil(
