@@ -209,7 +209,7 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                                   vendorId: dataVendor.id!.toString(),
                                   address: addressDetailController.text,
                                   date: DateTime.parse(dateController.text),
-                                  notes: addressDetailController.text,
+                                  notes: notesController.text,
                                 );
                                 context.read<VendorBookingBloc>().add(
                                     VendorBookingEvent.createBooking(

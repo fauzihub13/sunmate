@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/booking_vendor_remote_datasources.dart';
-import 'package:flutter_sunmate/src/data/sources/firebase_notification_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/google_auth_service.dart';
 import 'package:flutter_sunmate/src/data/sources/news_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/suncost_local_datasources.dart';
@@ -33,7 +32,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   final prefs = await SharedPreferences.getInstance();
-  FirebaseNotificationDatasources().initNotifications();
+  // FirebaseNotificationDatasources().initNotifications();
   final onboarding = prefs.getBool('onboarding') ?? false;
   runApp(MyApp(
     onboarding: onboarding,

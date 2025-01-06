@@ -5,6 +5,7 @@ import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/firebase_notification_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/google_auth/google_auth_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/register_page.dart';
@@ -158,6 +159,8 @@ class _LoginPageState extends State<LoginPage> {
                             success: (authReponseModel) {
                               AuthLocalDatasources()
                                   .saveAuthData(authReponseModel);
+                              FirebaseNotificationDatasources()
+                                  .initNotifications();
                               Navigator.pushReplacement(context,
                                   MaterialPageRoute(builder: (context) {
                                 return const LandingPage();
