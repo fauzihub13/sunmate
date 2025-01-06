@@ -4,7 +4,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_sunmate/main.dart';
+import 'package:flutter_sunmate/src/core/constants/variables.dart';
+import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/notification/pages/notification_list_page.dart';
+import 'package:http/http.dart' as http;
 
 class FirebaseNotificationDatasources {
   // Create instance of FBM
@@ -36,21 +39,47 @@ class FirebaseNotificationDatasources {
     await platform?.createNotificationChannel(_androidChannel);
   }
 
+  // Update FCM Token
+  Future<void> updateFcmToken(String fcmToken) async {
+    final url = Uri.parse('${Variables.apiUrl}/user/fcm-token');
+    final authData = await AuthLocalDatasources().getAuthData();
+    final response = await http.post(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    }, body: {
+      'user_id': authData.user!.id!.toString(),
+      'fcm_token': fcmToken
+    });
+
+    if (response.statusCode == 200) {
+      debugPrint('FCM Token updated successfully');
+    } else {
+      debugPrint('Failed to update FCM Token: ${response.body}');
+    }
+  }
+
   // Initialize notifications for device
   Future<void> initNotifications() async {
     await _firebaseMessaging.requestPermission();
     String? fcmToken = await _firebaseMessaging.getToken();
-    // print('FCM Token: $fcmToken');
+    debugPrint('FCM Token: $fcmToken');
+
+    if (fcmToken != null) {
+      debugPrint('FCM Token: $fcmToken');
+      await updateFcmToken(fcmToken);
+    } else {
+      debugPrint('Failed to get FCM Token');
+    }
+
     handleBackgroundNotification();
-    // initNotifications();
   }
 
   // Handle message when received
   void handleMessage(RemoteMessage? message) {
     if (message == null) return;
-    print(message.notification?.title!);
-    print(message.notification?.body!);
-    print(message.data);
+    // print(message.notification?.title!);
+    // print(message.notification?.body!);
+    // print(message.data);
     // navigatorKey.currentState!.pushNamed(Routes.notificationListPage);
     navigatorKey.currentState!.push(
         MaterialPageRoute(builder: (context) => const NotificationListPage()));
