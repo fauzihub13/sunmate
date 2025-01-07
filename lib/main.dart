@@ -6,6 +6,7 @@ import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/booking_vendor_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/google_auth_service.dart';
 import 'package:flutter_sunmate/src/data/sources/news_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/notification_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/suncost_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/user_location_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/vendor_remote_datasources.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_sunmate/src/presentation/auth/bloc/user_data/user_data_b
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/home/bloc/user_location/user_location_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/landing_page.dart';
+import 'package:flutter_sunmate/src/presentation/notification/bloc/notification/notification_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/onboarding/pages/onboarding_page.dart';
 import 'package:flutter_sunmate/src/presentation/suncost/bloc/suncost_calculate/suncost_calculate_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
@@ -94,6 +96,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => GoogleAuthBloc(GoogleAuthService()),
+        ),
+        BlocProvider(
+          create: (context) => NotificationBloc(NotificationRemoteDatasources()),
         ),
       ],
       child: MaterialApp(
