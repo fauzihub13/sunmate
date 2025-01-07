@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:flutter_sunmate/src/core/extensions/int_ext.dart';
 import 'package:flutter_sunmate/src/presentation/suncost/models/calculate_model.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -74,7 +75,7 @@ class _SunCostResultDialogState extends State<SunCostResultDialog> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Rp. ${widget.calculateModel.monthlyBill.toString()}',
+                  widget.calculateModel.monthlyBill.currencyFormatRp,
                   style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
               ),
@@ -109,7 +110,7 @@ class _SunCostResultDialogState extends State<SunCostResultDialog> {
                 height: 8.0,
               ),
               Text(
-                'Estimasi biaya untuk memasang panel surya adalah\nRp. ${widget.calculateModel.costEstimate}',
+                'Estimasi biaya untuk memasang panel surya adalah\n ${widget.calculateModel.costEstimate.currencyFormatRp}',
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 16, color: AppColors.darkBlue),
               ),
