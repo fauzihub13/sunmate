@@ -36,6 +36,7 @@ class VendorResponseModel {
 
 class SingleVendor {
   final String? id;
+  final String? userId;
   final String? slug;
   final String? name;
   final String? description;
@@ -46,10 +47,13 @@ class SingleVendor {
   final DateTime? updatedAt;
   final double? latitude;
   final double? longitude;
+  final dynamic product;
+  final dynamic service;
   final List<VendorImage>? vendorImages;
 
   SingleVendor({
     this.id,
+    this.userId,
     this.slug,
     this.name,
     this.description,
@@ -60,6 +64,8 @@ class SingleVendor {
     this.updatedAt,
     this.latitude,
     this.longitude,
+    this.product,
+    this.service,
     this.vendorImages,
   });
 
@@ -70,6 +76,7 @@ class SingleVendor {
 
   factory SingleVendor.fromMap(Map<String, dynamic> json) => SingleVendor(
         id: json["id"],
+        userId: json["user_id"],
         slug: json["slug"],
         name: json["name"],
         description: json["description"],
@@ -87,6 +94,8 @@ class SingleVendor {
         longitude: json["longitude"] != null
             ? double.tryParse(json["longitude"])
             : null,
+        product: json["product"],
+        service: json["service"],
         vendorImages: json["vendor_images"] == null
             ? []
             : List<VendorImage>.from(
@@ -95,6 +104,7 @@ class SingleVendor {
 
   Map<String, dynamic> toMap() => {
         "id": id,
+        "user_id": userId,
         "slug": slug,
         "name": name,
         "description": description,
@@ -105,6 +115,8 @@ class SingleVendor {
         "updated_at": updatedAt?.toIso8601String(),
         "latitude": latitude,
         "longitude": longitude,
+        "product": product,
+        "service": service,
         "vendor_images": vendorImages == null
             ? []
             : List<dynamic>.from(vendorImages!.map((x) => x.toMap())),

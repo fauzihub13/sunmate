@@ -149,8 +149,59 @@ class MobileView extends StatelessWidget {
               const SizedBox(
                 height: 8.0,
               ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  vendor.description!,
+                  textAlign: TextAlign.justify,
+                  style: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.grey),
+                ),
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Produk',
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.darkBlue),
+                ),
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  vendor.product ?? '-',
+                  textAlign: TextAlign.justify,
+                  style: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.grey),
+                ),
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Layanan',
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.darkBlue),
+                ),
+              ),
               Text(
-                vendor.description!,
+                vendor.service ?? '-',
                 textAlign: TextAlign.justify,
                 style: const TextStyle(
                     fontSize: 16.0,
@@ -160,69 +211,9 @@ class MobileView extends StatelessWidget {
               const SizedBox(
                 height: 20.0,
               ),
-              // const Align(
-              //   alignment: Alignment.centerLeft,
-              //   child: Text(
-              //     'Produk',
-              //     style: TextStyle(
-              //         fontSize: 18.0,
-              //         fontWeight: FontWeight.w500,
-              //         color: AppColors.darkBlue),
-              //   ),
-              // ),
-              // const SizedBox(
-              //   height: 8.0,
-              // ),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: vendor.products.map((product) {
-              //     return Align(
-              //       alignment: Alignment.centerLeft,
-              //       child: Text(
-              //         '- $product',
-              //         textAlign: TextAlign.start,
-              //         style: const TextStyle(
-              //           fontSize: 16.0,
-              //           fontWeight: FontWeight.w400,
-              //           color: AppColors.grey,
-              //         ),
-              //       ),
-              //     );
-              //   }).toList(),
-              // ),
-              // const SizedBox(
-              //   height: 20.0,
-              // ),
-              // const Align(
-              //   alignment: Alignment.centerLeft,
-              //   child: Text(
-              //     'Layanan',
-              //     style: TextStyle(
-              //         fontSize: 18.0,
-              //         fontWeight: FontWeight.w500,
-              //         color: AppColors.darkBlue),
-              //   ),
-              // ),
-              // const SizedBox(
-              //   height: 8.0,
-              // ),
-              // Column(
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: vendor.services.map((service) {
-              //     return Align(
-              //       alignment: Alignment.centerLeft,
-              //       child: Text(
-              //         '- $service',
-              //         textAlign: TextAlign.start,
-              //         style: const TextStyle(
-              //           fontSize: 16.0,
-              //           fontWeight: FontWeight.w400,
-              //           color: AppColors.grey,
-              //         ),
-              //       ),
-              //     );
-              //   }).toList(),
-              // ),
+              const SizedBox(
+                height: 20.0,
+              ),
             ],
           ),
         ),
