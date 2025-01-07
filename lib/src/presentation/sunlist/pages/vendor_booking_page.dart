@@ -149,15 +149,6 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                       ],
                     )),
               ),
-              // bottomNavigationBar: Padding(
-              //   padding: const EdgeInsets.symmetric(
-              //       horizontal: 16.0, vertical: 16.0),
-              //   child: Align(
-              //     alignment: Alignment.bottomCenter,
-              //     child: const CircularProgressIndicator(),
-              //   ),
-              // ),
-              // BATASS
               bottomNavigationBar: Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0, vertical: 16.0),
@@ -166,6 +157,10 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                     state.maybeWhen(
                       orElse: () {},
                       success: (bookingDataResponse) {
+                        dateController.clear();
+                        addressDetailController.clear();
+                        notesController.clear();
+                        _formKey.currentState!.reset();
                         showDialog(
                             context: context,
                             barrierDismissible: false,
@@ -191,47 +186,41 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
                               (route) => false,
                             );
                           });
+                        } else {
+                          CustomSnackbar.show(context,
+                              message: message, status: 'fail');
                         }
                       },
                     );
                   },
                   child: BlocBuilder<VendorBookingBloc, VendorBookingState>(
                     builder: (context, state) {
-                      return state.maybeWhen(
-                        orElse: () {
-                          // Show the button if not loading
-                          return Button.filled(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                final VendorBookingModel vendorBooking =
-                                    VendorBookingModel(
-                                  userId: user!.id!,
-                                  vendorId: dataVendor.id!.toString(),
-                                  address: addressDetailController.text,
-                                  date: DateTime.parse(dateController.text),
-                                  notes: notesController.text,
-                                );
-                                context.read<VendorBookingBloc>().add(
-                                    VendorBookingEvent.createBooking(
-                                        vendorBooking));
-                              }
-                            },
-                            label: 'Buat Jadwal',
-                          );
-                        },
-                        loading: () {
-                          return Button.filled(
-                            onPressed: () {},
-                            label: 'Memproses...',
-                          );
-                        },
-                        success: (bookingDataResponse) {
-                          return Button.outlined(
-                            onPressed: () {},
-                            label: 'Berhasil Buat Jadwal',
-                          );
-                        },
-                      );
+                      return state.maybeWhen(orElse: () {
+                        // Show the button if not loading
+                        return Button.filled(
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              final VendorBookingModel vendorBooking =
+                                  VendorBookingModel(
+                                userId: user!.id!,
+                                vendorId: dataVendor.id!.toString(),
+                                address: addressDetailController.text,
+                                date: DateTime.parse(dateController.text),
+                                notes: notesController.text,
+                              );
+                              context.read<VendorBookingBloc>().add(
+                                  VendorBookingEvent.createBooking(
+                                      vendorBooking));
+                            }
+                          },
+                          label: 'Buat Jadwal',
+                        );
+                      }, loading: () {
+                        return Button.filled(
+                          onPressed: () {},
+                          label: 'Memproses...',
+                        );
+                      });
                     },
                   ),
                 ),
