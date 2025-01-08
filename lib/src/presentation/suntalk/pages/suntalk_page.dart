@@ -42,14 +42,19 @@ class _SunTalkPageState extends State<SuntalkPage> {
     });
     chatController = TextEditingController();
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollToBottom();
+    // Listen for changes in the chat list
+    databaseReference.onChildAdded.listen((event) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _scrollToBottom();
+      });
     });
   }
 
-  void _scrollToBottom() {
+  void _scrollToBottom({int? duration}) {
     if (_scrollController.hasClients) {
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      _scrollController.animateTo(_scrollController.position.maxScrollExtent,
+          duration: Duration(milliseconds: duration ?? 400),
+          curve: Curves.easeInOut);
     }
   }
 
@@ -108,36 +113,27 @@ class _SunTalkPageState extends State<SuntalkPage> {
         children: [
           Expanded(
               child: FirebaseAnimatedList(
-                  controller: _scrollController,
-                  query: databaseReference,
-                  itemBuilder: (context, snapshot, animation, index) {
-                    String message = snapshot.child('message').value.toString();
-                    bool isImage = snapshot.child('isImage').value == true;
-                    int userId = int.tryParse(
-                            snapshot.child('user_id').value.toString()) ??
-                        0;
-                    int timestamp = int.tryParse(
-                            snapshot.child('timestamp').value.toString()) ??
-                        0;
+            controller: _scrollController,
+            query: databaseReference,
+            itemBuilder: (context, snapshot, animation, index) {
+              String message = snapshot.child('message').value.toString();
+              bool isImage = snapshot.child('isImage').value == true;
+              int userId =
+                  int.tryParse(snapshot.child('user_id').value.toString()) ?? 0;
+              int timestamp =
+                  int.tryParse(snapshot.child('timestamp').value.toString()) ??
+                      0;
 
-                    bool isSender = userId == user!.id!;
-
-                    // Scroll to bottom only once when the page is initially loaded
-                    if (!hasScrolledToBottomInitially) {
-                      WidgetsBinding.instance.addPostFrameCallback((_) {
-                        _scrollToBottom();
-                        hasScrolledToBottomInitially = true;
-                      });
-                    }
-
-                    return ChatCard(
-                      message: message,
-                      isImage: isImage,
-                      userId: userId,
-                      timestamp: timestamp,
-                      isSender: isSender,
-                    );
-                  })),
+              bool isSender = userId == user!.id!;
+              return ChatCard(
+                message: message,
+                isImage: isImage,
+                userId: userId,
+                timestamp: timestamp,
+                isSender: isSender,
+              );
+            },
+          )),
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
@@ -170,9 +166,9 @@ class _SunTalkPageState extends State<SuntalkPage> {
                           userId: user!.id!);
                       chatController.clear();
                       _scrollToBottom();
-                      if (context.mounted) {
-                        showSunTalkSnackBar(context, "Pesan terkirim");
-                      }
+                      // if (context.mounted) {
+                      //   showSunTalkSnackBar(context, "Pesan terkirim");
+                      // }
                     }
                   },
                   child: const Icon(
