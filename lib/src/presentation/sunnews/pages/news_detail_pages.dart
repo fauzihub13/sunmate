@@ -4,6 +4,7 @@ import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:flutter_sunmate/src/data/models/response/news_response_model.dart';
 import 'package:intl/intl.dart';
+import 'package:readmore/readmore.dart';
 
 class DetailNews extends StatelessWidget {
   final SingleNews news;
@@ -81,13 +82,21 @@ class MobileView extends StatelessWidget {
               const SizedBox(
                 height: 20.0,
               ),
-              Text(
-                news.description!,
-                textAlign: TextAlign.justify,
-                style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.grey),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: ReadMoreText(
+                  news.description!,
+                  textAlign: TextAlign.justify,
+                  trimLines: 8,
+                  colorClickableText: AppColors.darkBlue,
+                  trimMode: TrimMode.Line,
+                  trimCollapsedText: '..Selengkapnya',
+                  style: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.grey),
+                  trimExpandedText: ' Persingkat',
+                ),
               ),
               const SizedBox(
                 height: 20.0,

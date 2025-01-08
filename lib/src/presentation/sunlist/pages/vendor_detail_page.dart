@@ -9,6 +9,7 @@ import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vend
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunloc/pages/sunloc_page_single.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:readmore/readmore.dart';
 
 class DetailVendor extends StatelessWidget {
   final SingleVendor vendor;
@@ -151,13 +152,18 @@ class MobileView extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: ReadMoreText(
                   vendor.description!,
                   textAlign: TextAlign.justify,
+                  trimLines: 8,
+                  colorClickableText: AppColors.darkBlue,
+                  trimMode: TrimMode.Line,
+                  trimCollapsedText: '..Selengkapnya',
                   style: const TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.w400,
                       color: AppColors.grey),
+                  trimExpandedText: ' Persingkat',
                 ),
               ),
               const SizedBox(

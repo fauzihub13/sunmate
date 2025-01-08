@@ -53,6 +53,7 @@ dependencies:
   intl: ^0.20.1
   latlong2: ^0.9.1
   mockito: ^5.4.4
+  readmore: ^3.0.0
   shared_preferences: ^2.3.3
   smooth_page_indicator: ^1.2.0+3
   sqflite: ^2.4.1
