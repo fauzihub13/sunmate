@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
+import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
@@ -186,7 +187,7 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         }, loading: () {
                           return const Center(
-                            child: CircularProgressIndicator(),
+                            child: CustomLoadingIndicator(),
                           );
                         });
                       }),
@@ -260,7 +261,7 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         }, loading: () {
                           return const Center(
-                            child: CircularProgressIndicator(),
+                            child: CustomLoadingIndicator(),
                           );
                         });
                       },

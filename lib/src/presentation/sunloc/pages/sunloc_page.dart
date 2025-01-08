@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/search_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
@@ -98,7 +99,7 @@ class _SunlocPageState extends State<SunlocPage> {
                   builder: (context, state) {
                     return state.maybeWhen(
                       orElse: () => const Center(
-                        child: CircularProgressIndicator(),
+                        child: CustomLoadingIndicator(),
                       ),
                       loaded: (vendors) {
                         final markers = vendors.map((vendor) {

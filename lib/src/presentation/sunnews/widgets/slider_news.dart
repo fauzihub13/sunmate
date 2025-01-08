@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/models/news.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/widgets/news_card.dart';
@@ -39,7 +40,7 @@ class _SliderNewsState extends State<SliderNews> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               margin: const EdgeInsets.only(top: 5.0),
               child: const Center(
-                child: CircularProgressIndicator(),
+                child: CustomLoadingIndicator(),
               ));
         }, loaded: (news) {
           return Scrollbar(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/search_bar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
@@ -106,7 +107,7 @@ class _MobileViewState extends State<MobileView> {
                     return const Center(child: Text('Fecthing news data..'));
                   }, loading: () {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: CustomLoadingIndicator(),
                     );
                   }, loaded: (news) {
                     searchResults = news;

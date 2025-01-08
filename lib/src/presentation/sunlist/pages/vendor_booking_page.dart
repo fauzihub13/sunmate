@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/date_picker.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
@@ -68,7 +69,7 @@ class _VendorBookingPageState extends State<VendorBookingPage> {
           orElse: () => const Center(child: Text('Vendor tidak ditemukan')),
           loading: () {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CustomLoadingIndicator(),
             );
           },
           loaded: (dataVendor) {

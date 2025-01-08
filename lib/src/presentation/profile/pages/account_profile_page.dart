@@ -99,6 +99,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                             child: Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Column(
+                                mainAxisSize: MainAxisSize.max,
                                 children: [
                                   GestureDetector(
                                     onTap: () {
@@ -108,6 +109,7 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                       }));
                                     },
                                     child: const Row(
+                                      mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Icon(
                                           Icons.person_2_outlined,
@@ -120,6 +122,11 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                             color: AppColors.darkBlue,
                                             fontSize: 14,
                                           ),
+                                        ),
+                                        Spacer(),
+                                        Icon(
+                                          Icons.navigate_next,
+                                          color: AppColors.darkBlue,
                                         ),
                                       ],
                                     ),
@@ -149,6 +156,11 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                                   color: AppColors.darkBlue,
                                                   fontSize: 14,
                                                 ),
+                                              ),
+                                              Spacer(),
+                                              Icon(
+                                                Icons.navigate_next,
+                                                color: AppColors.darkBlue,
                                               ),
                                             ],
                                           ),
@@ -182,6 +194,11 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                                   fontSize: 14,
                                                 ),
                                               ),
+                                              Spacer(),
+                                              Icon(
+                                                Icons.navigate_next,
+                                                color: AppColors.darkBlue,
+                                              ),
                                             ],
                                           ),
                                         ),
@@ -213,6 +230,11 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                                   color: AppColors.darkBlue,
                                                   fontSize: 14,
                                                 ),
+                                              ),
+                                              Spacer(),
+                                              Icon(
+                                                Icons.navigate_next,
+                                                color: AppColors.darkBlue,
                                               ),
                                             ],
                                           ),
@@ -319,6 +341,11 @@ class _AccountProfilePageState extends State<AccountProfilePage> {
                                               color: AppColors.darkBlue,
                                               fontSize: 14,
                                             ),
+                                          ),
+                                          const Spacer(),
+                                          const Icon(
+                                            Icons.navigate_next,
+                                            color: AppColors.darkBlue,
                                           ),
                                         ],
                                       ),

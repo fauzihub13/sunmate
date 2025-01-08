@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/widgets/vendor_card.dart';
 
@@ -48,7 +49,7 @@ class _ListVendorState extends State<ListVendor> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 margin: const EdgeInsets.only(top: 5.0),
                 child: const Center(
-                  child: CircularProgressIndicator(),
+                  child: CustomLoadingIndicator(),
                 ));
           },
           loaded: (vendors) {

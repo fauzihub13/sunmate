@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/buttons.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/dropdown_menu.dart'
     as custom_dropdown_menu;
@@ -118,7 +119,7 @@ class _MobileViewState extends State<MobileView> {
                         ),
                         loading: () {
                           return const Center(
-                            child: CircularProgressIndicator(),
+                            child: CustomLoadingIndicator(),
                           );
                         },
                         loaded: (vendors) {

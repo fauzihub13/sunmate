@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
@@ -52,7 +53,7 @@ class _NotificationListPageState extends State<NotificationListPage> {
                         child: Text('Fetching notifications...'));
                   },
                   loading: () {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CustomLoadingIndicator());
                   },
                   loaded: (notifications) {
                     if (notifications.isEmpty) {

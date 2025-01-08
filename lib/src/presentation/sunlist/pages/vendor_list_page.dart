@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/search_bar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
@@ -65,7 +66,7 @@ class _MobileViewState extends State<MobileView> {
       appBar: const CustomAppbar(title: 'SunList', canBack: true),
       body: RefreshIndicator(
         color: AppColors.primary,
-        backgroundColor: AppColors.lightBlue,
+        backgroundColor: AppColors.white,
         onRefresh: _refreshPage,
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
@@ -109,7 +110,7 @@ class _MobileViewState extends State<MobileView> {
                       return const Center(child: Text('Fetching vendors...'));
                     },
                     loading: () {
-                      return const Center(child: CircularProgressIndicator());
+                      return const Center(child: CustomLoadingIndicator());
                     },
                     loaded: (vendors) {
                       searchResults = vendors;
