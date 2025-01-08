@@ -166,9 +166,6 @@ class _SunTalkPageState extends State<SuntalkPage> {
                           userId: user!.id!);
                       chatController.clear();
                       _scrollToBottom();
-                      // if (context.mounted) {
-                      //   showSunTalkSnackBar(context, "Pesan terkirim");
-                      // }
                     }
                   },
                   child: const Icon(
