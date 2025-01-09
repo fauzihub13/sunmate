@@ -1,31 +1,44 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
+import 'package:flutter_sunmate/src/data/models/response/message_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:http/http.dart' as http;
 
 class ChatRemoteDatasources {
-  final DatabaseReference ref = FirebaseDatabase.instance.ref('chats');
+  static final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  Stream<List<MessageModel>> allMessage() {
+    return firestore
+        .collection('groups')
+        .orderBy('timestamp', descending: true)
+        .snapshots()
+        .map((snapShot) {
+      List<MessageModel> messageList = [];
+
+      for (var element in snapShot.docs) {
+        messageList.add(MessageModel.fromDocumentSnapshot(element));
+      }
+      return messageList;
+    });
+  }
 
   Future<void> sendMessage(String message,
       {bool isImage = false, required int userId}) async {
     try {
-      // Push for get unique id
-      String messageId = ref.push().key ?? "unknown";
-
       // Build json message
       final messageData = {
-        'user_id': userId,
+        'userId': userId,
         'isImage': isImage,
         'message': message,
         'timestamp': (DateTime.now().millisecondsSinceEpoch / 1000).round(),
       };
 
       // Save data with unique Id
-      await ref.child(messageId).set(messageData);
+      await firestore.collection('groups').add(messageData);
     } catch (e) {
       debugPrint('Error mengirim pesan: $e');
     }

@@ -1,12 +1,13 @@
 import 'dart:typed_data';
 
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
+import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/message_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/chat_remote_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/suntalk/widgets/alert_message.dart';
@@ -21,15 +22,15 @@ class SuntalkPage extends StatefulWidget {
 }
 
 class _SunTalkPageState extends State<SuntalkPage> {
-  final DatabaseReference databaseReference =
-      FirebaseDatabase.instance.ref('chats');
+  final firestore = FirebaseFirestore.instance.collection('groups').get();
+
   final ScrollController _scrollController = ScrollController();
 
   late final TextEditingController chatController;
   User? user;
 
   // Instance Remote Datasource
-  final ChatRemoteDatasources remoteDatasource = ChatRemoteDatasources();
+  final ChatRemoteDatasources chatRemoteDatasource = ChatRemoteDatasources();
 
   bool hasScrolledToBottomInitially = false;
 
@@ -42,20 +43,6 @@ class _SunTalkPageState extends State<SuntalkPage> {
     });
     chatController = TextEditingController();
     super.initState();
-    // Listen for changes in the chat list
-    databaseReference.onChildAdded.listen((event) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _scrollToBottom();
-      });
-    });
-  }
-
-  void _scrollToBottom({int? duration}) {
-    if (_scrollController.hasClients) {
-      _scrollController.animateTo(_scrollController.position.maxScrollExtent,
-          duration: Duration(milliseconds: duration ?? 400),
-          curve: Curves.easeInOut);
-    }
   }
 
   Future<void> pickAndUploadImage(BuildContext context) async {
@@ -70,9 +57,9 @@ class _SunTalkPageState extends State<SuntalkPage> {
           String? imageUrl = await ChatRemoteDatasources().uploadImage(bytes);
 
           if (imageUrl != null && imageUrl.isNotEmpty) {
-            await remoteDatasource.sendMessage(imageUrl,
+            await chatRemoteDatasource.sendMessage(imageUrl,
                 userId: user!.id!, isImage: true);
-            _scrollToBottom();
+            // _scrollToBottom();
             if (context.mounted) {
               showSunTalkSnackBar(context, "Gambar terkirim");
             }
@@ -111,29 +98,48 @@ class _SunTalkPageState extends State<SuntalkPage> {
       appBar: const CustomAppbar(title: 'SunTalk', canBack: true),
       body: Column(
         children: [
-          Expanded(
-              child: FirebaseAnimatedList(
-            controller: _scrollController,
-            query: databaseReference,
-            itemBuilder: (context, snapshot, animation, index) {
-              String message = snapshot.child('message').value.toString();
-              bool isImage = snapshot.child('isImage').value == true;
-              int userId =
-                  int.tryParse(snapshot.child('user_id').value.toString()) ?? 0;
-              int timestamp =
-                  int.tryParse(snapshot.child('timestamp').value.toString()) ??
-                      0;
+          StreamBuilder<List<MessageModel>>(
+              stream: chatRemoteDatasource.allMessage(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Expanded(
+                      child: Center(child: CustomLoadingIndicator()));
+                }
+                final List<MessageModel> messages = snapshot.data ?? [];
 
-              bool isSender = userId == user!.id!;
-              return ChatCard(
-                message: message,
-                isImage: isImage,
-                userId: userId,
-                timestamp: timestamp,
-                isSender: isSender,
-              );
-            },
-          )),
+                if (messages.isEmpty) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text('No message found'),
+                    ),
+                  );
+                }
+                return Expanded(
+                    child: ListView.builder(
+                  physics: const AlwaysScrollableScrollPhysics(
+                      parent: BouncingScrollPhysics()),
+                  reverse: true,
+                  controller: _scrollController,
+                  itemCount: messages.length,
+                  itemBuilder: (context, index) {
+                    final message = messages[index];
+                    String textMessage = message.message;
+                    bool isImage = message.isImage == true;
+                    int userId = message.userId;
+                    int timestamp = message.timestamp;
+
+                    bool isSender = userId == user!.id!;
+
+                    return ChatCard(
+                      message: textMessage,
+                      isImage: isImage,
+                      userId: userId,
+                      timestamp: timestamp,
+                      isSender: isSender,
+                    );
+                  },
+                ));
+              }),
           Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
@@ -162,10 +168,9 @@ class _SunTalkPageState extends State<SuntalkPage> {
                   onTap: () async {
                     final message = chatController.text.trim();
                     if (message.isNotEmpty) {
-                      await remoteDatasource.sendMessage(message,
+                      await chatRemoteDatasource.sendMessage(message,
                           userId: user!.id!);
                       chatController.clear();
-                      _scrollToBottom();
                     }
                   },
                   child: const Icon(

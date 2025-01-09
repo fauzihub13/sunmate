@@ -98,7 +98,8 @@ class MyApp extends StatelessWidget {
           create: (context) => GoogleAuthBloc(GoogleAuthService()),
         ),
         BlocProvider(
-          create: (context) => NotificationBloc(NotificationRemoteDatasources()),
+          create: (context) =>
+              NotificationBloc(NotificationRemoteDatasources()),
         ),
       ],
       child: MaterialApp(

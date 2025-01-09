@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
+import 'package:intl/intl.dart';
 
 class ChatCard extends StatelessWidget {
   final String message;
@@ -19,8 +20,11 @@ class ChatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formattedTimestamp =
-        DateTime.fromMillisecondsSinceEpoch(timestamp * 1000).toLocal();
+    // Konversi timestamp ke DateTime
+    final dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
+
+    // Format menjadi "day/month/year hh:mm"
+    final formattedTime = DateFormat('dd/MM/yyyy HH:mm').format(dateTime);
 
     return Align(
       alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,
@@ -61,9 +65,11 @@ class ChatCard extends StatelessWidget {
                         const SizedBox(height: 5),
                         // Isi pesan
                         if (isImage)
-                          Image.network(message, errorBuilder: (context, error, stackTrace) {
+                          Image.network(
+                            message,
+                            errorBuilder: (context, error, stackTrace) {
                               return Image.asset(
-                                'assets/images/avatar.jpg', 
+                                'assets/images/avatar.jpg',
                                 fit: BoxFit.cover,
                               );
                             },
@@ -78,7 +84,7 @@ class ChatCard extends StatelessWidget {
                         const SizedBox(height: 8),
                         // Timestamp
                         Text(
-                          'Sent at ${formattedTimestamp.hour}:${formattedTimestamp.minute}',
+                          'Sent at $formattedTime',
                           style: TextStyle(
                               color: isSender
                                   ? AppColors.lightBlue
