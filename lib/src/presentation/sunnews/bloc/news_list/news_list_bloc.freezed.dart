@@ -20,18 +20,21 @@ mixin _$NewsListEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getNews,
+    required TResult Function(String newsId) getDetailNews,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getNews,
+    TResult? Function(String newsId)? getDetailNews,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getNews,
+    TResult Function(String newsId)? getDetailNews,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$NewsListEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetNews value) getNews,
+    required TResult Function(_GetDetailNews value) getDetailNews,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetNews value)? getNews,
+    TResult? Function(_GetDetailNews value)? getDetailNews,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetNews value)? getNews,
+    TResult Function(_GetDetailNews value)? getDetailNews,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getNews,
+    required TResult Function(String newsId) getDetailNews,
   }) {
     return started();
   }
@@ -129,6 +136,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getNews,
+    TResult? Function(String newsId)? getDetailNews,
   }) {
     return started?.call();
   }
@@ -138,6 +146,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getNews,
+    TResult Function(String newsId)? getDetailNews,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -151,6 +160,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetNews value) getNews,
+    required TResult Function(_GetDetailNews value) getDetailNews,
   }) {
     return started(this);
   }
@@ -160,6 +170,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetNews value)? getNews,
+    TResult? Function(_GetDetailNews value)? getDetailNews,
   }) {
     return started?.call(this);
   }
@@ -169,6 +180,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetNews value)? getNews,
+    TResult Function(_GetDetailNews value)? getDetailNews,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -225,6 +237,7 @@ class _$GetNewsImpl implements _GetNews {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getNews,
+    required TResult Function(String newsId) getDetailNews,
   }) {
     return getNews();
   }
@@ -234,6 +247,7 @@ class _$GetNewsImpl implements _GetNews {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getNews,
+    TResult? Function(String newsId)? getDetailNews,
   }) {
     return getNews?.call();
   }
@@ -243,6 +257,7 @@ class _$GetNewsImpl implements _GetNews {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getNews,
+    TResult Function(String newsId)? getDetailNews,
     required TResult orElse(),
   }) {
     if (getNews != null) {
@@ -256,6 +271,7 @@ class _$GetNewsImpl implements _GetNews {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetNews value) getNews,
+    required TResult Function(_GetDetailNews value) getDetailNews,
   }) {
     return getNews(this);
   }
@@ -265,6 +281,7 @@ class _$GetNewsImpl implements _GetNews {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetNews value)? getNews,
+    TResult? Function(_GetDetailNews value)? getDetailNews,
   }) {
     return getNews?.call(this);
   }
@@ -274,6 +291,7 @@ class _$GetNewsImpl implements _GetNews {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetNews value)? getNews,
+    TResult Function(_GetDetailNews value)? getDetailNews,
     required TResult orElse(),
   }) {
     if (getNews != null) {
@@ -288,12 +306,160 @@ abstract class _GetNews implements NewsListEvent {
 }
 
 /// @nodoc
+abstract class _$$GetDetailNewsImplCopyWith<$Res> {
+  factory _$$GetDetailNewsImplCopyWith(
+          _$GetDetailNewsImpl value, $Res Function(_$GetDetailNewsImpl) then) =
+      __$$GetDetailNewsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String newsId});
+}
+
+/// @nodoc
+class __$$GetDetailNewsImplCopyWithImpl<$Res>
+    extends _$NewsListEventCopyWithImpl<$Res, _$GetDetailNewsImpl>
+    implements _$$GetDetailNewsImplCopyWith<$Res> {
+  __$$GetDetailNewsImplCopyWithImpl(
+      _$GetDetailNewsImpl _value, $Res Function(_$GetDetailNewsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NewsListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newsId = null,
+  }) {
+    return _then(_$GetDetailNewsImpl(
+      newsId: null == newsId
+          ? _value.newsId
+          : newsId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetDetailNewsImpl implements _GetDetailNews {
+  const _$GetDetailNewsImpl({required this.newsId});
+
+  @override
+  final String newsId;
+
+  @override
+  String toString() {
+    return 'NewsListEvent.getDetailNews(newsId: $newsId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetDetailNewsImpl &&
+            (identical(other.newsId, newsId) || other.newsId == newsId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newsId);
+
+  /// Create a copy of NewsListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetDetailNewsImplCopyWith<_$GetDetailNewsImpl> get copyWith =>
+      __$$GetDetailNewsImplCopyWithImpl<_$GetDetailNewsImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getNews,
+    required TResult Function(String newsId) getDetailNews,
+  }) {
+    return getDetailNews(newsId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getNews,
+    TResult? Function(String newsId)? getDetailNews,
+  }) {
+    return getDetailNews?.call(newsId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getNews,
+    TResult Function(String newsId)? getDetailNews,
+    required TResult orElse(),
+  }) {
+    if (getDetailNews != null) {
+      return getDetailNews(newsId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetNews value) getNews,
+    required TResult Function(_GetDetailNews value) getDetailNews,
+  }) {
+    return getDetailNews(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetNews value)? getNews,
+    TResult? Function(_GetDetailNews value)? getDetailNews,
+  }) {
+    return getDetailNews?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetNews value)? getNews,
+    TResult Function(_GetDetailNews value)? getDetailNews,
+    required TResult orElse(),
+  }) {
+    if (getDetailNews != null) {
+      return getDetailNews(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetDetailNews implements NewsListEvent {
+  const factory _GetDetailNews({required final String newsId}) =
+      _$GetDetailNewsImpl;
+
+  String get newsId;
+
+  /// Create a copy of NewsListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetDetailNewsImplCopyWith<_$GetDetailNewsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$NewsListState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<SingleNews> news) loaded,
+    required TResult Function(SingleNews news) detailNewsLoaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -302,6 +468,7 @@ mixin _$NewsListState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<SingleNews> news)? loaded,
+    TResult? Function(SingleNews news)? detailNewsLoaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -310,6 +477,7 @@ mixin _$NewsListState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<SingleNews> news)? loaded,
+    TResult Function(SingleNews news)? detailNewsLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -319,6 +487,7 @@ mixin _$NewsListState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailNewsLoaded value) detailNewsLoaded,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -327,6 +496,7 @@ mixin _$NewsListState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailNewsLoaded value)? detailNewsLoaded,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -335,6 +505,7 @@ mixin _$NewsListState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailNewsLoaded value)? detailNewsLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -406,6 +577,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<SingleNews> news) loaded,
+    required TResult Function(SingleNews news) detailNewsLoaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -417,6 +589,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<SingleNews> news)? loaded,
+    TResult? Function(SingleNews news)? detailNewsLoaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -428,6 +601,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<SingleNews> news)? loaded,
+    TResult Function(SingleNews news)? detailNewsLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -443,6 +617,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailNewsLoaded value) detailNewsLoaded,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -454,6 +629,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailNewsLoaded value)? detailNewsLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -465,6 +641,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailNewsLoaded value)? detailNewsLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -523,6 +700,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<SingleNews> news) loaded,
+    required TResult Function(SingleNews news) detailNewsLoaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -534,6 +712,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<SingleNews> news)? loaded,
+    TResult? Function(SingleNews news)? detailNewsLoaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -545,6 +724,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<SingleNews> news)? loaded,
+    TResult Function(SingleNews news)? detailNewsLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -560,6 +740,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailNewsLoaded value) detailNewsLoaded,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -571,6 +752,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailNewsLoaded value)? detailNewsLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -582,6 +764,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailNewsLoaded value)? detailNewsLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -673,6 +856,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<SingleNews> news) loaded,
+    required TResult Function(SingleNews news) detailNewsLoaded,
     required TResult Function(String message) error,
   }) {
     return loaded(news);
@@ -684,6 +868,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<SingleNews> news)? loaded,
+    TResult? Function(SingleNews news)? detailNewsLoaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(news);
@@ -695,6 +880,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<SingleNews> news)? loaded,
+    TResult Function(SingleNews news)? detailNewsLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -710,6 +896,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailNewsLoaded value) detailNewsLoaded,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -721,6 +908,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailNewsLoaded value)? detailNewsLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -732,6 +920,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailNewsLoaded value)? detailNewsLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -751,6 +940,166 @@ abstract class _Loaded implements NewsListState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DetailNewsLoadedImplCopyWith<$Res> {
+  factory _$$DetailNewsLoadedImplCopyWith(_$DetailNewsLoadedImpl value,
+          $Res Function(_$DetailNewsLoadedImpl) then) =
+      __$$DetailNewsLoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SingleNews news});
+}
+
+/// @nodoc
+class __$$DetailNewsLoadedImplCopyWithImpl<$Res>
+    extends _$NewsListStateCopyWithImpl<$Res, _$DetailNewsLoadedImpl>
+    implements _$$DetailNewsLoadedImplCopyWith<$Res> {
+  __$$DetailNewsLoadedImplCopyWithImpl(_$DetailNewsLoadedImpl _value,
+      $Res Function(_$DetailNewsLoadedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of NewsListState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? news = null,
+  }) {
+    return _then(_$DetailNewsLoadedImpl(
+      null == news
+          ? _value.news
+          : news // ignore: cast_nullable_to_non_nullable
+              as SingleNews,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DetailNewsLoadedImpl implements _DetailNewsLoaded {
+  const _$DetailNewsLoadedImpl(this.news);
+
+  @override
+  final SingleNews news;
+
+  @override
+  String toString() {
+    return 'NewsListState.detailNewsLoaded(news: $news)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DetailNewsLoadedImpl &&
+            (identical(other.news, news) || other.news == news));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, news);
+
+  /// Create a copy of NewsListState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DetailNewsLoadedImplCopyWith<_$DetailNewsLoadedImpl> get copyWith =>
+      __$$DetailNewsLoadedImplCopyWithImpl<_$DetailNewsLoadedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<SingleNews> news) loaded,
+    required TResult Function(SingleNews news) detailNewsLoaded,
+    required TResult Function(String message) error,
+  }) {
+    return detailNewsLoaded(news);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<SingleNews> news)? loaded,
+    TResult? Function(SingleNews news)? detailNewsLoaded,
+    TResult? Function(String message)? error,
+  }) {
+    return detailNewsLoaded?.call(news);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<SingleNews> news)? loaded,
+    TResult Function(SingleNews news)? detailNewsLoaded,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (detailNewsLoaded != null) {
+      return detailNewsLoaded(news);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailNewsLoaded value) detailNewsLoaded,
+    required TResult Function(_Error value) error,
+  }) {
+    return detailNewsLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailNewsLoaded value)? detailNewsLoaded,
+    TResult? Function(_Error value)? error,
+  }) {
+    return detailNewsLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailNewsLoaded value)? detailNewsLoaded,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (detailNewsLoaded != null) {
+      return detailNewsLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DetailNewsLoaded implements NewsListState {
+  const factory _DetailNewsLoaded(final SingleNews news) =
+      _$DetailNewsLoadedImpl;
+
+  SingleNews get news;
+
+  /// Create a copy of NewsListState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DetailNewsLoadedImplCopyWith<_$DetailNewsLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -825,6 +1174,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<SingleNews> news) loaded,
+    required TResult Function(SingleNews news) detailNewsLoaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -836,6 +1186,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<SingleNews> news)? loaded,
+    TResult? Function(SingleNews news)? detailNewsLoaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -847,6 +1198,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<SingleNews> news)? loaded,
+    TResult Function(SingleNews news)? detailNewsLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -862,6 +1214,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailNewsLoaded value) detailNewsLoaded,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -873,6 +1226,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailNewsLoaded value)? detailNewsLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -884,6 +1238,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailNewsLoaded value)? detailNewsLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

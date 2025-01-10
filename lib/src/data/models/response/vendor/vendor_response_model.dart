@@ -3,12 +3,12 @@ import 'dart:convert';
 class VendorResponseModel {
   final String? status;
   final String? message;
-  final List<SingleVendor>? data;
+  final List<SingleVendor>? vendors;
 
   VendorResponseModel({
     this.status,
     this.message,
-    this.data,
+    this.vendors,
   });
 
   factory VendorResponseModel.fromJson(String str) =>
@@ -20,17 +20,17 @@ class VendorResponseModel {
       VendorResponseModel(
         status: json["status"],
         message: json["message"],
-        data: json["data"] == null
+        vendors: json["vendors"] == null
             ? []
             : List<SingleVendor>.from(
-                json["data"]!.map((x) => SingleVendor.fromMap(x))),
+                json["vendors"]!.map((x) => SingleVendor.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
         "status": status,
         "message": message,
-        "data":
-            data == null ? [] : List<dynamic>.from(data!.map((x) => x.toMap())),
+        "vendors":
+            vendors == null ? [] : List<dynamic>.from(vendors!.map((x) => x.toMap())),
       };
 }
 

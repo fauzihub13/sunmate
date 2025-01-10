@@ -23,4 +23,22 @@ class NewsRemoteDatasources {
       return const Left('Failed to get news');
     }
   }
+  Future<Either<String, NewsResponseModel>> getDetailNews(String newsId) async {
+    
+    final url = Uri.parse('${Variables.apiUrl}/news?id=$newsId');
+    final authData = await AuthLocalDatasources().getAuthData();
+    final response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    },);
+
+    if (response.statusCode == 200) {
+      // print(response.body);
+      return Right(NewsResponseModel.fromJson(response.body));
+    } else if (response.statusCode == 401) {
+      return const Left('logged_out');
+    } else {
+      return const Left('Failed to get news');
+    }
+  }
 }

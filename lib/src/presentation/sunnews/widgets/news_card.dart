@@ -13,7 +13,7 @@ class NewsCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return DetailNews(news: data);
+          return DetailNews(newsId: data.id!);
         }));
       },
       child: SizedBox(

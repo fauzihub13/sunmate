@@ -3,33 +3,50 @@ import 'dart:convert';
 class NewsResponseModel {
   final String? status;
   final String? message;
-  final List<SingleNews>? data;
+  final dynamic news; // Bisa List<SingleNews> atau SingleNews
 
   NewsResponseModel({
     this.status,
     this.message,
-    this.data,
+    this.news,
   });
 
+  // Factory method untuk deserialisasi dari JSON
   factory NewsResponseModel.fromJson(String str) =>
       NewsResponseModel.fromMap(json.decode(str));
 
+  // Serialisasi ke JSON
   String toJson() => json.encode(toMap());
 
-  factory NewsResponseModel.fromMap(Map<String, dynamic> json) =>
-      NewsResponseModel(
+  // Factory method untuk deserialisasi dari Map
+  factory NewsResponseModel.fromMap(Map<String, dynamic> json) {
+    if (json["news"] is List) {
+      return NewsResponseModel(
         status: json["status"],
         message: json["message"],
-        data: json["data"] == null
+        news: json["news"] == null
             ? []
-            : List<SingleNews>.from(json["data"]!.map((x) => SingleNews.fromMap(x))),
+            : List<SingleNews>.from(
+                json["news"].map((x) => SingleNews.fromMap(x))),
       );
+    } else {
+      return NewsResponseModel(
+        status: json["status"],
+        message: json["message"],
+        news: json["news"] == null ? null : SingleNews.fromMap(json["news"]),
+      );
+    }
+  }
 
+  // Serialisasi ke Map
   Map<String, dynamic> toMap() => {
         "status": status,
         "message": message,
-        "data":
-            data == null ? [] : List<dynamic>.from(data!.map((x) => x.toMap())),
+        "news": (news is List)
+            ? List<dynamic>.from((news as List).map((x) => x.toMap()))
+            : (news is SingleNews)
+                ? (news as SingleNews).toMap()
+                : null,
       };
 }
 
@@ -54,7 +71,8 @@ class SingleNews {
     this.updatedAt,
   });
 
-  factory SingleNews.fromJson(String str) => SingleNews.fromMap(json.decode(str));
+  factory SingleNews.fromJson(String str) =>
+      SingleNews.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 

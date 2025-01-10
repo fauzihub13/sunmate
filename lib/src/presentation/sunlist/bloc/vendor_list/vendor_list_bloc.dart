@@ -16,7 +16,7 @@ class VendorListBloc extends Bloc<VendorListEvent, VendorListState> {
       final result = await vendorRemoteDatasources.getVendors();
 
       result.fold((error) => emit(_Error(error)), (value) {
-        emit(_Loaded(value.data ?? []));
+        emit(_Loaded(value.vendors ?? []));
       });
     });
   }
