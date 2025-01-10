@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
-import 'package:flutter_sunmate/src/data/models/response/vendor_booking_history_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor/vendor_booking_history_model.dart';
 import 'package:intl/intl.dart';
 
 class VendorHistoryCard extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
-import 'package:flutter_sunmate/src/data/models/response/news_response_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/news/news_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_detail_pages.dart';
 
 class NewsCard extends StatelessWidget {

@@ -9,7 +9,7 @@ import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/models/response/message_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
-import 'package:flutter_sunmate/src/data/sources/chat_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/group_chat_remote_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/suntalk/widgets/alert_message.dart';
 import 'package:flutter_sunmate/src/presentation/suntalk/widgets/chat_card.dart';
 import 'package:image_picker/image_picker.dart';
@@ -30,7 +30,8 @@ class _SunTalkPageState extends State<SuntalkPage> {
   User? user;
 
   // Instance Remote Datasource
-  final ChatRemoteDatasources chatRemoteDatasource = ChatRemoteDatasources();
+  final GroupChatRemoteDatasources chatRemoteDatasource =
+      GroupChatRemoteDatasources();
 
   bool hasScrolledToBottomInitially = false;
 
@@ -54,7 +55,8 @@ class _SunTalkPageState extends State<SuntalkPage> {
 
       if (bytes.isNotEmpty) {
         try {
-          String? imageUrl = await ChatRemoteDatasources().uploadImage(bytes);
+          String? imageUrl =
+              await GroupChatRemoteDatasources().uploadImage(bytes);
 
           if (imageUrl != null && imageUrl.isNotEmpty) {
             await chatRemoteDatasource.sendMessage(imageUrl,

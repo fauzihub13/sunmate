@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
-import 'package:flutter_sunmate/src/data/models/response/vendor_response_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor/vendor_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_detail_page.dart';
 import 'package:flutter_svg/svg.dart';
 

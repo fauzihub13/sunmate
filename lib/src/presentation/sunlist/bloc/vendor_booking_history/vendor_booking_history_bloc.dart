@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_sunmate/src/data/models/response/vendor_booking_history_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor/vendor_booking_history_model.dart';
 import 'package:flutter_sunmate/src/data/sources/booking_vendor_remote_datasources.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

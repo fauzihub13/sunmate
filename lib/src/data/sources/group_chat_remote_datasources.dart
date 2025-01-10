@@ -8,7 +8,7 @@ import 'package:flutter_sunmate/src/data/models/response/message_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:http/http.dart' as http;
 
-class ChatRemoteDatasources {
+class GroupChatRemoteDatasources {
   static final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Stream<List<MessageModel>> allMessage() {

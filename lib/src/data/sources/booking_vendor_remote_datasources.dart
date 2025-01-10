@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
-import 'package:flutter_sunmate/src/data/models/response/vendor_booking_history_model.dart';
-import 'package:flutter_sunmate/src/data/models/response/vendor_booking_response_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor/vendor_booking_history_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/vendor/vendor_booking_response_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_model.dart';
 import 'package:http/http.dart' as http;
