@@ -53,7 +53,6 @@ class _MobileViewState extends State<MobileView> {
         setState(() {
           searchBarHeight = renderBox.size.height;
         });
-        // print(searchBarHeight);
       }
     });
   }
@@ -117,6 +116,7 @@ class _MobileViewState extends State<MobileView> {
                 child: BlocBuilder<NewsListBloc, NewsListState>(
                     builder: (context, state) {
                   return state.maybeWhen(orElse: () {
+                    // print('orElse triggered with state: $state');
                     return EmptyPage(
                       message: 'Fetching news data.',
                       searchBarHeight: searchBarHeight,

@@ -3,12 +3,14 @@ import 'dart:convert';
 class NewsResponseModel {
   final String? status;
   final String? message;
-  final dynamic news; 
+  final List<SingleNews>? newsList;
+  final SingleNews? singleNews;
 
   NewsResponseModel({
     this.status,
     this.message,
-    this.news,
+    this.newsList,
+    this.singleNews,
   });
 
   // Factory method untuk deserialisasi dari JSON
@@ -24,7 +26,7 @@ class NewsResponseModel {
       return NewsResponseModel(
         status: json["status"],
         message: json["message"],
-        news: json["news"] == null
+        newsList: json["news"] == null
             ? []
             : List<SingleNews>.from(
                 json["news"].map((x) => SingleNews.fromMap(x))),
@@ -33,7 +35,8 @@ class NewsResponseModel {
       return NewsResponseModel(
         status: json["status"],
         message: json["message"],
-        news: json["news"] == null ? null : SingleNews.fromMap(json["news"]),
+        singleNews:
+            json["news"] == null ? null : SingleNews.fromMap(json["news"]),
       );
     }
   }
@@ -42,11 +45,14 @@ class NewsResponseModel {
   Map<String, dynamic> toMap() => {
         "status": status,
         "message": message,
-        "news": (news is List)
-            ? List<dynamic>.from((news as List).map((x) => x.toMap()))
-            : (news is SingleNews)
-                ? (news as SingleNews).toMap()
-                : null,
+        "news": newsList != null
+            ? List<dynamic>.from(newsList!.map((x) => x.toMap()))
+            : singleNews?.toMap(),
+        // "news": (news is List)
+        //     ? List<dynamic>.from((news as List).map((x) => x.toMap()))
+        //     : (news is SingleNews)
+        //         ? (news as SingleNews).toMap()
+        //         : null,
       };
 }
 

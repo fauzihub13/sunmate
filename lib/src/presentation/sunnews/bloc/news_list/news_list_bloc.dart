@@ -16,7 +16,7 @@ class NewsListBloc extends Bloc<NewsListEvent, NewsListState> {
       final result = await newsRemoteDatasources.getNews();
 
       result.fold((error) => emit(_Error(error)), (value) {
-        emit(_Loaded(value.news ?? []));
+        emit(_Loaded(value.newsList ?? []));
       });
     });
 
@@ -26,7 +26,7 @@ class NewsListBloc extends Bloc<NewsListEvent, NewsListState> {
       final result = await newsRemoteDatasources.getDetailNews(event.newsId);
 
       result.fold((error) => emit(_Error(error)), (value) {
-        emit(_DetailNewsLoaded(value.news));
+        emit(_DetailNewsLoaded(value.singleNews!));
       });
     });
   }

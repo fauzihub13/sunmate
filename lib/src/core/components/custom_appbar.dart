@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool canBack;
+  final VoidCallback? onTap;
   final Color? backgroundColor;
   final Color? textColor;
 
@@ -12,6 +13,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       {super.key,
       required this.title,
       required this.canBack,
+      this.onTap,
       this.backgroundColor,
       this.textColor});
 
@@ -49,7 +51,11 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                           height: 30,
                         ),
                         onPressed: () {
-                          Navigator.pop(context);
+                          if (onTap != null) {
+                            onTap!();
+                          } else {
+                            Navigator.pop(context);
+                          }
                         },
                       ),
                     )
