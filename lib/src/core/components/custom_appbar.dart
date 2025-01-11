@@ -22,6 +22,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         toolbarHeight: 60,
         backgroundColor: backgroundColor ?? AppColors.white,
+        scrolledUnderElevation: 0.0,
         automaticallyImplyLeading: false,
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0.0),

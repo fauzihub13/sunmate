@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
+import 'package:flutter_sunmate/src/core/components/empty_page.dart';
 import 'package:flutter_sunmate/src/core/components/search_bar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/news/news_response_model.dart';
@@ -38,12 +39,23 @@ class MobileView extends StatefulWidget {
 class _MobileViewState extends State<MobileView> {
   final TextEditingController searchController = TextEditingController();
   List<SingleNews> searchResults = [];
+  final GlobalKey searchBarKey = GlobalKey();
+  double searchBarHeight = 0.0;
 
   @override
   void initState() {
     super.initState();
     context.read<NewsListBloc>().add(const NewsListEvent.getNews());
-    // searchResults = news;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final renderBox =
+          searchBarKey.currentContext?.findRenderObject() as RenderBox?;
+      if (renderBox != null) {
+        setState(() {
+          searchBarHeight = renderBox.size.height;
+        });
+        // print(searchBarHeight);
+      }
+    });
   }
 
   void _onSearchChanged(String value) {
@@ -64,13 +76,14 @@ class _MobileViewState extends State<MobileView> {
       appBar: const CustomAppbar(title: 'SunNews', canBack: true),
       body: RefreshIndicator(
         color: AppColors.primary,
-        backgroundColor: AppColors.lightBlue,
+        backgroundColor: AppColors.white,
         onRefresh: _refreshPage,
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
           child: Column(
             children: [
               CustomSearchBar(
+                key: searchBarKey,
                 controller: searchController,
                 onChanged: _onSearchChanged,
               ),
@@ -104,7 +117,10 @@ class _MobileViewState extends State<MobileView> {
                 child: BlocBuilder<NewsListBloc, NewsListState>(
                     builder: (context, state) {
                   return state.maybeWhen(orElse: () {
-                    return const Center(child: Text('Fecthing news data..'));
+                    return EmptyPage(
+                      message: 'Fetching news data.',
+                      searchBarHeight: searchBarHeight,
+                    );
                   }, loading: () {
                     return const Center(
                       child: CustomLoadingIndicator(),

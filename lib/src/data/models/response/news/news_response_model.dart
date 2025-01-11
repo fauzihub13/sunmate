@@ -3,7 +3,7 @@ import 'dart:convert';
 class NewsResponseModel {
   final String? status;
   final String? message;
-  final dynamic news; // Bisa List<SingleNews> atau SingleNews
+  final dynamic news; 
 
   NewsResponseModel({
     this.status,

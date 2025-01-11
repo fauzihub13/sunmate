@@ -62,6 +62,8 @@ class _MobileViewState extends State<MobileView> {
         appBar: const CustomAppbar(title: 'Detail Berita', canBack: true),
         body: SafeArea(
           child: RefreshIndicator(
+            color: AppColors.primary,
+            backgroundColor: AppColors.white,
             onRefresh: _refreshPage,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
