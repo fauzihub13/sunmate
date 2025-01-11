@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
+import 'package:flutter_sunmate/src/core/components/empty_page.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
@@ -169,8 +170,8 @@ class _MobileViewState extends State<MobileView> {
                       ),
                     );
                   }, error: (message) {
-                    return Center(
-                      child: Text(message),
+                    return EmptyPage(
+                      message: message,
                     );
                   });
                 },

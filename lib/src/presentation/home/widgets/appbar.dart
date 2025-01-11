@@ -23,6 +23,7 @@ class _MainAppBarState extends State<MainAppBar> {
           toolbarHeight: 80,
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
+          scrolledUnderElevation: 0.0,
           title: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
