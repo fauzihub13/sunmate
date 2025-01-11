@@ -15,6 +15,7 @@ import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_list_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunloc/pages/sunloc_page_single.dart';
+import 'package:flutter_sunmate/src/presentation/suntalk/pages/private_chat_page.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:readmore/readmore.dart';
 
@@ -111,6 +112,12 @@ class _MobileViewState extends State<MobileView> {
             },
             builder: (context, state) {
               return state.maybeWhen(orElse: () {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height -
+                      AppBar().preferredSize.height,
+                  child: const Center(child: Text('Fetching data')),
+                );
+              }, loading: () {
                 return SizedBox(
                   height: MediaQuery.of(context).size.height -
                       AppBar().preferredSize.height,
@@ -371,8 +378,14 @@ class _MobileViewState extends State<MobileView> {
                   //   width: 8,
                   // ),
                   Expanded(
-                    child:
-                        Button.outlined(onPressed: () {}, label: 'Kirim Pesan'),
+                    child: Button.outlined(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return const PrivateChatPage();
+                          }));
+                        },
+                        label: 'Kirim Pesan'),
                   ),
                   const SizedBox(
                     width: 8,
