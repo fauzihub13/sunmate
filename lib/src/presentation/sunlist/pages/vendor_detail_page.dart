@@ -350,6 +350,33 @@ class _MobileViewState extends State<MobileView> {
                   const SizedBox(
                     width: 8,
                   ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Navigator.push(context,
+                  //         MaterialPageRoute(builder: (context) {
+                  //       return SunlocPageSingle(
+                  //         vendor: vendor,
+                  //       );
+                  //     }));
+                  //   },
+                  //   child: const SizedBox(
+                  //     child: Icon(
+                  //       Icons.chat,
+                  //       size: 34,
+                  //       color: AppColors.primary,
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(
+                  //   width: 8,
+                  // ),
+                  Expanded(
+                    child:
+                        Button.outlined(onPressed: () {}, label: 'Kirim Pesan'),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
                   Expanded(
                     child: Button.filled(
                         onPressed: () {
