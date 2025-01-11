@@ -13,7 +13,6 @@ import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_list/vendor_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_page.dart';
-import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_list_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunloc/pages/sunloc_page_single.dart';
 import 'package:flutter_sunmate/src/presentation/suntalk/pages/private_chat_page.dart';
 import 'package:flutter_svg/svg.dart';
@@ -72,11 +71,10 @@ class _MobileViewState extends State<MobileView> {
         title: 'Detail Vendor',
         canBack: true,
         onTap: () {
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => const VendorListPage()),
-            (route) => route.isFirst,
-          );
+          Navigator.pop(context);
+          context
+              .read<VendorListBloc>()
+              .add(const VendorListEvent.getAllVendor());
         },
       ),
       body: SafeArea(

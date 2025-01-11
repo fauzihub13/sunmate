@@ -10,7 +10,6 @@ import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
-import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_list_pages.dart';
 import 'package:intl/intl.dart';
 import 'package:readmore/readmore.dart';
 
@@ -65,11 +64,8 @@ class _MobileViewState extends State<MobileView> {
           title: 'Detail Berita',
           canBack: true,
           onTap: () {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const NewsListPages()),
-              (route) => route.isFirst,
-            );
+            Navigator.pop(context);
+            context.read<NewsListBloc>().add(const NewsListEvent.getNews());
           },
         ),
         body: SafeArea(

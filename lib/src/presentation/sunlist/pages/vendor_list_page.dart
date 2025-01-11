@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
+import 'package:flutter_sunmate/src/core/components/empty_page.dart';
 import 'package:flutter_sunmate/src/core/components/search_bar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor/vendor_response_model.dart';
@@ -107,7 +108,8 @@ class _MobileViewState extends State<MobileView> {
                     builder: (context, state) {
                   return state.maybeWhen(
                     orElse: () {
-                      return const Center(child: Text('Fetching vendors...'));
+                      return const EmptyPage(message: 'Fetching vendor');
+                      // return Center(child: Text('Fetching vendors $state'));
                     },
                     loading: () {
                       return const Center(child: CustomLoadingIndicator());
