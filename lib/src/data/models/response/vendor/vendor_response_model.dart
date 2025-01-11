@@ -1,14 +1,18 @@
 import 'dart:convert';
 
+import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
+
 class VendorResponseModel {
   final String? status;
   final String? message;
-  final List<SingleVendor>? vendors;
+  final List<SingleVendor>? vendorList;
+  final SingleVendor? singleVendor;
 
   VendorResponseModel({
     this.status,
     this.message,
-    this.vendors,
+    this.vendorList,
+    this.singleVendor,
   });
 
   factory VendorResponseModel.fromJson(String str) =>
@@ -16,21 +20,33 @@ class VendorResponseModel {
 
   String toJson() => json.encode(toMap());
 
-  factory VendorResponseModel.fromMap(Map<String, dynamic> json) =>
-      VendorResponseModel(
+  factory VendorResponseModel.fromMap(Map<String, dynamic> json) {
+    if (json["vendors"] is List) {
+      return VendorResponseModel(
         status: json["status"],
         message: json["message"],
-        vendors: json["vendors"] == null
+        vendorList: json["vendors"] == null
             ? []
             : List<SingleVendor>.from(
                 json["vendors"]!.map((x) => SingleVendor.fromMap(x))),
       );
+    } else {
+      return VendorResponseModel(
+        status: json["status"],
+        message: json["message"],
+        singleVendor: json["vendors"] == null
+            ? null
+            : SingleVendor.fromMap(json["vendors"]),
+      );
+    }
+  }
 
   Map<String, dynamic> toMap() => {
         "status": status,
         "message": message,
-        "vendors":
-            vendors == null ? [] : List<dynamic>.from(vendors!.map((x) => x.toMap())),
+        "vendors": vendorList != null
+            ? List<dynamic>.from(vendorList!.map((x) => x.toMap()))
+            : singleVendor?.toMap(),
       };
 }
 
@@ -47,9 +63,10 @@ class SingleVendor {
   final DateTime? updatedAt;
   final double? latitude;
   final double? longitude;
-  final dynamic product;
-  final dynamic service;
+  final String? product;
+  final String? service;
   final List<VendorImage>? vendorImages;
+  final User? user;
 
   SingleVendor({
     this.id,
@@ -67,6 +84,7 @@ class SingleVendor {
     this.product,
     this.service,
     this.vendorImages,
+    this.user,
   });
 
   factory SingleVendor.fromJson(String str) =>
@@ -100,6 +118,7 @@ class SingleVendor {
             ? []
             : List<VendorImage>.from(
                 json["vendor_images"]!.map((x) => VendorImage.fromMap(x))),
+        user: json["user"] == null ? null : User.fromMap(json["user"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -120,6 +139,7 @@ class SingleVendor {
         "vendor_images": vendorImages == null
             ? []
             : List<dynamic>.from(vendorImages!.map((x) => x.toMap())),
+        "user": user?.toMap(),
       };
 }
 

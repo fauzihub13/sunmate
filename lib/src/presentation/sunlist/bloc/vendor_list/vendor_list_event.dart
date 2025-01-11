@@ -4,4 +4,5 @@ part of 'vendor_list_bloc.dart';
 class VendorListEvent with _$VendorListEvent {
   const factory VendorListEvent.started() = _Started;
   const factory VendorListEvent.getAllVendor() = _GetAllVendor;
+  const factory VendorListEvent.getDetailVendor({required String vendorId}) = _GetDetailVendor;
 }

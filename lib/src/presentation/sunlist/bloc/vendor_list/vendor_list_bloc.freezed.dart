@@ -20,18 +20,21 @@ mixin _$VendorListEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getAllVendor,
+    required TResult Function(String vendorId) getDetailVendor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getAllVendor,
+    TResult? Function(String vendorId)? getDetailVendor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getAllVendor,
+    TResult Function(String vendorId)? getDetailVendor,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$VendorListEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetAllVendor value) getAllVendor,
+    required TResult Function(_GetDetailVendor value) getDetailVendor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAllVendor value)? getAllVendor,
+    TResult? Function(_GetDetailVendor value)? getDetailVendor,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetAllVendor value)? getAllVendor,
+    TResult Function(_GetDetailVendor value)? getDetailVendor,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,6 +126,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getAllVendor,
+    required TResult Function(String vendorId) getDetailVendor,
   }) {
     return started();
   }
@@ -129,6 +136,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getAllVendor,
+    TResult? Function(String vendorId)? getDetailVendor,
   }) {
     return started?.call();
   }
@@ -138,6 +146,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getAllVendor,
+    TResult Function(String vendorId)? getDetailVendor,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -151,6 +160,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetAllVendor value) getAllVendor,
+    required TResult Function(_GetDetailVendor value) getDetailVendor,
   }) {
     return started(this);
   }
@@ -160,6 +170,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAllVendor value)? getAllVendor,
+    TResult? Function(_GetDetailVendor value)? getDetailVendor,
   }) {
     return started?.call(this);
   }
@@ -169,6 +180,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetAllVendor value)? getAllVendor,
+    TResult Function(_GetDetailVendor value)? getDetailVendor,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -225,6 +237,7 @@ class _$GetAllVendorImpl implements _GetAllVendor {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getAllVendor,
+    required TResult Function(String vendorId) getDetailVendor,
   }) {
     return getAllVendor();
   }
@@ -234,6 +247,7 @@ class _$GetAllVendorImpl implements _GetAllVendor {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getAllVendor,
+    TResult? Function(String vendorId)? getDetailVendor,
   }) {
     return getAllVendor?.call();
   }
@@ -243,6 +257,7 @@ class _$GetAllVendorImpl implements _GetAllVendor {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getAllVendor,
+    TResult Function(String vendorId)? getDetailVendor,
     required TResult orElse(),
   }) {
     if (getAllVendor != null) {
@@ -256,6 +271,7 @@ class _$GetAllVendorImpl implements _GetAllVendor {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetAllVendor value) getAllVendor,
+    required TResult Function(_GetDetailVendor value) getDetailVendor,
   }) {
     return getAllVendor(this);
   }
@@ -265,6 +281,7 @@ class _$GetAllVendorImpl implements _GetAllVendor {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetAllVendor value)? getAllVendor,
+    TResult? Function(_GetDetailVendor value)? getDetailVendor,
   }) {
     return getAllVendor?.call(this);
   }
@@ -274,6 +291,7 @@ class _$GetAllVendorImpl implements _GetAllVendor {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetAllVendor value)? getAllVendor,
+    TResult Function(_GetDetailVendor value)? getDetailVendor,
     required TResult orElse(),
   }) {
     if (getAllVendor != null) {
@@ -288,12 +306,162 @@ abstract class _GetAllVendor implements VendorListEvent {
 }
 
 /// @nodoc
+abstract class _$$GetDetailVendorImplCopyWith<$Res> {
+  factory _$$GetDetailVendorImplCopyWith(_$GetDetailVendorImpl value,
+          $Res Function(_$GetDetailVendorImpl) then) =
+      __$$GetDetailVendorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String vendorId});
+}
+
+/// @nodoc
+class __$$GetDetailVendorImplCopyWithImpl<$Res>
+    extends _$VendorListEventCopyWithImpl<$Res, _$GetDetailVendorImpl>
+    implements _$$GetDetailVendorImplCopyWith<$Res> {
+  __$$GetDetailVendorImplCopyWithImpl(
+      _$GetDetailVendorImpl _value, $Res Function(_$GetDetailVendorImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of VendorListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? vendorId = null,
+  }) {
+    return _then(_$GetDetailVendorImpl(
+      vendorId: null == vendorId
+          ? _value.vendorId
+          : vendorId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetDetailVendorImpl implements _GetDetailVendor {
+  const _$GetDetailVendorImpl({required this.vendorId});
+
+  @override
+  final String vendorId;
+
+  @override
+  String toString() {
+    return 'VendorListEvent.getDetailVendor(vendorId: $vendorId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetDetailVendorImpl &&
+            (identical(other.vendorId, vendorId) ||
+                other.vendorId == vendorId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, vendorId);
+
+  /// Create a copy of VendorListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetDetailVendorImplCopyWith<_$GetDetailVendorImpl> get copyWith =>
+      __$$GetDetailVendorImplCopyWithImpl<_$GetDetailVendorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getAllVendor,
+    required TResult Function(String vendorId) getDetailVendor,
+  }) {
+    return getDetailVendor(vendorId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getAllVendor,
+    TResult? Function(String vendorId)? getDetailVendor,
+  }) {
+    return getDetailVendor?.call(vendorId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getAllVendor,
+    TResult Function(String vendorId)? getDetailVendor,
+    required TResult orElse(),
+  }) {
+    if (getDetailVendor != null) {
+      return getDetailVendor(vendorId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetAllVendor value) getAllVendor,
+    required TResult Function(_GetDetailVendor value) getDetailVendor,
+  }) {
+    return getDetailVendor(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetAllVendor value)? getAllVendor,
+    TResult? Function(_GetDetailVendor value)? getDetailVendor,
+  }) {
+    return getDetailVendor?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetAllVendor value)? getAllVendor,
+    TResult Function(_GetDetailVendor value)? getDetailVendor,
+    required TResult orElse(),
+  }) {
+    if (getDetailVendor != null) {
+      return getDetailVendor(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetDetailVendor implements VendorListEvent {
+  const factory _GetDetailVendor({required final String vendorId}) =
+      _$GetDetailVendorImpl;
+
+  String get vendorId;
+
+  /// Create a copy of VendorListEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetDetailVendorImplCopyWith<_$GetDetailVendorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$VendorListState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<SingleVendor> vendor) loaded,
+    required TResult Function(SingleVendor vendor) detailVendorLoaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -302,6 +470,7 @@ mixin _$VendorListState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<SingleVendor> vendor)? loaded,
+    TResult? Function(SingleVendor vendor)? detailVendorLoaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -310,6 +479,7 @@ mixin _$VendorListState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<SingleVendor> vendor)? loaded,
+    TResult Function(SingleVendor vendor)? detailVendorLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -319,6 +489,7 @@ mixin _$VendorListState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailVendorLoaded value) detailVendorLoaded,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -327,6 +498,7 @@ mixin _$VendorListState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailVendorLoaded value)? detailVendorLoaded,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -335,6 +507,7 @@ mixin _$VendorListState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailVendorLoaded value)? detailVendorLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -406,6 +579,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<SingleVendor> vendor) loaded,
+    required TResult Function(SingleVendor vendor) detailVendorLoaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -417,6 +591,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<SingleVendor> vendor)? loaded,
+    TResult? Function(SingleVendor vendor)? detailVendorLoaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -428,6 +603,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<SingleVendor> vendor)? loaded,
+    TResult Function(SingleVendor vendor)? detailVendorLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -443,6 +619,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailVendorLoaded value) detailVendorLoaded,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -454,6 +631,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailVendorLoaded value)? detailVendorLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -465,6 +643,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailVendorLoaded value)? detailVendorLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -523,6 +702,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<SingleVendor> vendor) loaded,
+    required TResult Function(SingleVendor vendor) detailVendorLoaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -534,6 +714,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<SingleVendor> vendor)? loaded,
+    TResult? Function(SingleVendor vendor)? detailVendorLoaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -545,6 +726,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<SingleVendor> vendor)? loaded,
+    TResult Function(SingleVendor vendor)? detailVendorLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -560,6 +742,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailVendorLoaded value) detailVendorLoaded,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -571,6 +754,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailVendorLoaded value)? detailVendorLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -582,6 +766,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailVendorLoaded value)? detailVendorLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -673,6 +858,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<SingleVendor> vendor) loaded,
+    required TResult Function(SingleVendor vendor) detailVendorLoaded,
     required TResult Function(String message) error,
   }) {
     return loaded(vendor);
@@ -684,6 +870,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<SingleVendor> vendor)? loaded,
+    TResult? Function(SingleVendor vendor)? detailVendorLoaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(vendor);
@@ -695,6 +882,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<SingleVendor> vendor)? loaded,
+    TResult Function(SingleVendor vendor)? detailVendorLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -710,6 +898,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailVendorLoaded value) detailVendorLoaded,
     required TResult Function(_Error value) error,
   }) {
     return loaded(this);
@@ -721,6 +910,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailVendorLoaded value)? detailVendorLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return loaded?.call(this);
@@ -732,6 +922,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailVendorLoaded value)? detailVendorLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -751,6 +942,166 @@ abstract class _Loaded implements VendorListState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DetailVendorLoadedImplCopyWith<$Res> {
+  factory _$$DetailVendorLoadedImplCopyWith(_$DetailVendorLoadedImpl value,
+          $Res Function(_$DetailVendorLoadedImpl) then) =
+      __$$DetailVendorLoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SingleVendor vendor});
+}
+
+/// @nodoc
+class __$$DetailVendorLoadedImplCopyWithImpl<$Res>
+    extends _$VendorListStateCopyWithImpl<$Res, _$DetailVendorLoadedImpl>
+    implements _$$DetailVendorLoadedImplCopyWith<$Res> {
+  __$$DetailVendorLoadedImplCopyWithImpl(_$DetailVendorLoadedImpl _value,
+      $Res Function(_$DetailVendorLoadedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of VendorListState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? vendor = null,
+  }) {
+    return _then(_$DetailVendorLoadedImpl(
+      null == vendor
+          ? _value.vendor
+          : vendor // ignore: cast_nullable_to_non_nullable
+              as SingleVendor,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DetailVendorLoadedImpl implements _DetailVendorLoaded {
+  const _$DetailVendorLoadedImpl(this.vendor);
+
+  @override
+  final SingleVendor vendor;
+
+  @override
+  String toString() {
+    return 'VendorListState.detailVendorLoaded(vendor: $vendor)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DetailVendorLoadedImpl &&
+            (identical(other.vendor, vendor) || other.vendor == vendor));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, vendor);
+
+  /// Create a copy of VendorListState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DetailVendorLoadedImplCopyWith<_$DetailVendorLoadedImpl> get copyWith =>
+      __$$DetailVendorLoadedImplCopyWithImpl<_$DetailVendorLoadedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<SingleVendor> vendor) loaded,
+    required TResult Function(SingleVendor vendor) detailVendorLoaded,
+    required TResult Function(String message) error,
+  }) {
+    return detailVendorLoaded(vendor);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<SingleVendor> vendor)? loaded,
+    TResult? Function(SingleVendor vendor)? detailVendorLoaded,
+    TResult? Function(String message)? error,
+  }) {
+    return detailVendorLoaded?.call(vendor);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<SingleVendor> vendor)? loaded,
+    TResult Function(SingleVendor vendor)? detailVendorLoaded,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (detailVendorLoaded != null) {
+      return detailVendorLoaded(vendor);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailVendorLoaded value) detailVendorLoaded,
+    required TResult Function(_Error value) error,
+  }) {
+    return detailVendorLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailVendorLoaded value)? detailVendorLoaded,
+    TResult? Function(_Error value)? error,
+  }) {
+    return detailVendorLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailVendorLoaded value)? detailVendorLoaded,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (detailVendorLoaded != null) {
+      return detailVendorLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _DetailVendorLoaded implements VendorListState {
+  const factory _DetailVendorLoaded(final SingleVendor vendor) =
+      _$DetailVendorLoadedImpl;
+
+  SingleVendor get vendor;
+
+  /// Create a copy of VendorListState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DetailVendorLoadedImplCopyWith<_$DetailVendorLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -825,6 +1176,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<SingleVendor> vendor) loaded,
+    required TResult Function(SingleVendor vendor) detailVendorLoaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -836,6 +1188,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<SingleVendor> vendor)? loaded,
+    TResult? Function(SingleVendor vendor)? detailVendorLoaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -847,6 +1200,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<SingleVendor> vendor)? loaded,
+    TResult Function(SingleVendor vendor)? detailVendorLoaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -862,6 +1216,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_DetailVendorLoaded value) detailVendorLoaded,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -873,6 +1228,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_DetailVendorLoaded value)? detailVendorLoaded,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -884,6 +1240,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_DetailVendorLoaded value)? detailVendorLoaded,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

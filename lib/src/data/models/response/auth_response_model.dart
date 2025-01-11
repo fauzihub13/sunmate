@@ -44,6 +44,7 @@ class User {
   final dynamic twoFactorConfirmedAt;
   final DateTime? createdAt;
   final DateTime? updatedAt;
+  final String? fcmToken;
 
   User({
     this.id,
@@ -59,6 +60,7 @@ class User {
     this.twoFactorConfirmedAt,
     this.createdAt,
     this.updatedAt,
+    this.fcmToken,
   });
 
   factory User.fromJson(String str) => User.fromMap(json.decode(str));
@@ -83,6 +85,7 @@ class User {
         updatedAt: json["updated_at"] == null
             ? null
             : DateTime.parse(json["updated_at"]),
+        fcmToken: json["fcm_token"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -99,5 +102,6 @@ class User {
         "two_factor_confirmed_at": twoFactorConfirmedAt,
         "created_at": createdAt?.toIso8601String(),
         "updated_at": updatedAt?.toIso8601String(),
+        "fcm_token": fcmToken,
       };
 }

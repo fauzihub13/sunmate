@@ -23,4 +23,20 @@ class VendorRemoteDatasources {
       return const Left('Failed to get vendors');
     }
   }
+  Future<Either<String, VendorResponseModel>> getDetailVendors(String vendorId) async {
+    final url = Uri.parse('${Variables.apiUrl}/vendors?id=$vendorId');
+    final authData = await AuthLocalDatasources().getAuthData();
+    final response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    });
+
+    if (response.statusCode == 200) {
+      return Right(VendorResponseModel.fromJson(response.body));
+    } else if (response.statusCode == 401) {
+      return const Left('logged_out');
+    } else {
+      return const Left('Failed to get vendors');
+    }
+  }
 }

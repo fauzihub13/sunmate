@@ -48,11 +48,6 @@ class NewsResponseModel {
         "news": newsList != null
             ? List<dynamic>.from(newsList!.map((x) => x.toMap()))
             : singleNews?.toMap(),
-        // "news": (news is List)
-        //     ? List<dynamic>.from((news as List).map((x) => x.toMap()))
-        //     : (news is SingleNews)
-        //         ? (news as SingleNews).toMap()
-        //         : null,
       };
 }
 

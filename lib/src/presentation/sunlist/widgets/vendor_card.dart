@@ -16,7 +16,7 @@ class VendorCard extends StatelessWidget {
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return DetailVendor(
-            vendor: data,
+            vendorId: data.id!,
           );
         }));
       },
