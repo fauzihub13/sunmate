@@ -84,7 +84,7 @@ class ChatCard extends StatelessWidget {
                         const SizedBox(height: 8),
                         // Timestamp
                         Text(
-                          'Sent at $formattedTime',
+                          formattedTime,
                           style: TextStyle(
                               color: isSender
                                   ? AppColors.lightBlue

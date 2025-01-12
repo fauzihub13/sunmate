@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
@@ -8,8 +10,11 @@ import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dar
 import 'package:flutter_sunmate/src/data/models/response/channel_message_model.dart';
 import 'package:flutter_sunmate/src/data/models/response/private_message_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/group_chat_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/private_message_datasources.dart';
+import 'package:flutter_sunmate/src/presentation/suntalk/widgets/alert_message.dart';
 import 'package:flutter_sunmate/src/presentation/suntalk/widgets/chat_card.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PrivateChatPage extends StatefulWidget {
   final User partnerUser;
@@ -41,8 +46,48 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
     });
   }
 
-  void sendMessage({bool isImage = false}) async {
-    final textMessage = chatController.text.trim();
+  Future<void> pickAndUploadImage(BuildContext context) async {
+    final ImagePicker imagePicker = ImagePicker();
+    final XFile? image =
+        await imagePicker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      Uint8List bytes = await image.readAsBytes();
+
+      if (bytes.isNotEmpty) {
+        try {
+          String? imageUrl =
+              await GroupChatRemoteDatasources().uploadImage(bytes);
+
+          if (imageUrl != null && imageUrl.isNotEmpty) {
+            sendMessage(textMessage: imageUrl, isImage: true);
+            // _scrollToBottom();
+            if (context.mounted) {
+              showSunTalkSnackBar(context, "Gambar terkirim");
+            }
+          } else {
+            if (context.mounted) {
+              showSunTalkSnackBar(context, "Gagal mengirim gambar",
+                  backgroundColor: AppColors.darkRed);
+            }
+          }
+        } catch (e) {
+          if (context.mounted) {
+            showSunTalkSnackBar(context, "Gagal mengirim gambar",
+                backgroundColor: AppColors.darkRed);
+          }
+        }
+      } else {
+        if (context.mounted) {
+          showSunTalkSnackBar(context, "Gambar yang dipilih tidak sesuai",
+              backgroundColor: AppColors.darkRed);
+        }
+      }
+    } else {
+      debugPrint('Tidak ada gambar yang dipilih');
+    }
+  }
+
+  void sendMessage({required String textMessage, bool isImage = false}) async {
     if (textMessage.isNotEmpty) {
       final channel = ChannelMessageModel(
           id: channelId(
@@ -149,7 +194,7 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
                 children: [
                   GestureDetector(
                     onTap: () async {
-                      // pickAndUploadImage(context);
+                      pickAndUploadImage(context);
                     },
                     child: const Icon(
                       Icons.file_upload,
@@ -168,7 +213,8 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      sendMessage();
+                      final textMessage = chatController.text.trim();
+                      sendMessage(textMessage: textMessage);
                     },
                     child: const Icon(
                       Icons.send,

@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:flutter_sunmate/src/data/models/response/private_message_model.dart';
+import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:http/http.dart' as http;
 
 String channelId(String id1, String id2) {
   if (id1.hashCode < id2.hashCode) {
@@ -47,5 +52,43 @@ class PrivateMessageDatasources {
       }
       return messageList;
     });
+  }
+
+  Future<String?> uploadImage(Uint8List bytes) async {
+    final url = Uri.parse('${Variables.apiUrl}/chats/image');
+    final authData = await AuthLocalDatasources().getAuthData();
+
+    var request = http.MultipartRequest('POST', url);
+
+    request.headers.addAll({
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    });
+
+    var myFile = http.MultipartFile.fromBytes(
+      'image',
+      bytes,
+      filename: 'image.png',
+    );
+
+    request.files.add(myFile);
+
+    try {
+      final response = await request.send();
+      final responseBody = await response.stream.bytesToString();
+
+      if (response.statusCode == 201) {
+        var decodedResponse = json.decode(responseBody);
+        String? location = decodedResponse['location'];
+        debugPrint('File uploaded to: $location');
+        return '${Variables.baseUrl}/$location';
+      } else {
+        debugPrint('Error Body: $responseBody');
+      }
+    } catch (e) {
+      debugPrint('Error sending request: $e');
+    }
+
+    return null;
   }
 }
