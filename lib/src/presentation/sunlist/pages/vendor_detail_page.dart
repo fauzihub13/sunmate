@@ -380,7 +380,9 @@ class _MobileViewState extends State<MobileView> {
                         onPressed: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return const PrivateChatPage();
+                            return PrivateChatPage(
+                              partnerUser: vendor.user!,
+                            );
                           }));
                         },
                         label: 'Kirim Pesan'),
