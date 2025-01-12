@@ -115,6 +115,7 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
       );
 
       PrivateMessageDatasources.instance.addMessage(message);
+      chatController.clear();
 
       var channelUpdateData = {
         'lastMessage': textMessage,
@@ -128,8 +129,6 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
 
       await PrivateMessageDatasources.instance
           .updateChannel(channel.id, channelUpdateData);
-
-      chatController.clear();
     }
   }
 
@@ -170,18 +169,16 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
                     itemCount: messages.length,
                     itemBuilder: (context, index) {
                       final message = messages[index];
-                      String textMessage = message.message;
                       bool isImage = message.isImage == true;
                       int userId = message.userId;
-                      // int timestamp = message.timestamp;
 
                       bool isSender = userId == user!.id!;
 
                       return ChatCard(
-                        message: textMessage,
+                        message: message.message,
                         isImage: isImage,
                         userId: userId,
-                        timestamp: 1736430709,
+                        timestamp: message.timestamp,
                         isSender: isSender,
                       );
                     },

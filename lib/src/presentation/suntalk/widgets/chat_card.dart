@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:intl/intl.dart';
@@ -6,7 +7,7 @@ class ChatCard extends StatelessWidget {
   final String message;
   final bool isImage;
   final int userId;
-  final int timestamp;
+  final Timestamp timestamp;
   final bool isSender;
 
   const ChatCard({
@@ -20,11 +21,9 @@ class ChatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Konversi timestamp ke DateTime
-    final dateTime = DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
-
-    // Format menjadi "day/month/year hh:mm"
-    final formattedTime = DateFormat('dd/MM/yyyy HH:mm').format(dateTime);
+    
+    DateTime dateTime = timestamp.toDate();
+    String formattedTime = DateFormat('dd/MM/yy HH:mm').format(dateTime);
 
     return Align(
       alignment: isSender ? Alignment.centerRight : Alignment.centerLeft,

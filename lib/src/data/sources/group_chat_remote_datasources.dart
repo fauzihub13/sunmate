@@ -34,7 +34,7 @@ class GroupChatRemoteDatasources {
         'userId': userId,
         'isImage': isImage,
         'message': message,
-        'timestamp': (DateTime.now().millisecondsSinceEpoch / 1000).round(),
+        'timestamp': Timestamp.now(),
       };
 
       // Save data with unique Id

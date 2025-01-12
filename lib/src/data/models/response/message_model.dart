@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class MessageModel {
   final bool isImage;
   final String message;
-  final int timestamp;
+  final Timestamp timestamp;
   final int userId;
 
   MessageModel({
