@@ -38,7 +38,8 @@ class UserDataBloc extends Bloc<UserDataEvent, UserDataState> {
 
     on<_UpdateUserProfilePhoto>((event, emit) async {
       emit(const _Loading());
-      final result = await authRemoteDatasources.updateUserProfilePhoto(event.bytes);
+      final result =
+          await authRemoteDatasources.updateUserProfilePhoto(event.bytes);
       result.fold((error) => emit(_Error(error)),
           (value) => emit(_SuccessUpdateUserProfilePhoto(value.user!)));
     });

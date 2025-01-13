@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
-import 'package:flutter_sunmate/src/data/models/response/private_message_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/chat/channel_message_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/chat/private_message_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,6 +22,22 @@ class PrivateMessageDatasources {
   static final PrivateMessageDatasources instance =
       PrivateMessageDatasources._init();
 
+  Stream<List<ChannelMessageModel>> getAllChannel(int userId) {
+    debugPrint(userId.toString());
+    return FirebaseFirestore.instance
+        .collection('channels')
+        .where('memberIds', arrayContains: userId.toString())
+        .orderBy('lastTime', descending: true)
+        .snapshots()
+        .map((querySnapshot) {
+      List<ChannelMessageModel> messageList = [];
+      for (var element in querySnapshot.docs) {
+        messageList.add(ChannelMessageModel.fromDocumentSnapshot(element));
+      }
+      return messageList;
+    });
+  }
+
   Future<void> updateChannel(
       String channelId, Map<String, dynamic> data) async {
     await FirebaseFirestore.instance
@@ -31,9 +48,10 @@ class PrivateMessageDatasources {
 
   Future<void> addMessage(PrivateMessageModel messageModel) async {
     try {
-
       // Save data
-      await FirebaseFirestore.instance.collection('messages').add(messageModel.toMap());
+      await FirebaseFirestore.instance
+          .collection('messages')
+          .add(messageModel.toMap());
     } catch (e) {
       debugPrint('Error mengirim pesan: $e');
     }

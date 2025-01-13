@@ -7,8 +7,8 @@ import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dar
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
-import 'package:flutter_sunmate/src/data/models/response/channel_message_model.dart';
-import 'package:flutter_sunmate/src/data/models/response/private_message_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/chat/channel_message_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/chat/private_message_model.dart';
 import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/group_chat_remote_datasources.dart';
 import 'package:flutter_sunmate/src/data/sources/private_message_datasources.dart';

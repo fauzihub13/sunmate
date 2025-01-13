@@ -92,6 +92,26 @@ class AuthRemoteDatasources {
     }
   }
 
+  Future<User> getUserInfo(String userId) async {
+    final url = Uri.parse('${Variables.apiUrl}/user/info?id=$userId');
+    final authData = await AuthLocalDatasources().getAuthData();
+    final response = await http.get(url, headers: {
+      'Authorization': 'Bearer ${authData.token}',
+      'Accept': 'application/json',
+    });
+
+    if (response.statusCode == 200) {
+      final userData = AuthResponseModel.fromJson(response.body);
+      return userData
+          .user!;
+    } else if (response.statusCode == 401) {
+      throw Exception('Unauthorized');
+    } else {
+      throw Exception('Failed to get user data: ${response.reasonPhrase}');
+    }
+  }
+
+
   Future<Either<String, AuthResponseModel>> updateUserPassword(
       String oldPassword, String password, String passwordConfirmation) async {
     final url = Uri.parse('${Variables.apiUrl}/user/data/password');

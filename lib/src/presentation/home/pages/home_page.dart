@@ -19,6 +19,7 @@ import 'package:flutter_sunmate/src/presentation/sunlist/widgets/list_vendor.dar
 import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/pages/news_list_pages.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/widgets/slider_news.dart';
+import 'package:flutter_sunmate/src/presentation/suntalk/pages/room_chat_page.dart';
 import 'package:flutter_sunmate/src/presentation/suntalk/pages/suntalk_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -191,6 +192,16 @@ class _HomePageState extends State<HomePage> {
                                 }));
                               },
                               title: 'SunTalk',
+                              iconSize: 34,
+                              iconUrl: 'assets/icons/chat.svg'),
+                          MenuCard(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return const RoomChatPage();
+                                }));
+                              },
+                              title: 'Chat',
                               iconSize: 34,
                               iconUrl: 'assets/icons/chat.svg'),
                         ],

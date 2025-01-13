@@ -20,6 +20,7 @@ mixin _$UserDataEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getUserData,
+    required TResult Function(String userId) getUserInfo,
     required TResult Function(String name, String phoneNumber, String email)
         updateUserData,
     required TResult Function(
@@ -32,6 +33,7 @@ mixin _$UserDataEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getUserData,
+    TResult? Function(String userId)? getUserInfo,
     TResult? Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult? Function(
@@ -44,6 +46,7 @@ mixin _$UserDataEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getUserData,
+    TResult Function(String userId)? getUserInfo,
     TResult Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult Function(
@@ -57,6 +60,7 @@ mixin _$UserDataEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_GetUserInfo value) getUserInfo,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
     required TResult Function(_UpdateUserProfilePhoto value)
@@ -67,6 +71,7 @@ mixin _$UserDataEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_GetUserInfo value)? getUserInfo,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
     TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -76,6 +81,7 @@ mixin _$UserDataEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_GetUserInfo value)? getUserInfo,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
     TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -148,6 +154,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getUserData,
+    required TResult Function(String userId) getUserInfo,
     required TResult Function(String name, String phoneNumber, String email)
         updateUserData,
     required TResult Function(
@@ -163,6 +170,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getUserData,
+    TResult? Function(String userId)? getUserInfo,
     TResult? Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult? Function(
@@ -178,6 +186,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getUserData,
+    TResult Function(String userId)? getUserInfo,
     TResult Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult Function(
@@ -197,6 +206,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_GetUserInfo value) getUserInfo,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
     required TResult Function(_UpdateUserProfilePhoto value)
@@ -210,6 +220,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_GetUserInfo value)? getUserInfo,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
     TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -222,6 +233,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_GetUserInfo value)? getUserInfo,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
     TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -281,6 +293,7 @@ class _$GetUserDataImpl implements _GetUserData {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getUserData,
+    required TResult Function(String userId) getUserInfo,
     required TResult Function(String name, String phoneNumber, String email)
         updateUserData,
     required TResult Function(
@@ -296,6 +309,7 @@ class _$GetUserDataImpl implements _GetUserData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getUserData,
+    TResult? Function(String userId)? getUserInfo,
     TResult? Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult? Function(
@@ -311,6 +325,7 @@ class _$GetUserDataImpl implements _GetUserData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getUserData,
+    TResult Function(String userId)? getUserInfo,
     TResult Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult Function(
@@ -330,6 +345,7 @@ class _$GetUserDataImpl implements _GetUserData {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_GetUserInfo value) getUserInfo,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
     required TResult Function(_UpdateUserProfilePhoto value)
@@ -343,6 +359,7 @@ class _$GetUserDataImpl implements _GetUserData {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_GetUserInfo value)? getUserInfo,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
     TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -355,6 +372,7 @@ class _$GetUserDataImpl implements _GetUserData {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_GetUserInfo value)? getUserInfo,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
     TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -369,6 +387,181 @@ class _$GetUserDataImpl implements _GetUserData {
 
 abstract class _GetUserData implements UserDataEvent {
   const factory _GetUserData() = _$GetUserDataImpl;
+}
+
+/// @nodoc
+abstract class _$$GetUserInfoImplCopyWith<$Res> {
+  factory _$$GetUserInfoImplCopyWith(
+          _$GetUserInfoImpl value, $Res Function(_$GetUserInfoImpl) then) =
+      __$$GetUserInfoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String userId});
+}
+
+/// @nodoc
+class __$$GetUserInfoImplCopyWithImpl<$Res>
+    extends _$UserDataEventCopyWithImpl<$Res, _$GetUserInfoImpl>
+    implements _$$GetUserInfoImplCopyWith<$Res> {
+  __$$GetUserInfoImplCopyWithImpl(
+      _$GetUserInfoImpl _value, $Res Function(_$GetUserInfoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserDataEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? userId = null,
+  }) {
+    return _then(_$GetUserInfoImpl(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetUserInfoImpl implements _GetUserInfo {
+  const _$GetUserInfoImpl({required this.userId});
+
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'UserDataEvent.getUserInfo(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetUserInfoImpl &&
+            (identical(other.userId, userId) || other.userId == userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, userId);
+
+  /// Create a copy of UserDataEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetUserInfoImplCopyWith<_$GetUserInfoImpl> get copyWith =>
+      __$$GetUserInfoImplCopyWithImpl<_$GetUserInfoImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getUserData,
+    required TResult Function(String userId) getUserInfo,
+    required TResult Function(String name, String phoneNumber, String email)
+        updateUserData,
+    required TResult Function(
+            String oldPassword, String password, String passwordConfirmation)
+        updateUserPassword,
+    required TResult Function(Uint8List bytes) updateUserProfilePhoto,
+  }) {
+    return getUserInfo(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getUserData,
+    TResult? Function(String userId)? getUserInfo,
+    TResult? Function(String name, String phoneNumber, String email)?
+        updateUserData,
+    TResult? Function(
+            String oldPassword, String password, String passwordConfirmation)?
+        updateUserPassword,
+    TResult? Function(Uint8List bytes)? updateUserProfilePhoto,
+  }) {
+    return getUserInfo?.call(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getUserData,
+    TResult Function(String userId)? getUserInfo,
+    TResult Function(String name, String phoneNumber, String email)?
+        updateUserData,
+    TResult Function(
+            String oldPassword, String password, String passwordConfirmation)?
+        updateUserPassword,
+    TResult Function(Uint8List bytes)? updateUserProfilePhoto,
+    required TResult orElse(),
+  }) {
+    if (getUserInfo != null) {
+      return getUserInfo(userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_GetUserInfo value) getUserInfo,
+    required TResult Function(_UpdateUserData value) updateUserData,
+    required TResult Function(_UpdateUserPassword value) updateUserPassword,
+    required TResult Function(_UpdateUserProfilePhoto value)
+        updateUserProfilePhoto,
+  }) {
+    return getUserInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_GetUserInfo value)? getUserInfo,
+    TResult? Function(_UpdateUserData value)? updateUserData,
+    TResult? Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
+  }) {
+    return getUserInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_GetUserInfo value)? getUserInfo,
+    TResult Function(_UpdateUserData value)? updateUserData,
+    TResult Function(_UpdateUserPassword value)? updateUserPassword,
+    TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
+    required TResult orElse(),
+  }) {
+    if (getUserInfo != null) {
+      return getUserInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUserInfo implements UserDataEvent {
+  const factory _GetUserInfo({required final String userId}) =
+      _$GetUserInfoImpl;
+
+  String get userId;
+
+  /// Create a copy of UserDataEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetUserInfoImplCopyWith<_$GetUserInfoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -460,6 +653,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getUserData,
+    required TResult Function(String userId) getUserInfo,
     required TResult Function(String name, String phoneNumber, String email)
         updateUserData,
     required TResult Function(
@@ -475,6 +669,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getUserData,
+    TResult? Function(String userId)? getUserInfo,
     TResult? Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult? Function(
@@ -490,6 +685,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getUserData,
+    TResult Function(String userId)? getUserInfo,
     TResult Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult Function(
@@ -509,6 +705,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_GetUserInfo value) getUserInfo,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
     required TResult Function(_UpdateUserProfilePhoto value)
@@ -522,6 +719,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_GetUserInfo value)? getUserInfo,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
     TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -534,6 +732,7 @@ class _$UpdateUserDataImpl implements _UpdateUserData {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_GetUserInfo value)? getUserInfo,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
     TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -657,6 +856,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getUserData,
+    required TResult Function(String userId) getUserInfo,
     required TResult Function(String name, String phoneNumber, String email)
         updateUserData,
     required TResult Function(
@@ -672,6 +872,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getUserData,
+    TResult? Function(String userId)? getUserInfo,
     TResult? Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult? Function(
@@ -688,6 +889,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getUserData,
+    TResult Function(String userId)? getUserInfo,
     TResult Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult Function(
@@ -707,6 +909,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_GetUserInfo value) getUserInfo,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
     required TResult Function(_UpdateUserProfilePhoto value)
@@ -720,6 +923,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_GetUserInfo value)? getUserInfo,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
     TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -732,6 +936,7 @@ class _$UpdateUserPasswordImpl implements _UpdateUserPassword {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_GetUserInfo value)? getUserInfo,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
     TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -835,6 +1040,7 @@ class _$UpdateUserProfilePhotoImpl implements _UpdateUserProfilePhoto {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() getUserData,
+    required TResult Function(String userId) getUserInfo,
     required TResult Function(String name, String phoneNumber, String email)
         updateUserData,
     required TResult Function(
@@ -850,6 +1056,7 @@ class _$UpdateUserProfilePhotoImpl implements _UpdateUserProfilePhoto {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? getUserData,
+    TResult? Function(String userId)? getUserInfo,
     TResult? Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult? Function(
@@ -865,6 +1072,7 @@ class _$UpdateUserProfilePhotoImpl implements _UpdateUserProfilePhoto {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? getUserData,
+    TResult Function(String userId)? getUserInfo,
     TResult Function(String name, String phoneNumber, String email)?
         updateUserData,
     TResult Function(
@@ -884,6 +1092,7 @@ class _$UpdateUserProfilePhotoImpl implements _UpdateUserProfilePhoto {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_GetUserData value) getUserData,
+    required TResult Function(_GetUserInfo value) getUserInfo,
     required TResult Function(_UpdateUserData value) updateUserData,
     required TResult Function(_UpdateUserPassword value) updateUserPassword,
     required TResult Function(_UpdateUserProfilePhoto value)
@@ -897,6 +1106,7 @@ class _$UpdateUserProfilePhotoImpl implements _UpdateUserProfilePhoto {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_GetUserData value)? getUserData,
+    TResult? Function(_GetUserInfo value)? getUserInfo,
     TResult? Function(_UpdateUserData value)? updateUserData,
     TResult? Function(_UpdateUserPassword value)? updateUserPassword,
     TResult? Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -909,6 +1119,7 @@ class _$UpdateUserProfilePhotoImpl implements _UpdateUserProfilePhoto {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_GetUserData value)? getUserData,
+    TResult Function(_GetUserInfo value)? getUserInfo,
     TResult Function(_UpdateUserData value)? updateUserData,
     TResult Function(_UpdateUserPassword value)? updateUserPassword,
     TResult Function(_UpdateUserProfilePhoto value)? updateUserProfilePhoto,
@@ -941,6 +1152,7 @@ mixin _$UserDataState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) successGetUserData,
+    required TResult Function(User user) successGetUserInfo,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
     required TResult Function(User user) successUpdateUserProfilePhoto,
@@ -952,6 +1164,7 @@ mixin _$UserDataState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? successGetUserData,
+    TResult? Function(User user)? successGetUserInfo,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
     TResult? Function(User user)? successUpdateUserProfilePhoto,
@@ -963,6 +1176,7 @@ mixin _$UserDataState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? successGetUserData,
+    TResult Function(User user)? successGetUserInfo,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
     TResult Function(User user)? successUpdateUserProfilePhoto,
@@ -975,6 +1189,7 @@ mixin _$UserDataState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessGetUserData value) successGetUserData,
+    required TResult Function(_SuccessGetUserInfo value) successGetUserInfo,
     required TResult Function(_SuccessUpdateUserData value)
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
@@ -989,6 +1204,7 @@ mixin _$UserDataState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessGetUserData value)? successGetUserData,
+    TResult? Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1002,6 +1218,7 @@ mixin _$UserDataState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessGetUserData value)? successGetUserData,
+    TResult Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1078,6 +1295,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) successGetUserData,
+    required TResult Function(User user) successGetUserInfo,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
     required TResult Function(User user) successUpdateUserProfilePhoto,
@@ -1092,6 +1310,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? successGetUserData,
+    TResult? Function(User user)? successGetUserInfo,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
     TResult? Function(User user)? successUpdateUserProfilePhoto,
@@ -1106,6 +1325,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? successGetUserData,
+    TResult Function(User user)? successGetUserInfo,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
     TResult Function(User user)? successUpdateUserProfilePhoto,
@@ -1124,6 +1344,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessGetUserData value) successGetUserData,
+    required TResult Function(_SuccessGetUserInfo value) successGetUserInfo,
     required TResult Function(_SuccessUpdateUserData value)
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
@@ -1141,6 +1362,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessGetUserData value)? successGetUserData,
+    TResult? Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1157,6 +1379,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessGetUserData value)? successGetUserData,
+    TResult Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1220,6 +1443,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) successGetUserData,
+    required TResult Function(User user) successGetUserInfo,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
     required TResult Function(User user) successUpdateUserProfilePhoto,
@@ -1234,6 +1458,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? successGetUserData,
+    TResult? Function(User user)? successGetUserInfo,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
     TResult? Function(User user)? successUpdateUserProfilePhoto,
@@ -1248,6 +1473,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? successGetUserData,
+    TResult Function(User user)? successGetUserInfo,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
     TResult Function(User user)? successUpdateUserProfilePhoto,
@@ -1266,6 +1492,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessGetUserData value) successGetUserData,
+    required TResult Function(_SuccessGetUserInfo value) successGetUserInfo,
     required TResult Function(_SuccessUpdateUserData value)
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
@@ -1283,6 +1510,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessGetUserData value)? successGetUserData,
+    TResult? Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1299,6 +1527,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessGetUserData value)? successGetUserData,
+    TResult Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1390,6 +1619,7 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) successGetUserData,
+    required TResult Function(User user) successGetUserInfo,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
     required TResult Function(User user) successUpdateUserProfilePhoto,
@@ -1404,6 +1634,7 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? successGetUserData,
+    TResult? Function(User user)? successGetUserInfo,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
     TResult? Function(User user)? successUpdateUserProfilePhoto,
@@ -1418,6 +1649,7 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? successGetUserData,
+    TResult Function(User user)? successGetUserInfo,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
     TResult Function(User user)? successUpdateUserProfilePhoto,
@@ -1436,6 +1668,7 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessGetUserData value) successGetUserData,
+    required TResult Function(_SuccessGetUserInfo value) successGetUserInfo,
     required TResult Function(_SuccessUpdateUserData value)
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
@@ -1453,6 +1686,7 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessGetUserData value)? successGetUserData,
+    TResult? Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1469,6 +1703,7 @@ class _$SuccessGetUserDataImpl implements _SuccessGetUserData {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessGetUserData value)? successGetUserData,
+    TResult Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1493,6 +1728,190 @@ abstract class _SuccessGetUserData implements UserDataState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessGetUserDataImplCopyWith<_$SuccessGetUserDataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SuccessGetUserInfoImplCopyWith<$Res> {
+  factory _$$SuccessGetUserInfoImplCopyWith(_$SuccessGetUserInfoImpl value,
+          $Res Function(_$SuccessGetUserInfoImpl) then) =
+      __$$SuccessGetUserInfoImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({User user});
+}
+
+/// @nodoc
+class __$$SuccessGetUserInfoImplCopyWithImpl<$Res>
+    extends _$UserDataStateCopyWithImpl<$Res, _$SuccessGetUserInfoImpl>
+    implements _$$SuccessGetUserInfoImplCopyWith<$Res> {
+  __$$SuccessGetUserInfoImplCopyWithImpl(_$SuccessGetUserInfoImpl _value,
+      $Res Function(_$SuccessGetUserInfoImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UserDataState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$SuccessGetUserInfoImpl(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SuccessGetUserInfoImpl implements _SuccessGetUserInfo {
+  const _$SuccessGetUserInfoImpl(this.user);
+
+  @override
+  final User user;
+
+  @override
+  String toString() {
+    return 'UserDataState.successGetUserInfo(user: $user)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessGetUserInfoImpl &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  /// Create a copy of UserDataState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessGetUserInfoImplCopyWith<_$SuccessGetUserInfoImpl> get copyWith =>
+      __$$SuccessGetUserInfoImplCopyWithImpl<_$SuccessGetUserInfoImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(User user) successGetUserData,
+    required TResult Function(User user) successGetUserInfo,
+    required TResult Function(User user) successUpdateUserData,
+    required TResult Function() successUpdateUserPassword,
+    required TResult Function(User user) successUpdateUserProfilePhoto,
+    required TResult Function(String message) error,
+  }) {
+    return successGetUserInfo(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(User user)? successGetUserData,
+    TResult? Function(User user)? successGetUserInfo,
+    TResult? Function(User user)? successUpdateUserData,
+    TResult? Function()? successUpdateUserPassword,
+    TResult? Function(User user)? successUpdateUserProfilePhoto,
+    TResult? Function(String message)? error,
+  }) {
+    return successGetUserInfo?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(User user)? successGetUserData,
+    TResult Function(User user)? successGetUserInfo,
+    TResult Function(User user)? successUpdateUserData,
+    TResult Function()? successUpdateUserPassword,
+    TResult Function(User user)? successUpdateUserProfilePhoto,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (successGetUserInfo != null) {
+      return successGetUserInfo(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessGetUserData value) successGetUserData,
+    required TResult Function(_SuccessGetUserInfo value) successGetUserInfo,
+    required TResult Function(_SuccessUpdateUserData value)
+        successUpdateUserData,
+    required TResult Function(_SuccessUpdateUserPassword value)
+        successUpdateUserPassword,
+    required TResult Function(_SuccessUpdateUserProfilePhoto value)
+        successUpdateUserProfilePhoto,
+    required TResult Function(_Error value) error,
+  }) {
+    return successGetUserInfo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessGetUserData value)? successGetUserData,
+    TResult? Function(_SuccessGetUserInfo value)? successGetUserInfo,
+    TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
+    TResult? Function(_SuccessUpdateUserPassword value)?
+        successUpdateUserPassword,
+    TResult? Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
+    TResult? Function(_Error value)? error,
+  }) {
+    return successGetUserInfo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessGetUserData value)? successGetUserData,
+    TResult Function(_SuccessGetUserInfo value)? successGetUserInfo,
+    TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
+    TResult Function(_SuccessUpdateUserPassword value)?
+        successUpdateUserPassword,
+    TResult Function(_SuccessUpdateUserProfilePhoto value)?
+        successUpdateUserProfilePhoto,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (successGetUserInfo != null) {
+      return successGetUserInfo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessGetUserInfo implements UserDataState {
+  const factory _SuccessGetUserInfo(final User user) = _$SuccessGetUserInfoImpl;
+
+  User get user;
+
+  /// Create a copy of UserDataState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SuccessGetUserInfoImplCopyWith<_$SuccessGetUserInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1569,6 +1988,7 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) successGetUserData,
+    required TResult Function(User user) successGetUserInfo,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
     required TResult Function(User user) successUpdateUserProfilePhoto,
@@ -1583,6 +2003,7 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? successGetUserData,
+    TResult? Function(User user)? successGetUserInfo,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
     TResult? Function(User user)? successUpdateUserProfilePhoto,
@@ -1597,6 +2018,7 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? successGetUserData,
+    TResult Function(User user)? successGetUserInfo,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
     TResult Function(User user)? successUpdateUserProfilePhoto,
@@ -1615,6 +2037,7 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessGetUserData value) successGetUserData,
+    required TResult Function(_SuccessGetUserInfo value) successGetUserInfo,
     required TResult Function(_SuccessUpdateUserData value)
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
@@ -1632,6 +2055,7 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessGetUserData value)? successGetUserData,
+    TResult? Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1648,6 +2072,7 @@ class _$SuccessUpdateUserDataImpl implements _SuccessUpdateUserData {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessGetUserData value)? successGetUserData,
+    TResult Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1723,6 +2148,7 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) successGetUserData,
+    required TResult Function(User user) successGetUserInfo,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
     required TResult Function(User user) successUpdateUserProfilePhoto,
@@ -1737,6 +2163,7 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? successGetUserData,
+    TResult? Function(User user)? successGetUserInfo,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
     TResult? Function(User user)? successUpdateUserProfilePhoto,
@@ -1751,6 +2178,7 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? successGetUserData,
+    TResult Function(User user)? successGetUserInfo,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
     TResult Function(User user)? successUpdateUserProfilePhoto,
@@ -1769,6 +2197,7 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessGetUserData value) successGetUserData,
+    required TResult Function(_SuccessGetUserInfo value) successGetUserInfo,
     required TResult Function(_SuccessUpdateUserData value)
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
@@ -1786,6 +2215,7 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessGetUserData value)? successGetUserData,
+    TResult? Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1802,6 +2232,7 @@ class _$SuccessUpdateUserPasswordImpl implements _SuccessUpdateUserPassword {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessGetUserData value)? successGetUserData,
+    TResult Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1898,6 +2329,7 @@ class _$SuccessUpdateUserProfilePhotoImpl
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) successGetUserData,
+    required TResult Function(User user) successGetUserInfo,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
     required TResult Function(User user) successUpdateUserProfilePhoto,
@@ -1912,6 +2344,7 @@ class _$SuccessUpdateUserProfilePhotoImpl
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? successGetUserData,
+    TResult? Function(User user)? successGetUserInfo,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
     TResult? Function(User user)? successUpdateUserProfilePhoto,
@@ -1926,6 +2359,7 @@ class _$SuccessUpdateUserProfilePhotoImpl
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? successGetUserData,
+    TResult Function(User user)? successGetUserInfo,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
     TResult Function(User user)? successUpdateUserProfilePhoto,
@@ -1944,6 +2378,7 @@ class _$SuccessUpdateUserProfilePhotoImpl
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessGetUserData value) successGetUserData,
+    required TResult Function(_SuccessGetUserInfo value) successGetUserInfo,
     required TResult Function(_SuccessUpdateUserData value)
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
@@ -1961,6 +2396,7 @@ class _$SuccessUpdateUserProfilePhotoImpl
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessGetUserData value)? successGetUserData,
+    TResult? Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -1977,6 +2413,7 @@ class _$SuccessUpdateUserProfilePhotoImpl
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessGetUserData value)? successGetUserData,
+    TResult Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -2077,6 +2514,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(User user) successGetUserData,
+    required TResult Function(User user) successGetUserInfo,
     required TResult Function(User user) successUpdateUserData,
     required TResult Function() successUpdateUserPassword,
     required TResult Function(User user) successUpdateUserProfilePhoto,
@@ -2091,6 +2529,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(User user)? successGetUserData,
+    TResult? Function(User user)? successGetUserInfo,
     TResult? Function(User user)? successUpdateUserData,
     TResult? Function()? successUpdateUserPassword,
     TResult? Function(User user)? successUpdateUserProfilePhoto,
@@ -2105,6 +2544,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(User user)? successGetUserData,
+    TResult Function(User user)? successGetUserInfo,
     TResult Function(User user)? successUpdateUserData,
     TResult Function()? successUpdateUserPassword,
     TResult Function(User user)? successUpdateUserProfilePhoto,
@@ -2123,6 +2563,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessGetUserData value) successGetUserData,
+    required TResult Function(_SuccessGetUserInfo value) successGetUserInfo,
     required TResult Function(_SuccessUpdateUserData value)
         successUpdateUserData,
     required TResult Function(_SuccessUpdateUserPassword value)
@@ -2140,6 +2581,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessGetUserData value)? successGetUserData,
+    TResult? Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult? Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult? Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
@@ -2156,6 +2598,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessGetUserData value)? successGetUserData,
+    TResult Function(_SuccessGetUserInfo value)? successGetUserInfo,
     TResult Function(_SuccessUpdateUserData value)? successUpdateUserData,
     TResult Function(_SuccessUpdateUserPassword value)?
         successUpdateUserPassword,
