@@ -48,7 +48,6 @@ class ChatCard extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Pesan dan waktu
                   Expanded(
                     child: Column(
                       crossAxisAlignment: isSender

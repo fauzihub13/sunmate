@@ -6,12 +6,14 @@ class ContactCard extends StatefulWidget {
   final String userName;
   final String lastMessage;
   final VoidCallback onTap;
+  final bool isRead;
   const ContactCard({
     super.key,
     required this.imageUrl,
     required this.userName,
     required this.lastMessage,
     required this.onTap,
+    this.isRead = true,
   });
 
   @override
@@ -54,14 +56,42 @@ class _ContactCardState extends State<ContactCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.userName,
-                    maxLines: 1,
-                    style: const TextStyle(
-                      color: AppColors.darkBlue,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        flex: 4,
+                        child: Text(
+                          widget.userName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: AppColors.darkBlue,
+                            fontSize: 16.0,
+                            fontWeight: widget.isRead
+                                ? FontWeight.w500
+                                : FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      if (!widget.isRead)
+                        const Expanded(
+                          flex: 1,
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: SizedBox(
+                              width: 10,
+                              height: 10,
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: AppColors.primary,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                   const SizedBox(
                     height: 4.0,

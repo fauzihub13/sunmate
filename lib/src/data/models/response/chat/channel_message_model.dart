@@ -2,19 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChannelMessageModel {
   final String id;
-  final List<String> memberIds;
-  final String lastMessage;
-  final Timestamp lastTime;
-  final Map<String, bool> unRead;
-  final String sendBy;
+  final List<String>? memberIds;
+  final String? lastMessage;
+  final Timestamp? lastTime;
+  final Map<String, bool>? unRead;
+  final String? sendBy;
 
   ChannelMessageModel({
     required this.id,
-    required this.memberIds,
-    required this.lastMessage,
-    required this.lastTime,
-    required this.unRead,
-    required this.sendBy,
+    this.memberIds,
+    this.lastMessage,
+    this.lastTime,
+    this.unRead,
+    this.sendBy,
   });
 
   // Convert from Map (Firestore Document Snapshot) to ChannelMessageModel

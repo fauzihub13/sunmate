@@ -38,6 +38,17 @@ class _RoomChatPageState extends State<RoomChatPage> {
     });
   }
 
+  void _openRoomChat(
+      String channelId, String currentUserId, String partnerUserId) async {
+    final channel = {
+      'unRead.$currentUserId': false,
+      'unRead.$partnerUserId': true,
+    };
+
+    await PrivateMessageDatasources.instance
+        .updateChannelReadStatus(channelId, channel);
+  }
+
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
@@ -78,7 +89,7 @@ class _RoomChatPageState extends State<RoomChatPage> {
                               final channel = channels[index];
                               final String currentUserId =
                                   currentUser!.id!.toString();
-                              final filteredIds = channel.memberIds
+                              final filteredIds = channel.memberIds!
                                   .where((id) => id != currentUserId)
                                   .toList();
                               String partnerUserId = filteredIds.first;
@@ -94,7 +105,7 @@ class _RoomChatPageState extends State<RoomChatPage> {
                                       return ContactCard(
                                         imageUrl: '',
                                         userName: 'Loading..',
-                                        lastMessage: channel.lastMessage,
+                                        lastMessage: channel.lastMessage!,
                                         onTap: () {},
                                       );
                                     } else if (userSnapshot.hasError) {
@@ -106,8 +117,18 @@ class _RoomChatPageState extends State<RoomChatPage> {
                                       return ContactCard(
                                         imageUrl: partnerUserData.avatar,
                                         userName: partnerUserData.name!,
-                                        lastMessage: channel.lastMessage,
+                                        lastMessage: channel.lastMessage!,
+                                        isRead:
+                                            channel.unRead![currentUserId] ==
+                                                    true
+                                                ? false
+                                                : true,
                                         onTap: () {
+                                          if (channel.unRead![currentUserId] ==
+                                              true) {
+                                            _openRoomChat(channel.id,
+                                                currentUserId, partnerUserId);
+                                          }
                                           Navigator.push(context,
                                               MaterialPageRoute(
                                                   builder: (context) {

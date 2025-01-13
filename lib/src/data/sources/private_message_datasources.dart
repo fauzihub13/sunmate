@@ -46,6 +46,14 @@ class PrivateMessageDatasources {
         .set(data, SetOptions(merge: true));
   }
 
+  Future<void> updateChannelReadStatus(
+      String channelId, Map<String, dynamic> data) async {
+    await FirebaseFirestore.instance
+        .collection('channels')
+        .doc(channelId)
+        .update(data);
+  }
+
   Future<void> addMessage(PrivateMessageModel messageModel) async {
     try {
       // Save data
