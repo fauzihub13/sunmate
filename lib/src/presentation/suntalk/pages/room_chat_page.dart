@@ -39,10 +39,9 @@ class _RoomChatPageState extends State<RoomChatPage> {
   }
 
   void _openRoomChat(
-      String channelId, String currentUserId, String partnerUserId) async {
+      String channelId, String currentUserId) async {
     final channel = {
       'unRead.$currentUserId': false,
-      'unRead.$partnerUserId': true,
     };
 
     await PrivateMessageDatasources.instance
@@ -127,7 +126,7 @@ class _RoomChatPageState extends State<RoomChatPage> {
                                           if (channel.unRead![currentUserId] ==
                                               true) {
                                             _openRoomChat(channel.id,
-                                                currentUserId, partnerUserId);
+                                                currentUserId);
                                           }
                                           Navigator.push(context,
                                               MaterialPageRoute(
