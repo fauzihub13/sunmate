@@ -7,9 +7,9 @@ import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dar
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/date_picker.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
-import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor/vendor_response_model.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_booking/vendor_booking_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/bloc/vendor_detail/vendor_detail_bloc.dart';

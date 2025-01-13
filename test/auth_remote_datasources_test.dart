@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
-import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_remote_datasources.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';

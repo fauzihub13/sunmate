@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_sunmate/src/data/models/response/notification_response_model.dart';
-import 'package:flutter_sunmate/src/data/sources/notification_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/models/response/notification/notification_response_model.dart';
+import 'package:flutter_sunmate/src/data/sources/notification/notification_remote_datasources.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'notification_bloc.freezed.dart';

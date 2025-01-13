@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:flutter_sunmate/src/data/models/response/chat/message_model.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_local_datasources.dart';
 import 'package:http/http.dart' as http;
 
 class GroupChatRemoteDatasources {

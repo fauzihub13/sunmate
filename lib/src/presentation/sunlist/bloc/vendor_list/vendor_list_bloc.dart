@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor/vendor_response_model.dart';
-import 'package:flutter_sunmate/src/data/sources/vendor_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/vendor/vendor_remote_datasources.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'vendor_list_bloc.freezed.dart';

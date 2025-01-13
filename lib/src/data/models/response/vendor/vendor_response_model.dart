@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth/auth_response_model.dart';
 
 class VendorResponseModel {
   final String? status;

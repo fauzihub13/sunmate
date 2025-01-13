@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_sunmate/src/data/models/response/vendor/vendor_booking_response_model.dart';
-import 'package:flutter_sunmate/src/data/sources/booking_vendor_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/vendor/booking_vendor_remote_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/models/vendor_booking_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

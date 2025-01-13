@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
-import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth/auth_response_model.dart';
 import 'package:flutter_sunmate/src/data/models/response/chat/channel_message_model.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
-import 'package:flutter_sunmate/src/data/sources/private_message_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/suntalk/private_message_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/suntalk/pages/private_chat_page.dart';
 import 'package:flutter_sunmate/src/presentation/suntalk/widgets/contact_card.dart';
 

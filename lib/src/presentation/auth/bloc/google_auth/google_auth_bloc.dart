@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
-import 'package:flutter_sunmate/src/data/sources/google_auth_service.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/google_auth_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'google_auth_bloc.freezed.dart';

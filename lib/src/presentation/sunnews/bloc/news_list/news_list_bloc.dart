@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_sunmate/src/data/models/response/news/news_response_model.dart';
-import 'package:flutter_sunmate/src/data/sources/news_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/news/news_remote_datasources.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'news_list_bloc.freezed.dart';

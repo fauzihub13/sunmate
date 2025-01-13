@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_sunmate/main.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/notification/pages/notification_list_page.dart';
 import 'package:http/http.dart' as http;
 

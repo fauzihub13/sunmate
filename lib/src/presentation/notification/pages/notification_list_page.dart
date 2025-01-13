@@ -5,7 +5,7 @@ import 'package:flutter_sunmate/src/core/components/custom_appbar.dart';
 import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dart';
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/notification/bloc/notification/notification_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/notification/widgets/card_notification.dart';

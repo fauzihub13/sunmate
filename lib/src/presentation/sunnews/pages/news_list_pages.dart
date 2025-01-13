@@ -8,7 +8,7 @@ import 'package:flutter_sunmate/src/core/components/empty_page.dart';
 import 'package:flutter_sunmate/src/core/components/search_bar.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
 import 'package:flutter_sunmate/src/data/models/response/news/news_response_model.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/bloc/news_list/news_list_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/sunnews/widgets/news_card.dart';

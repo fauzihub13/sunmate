@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
-import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth/auth_response_model.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 

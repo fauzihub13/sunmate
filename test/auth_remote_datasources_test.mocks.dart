@@ -7,9 +7,9 @@ import 'dart:async' as _i4;
 import 'dart:convert' as _i5;
 import 'dart:typed_data' as _i7;
 
-import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart'
+import 'package:flutter_sunmate/src/data/models/response/auth/auth_response_model.dart'
     as _i3;
-import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart'
+import 'package:flutter_sunmate/src/data/sources/auth/auth_local_datasources.dart'
     as _i8;
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;

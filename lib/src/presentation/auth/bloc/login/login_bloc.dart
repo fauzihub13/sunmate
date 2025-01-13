@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_remote_datasources.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_bloc.freezed.dart';

@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
 import 'package:flutter_sunmate/src/data/models/response/chat/channel_message_model.dart';
 import 'package:flutter_sunmate/src/data/models/response/chat/private_message_model.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_local_datasources.dart';
 import 'package:http/http.dart' as http;
 
 String channelId(String id1, String id2) {

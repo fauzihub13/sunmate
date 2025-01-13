@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_sunmate/src/data/models/response/weather_response_model.dart';
-import 'package:flutter_sunmate/src/data/sources/user_location_datasources.dart';
-import 'package:flutter_sunmate/src/data/sources/weather_remote_datasources.dart';
+import 'package:flutter_sunmate/src/data/models/response/weather/weather_response_model.dart';
+import 'package:flutter_sunmate/src/data/sources/weather/user_location_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/weather/weather_remote_datasources.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 

@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_sunmate/src/data/sources/suncost_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/suncost/suncost_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/suncost/models/calculate_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

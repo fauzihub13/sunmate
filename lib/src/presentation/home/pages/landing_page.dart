@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/data/models/response/auth_response_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/auth/auth_response_model.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/home_page.dart';
 import 'package:flutter_sunmate/src/presentation/profile/pages/account_profile_page.dart';
 import 'package:flutter_sunmate/src/presentation/sunlist/pages/vendor_booking_history_page.dart';

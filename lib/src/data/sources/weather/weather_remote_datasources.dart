@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_sunmate/src/core/constants/variables.dart';
-import 'package:flutter_sunmate/src/data/models/response/weather_response_model.dart';
+import 'package:flutter_sunmate/src/data/models/response/weather/weather_response_model.dart';
 
 class WeatherRemoteDatasources {
   Future<Either<String, WeatherResponseModel>> getWeather(String lat, String lon) async {

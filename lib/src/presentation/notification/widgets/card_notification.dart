@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/data/models/response/notification_response_model.dart'
+import 'package:flutter_sunmate/src/data/models/response/notification/notification_response_model.dart'
     as notification_response;
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';

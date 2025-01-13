@@ -5,7 +5,7 @@ import 'package:flutter_sunmate/src/core/components/custom_loading_indicator.dar
 import 'package:flutter_sunmate/src/core/components/custom_snackbar.dart';
 import 'package:flutter_sunmate/src/core/components/form_input.dart';
 import 'package:flutter_sunmate/src/core/constants/colors.dart';
-import 'package:flutter_sunmate/src/data/sources/auth_local_datasources.dart';
+import 'package:flutter_sunmate/src/data/sources/auth/auth_local_datasources.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/google_auth/google_auth_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/bloc/register/register_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/auth/pages/login_page.dart';
