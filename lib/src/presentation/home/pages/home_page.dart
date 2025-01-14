@@ -162,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                                 }));
                               },
                               title: 'SunList',
-                              iconSize: 38,
+                              iconSize: 30,
                               iconUrl: 'assets/icons/sunlist-menu.svg'),
                           MenuCard(
                               onTap: () {
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                                 }));
                               },
                               title: 'SunNews',
-                              iconSize: 32,
+                              iconSize: 24,
                               iconUrl: 'assets/icons/history-menu.svg'),
                           MenuCard(
                               onTap: () {
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                                 }));
                               },
                               title: 'SunCost',
-                              iconSize: 36,
+                              iconSize: 28,
                               iconUrl: 'assets/icons/suncost-menu.svg'),
                           MenuCard(
                               onTap: () {
@@ -192,8 +192,8 @@ class _HomePageState extends State<HomePage> {
                                 }));
                               },
                               title: 'SunTalk',
-                              iconSize: 34,
-                              iconUrl: 'assets/icons/chat.svg'),
+                              iconSize: 30,
+                              iconUrl: 'assets/icons/team-menu.svg'),
                           MenuCard(
                               onTap: () {
                                 Navigator.push(context,
@@ -202,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                                 }));
                               },
                               title: 'Chat',
-                              iconSize: 34,
+                              iconSize: 28,
                               iconUrl: 'assets/icons/chat.svg'),
                         ],
                       ),
