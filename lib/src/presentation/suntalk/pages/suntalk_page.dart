@@ -168,9 +168,10 @@ class _SunTalkPageState extends State<SuntalkPage> {
                   onTap: () async {
                     final message = chatController.text.trim();
                     if (message.isNotEmpty) {
+                      chatController.clear();
                       await chatRemoteDatasource.sendMessage(message,
                           userId: user!.id!);
-                      chatController.clear();
+                      
                     }
                   },
                   child: const Icon(

@@ -135,18 +135,6 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
 
       PrivateMessageDatasources.instance.addMessage(message);
       chatController.clear();
-
-      // var channelUpdateData = {
-      //   'lastMessage': textMessage,
-      //   'sendBy': user!.id!.toString(),
-      //   'lastTime': message.timestamp,
-      //   'unRead': {
-      //     user!.id!.toString(): false,
-      //     widget.partnerUser.id!.toString(): true,
-      //   }
-      // };
-      // await PrivateMessageDatasources.instance.updateChannel(
-      //     generatedChannelId, currentUserId, partnerUserId, channelUpdateData);
     }
   }
 
@@ -239,6 +227,7 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
                   GestureDetector(
                     onTap: () async {
                       final textMessage = chatController.text.trim();
+                      chatController.clear();
                       sendMessage(
                           currentUserId: user!.id!.toString(),
                           partnerUserId: widget.partnerUser.id!.toString(),
