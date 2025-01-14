@@ -38,14 +38,18 @@ class _RoomChatPageState extends State<RoomChatPage> {
     });
   }
 
-  void _openRoomChat(
-      String channelId, String currentUserId) async {
+  void _openRoomChat(String channelId, String currentUserId) async {
     final channel = {
       'unRead.$currentUserId': false,
     };
 
     await PrivateMessageDatasources.instance
         .updateChannelReadStatus(channelId, channel);
+  }
+
+  void _updateActiveStatus(String channelId, String currentUserId) async {
+    await PrivateMessageDatasources.instance
+        .updateChannelActiveStatus(channelId, currentUserId, true);
   }
 
   @override
@@ -92,8 +96,6 @@ class _RoomChatPageState extends State<RoomChatPage> {
                                   .where((id) => id != currentUserId)
                                   .toList();
                               String partnerUserId = filteredIds.first;
-                              debugPrint(
-                                  'currentUser: $currentUserId, partnerUser: $partnerUserId');
 
                               return FutureBuilder<User>(
                                   future: authRemoteDatasources
@@ -122,12 +124,14 @@ class _RoomChatPageState extends State<RoomChatPage> {
                                                     true
                                                 ? false
                                                 : true,
-                                        onTap: () {
+                                        onTap: () async {
                                           if (channel.unRead![currentUserId] ==
                                               true) {
-                                            _openRoomChat(channel.id,
-                                                currentUserId);
+                                            _openRoomChat(
+                                                channel.id, currentUserId);
                                           }
+                                          _updateActiveStatus(
+                                              channel.id, currentUserId);
                                           Navigator.push(context,
                                               MaterialPageRoute(
                                                   builder: (context) {

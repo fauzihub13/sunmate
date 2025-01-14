@@ -38,12 +38,51 @@ class PrivateMessageDatasources {
     });
   }
 
-  Future<void> updateChannel(
-      String channelId, Map<String, dynamic> data) async {
-    await FirebaseFirestore.instance
-        .collection('channels')
-        .doc(channelId)
-        .set(data, SetOptions(merge: true));
+  Future<void> updateChannel(String channelId, String currentUserId,
+      String partnerUserId, ChannelMessageModel channelMessageModel) async {
+    final docRef =
+        FirebaseFirestore.instance.collection('channels').doc(channelId);
+
+    try {
+      final docSnapshot = await docRef.get();
+
+      if (docSnapshot.exists) {
+        final data = docSnapshot.data() as Map<String, dynamic>;
+        final isActive = data['isActive'] as Map<String, dynamic>;
+
+        final bool partnerIsActive = isActive[partnerUserId];
+
+        final channelData = {
+          'lastMessage': channelMessageModel.lastMessage,
+          'lastTime': channelMessageModel.lastTime,
+          'sendBy': channelMessageModel.sendBy,
+          'unRead.$currentUserId': false,
+          'unRead.$partnerUserId': partnerIsActive == true ? false : true,
+        };
+
+        await docRef.update(channelData);
+      } else {
+        // Use set if the document does not exist
+        await docRef.set(channelMessageModel.toMap(), SetOptions(merge: true));
+      }
+    } catch (e) {
+      // print('Error updating or setting channel: $e');
+    }
+
+    //   final channel = {
+    //   'id': data.id,
+    //   'memberIds': data.memberIds,
+    //   'lastMessage': data.lastMessage,
+    //   'lastTime': data.lastTime,
+    //   'sendBy': data.sendBy,
+    //   'unRead.${user!.id!.toString()}': false,
+    //   'unRead.${widget.partnerUser.id!.toString()}': true,
+    // };
+
+    // await FirebaseFirestore.instance
+    //     .collection('channels')
+    //     .doc(channelId)
+    //     .set(channel, SetOptions(merge: true));
   }
 
   Future<void> updateChannelReadStatus(
@@ -52,6 +91,25 @@ class PrivateMessageDatasources {
         .collection('channels')
         .doc(channelId)
         .update(data);
+  }
+
+  Future<void> updateChannelActiveStatus(
+      String channelId, String currentUserId, bool isActive) async {
+    final channelData = {
+      'isActive.$currentUserId': isActive,
+    };
+
+    final docRef =
+        FirebaseFirestore.instance.collection('channels').doc(channelId);
+    try {
+      final docSnapshot = await docRef.get();
+
+      if (docSnapshot.exists) {
+        await docRef.update(channelData);
+      } 
+    } catch (e) {
+      debugPrint('Error updating or setting channel: $e');
+    }
   }
 
   Future<void> addMessage(PrivateMessageModel messageModel) async {

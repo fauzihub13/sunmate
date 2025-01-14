@@ -6,6 +6,7 @@ class ChannelMessageModel {
   final String? lastMessage;
   final Timestamp? lastTime;
   final Map<String, bool>? unRead;
+  final Map<String, bool>? isActive;
   final String? sendBy;
 
   ChannelMessageModel({
@@ -14,6 +15,7 @@ class ChannelMessageModel {
     this.lastMessage,
     this.lastTime,
     this.unRead,
+    this.isActive,
     this.sendBy,
   });
 
@@ -25,6 +27,7 @@ class ChannelMessageModel {
       lastMessage: map['lastMessage'] ?? '',
       lastTime: map['lastTime'] ?? Timestamp.now(),
       unRead: Map<String, bool>.from(map['unRead'] ?? {}),
+      isActive: Map<String, bool>.from(map['isActive'] ?? {}),
       sendBy: map['sendBy'] ?? '',
     );
   }
@@ -36,6 +39,7 @@ class ChannelMessageModel {
       'lastMessage': lastMessage,
       'lastTime': lastTime,
       'unRead': unRead,
+      'isActive': isActive,
       'sendBy': sendBy,
     };
   }
@@ -49,6 +53,7 @@ class ChannelMessageModel {
       lastMessage: data['lastMessage'] ?? '',
       lastTime: data['lastTime'] ?? Timestamp.now(),
       unRead: Map<String, bool>.from(data['unRead'] ?? {}),
+      isActive: Map<String, bool>.from(data['isActive'] ?? {}),
       sendBy: data['sendBy'] ?? '',
     );
   }

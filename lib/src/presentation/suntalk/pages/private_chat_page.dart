@@ -46,6 +46,11 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
     });
   }
 
+  void _closeRoomChat(String channelId, String currentUserId) async {
+    PrivateMessageDatasources.instance
+        .updateChannelActiveStatus(channelId, currentUserId, false);
+  }
+
   Future<void> pickAndUploadImage(BuildContext context) async {
     final ImagePicker imagePicker = ImagePicker();
     final XFile? image =
@@ -59,7 +64,11 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
               await GroupChatRemoteDatasources().uploadImage(bytes);
 
           if (imageUrl != null && imageUrl.isNotEmpty) {
-            sendMessage(textMessage: imageUrl, isImage: true);
+            sendMessage(
+                currentUserId: user!.id!.toString(),
+                partnerUserId: widget.partnerUser.id!.toString(),
+                textMessage: imageUrl,
+                isImage: true);
             // _scrollToBottom();
             if (context.mounted) {
               showSunTalkSnackBar(context, "Gambar terkirim");
@@ -87,22 +96,32 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
     }
   }
 
-  void sendMessage({required String textMessage, bool isImage = false}) async {
+  void sendMessage(
+      {required String currentUserId,
+      required String partnerUserId,
+      required String textMessage,
+      bool isImage = false}) async {
     if (textMessage.isNotEmpty) {
-      final channel = ChannelMessageModel(
-          id: channelId(
-              user!.id!.toString(), widget.partnerUser.id!.toString()),
-          memberIds: [user!.id!.toString(), widget.partnerUser.id!.toString()],
+      final String generatedChannelId =
+          channelId(user!.id!.toString(), widget.partnerUser.id!.toString());
+
+      final channelMessageModel = ChannelMessageModel(
+          id: generatedChannelId,
+          memberIds: [currentUserId, partnerUserId],
           lastMessage: textMessage,
           lastTime: Timestamp.now(),
           unRead: {
-            user!.id!.toString(): false,
-            widget.partnerUser.id!.toString(): true,
+            currentUserId: false,
+            partnerUserId: true,
           },
-          sendBy: user!.id!.toString());
+          isActive: {
+            currentUserId: true,
+            partnerUserId: false,
+          },
+          sendBy: currentUserId);
 
-      await PrivateMessageDatasources.instance
-          .updateChannel(channel.id, channel.toMap());
+      await PrivateMessageDatasources.instance.updateChannel(generatedChannelId,
+          currentUserId, partnerUserId, channelMessageModel);
 
       var docRef = FirebaseFirestore.instance.collection('messages').doc();
       var message = PrivateMessageModel(
@@ -111,24 +130,23 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
         message: textMessage,
         timestamp: Timestamp.now(),
         userId: user!.id!,
-        channelId: channel.id,
+        channelId: generatedChannelId,
       );
 
       PrivateMessageDatasources.instance.addMessage(message);
       chatController.clear();
 
-      var channelUpdateData = {
-        'lastMessage': textMessage,
-        'sendBy': user!.id!.toString(),
-        'lastTime': message.timestamp,
-        'unRead': {
-          user!.id!.toString(): false,
-          widget.partnerUser.id!.toString(): true,
-        }
-      };
-
-      await PrivateMessageDatasources.instance
-          .updateChannel(channel.id, channelUpdateData);
+      // var channelUpdateData = {
+      //   'lastMessage': textMessage,
+      //   'sendBy': user!.id!.toString(),
+      //   'lastTime': message.timestamp,
+      //   'unRead': {
+      //     user!.id!.toString(): false,
+      //     widget.partnerUser.id!.toString(): true,
+      //   }
+      // };
+      // await PrivateMessageDatasources.instance.updateChannel(
+      //     generatedChannelId, currentUserId, partnerUserId, channelUpdateData);
     }
   }
 
@@ -138,7 +156,17 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
       return const CustomLoadingIndicator();
     } else {
       return Scaffold(
-        appBar: CustomAppbar(title: widget.partnerUser.name!, canBack: true),
+        appBar: CustomAppbar(
+          title: widget.partnerUser.name!,
+          canBack: true,
+          onTap: () {
+            _closeRoomChat(
+                channelId(
+                    user!.id!.toString(), widget.partnerUser.id!.toString()),
+                user!.id!.toString());
+            Navigator.pop(context);
+          },
+        ),
         body: Column(
           children: [
             StreamBuilder<List<PrivateMessageModel>>(
@@ -211,7 +239,10 @@ class _PrivateChatPageState extends State<PrivateChatPage> {
                   GestureDetector(
                     onTap: () async {
                       final textMessage = chatController.text.trim();
-                      sendMessage(textMessage: textMessage);
+                      sendMessage(
+                          currentUserId: user!.id!.toString(),
+                          partnerUserId: widget.partnerUser.id!.toString(),
+                          textMessage: textMessage);
                     },
                     child: const Icon(
                       Icons.send,
