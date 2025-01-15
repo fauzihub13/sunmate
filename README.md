@@ -1,5 +1,4 @@
-![Home Screen](https://raw.githubusercontent.com/fauzihub13/sunmate/refs/heads/main/assets/images/onboarding/4.png?s=500)
-
+![Home Screen](https://sunify.my.id/storage/images/chats/AYwvsSVeRnZcgmEVd78slNLfYfxsgFWyWsF3S2p5.png)
 
 # Sunify 🌞  
 **Simplifying Your Solar Energy Journey**
@@ -52,7 +51,6 @@ Sunify is a mobile application designed to make the transition to solar energy s
 
 ### Prerequisites
 - Flutter installed on your system ([Install Flutter](https://flutter.dev/docs/get-started/install))
-- MySQL and Laravel environment setup
 
 ### Steps
 1. Clone the repository:
