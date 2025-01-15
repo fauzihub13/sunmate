@@ -1,16 +1,87 @@
-# flutter_sunmate
+![Home Screen](https://raw.githubusercontent.com/fauzihub13/sunmate/refs/heads/main/assets/images/onboarding/4.png?s=500)
 
-A new Flutter project.
 
-## Getting Started
+# Sunify 🌞  
+**Simplifying Your Solar Energy Journey**
 
-This project is a starting point for a Flutter application.
+Sunify is a mobile application designed to make the transition to solar energy simple, practical, and efficient. This project was built from scratch, incorporating modern technologies and clean architecture principles.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🚀 Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Core Features
+- **SunList**: Browse trusted solar panel vendors.
+- **SunCheck**: Effortlessly book a home survey for panel installation.
+- **SunCost**: Calculate estimated installation costs based on energy usage.
+- **SunTalk**: Share experiences and connect in a solar energy community.
+- **SunNews**: Stay updated with the latest solar energy news and innovations.
+
+### Latest Updates (Version 1.0.2)
+- **Push Notifications**: Real-time notifications for booking and status updates.
+- **Private Chat**: Direct communication between users and vendors.
+- **SunLoc**: Interactive map to locate vendors nearby.
+- **Currency Formatting**: IDR formatting in cost estimation for better clarity.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Flutter 3.24**
+  - Clean Architecture (MVVM)
+  - Bloc State Management
+  - Flutter Map for interactive maps
+
+### Backend
+- **Laravel**
+  - Sanctum for secure authentication
+  - RESTful API integration
+
+### Database
+- **MySQL**: Core data management
+- **Firebase Realtime Database**: For chat functionality
+
+### Additional Services
+- **Firebase Cloud Messaging (FCM)**: Real-time push notifications
+- **OpenStreetMap**: Vendor location mapping
+
+---
+
+## 💻 Installation
+
+### Prerequisites
+- Flutter installed on your system ([Install Flutter](https://flutter.dev/docs/get-started/install))
+- MySQL and Laravel environment setup
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/sunify.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd sunify
+   ```
+3. Install dependencies:
+   ```bash
+   flutter pub get
+   ```
+4. Run the app:
+   ```bash
+   flutter run
+   ```
+
+---
+
+## 📸 Preview
+![Sunify Apps](https://sunify.my.id/storage/images/chats/XSjJbwNi75p03Opi8ECfD8qaUnJd7KCX1jQ3c2uS.png)
+
+---
+
+## 📬 Contact
+Have questions or suggestions? Reach out to me via [LinkedIn](https://www.linkedin.com/in/fauziaditra/) or open an issue in this repository.
+
+---
+
+### 🌟 Don’t forget to give a star if you find this project helpful!
