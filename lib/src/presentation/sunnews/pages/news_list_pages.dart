@@ -41,6 +41,8 @@ class _MobileViewState extends State<MobileView> {
   List<SingleNews> searchResults = [];
   final GlobalKey searchBarKey = GlobalKey();
   double searchBarHeight = 0.0;
+  double width = 0;
+  bool myAnimation = false;
 
   @override
   void initState() {
@@ -54,6 +56,14 @@ class _MobileViewState extends State<MobileView> {
           searchBarHeight = renderBox.size.height;
         });
       }
+    });
+    WidgetsBinding.instance.addPostFrameCallback((timestamp) {
+      Future.delayed(const Duration(milliseconds: 200), () {
+        setState(() {
+          myAnimation = true;
+        });
+        print(myAnimation);
+      });
     });
   }
 
@@ -71,6 +81,7 @@ class _MobileViewState extends State<MobileView> {
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: const CustomAppbar(title: 'SunNews', canBack: true),
       body: RefreshIndicator(
@@ -142,10 +153,17 @@ class _MobileViewState extends State<MobileView> {
                             itemCount: filteredNews.length,
                             itemBuilder: (context, index) {
                               final news = filteredNews[index];
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 5.0),
-                                child: NewsCard(data: news),
+                              return AnimatedContainer(
+                                duration:
+                                    Duration(microseconds: 400 + (index * 250)),
+                                curve: Curves.easeInBack,
+                                transform: Matrix4.translationValues(
+                                    myAnimation ? 0 : width, 0, 0),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5.0),
+                                  child: NewsCard(data: news),
+                                ),
                               );
                             });
                   });
