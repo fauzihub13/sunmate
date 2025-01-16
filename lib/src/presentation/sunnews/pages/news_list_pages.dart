@@ -153,10 +153,10 @@ class _MobileViewState extends State<MobileView> {
                             itemCount: filteredNews.length,
                             itemBuilder: (context, index) {
                               final news = filteredNews[index];
+                              int loopDuration = 400 + (index * 250);
                               return AnimatedContainer(
-                                duration:
-                                    Duration(microseconds: 400 + (index * 250)),
-                                curve: Curves.easeInBack,
+                                duration: Duration(microseconds: loopDuration),
+                                curve: Curves.easeIn,
                                 transform: Matrix4.translationValues(
                                     myAnimation ? 0 : width, 0, 0),
                                 child: Padding(
