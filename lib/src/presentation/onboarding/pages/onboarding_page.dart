@@ -35,8 +35,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         press.setBool('onboarding', true);
                         final currentContext = context;
                         if (currentContext.mounted) {
-                          // print('Status onboarding: ${press.getBool('onboarding')}');
-                          Navigator.push(currentContext,
+                          // print(
+                          //     'Status onboarding: ${press.getBool('onboarding')}');
+                          Navigator.pushReplacement(currentContext,
                               MaterialPageRoute(builder: (context) {
                             return const LoginPage();
                           }));
@@ -126,7 +127,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
         final currentContext = context;
         if (currentContext.mounted) {
           // print('Status onboarding: ${press.getBool('onboarding')}');
-          Navigator.push(currentContext, MaterialPageRoute(builder: (context) {
+          Navigator.pushReplacement(currentContext, MaterialPageRoute(builder: (context) {
             return const LoginPage();
           }));
         }
