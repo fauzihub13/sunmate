@@ -127,9 +127,6 @@ class _HomePageState extends State<HomePage> {
                           return const HomeBanner(
                               temperature: 0, location: '-', weather: '-');
                         },
-                        locationLoaded: (position) {
-                          return Text('lat: $position');
-                        },
                         weatherLoaded: (weather) {
                           if (weather.weather != null &&
                               weather.weather!.isNotEmpty) {

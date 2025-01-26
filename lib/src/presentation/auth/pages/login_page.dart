@@ -12,6 +12,7 @@ import 'package:flutter_sunmate/src/presentation/auth/bloc/login/login_bloc.dart
 import 'package:flutter_sunmate/src/presentation/auth/pages/register_page.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/circular_overlay.dart';
 import 'package:flutter_sunmate/src/presentation/auth/widgets/rectangle_circular.dart';
+import 'package:flutter_sunmate/src/presentation/home/bloc/user_location/user_location_bloc.dart';
 import 'package:flutter_sunmate/src/presentation/home/pages/landing_page.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -182,6 +183,9 @@ class _LoginPageState extends State<LoginPage> {
                                 context.read<LoginBloc>().add(LoginEvent.login(
                                     email: emailController.text,
                                     password: passwordController.text));
+                                context
+                                    .read<UserLocationBloc>()
+                                    .add(const UserLocationEvent.getWeather());
                               }
                             },
                           );
@@ -257,6 +261,9 @@ class _LoginPageState extends State<LoginPage> {
                               context
                                   .read<GoogleAuthBloc>()
                                   .add(const GoogleAuthEvent.signIn());
+                              context
+                                  .read<UserLocationBloc>()
+                                  .add(const UserLocationEvent.getWeather());
                             },
                           );
                         }, loading: () {
