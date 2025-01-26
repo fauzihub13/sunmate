@@ -41,8 +41,6 @@ class _MobileViewState extends State<MobileView> {
   List<SingleNews> searchResults = [];
   final GlobalKey searchBarKey = GlobalKey();
   double searchBarHeight = 0.0;
-  double width = 0;
-  bool myAnimation = false;
 
   @override
   void initState() {
@@ -56,14 +54,6 @@ class _MobileViewState extends State<MobileView> {
           searchBarHeight = renderBox.size.height;
         });
       }
-    });
-    WidgetsBinding.instance.addPostFrameCallback((timestamp) {
-      Future.delayed(const Duration(milliseconds: 200), () {
-        setState(() {
-          myAnimation = true;
-        });
-        print(myAnimation);
-      });
     });
   }
 
@@ -81,7 +71,6 @@ class _MobileViewState extends State<MobileView> {
 
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: const CustomAppbar(title: 'SunNews', canBack: true),
       body: RefreshIndicator(
@@ -153,18 +142,11 @@ class _MobileViewState extends State<MobileView> {
                             itemCount: filteredNews.length,
                             itemBuilder: (context, index) {
                               final news = filteredNews[index];
-                              int loopDuration = 400 + (index * 250);
-                              return AnimatedContainer(
-                                duration: Duration(microseconds: loopDuration),
-                                curve: Curves.easeIn,
-                                transform: Matrix4.translationValues(
-                                    myAnimation ? 0 : width, 0, 0),
-                                child: Padding(
+                              return Padding(
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 5.0),
                                   child: NewsCard(data: news),
-                                ),
-                              );
+                                );
                             });
                   });
                 }),

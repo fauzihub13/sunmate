@@ -46,9 +46,7 @@ class _MobileViewState extends State<MobileView> {
   @override
   void initState() {
     super.initState();
-    context
-        .read<NewsListBloc>()
-        .add(NewsListEvent.getDetailNews(newsId: widget.newsId));
+    _refreshPage();
   }
 
   Future<void> _refreshPage() async {
@@ -59,132 +57,138 @@ class _MobileViewState extends State<MobileView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: CustomAppbar(
-          title: 'Detail Berita',
-          canBack: true,
-          onTap: () {
-            Navigator.pop(context);
-            context.read<NewsListBloc>().add(const NewsListEvent.getNews());
-          },
-        ),
-        body: SafeArea(
-          child: RefreshIndicator(
-            color: AppColors.primary,
-            backgroundColor: AppColors.white,
-            onRefresh: _refreshPage,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: BlocConsumer<NewsListBloc, NewsListState>(
-                listener: (context, state) {
-                  state.maybeWhen(
-                      orElse: () {},
-                      error: (message) {
-                        if (message == 'logged_out') {
-                          AuthLocalDatasources().removeAuthData();
+    return PopScope(
+      canPop: true,
+      onPopInvokedWithResult: (_, __) {
+        context.read<NewsListBloc>().add(const NewsListEvent.getNews());
+      },
+      child: Scaffold(
+          appBar: CustomAppbar(
+            title: 'Detail Berita',
+            canBack: true,
+            onTap: () {
+              Navigator.pop(context);
+              context.read<NewsListBloc>().add(const NewsListEvent.getNews());
+            },
+          ),
+          body: SafeArea(
+            child: RefreshIndicator(
+              color: AppColors.primary,
+              backgroundColor: AppColors.white,
+              onRefresh: _refreshPage,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: BlocConsumer<NewsListBloc, NewsListState>(
+                  listener: (context, state) {
+                    state.maybeWhen(
+                        orElse: () {},
+                        error: (message) {
+                          if (message == 'logged_out') {
+                            AuthLocalDatasources().removeAuthData();
 
-                          // Schedule SnackBar display after current frame
-                          SchedulerBinding.instance.addPostFrameCallback((_) {
-                            CustomSnackbar.show(context,
-                                message: 'Silahkan login kembali.',
-                                status: 'fail');
+                            // Schedule SnackBar display after current frame
+                            SchedulerBinding.instance.addPostFrameCallback((_) {
+                              CustomSnackbar.show(context,
+                                  message: 'Silahkan login kembali.',
+                                  status: 'fail');
 
-                            // Navigate to LoginPage after the SnackBar
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginPage()),
-                              (route) => false,
-                            );
-                          });
-                        }
-                      });
-                },
-                builder: (context, state) {
-                  return state.maybeWhen(orElse: () {
-                    return SizedBox(
-                      height: MediaQuery.of(context).size.height -
-                          AppBar().preferredSize.height,
-                      child: const Center(child: CustomLoadingIndicator()),
-                    );
-                  }, detailNewsLoaded: (news) {
-                    return SingleChildScrollView(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 250,
-                            padding: const EdgeInsets.only(bottom: 16),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
-                                '${Variables.baseUrl}/storage/${news.image!}',
-                                width: double.infinity,
-                                height: double.infinity,
-                                fit: BoxFit.cover,
+                              // Navigate to LoginPage after the SnackBar
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginPage()),
+                                (route) => false,
+                              );
+                            });
+                          }
+                        });
+                  },
+                  builder: (context, state) {
+                    return state.maybeWhen(orElse: () {
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height -
+                            AppBar().preferredSize.height,
+                        child: const Center(child: CustomLoadingIndicator()),
+                      );
+                    }, detailNewsLoaded: (news) {
+                      return SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 250,
+                              padding: const EdgeInsets.only(bottom: 16),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  '${Variables.baseUrl}/storage/${news.image!}',
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              DateFormat('dd MMMM yyyy')
-                                  .format(news.createdAt!),
-                              style: const TextStyle(
-                                color: AppColors.grey,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 8.0,
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              news.title!,
-                              textAlign: TextAlign.justify,
-                              style: const TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.darkBlue),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20.0,
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: ReadMoreText(
-                              news.description!,
-                              textAlign: TextAlign.justify,
-                              trimLines: 8,
-                              colorClickableText: AppColors.darkBlue,
-                              trimMode: TrimMode.Line,
-                              trimCollapsedText: '..Selengkapnya',
-                              style: const TextStyle(
-                                  fontSize: 16.0,
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                DateFormat('dd MMMM yyyy')
+                                    .format(news.createdAt!),
+                                style: const TextStyle(
+                                  color: AppColors.grey,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w400,
-                                  color: AppColors.grey),
-                              trimExpandedText: ' Persingkat',
+                                ),
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 20.0,
-                          ),
-                        ],
-                      ),
-                    );
-                  }, error: (message) {
-                    return EmptyPage(
-                      message: message,
-                    );
-                  });
-                },
+                            const SizedBox(
+                              height: 8.0,
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                news.title!,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.darkBlue),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: ReadMoreText(
+                                news.description!,
+                                textAlign: TextAlign.justify,
+                                trimLines: 8,
+                                colorClickableText: AppColors.darkBlue,
+                                trimMode: TrimMode.Line,
+                                trimCollapsedText: '..Selengkapnya',
+                                style: const TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.grey),
+                                trimExpandedText: ' Persingkat',
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                          ],
+                        ),
+                      );
+                    }, error: (message) {
+                      return EmptyPage(
+                        message: message,
+                      );
+                    });
+                  },
+                ),
               ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }
